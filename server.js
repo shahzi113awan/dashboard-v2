@@ -38,10 +38,11 @@ app.use("/api/upload", express.static(path.join(__dirname, "/uploads")));
 if (process.env.NODE_ENV == "Production") {
   app.use(express.static(path.join(__dirname, "build")));
   app.get("*", (req, res) =>
-    res.sendFile(path.join(__dirname, "build","index.html"))
+    res.sendFile(path.join(__dirname, "build", "index.html"))
   );
 }
 console.log(process.env.NODE_ENV);
+console.log("NODE_ENV");
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server Started on port ${port}`));
