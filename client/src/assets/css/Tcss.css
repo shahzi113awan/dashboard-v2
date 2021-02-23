@@ -1,0 +1,77 @@
+@import url(https://fonts.googleapis.com/css?family=Numans);
+body {
+  font-family: 'Numans', sans-serif;
+}
+
+.le-checkbox {
+  appearance: none;
+  position: relative;
+  /* margin-top: 50px; */
+  top: 12px;
+  /* margin-top: 20px; */
+  left: 5px;
+  transform: translateY(-50%);
+  background-color: #f44336;
+  width: 30px;
+  height: 30px;
+  border-radius: 40px;
+  margin: 0px;
+  outline: none;
+  transition: background-color 0.5s;
+}
+.le-checkbox:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background-color: #ffffff;
+  width: 20px;
+  height: 5px;
+  border-radius: 40px;
+  transition: all 0.5s;
+}
+
+.le-checkbox:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  background-color: #ffffff;
+  width: 20px;
+  height: 5px;
+  border-radius: 40px;
+  transition: all 0.5s;
+}
+.le-checkbox:checked {
+  background-color: #4caf50;
+}
+.le-checkbox:checked:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translate(-4px, 3px) rotate(45deg);
+  background-color: #ffffff;
+  width: 12px;
+  height: 5px;
+  border-radius: 40px;
+}
+
+.le-checkbox:checked:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translate(3px, 2px) rotate(-45deg);
+  background-color: #ffffff;
+  width: 16px;
+  height: 5px;
+  border-radius: 40px;
+}
+
+/* Input Field Color */
+.border-red{
+  border-color: red!important;
+}
