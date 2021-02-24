@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Get } from "../actions/ciAction";
+import moment from "moment";
 
 export default function MainDashboard() {
   const history = useHistory();
@@ -18,6 +19,13 @@ export default function MainDashboard() {
   if (!data) {
     window.location.reload();
   }
+  const cal = (val) => {
+    const Start = moment(val);
+    const End = moment(Start).add(90);
+
+    const days = moment.duration(End.diff(Start)).asDays();
+    return Math.ceil(days);
+  };
   console.log(isLoading);
   console.log(data);
   return isLoading ? (
@@ -127,22 +135,22 @@ export default function MainDashboard() {
                       {res.ci.tpi_aaSolution ? res.ci.tpi_aaSolution : ""}
                     </td>
                     <td>
-                      <a href="https://www.google.com" type="submit">
+                      {/* <a href="https://www.google.com" type="submit">
                         url
-                      </a>
+                      </a> */}
                       <a
                         href={
                           "https://" + res.ci.tci_wUrl ? res.ci.tci_wUrl : ""
                         }
                       >
                         {" "}
-                        web
+                        {res.ci.tci_wUrl}
                       </a>
                     </td>
                     <td>4.95%</td>
                     <td>6.95%</td>
-                    <td>18 February, 2021</td>
-                    <td>8</td>
+                    <td>{res.ci.tpi_date}</td>
+                    <td>{cal(res.ci.tpi_date)}</td>
                     <td>{res.ci.tpi_ntc ? res.ci.tpi_ntc : ""}</td>
                     <td>{res.ci.tpi_vtSector ? res.ci.tpi_vtSector : ""}</td>
                     <td>{res.ci.tpi_brPartner ? res.ci.tpi_brPartner : ""}</td>
@@ -169,15 +177,11 @@ export default function MainDashboard() {
                     <td>
                       {res.cti.cti_wUrl_proofD ? res.cti.cti_wUrl_proofD : ""}
                     </td>
-                    <td>
-                      <input type="checkbox" class="le-checkbox" />
-                    </td>
+                    <td>{res.cl.owsc_status}</td>
                     <td>{res.cti.cti_bPlan ? res.cti.cti_bPlan : ""}</td>
                     <td>{res.kyc.kyc_name ? res.kyc.kyc_name : ""}</td>
                     <td>{res.kyc.kyc_sHolds ? res.kyc.kyc_sHolds : ""}</td>
-                    <td>
-                      <input type="checkbox" class="le-checkbox" />
-                    </td>
+                    <td>{res.kyc.kyc_notarized}</td>
                     <td>
                       {res.kyc.kyc_nationality ? res.kyc.kyc_nationality : ""}
                     </td>
@@ -190,7 +194,7 @@ export default function MainDashboard() {
                     <td>{res.kyc.kyc_Address ? res.kyc.kyc_Address : ""}</td>
                     <td>{res.kyc.kyc_toProof ? res.kyc.kyc_toProof : ""}</td>
                     <td>
-                      <input type="checkbox" class="le-checkbox" />
+                      {res.kyc.kyc_notarized ? res.kyc.kyc_notarized : ""}
                     </td>
                     <td>01 January, 2021</td>
                     <td>1 April, 2021</td>

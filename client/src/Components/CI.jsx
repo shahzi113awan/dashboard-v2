@@ -504,15 +504,15 @@ export default function CI(props) {
           </Row>
           {/* **************************** */}
           {/* <hr className="border-primary"/> */}
-          <div>
+          {/* <div>
             <h2>
               <span class="badge badge-success">
                 Company Contact Information:{" "}
               </span>
             </h2>
-          </div>
+          </div> */}
 
-          <Row form>
+          {/* <Row form>
             <Col md={6}>
               <FormGroup>
                 <Label for="address">Contact Name:</Label>
@@ -604,7 +604,7 @@ export default function CI(props) {
                 ></Input>
               </FormGroup>
             </Col>
-          </Row>
+          </Row> */}
           {urlid ? (
             <Button onClick={onUpdateSubmit}>Update and Next</Button>
           ) : (

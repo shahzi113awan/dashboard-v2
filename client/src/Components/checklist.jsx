@@ -181,6 +181,7 @@ export const CheckList = () => {
             name={"bi_status"}
             value={CL.bi_status}
             fc="bi_fileName"
+            path={CL.bi_fileName}
             Change={(e) => {
               console.log("changing");
               handleChange(e);

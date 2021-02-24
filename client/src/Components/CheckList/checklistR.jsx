@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-// import path from "../../../../uploads";
-
+// import path from "../../assets/uploads/";
 import {
   AiOutlineFolderView,
   AiFillEdit,
@@ -16,6 +15,7 @@ import {
 } from "reactstrap";
 // import { Link } from "react-router-dom";
 const ChecklistR = (props) => {
+  // const path = "../../assets/uploads/react-native.png";
   const [view, setView] = useState(false);
   // const [CL, setCL] = React.useState({
   //   fcaf_status: "",
@@ -94,14 +94,9 @@ const ChecklistR = (props) => {
     setView(!view);
   };
   const handleClickRead = (e) => {
-    if (view) {
-      return (
-        <Modal isOpen={view} toggle={toggler}>
-          <ModalHeader toggle={toggler}>Modal title</ModalHeader>
-          <ModalBody></ModalBody>
-        </Modal>
-      );
-    }
+    // console.log(`${path}/${props.path}`);
+    console.log(view);
+    if (view) return <div></div>;
   };
   const handleClickEdit = (e) => {
     console.log("hi from edit");
@@ -185,6 +180,12 @@ const ChecklistR = (props) => {
           />
         </FormGroup>
       </Col>
+      <Modal isOpen={view} toggle={toggler}>
+        <ModalHeader toggle={toggler}>Modal title</ModalHeader>
+        <ModalBody>
+          <img src={"./"} alt="" />
+        </ModalBody>
+      </Modal>
     </React.Fragment>
   );
 };
