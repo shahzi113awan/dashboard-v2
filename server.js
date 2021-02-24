@@ -35,7 +35,10 @@ app.use("/api", sd);
 app.use("/api", uploadRoute);
 
 // const __dirname = path.resolve();
-app.use("/api/upload", express.static(path.join(__dirname, "/client/src/asstes/uploads")));
+app.use(
+  "/api/upload",
+  express.static(path.join(__dirname, "/client/src/asstes/uploads"))
+);
 
 if (process.env.NODE_ENV == "Production") {
   app.use(express.static(path.join(__dirname, "build")));
@@ -44,7 +47,7 @@ if (process.env.NODE_ENV == "Production") {
   );
 }
 console.log(process.env.NODE_ENV);
-console.log("NODE_ENV");
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server Started on port ${port}`));
