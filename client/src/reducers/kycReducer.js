@@ -8,6 +8,8 @@ const initialState = {
     kyc_nationality: "",
     kyc_notarized: "",
     kyc_Address: "",
+    kyc_adstartDate: "",
+    kyc_adExpiryDate: "",
     kyc_toProof: "",
     kyc_paDocument: "",
   },

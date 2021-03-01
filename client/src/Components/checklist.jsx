@@ -4,14 +4,13 @@ import { Row, Button, Form } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import ChecklistR from "./CheckList/checklistR";
 import { useDispatch, useSelector } from "react-redux";
-import { Create, GetOne } from "../actions/clAction";
+import { CreateCL, GetOneCL } from "../actions/clAction";
 import { Get } from "../actions/ciAction";
 import axios from "axios";
 export const CheckList = () => {
   const dispatch = useDispatch();
 
   const history = useHistory();
-  const [Count, setCount] = useState(34);
   const data = useSelector((state) => state.clReducer.state);
   const id = useSelector((state) => state.ciReducer.id);
   console.log("tio update data");
@@ -19,10 +18,15 @@ export const CheckList = () => {
   //States
 
   const [image, setImage] = useState("");
+  const [countArr, setcountArr] = useState([]);
 
   const { urlid } = useParams();
+  const link = `/sdkyb/${urlid}`;
+
   useEffect(() => {
-    urlid ? dispatch(GetOne(urlid)) : console.log("creating");
+    urlid
+      ? dispatch(GetOneCL(urlid)) && setcountArr(data.pendingCount)
+      : console.log("creating");
   }, [urlid]);
   const [CL, setCL] = React.useState({
     // fcaf_status: "",
@@ -98,24 +102,25 @@ export const CheckList = () => {
   });
 
   useEffect(() => {
+    setcountArr(data.pendingCount);
     setCL(data);
   }, [data]);
   // console.log(CL);
   const handleChange = (e) => {
     console.log(e.target.value);
+    console.log(countArr);
     if (e.target.value === "Received") {
-      console.log("counting");
-      setCount(Count - 1);
-      console.log("counted");
-      console.log(CL.pendingCount);
+      countArr.push(e.target.value);
+    } else {
+      countArr.pop(e.target.value);
     }
-    console.log("copying");
 
     setCL({
       ...CL,
       [e.target.name]: e.target.value,
     });
   };
+
   // console.log(CL);
   //ImageHandler
   const ImageHandler = async (e) => {
@@ -138,21 +143,17 @@ export const CheckList = () => {
         ...CL,
         [e.target.name]: fileName,
       });
-      // console.log(CL);
     } catch (error) {}
   };
+
+  console.log(CL);
   const onSubmit = (e) => {
-    const Value = Count;
-    setCL({
-      ...CL,
-      [CL.pendingCount]: Value,
-    });
     e.preventDefault();
-    urlid ? dispatch(Create(CL, urlid)) : dispatch(Create(CL, id));
+    urlid ? dispatch(CreateCL(CL, urlid)) : dispatch(CreateCL(CL, id));
     dispatch(Get());
     history.push("/");
   };
-  console.log(Count);
+
   return (
     <div className="container">
       <div>
@@ -181,6 +182,7 @@ export const CheckList = () => {
             name={"bi_status"}
             value={CL.bi_status}
             fc="bi_fileName"
+            path={CL.bi_fileName}
             Change={(e) => {
               console.log("changing");
               handleChange(e);
@@ -240,8 +242,8 @@ export const CheckList = () => {
           <ChecklistR
             text={"Website URL-Proof of Domain"}
             name={"wuod_status"}
-            value="wuod_status"
-            fc={CL.wuod_fileName}
+            value={CL.wuod_status}
+            fc="CL.wuod_fileName"
             Change={(e) => {
               handleChange(e);
             }}
@@ -263,7 +265,7 @@ export const CheckList = () => {
           />
           <ChecklistR
             text={"Business Plan"}
-            name={"bp"}
+            name={"bp_status"}
             value={CL.bp_status}
             fc="bp_fileName"
             Change={(e) => {
@@ -575,8 +577,13 @@ export const CheckList = () => {
             }}
           />
         </Row>
+        <Button tag={Link} to={link}>
+          Previous
+        </Button>
         <Link>
-          <Button onClick={onSubmit}>Update Details</Button>
+          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
+            Update Details
+          </Button>
         </Link>
       </Form>
     </div>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-// import path from "../../../../uploads";
-
+// import pic from "./pp.jpg";
 import {
   AiOutlineFolderView,
   AiFillEdit,
@@ -16,6 +15,8 @@ import {
 } from "reactstrap";
 // import { Link } from "react-router-dom";
 const ChecklistR = (props) => {
+  const path = "./pp.jpg";
+  // const path = "../../assets/uploads/react-native.png";
   const [view, setView] = useState(false);
   // const [CL, setCL] = React.useState({
   //   fcaf_status: "",
@@ -94,14 +95,11 @@ const ChecklistR = (props) => {
     setView(!view);
   };
   const handleClickRead = (e) => {
-    if (view) {
-      return (
-        <Modal isOpen={view} toggle={toggler}>
-          <ModalHeader toggle={toggler}>Modal title</ModalHeader>
-          <ModalBody></ModalBody>
-        </Modal>
-      );
-    }
+    // console.log(props.path.slice("./"));
+    window.open(`http://localhost:5000/get/${props.path}`, "_blank");
+    console.log(props.path);
+    console.log(view);
+    if (view) return <div></div>;
   };
   const handleClickEdit = (e) => {
     console.log("hi from edit");
@@ -149,11 +147,12 @@ const ChecklistR = (props) => {
       <Col md={3}>
         <FormGroup>
           <select
-            // className={
-            //   CL.fcaf_status === "Pending"
-            //     ? "border-red custom-select"
-            //     : "custom-select"
-            // }
+            className={
+              // CL.fcaf_status === "Pending"
+              //   ? "border-red custom-select"
+              //   :
+              "custom-select"
+            }
             value={props.value}
             // id="1"
             name={props.name}
@@ -185,6 +184,12 @@ const ChecklistR = (props) => {
           />
         </FormGroup>
       </Col>
+      {/* <Modal isOpen={view} toggle={toggler}>
+        <ModalHeader toggle={toggler}>Modal title</ModalHeader>
+        <ModalBody>
+          <img src={`http://localhost:5000/get/${props.path}`} alt="" />
+        </ModalBody>
+      </Modal> */}
     </React.Fragment>
   );
 };

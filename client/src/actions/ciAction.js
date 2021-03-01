@@ -1,5 +1,5 @@
 import axios from "axios";
-export  const Create = (obj) => async (dipatch) => {
+export const CreateCI = (obj) => async (dipatch) => {
   await axios
     .post("/api/ci", {
       ci: obj,
@@ -25,7 +25,7 @@ export const Get = (obj) => async (dispatch) => {
     payload: data,
   });
 };
-export const GetOne = (id) => async (dispatch) => {
+export const GetOneCI = (id) => async (dispatch) => {
   dispatch(setLoading());
   await axios.get("/api/ci/" + id, { id: id }).then((res) => {
     // console.log("from action");
@@ -47,6 +47,22 @@ export const Update = (obj, id) => async (dispatch) => {
           payload: res.data,
         }),
       console.log("XXXXXX" + id)
+    );
+  } catch {
+    dispatch({
+      type: "Error",
+    });
+  }
+};
+export const Delete = (id) => async (dispatch) => {
+  try {
+    let url = "/api/CI/";
+    await axios.delete(url + id, { id: id }).then((res) =>
+      // dispatch({
+      //   type: "Delete_CI",
+      //   payload: res.data,
+      // }),
+      console.log(res.data)
     );
   } catch {
     dispatch({
@@ -78,4 +94,3 @@ export const setLoading = () => (dispatch) => {
     type: "LOADING",
   });
 };
-export default Create ;

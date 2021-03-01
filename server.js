@@ -35,10 +35,10 @@ app.use("/api", sd);
 app.use("/api", uploadRoute);
 
 // const __dirname = path.resolve();
-app.use("/api/upload", express.static(path.join(__dirname, "client/uploads")));
+app.use("/get", express.static(path.join(__dirname, "/uploads")));
 
 if (process.env.NODE_ENV == "Production") {
-  app.use(express.static(path.join(__dirname, "/client/build")));
+  app.use(express.static(path.join(__dirname, "build")));
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "build", "index.html"))
   );

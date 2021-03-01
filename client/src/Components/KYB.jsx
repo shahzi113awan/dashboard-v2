@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { Create, GetOne } from "../actions/kybAction";
+import { CreateKYB, GetOneKYB } from "../actions/kybAction";
 
 export default function KYB() {
   const dispatch = useDispatch();
@@ -11,6 +11,7 @@ export default function KYB() {
   const data = useSelector((state) => state.kybReducer.state);
   const id = useSelector((state) => state.ciReducer.id);
   console.log(id);
+  const link =`/kyc/${urlid}`
   const [KYB, setKYB] = useState({
     // kyb_coi: 'Pending',
     // kyb_moa: 'Pending',
@@ -20,7 +21,7 @@ export default function KYB() {
     // kyb_ccre: 'Pending',
   });
   useEffect(() => {
-    urlid ? dispatch(GetOne(urlid)) : console.log("creating");
+    urlid ? dispatch(GetOneKYB(urlid)) : console.log("creating");
   }, [urlid]);
   console.log(KYB);
   function handleInput(evt) {
@@ -37,13 +38,13 @@ export default function KYB() {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(KYB);
-    dispatch(Create(KYB, id));
+    dispatch(CreateKYB(KYB, id));
 
     history.push("/sdkyb");
   };
   const onUpdateSubmit = (e) => {
     e.preventDefault();
-    dispatch(Create(KYB, urlid));
+    dispatch(CreateKYB(KYB, urlid));
     history.push("/sdkyb/" + urlid);
   };
 
@@ -165,7 +166,8 @@ export default function KYB() {
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Current Commercial Register Extract:</Label>
-              <select
+              <Input readOnly value={"Not Required"}></Input>
+              {/* <select
                 className={
                   KYB.kyb_ccre === "Pending"
                     ? "border-red custom-select"
@@ -179,15 +181,22 @@ export default function KYB() {
               >
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
-              </select>
+              </select> */}
             </FormGroup>
           </Col>
         </Row>
+        <Button tag={Link} to={link}>
+          Previous
+        </Button>
         {/* <Link to='/supporting-doc-kyb'> */}
         {urlid ? (
-          <Button onClick={onUpdateSubmit}>Update and Next</Button>
+          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+            Update and Next
+          </Button>
         ) : (
-          <Button onClick={onSubmit}>Save and Next</Button>
+          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
+            Save and Next
+          </Button>
         )}
         {/* </Link> */}
       </Form>

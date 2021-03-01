@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Create, Update, GetOne, UpdateOne } from "../actions/ciAction";
+import { CreateCI, Update, GetOneCI, UpdateOne } from "../actions/ciAction";
 
 export default function CI(props) {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export default function CI(props) {
   const history = useHistory();
 
   useEffect(() => {
-    urlid ? dispatch(GetOne(urlid)) : console.log("creating");
+    urlid ? dispatch(GetOneCI(urlid)) : console.log("creating");
   }, [urlid]);
   // console.log('**********')
   // console.log(isLoading)
@@ -70,7 +70,7 @@ export default function CI(props) {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(CI);
-    dispatch(Create(CI));
+    dispatch(CreateCI(CI));
 
     history.push("/CTI");
   };
@@ -138,15 +138,16 @@ export default function CI(props) {
               <FormGroup>
                 <Label for="NTC">Trading / New To Cards (NTC):</Label>
 
-                <Input
-                  className="cusrom"
-                  onChange={handleInput}
-                  required={false}
-                  type="text"
+                <select
+                  className="custom-select"
+                  value={CI.tpi_ntc}
+                  id="1"
                   name="tpi_ntc"
-                  id="Name"
-                  placeholder="NTC"
-                ></Input>
+                  onChange={handleInput}
+                >
+                  <option> NTC </option>
+                  <option>New to Cards</option>
+                </select>
               </FormGroup>
             </Col>
             <Col md={6}>
@@ -210,6 +211,21 @@ export default function CI(props) {
             </Col>
             <Col md={6}>
               <FormGroup>
+                <Label for="CCR">Introductory Person:</Label>
+                <Input
+                  className="cusrom"
+                  onChange={handleInput}
+                  required={false}
+                  type="text"
+                  value={CI.tpi_iP}
+                  name="tpi_iP"
+                  id="Name"
+                  placeholder="Name"
+                ></Input>
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
                 <Label for="CCR">Compliance Country Location:</Label>
                 <Input
                   className="cusrom"
@@ -233,8 +249,9 @@ export default function CI(props) {
                   name="tpi_EEADocuments"
                   onChange={handleInput}
                 >
-                  <option value="Pending"> Pending </option>
-                  <option value="Received">Received</option>
+                  <option> EEA </option>
+                  <option>USA</option>
+                  <option>International</option>
                 </select>
               </FormGroup>
             </Col>
@@ -272,6 +289,21 @@ export default function CI(props) {
           </div>
 
           <Row form>
+            <Col md={6}>
+              <FormGroup>
+                <Label for="mci_crAddress">Management Company Address:</Label>
+                <Input
+                  className="cusrom"
+                  value={CI.mci_mcrAddress}
+                  name="mci_mcrAddress"
+                  onChange={handleInput}
+                  required={false}
+                  type="address"
+                  id="address"
+                  placeholder="Management Company Registered Address"
+                ></Input>
+              </FormGroup>
+            </Col>
             <Col md={6}>
               <FormGroup>
                 <Label for="mci_crAddress">Company Registered Address:</Label>
@@ -358,6 +390,21 @@ export default function CI(props) {
                   type="Text"
                   id="Contact-name"
                   placeholder="Contact name"
+                ></Input>
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label for="address">E-mail Address:</Label>
+                <Input
+                  className="cusrom"
+                  value={CI.cci_email}
+                  name="cci_email"
+                  onChange={handleInput}
+                  required={false}
+                  type="Text"
+                  id="Contact-email"
+                  placeholder="Email"
                 ></Input>
               </FormGroup>
             </Col>
@@ -504,15 +551,15 @@ export default function CI(props) {
           </Row>
           {/* **************************** */}
           {/* <hr className="border-primary"/> */}
-          <div>
+          {/* <div>
             <h2>
               <span class="badge badge-success">
                 Company Contact Information:{" "}
               </span>
             </h2>
-          </div>
+          </div> */}
 
-          <Row form>
+          {/* <Row form>
             <Col md={6}>
               <FormGroup>
                 <Label for="address">Contact Name:</Label>
@@ -604,7 +651,7 @@ export default function CI(props) {
                 ></Input>
               </FormGroup>
             </Col>
-          </Row>
+          </Row> */}
           {urlid ? (
             <Button onClick={onUpdateSubmit}>Update and Next</Button>
           ) : (
