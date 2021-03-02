@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import { load } from "dotenv/types";
 import { Get } from "../actions/ciAction";
+import {firebase} from '../Config'
 
 export const Header = (props) => {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ export const Header = (props) => {
     console.log("loading daata");
     dispatch(Get());
   };
+  const handleLogout=()=>{
+    firebase.auth().signOut()
+  }
   return (
     <div className="container" style={{ marginBottom: 10 }}>
       <Navbar color="light" light expand="md">
@@ -57,6 +61,9 @@ export const Header = (props) => {
 
             <NavItem>
               <NavLink>Reports</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink onClick={handleLogout}>Logout</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

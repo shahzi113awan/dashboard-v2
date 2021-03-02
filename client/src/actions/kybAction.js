@@ -1,5 +1,5 @@
 import axios from "axios";
-export const Create = (obj, id) => async (dispatch) => {
+export const CreateKYB = (obj, id) => async (dispatch) => {
   try {
     await axios.put("/api/kyb", { kyb: obj, id: id }).then((res) => {
       console.log("action clicked");
@@ -15,7 +15,7 @@ export const Create = (obj, id) => async (dispatch) => {
     // console.error('Errror from Action');
   }
 };
-export const GetOne = (id) => (dispatch) => {
+export const GetOneKYB = (id) => (dispatch) => {
   axios.get("/api/ci/" + id, { id: id }).then((res) => {
     dispatch({
       type: "GET_KYB",
@@ -23,4 +23,3 @@ export const GetOne = (id) => (dispatch) => {
     });
   });
 };
-export default Create;

@@ -1,8 +1,10 @@
-import { Button } from 'bootstrap'
+import { Button } from 'reactstrap'
+
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { Get } from '../actions/ciAction'
+import { Get, Delete } from '../actions/ciAction'
+import moment from 'moment'
 
 export default function MainDashboard() {
   const history = useHistory()
@@ -11,29 +13,37 @@ export default function MainDashboard() {
   useEffect(() => {
     dispatch(Get())
   }, [dispatch])
-  const [db, setDb] = useState([
-    {ci: {
-      cti_fcaForm: 'Pending',
-      cti_bInformation: 'Pending',
-      cti_otAgreement: '',
-      cti_hwUrl: '',
-      cti_wCompliance: '',
-      cti_wUrl_proofDomain: 'Pending',
-      cti_osChart: 'Pending',
-      cti_bPlan: 'Pending',
-    },}
-  ])
+  const [db, setDb] = useState([])
   const data = useSelector((state) => state.ciReducer.state)
   // const isLoading = 'useSelector((state) => state.ciReducer.isLoading)'
+  console.log(data)
   useEffect(() => {
     setDb(data)
   }, [data])
+  console.log(db);
   const isLoading = useSelector((state) => state.ciReducer.isLoading)
   if (!data) {
     window.location.reload()
   }
   console.log(isLoading)
-  console.log(data)
+  const del = async (id) => {
+    await dispatch(Delete(id))
+    window.location.reload()
+    // dispatch(Get());
+  }
+  const cal = (val) => {
+    console.log(val)
+    const Start = moment(new Date())
+    console.log(Start)
+    const End = moment(val).add(90, 'd').format('YYYY-MM-DD')
+    const Ending = moment(End)
+    console.log(Ending)
+    const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays())
+    console.log(days)
+    return days
+  }
+  console.log(isLoading)
+  console.log(db)
   return isLoading ? (
     <h1 className='text-center'>Loading</h1>
   ) : (
@@ -43,7 +53,7 @@ export default function MainDashboard() {
           <thead>
             <tr>
               <th scope='col'> # </th>
-              <th scope='col' style={{ position: 'relative' }} classNa>
+              <th scope='col' style={{ width: '200px' }} classNa>
                 Registered Company Name
               </th>
               <th scope='col'>Total Pending</th>
@@ -115,13 +125,12 @@ export default function MainDashboard() {
               <th scope='col'>Sales Handoff Sheet (CCBill Only)</th>
               <th scope='col'>SPARE</th>
               <th scope='col '> SPARE</th>
+              <th scope='col '> Delete</th>
             </tr>
           </thead>
           <tbody>
-            {isLoading === true ? (
-              <h1> </h1>
-            ) : (
-              db.map((res, index) => {
+            {data &&
+              data.map((res, index) => {
                 return (
                   <tr>
                     <th scope='row'>1</th>
@@ -131,8 +140,8 @@ export default function MainDashboard() {
                         {res.ci.tpi_rcName ? res.ci.tpi_rcName : 'Default Name'}
                       </Link>
                     </td>
-                    <td>20</td>
-                    <td>06</td>
+                    <td>{34 - res.cl.pendingCount.length}</td>
+                    <td>{res.cl.pendingCount.length}</td>
                     <td>14</td>
                     <td>
                       <button type='submit'>0</button>
@@ -140,23 +149,21 @@ export default function MainDashboard() {
                     <td>
                       {res.ci.tpi_aaSolution ? res.ci.tpi_aaSolution : ''}
                     </td>
-                    <td>
-                      <a href='https://www.google.com' type='submit'>
+                    <td
+                      onClick={() => {
+                        window.open(res.ci.tci_wUrl, '_blank')
+                      }}
+                    >
+                      {/* <a href="https://www.google.com" type="submit">
                         url
-                      </a>
-                      <a
-                        href={
-                          'https://' + res.ci.tci_wUrl ? res.ci.tci_wUrl : ''
-                        }
-                      >
-                        {' '}
-                        web
-                      </a>
+                      </a> */}
+
+                      {res.ci.tci_wUrl}
                     </td>
                     <td>4.95%</td>
                     <td>6.95%</td>
-                    <td>18 February, 2021</td>
-                    <td>8</td>
+                    <td>{res.ci.tpi_date}</td>
+                    <td>{cal(res.ci.tpi_date)}</td>
                     <td>{res.ci.tpi_ntc ? res.ci.tpi_ntc : ''}</td>
                     <td>{res.ci.tpi_vtSector ? res.ci.tpi_vtSector : ''}</td>
                     <td>{res.ci.tpi_brPartner ? res.ci.tpi_brPartner : ''}</td>
@@ -183,15 +190,11 @@ export default function MainDashboard() {
                     <td>
                       {res.cti.cti_wUrl_proofD ? res.cti.cti_wUrl_proofD : ''}
                     </td>
-                    <td>
-                      <input type='checkbox' class='le-checkbox' />
-                    </td>
+                    <td>{res.cl.owsc_status}</td>
                     <td>{res.cti.cti_bPlan ? res.cti.cti_bPlan : ''}</td>
                     <td>{res.kyc.kyc_name ? res.kyc.kyc_name : ''}</td>
                     <td>{res.kyc.kyc_sHolds ? res.kyc.kyc_sHolds : ''}</td>
-                    <td>
-                      <input type='checkbox' class='le-checkbox' />
-                    </td>
+                    <td>{res.kyc.kyc_notarized}</td>
                     <td>
                       {res.kyc.kyc_nationality ? res.kyc.kyc_nationality : ''}
                     </td>
@@ -204,7 +207,7 @@ export default function MainDashboard() {
                     <td>{res.kyc.kyc_Address ? res.kyc.kyc_Address : ''}</td>
                     <td>{res.kyc.kyc_toProof ? res.kyc.kyc_toProof : ''}</td>
                     <td>
-                      <input type='checkbox' class='le-checkbox' />
+                      {res.kyc.kyc_notarized ? res.kyc.kyc_notarized : ''}
                     </td>
                     <td>01 January, 2021</td>
                     <td>1 April, 2021</td>
@@ -220,10 +223,21 @@ export default function MainDashboard() {
                     <td>{res.sd.lta_cra ? res.sd.lta_cra : ''}</td>
                     <td>{res.sd.lta_fdsa ? res.sd.lta_fdsa : ''}</td>
                     <td>{res.sd.lta_fbo_cr ? res.sd.lta_fbo_cr : ''}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <Button
+                        onClick={(e) => {
+                          del(res._id)
+                        }}
+                      >
+                        Delete
+                      </Button>
+                    </td>
                   </tr>
                 )
-              })
-            )}
+              })}
           </tbody>
         </table>
       </div>

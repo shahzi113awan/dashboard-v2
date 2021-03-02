@@ -1,5 +1,5 @@
-import axios from "axios";
-export const Create = (obj, id) => async (dispatch) => {
+  import axios from "axios";
+export const CreateCTI = (obj, id) => async (dispatch) => {
   try {
     let url = "/api/cti";
     await axios.put(url, { cti: obj, id: id }).then((res) => {
@@ -16,7 +16,7 @@ export const Create = (obj, id) => async (dispatch) => {
     });
   }
 };
-export const GetOne = (id) => async (dispatch) => {
+export const GetOneCTI = (id) => async (dispatch) => {
   await axios.get("/api/ci/" + id, { id: id }).then((res) => {
     
     dispatch({
@@ -25,4 +25,3 @@ export const GetOne = (id) => async (dispatch) => {
     });
   });
 };
-export default Create;

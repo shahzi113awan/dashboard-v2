@@ -1,5 +1,5 @@
 import axios from "axios";
-export const Create = (obj, id) => async (dispatch) => {
+export const CreateKYC = (obj, id) => async (dispatch) => {
   try {
    await axios.put("/api/KYC", { kyc: obj, id: id }).then((res) => {
       console.log("kyc action");
@@ -16,7 +16,7 @@ export const Create = (obj, id) => async (dispatch) => {
     });
   }
 };
-export const GetOne = (id) => async (dispatch) => {
+export const GetOneKYC = (id) => async (dispatch) => {
   await axios.get("/api/ci/" + id, { id: id }).then((res) => {
     dispatch({
       type: "GET_KYC",
@@ -24,4 +24,3 @@ export const GetOne = (id) => async (dispatch) => {
     });
   });
 };
-export default Create;

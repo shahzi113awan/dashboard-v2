@@ -3,21 +3,26 @@ import { Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Link, useHistory, useParams } from "react-router-dom";
 
-import { Create, GetOne } from "../actions/ctiAction";
+import { CreateCTI, GetOneCTI } from "../actions/ctiAction";
 
 // import { completed, pending } from '../actions/completedAction'
 
 const CTI = ({ Done, completed, pending }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  // const historyback = BrowserRouter();
   const { urlid } = useParams();
   // console.log(urlid);
   const data = useSelector((state) => state.ctiReducer.state);
+  const dataKYc = useSelector((state) => state.kycReducer.state);
+  console.log(data);
   const id = useSelector((state) => state.ciReducer.id);
+  const link = `/ci/${urlid}`;
+
   // console.log(data);
   // console.log(id);
   useEffect(() => {
-    urlid ? dispatch(GetOne(urlid)) : console.log("creating");
+    urlid ? dispatch(GetOneCTI(urlid)) : console.log("creating");
   }, [urlid]);
 
   const [CTI, setCTI] = React.useState({
@@ -42,14 +47,15 @@ const CTI = ({ Done, completed, pending }) => {
   useEffect(() => {
     setCTI(data);
   }, [data]);
+  
   const onSubmit = (e) => {
     console.log(CTI);
-    dispatch(Create(CTI, id));
+    dispatch(CreateCTI(CTI, id));
 
     history.push("/KYC");
   };
   const onUpdateSubmit = (e) => {
-    dispatch(Create(CTI, urlid));
+    dispatch(CreateCTI(CTI, urlid));
     history.push("/KYC/" + urlid);
   };
 
@@ -66,11 +72,7 @@ const CTI = ({ Done, completed, pending }) => {
             <FormGroup>
               <Label for="certificate">Fully Completed Application Form:</Label>
               <select
-                className={
-                  CTI.cti_fcaForm === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
+                className={"custom-select"}
                 value={CTI.cti_fcaForm}
                 // value={'Not Required'}
                 id="1"
@@ -86,11 +88,7 @@ const CTI = ({ Done, completed, pending }) => {
             <FormGroup>
               <Label for="memo">Bank Information (Welcome Letter):</Label>
               <select
-                className={
-                  CTI.cti_bInformation === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
+                className={"custom-select"}
                 value={CTI.cti_bInformation}
                 // value={"Not Required"}
                 id="1"
@@ -128,11 +126,7 @@ const CTI = ({ Done, completed, pending }) => {
             <FormGroup>
               <Label for="shareRegister">Headline Website URL Address:</Label>
               <select
-                className={
-                  CTI.cti_hwUrl === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
+                className={"custom-select"}
                 value={CTI.cti_hwUrl}
                 id="1"
                 name="cti_hwUrl"
@@ -149,11 +143,7 @@ const CTI = ({ Done, completed, pending }) => {
             <FormGroup>
               <Label for="shareCertificate">Website Compliance:</Label>
               <Input
-                className={
-                  CTI.cti_wCompliance === ""
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
+                className={"custom-select"}
                 value={CTI.cti_wCompliance}
                 name="cti_wCompliance"
                 onChange={handleInput}
@@ -167,11 +157,7 @@ const CTI = ({ Done, completed, pending }) => {
             <FormGroup>
               <Label for="CCR">Website URL - Proof of Domain:</Label>
               <select
-                className={
-                  CTI.cti_wUrl_proofDomain === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
+                className={"custom-select"}
                 value={CTI.cti_wUrl_proofDomain}
                 value={"Not Required"}
                 id="1"
@@ -188,14 +174,11 @@ const CTI = ({ Done, completed, pending }) => {
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Ownership Structure Chart:</Label>
-              <select
-                className={
-                  CTI.cti_osChart === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
-                value={CTI.cti_osChart}
-                // value={"Not Required"}
+              <Input readOnly value={"Not Required"}></Input>
+              {/* <select
+                className={"custom-select"}
+                // value={CTI.cti_osChart}
+                value={"Not Required"}
                 id="1"
                 name="cti_osChart"
                 onChange={handleInput}
@@ -204,38 +187,30 @@ const CTI = ({ Done, completed, pending }) => {
                   Pending
                 </option>
                 <option value="Received">Received</option>
-              </select>
+              </select> */}
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Business Plan:</Label>
-              <select
-                className={
-                  CTI.cti_bPlan === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
-                value={CTI.cti_bPlan}
-                // value={"Not Required"}
+              <Input readOnly value={"Not Required"}></Input>
+              {/* <select
+                className={"custom-select"}
+                // value={CTI.cti_bPlan}
+                value={"Not Required"}
                 id="1"
                 name="cti_bPlan"
                 onChange={handleInput}
               >
                 <option value="Pending"> Pending </option>
                 <option value="Received">Received</option>
-              </select>
+              </select> */}
             </FormGroup>
           </Col>
         </Row>
-        {/* <Button
-          onClick={(e) => {
-            BrowserRouter.goBAck();
-          }}
-        >
-          {" "}
+        <Button tag={Link} to={link}>
           Previous
-        </Button> */}
+        </Button>
         {urlid ? (
           <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
             Update and Next
