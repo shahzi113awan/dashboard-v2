@@ -122,6 +122,7 @@ export default function CI(props) {
                   className="custom-select"
                   id="1"
                   name="tpi_aaSolution"
+                  value={CI.tpi_aaSolution}
                   onChange={handleInput}
                 >
                   <option>CCBILL</option>
