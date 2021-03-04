@@ -1,4 +1,6 @@
-  import axios from "axios";
+ 
+  
+import axios from "axios";
 export const CreateCI = (obj) => async (dipatch) => {
   await axios
     .post("/api/ci", {
@@ -10,7 +12,7 @@ export const CreateCI = (obj) => async (dipatch) => {
       console.log(res.data);
       dipatch({
         type: "CREATE_CI",
-        payload: res.data,
+        payload: res.data.state,
         id: res.data._id,
       });
     });
@@ -19,7 +21,7 @@ export const CreateCI = (obj) => async (dipatch) => {
 export const Get = (obj) => async (dispatch) => {
   dispatch(setLoading());
 
-  const  data  = await axios.get("/api/ci");
+  const { data } = await axios.get("/api/ci");
   dispatch({
     type: "GET_CI",
     payload: data,
@@ -94,3 +96,4 @@ export const setLoading = () => (dispatch) => {
     type: "LOADING",
   });
 };
+ 

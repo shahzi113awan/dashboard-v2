@@ -8,51 +8,51 @@ export default function CI(props) {
   const dispatch = useDispatch();
   const { urlid } = useParams();
 
+  useEffect(() => {
+    urlid ? dispatch(GetOneCI(urlid)) : console.log("creating");
+  }, [urlid]);
   const data1 = useSelector((state) => state.ciReducer.state);
   const isLoading = useSelector((state) => state.ciReducer.isLoading);
   const id = useSelector((state) => state.ciReducer._id);
   console.log(id);
-  console.log(data1);
+  console.log(data1.ci);
   console.log(urlid);
   console.log(isLoading);
   const history = useHistory();
 
-  useEffect(() => {
-    urlid ? dispatch(GetOneCI(urlid)) : console.log("creating");
-  }, [urlid]);
   // console.log('**********')
   // console.log(isLoading)
 
   const [CI, setCI] = React.useState({
-    // tpi_rcName: " ",
-    // tpi_aaSolution: "CCBILL",
-    // tpi_ntc: "",
-    // tpi_vtSector: "",
-    // tpi_date: "",
-    // tpi_brPartner: "",
-    // tpi_aBdmOwner: "",
-    // tpi_ccLocation: "",
-    // tpi_EEADocuments: "",
-    // tpi_TLoAR: "",
-    // mci_crAddress: "",
-    // mci_crNumber: "",
-    // mci_ctAddress: "",
-    // mci_vtSector: "",
-    // cci_cName: "",
-    // cci_skypeAddress: "",
-    // cci_mNumber: "",
-    // cci_lNumber: "",
-    // cci_otpMNumber: "",
-    // tci_crAddress: "",
-    // tci_crNumber: "",
-    // tci_ctAddress: "",
-    // tci_wUrl: "",
-    // cci_2_cName: "",
-    // cci_2_Position: "",
-    // cci_2_mNumber: "",
-    // cci_2_lNumber: "",
-    // cci_2_otpMNumber: "",
-    // cci_2_skypeAddress: "",
+    tpi_rcName: " ",
+    tpi_aaSolution: "CCBILL",
+    tpi_ntc: "",
+    tpi_vtSector: "",
+    tpi_date: "",
+    tpi_brPartner: "",
+    tpi_aBdmOwner: "",
+    tpi_ccLocation: "",
+    tpi_EEADocuments: "",
+    tpi_TLoAR: "",
+    mci_crAddress: "",
+    mci_crNumber: "",
+    mci_ctAddress: "",
+    mci_vtSector: "",
+    cci_cName: "",
+    cci_skypeAddress: "",
+    cci_mNumber: "",
+    cci_lNumber: "",
+    cci_otpMNumber: "",
+    tci_crAddress: "",
+    tci_crNumber: "",
+    tci_ctAddress: "",
+    tci_wUrl: "",
+    cci_2_cName: "",
+    cci_2_Position: "",
+    cci_2_mNumber: "",
+    cci_2_lNumber: "",
+    cci_2_otpMNumber: "",
+    cci_2_skypeAddress: "",
   });
   useEffect(() => {
     setCI(data1);
@@ -63,9 +63,9 @@ export default function CI(props) {
       [evt.target.name]: evt.target.value,
     });
   }
-  // useEffect(() => {
-  //   setCI(CI);
-  // }, [CI]);
+  useEffect(() => {
+    setCI(CI);
+  }, [CI]);
   console.log(CI);
   const onSubmit = (e) => {
     e.preventDefault();
@@ -122,6 +122,7 @@ export default function CI(props) {
                   className="custom-select"
                   id="1"
                   name="tpi_aaSolution"
+                  value={CI.tpi_aaSolution}
                   onChange={handleInput}
                 >
                   <option>CCBILL</option>
