@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 let CISchema = new Schema(
   {
@@ -10,6 +10,10 @@ let CISchema = new Schema(
       tpi_rcName: {
         type: String,
       },
+      tpi_iP: {
+        type: String,
+      },
+
       tpi_aaSolution: {
         type: String,
       },
@@ -37,7 +41,9 @@ let CISchema = new Schema(
       tpi_TLoAR: {
         type: String,
       },
-
+      mci_mcrAddress: {
+        type: String,
+      },
       mci_crAddress: {
         type: String,
       },
@@ -52,6 +58,9 @@ let CISchema = new Schema(
       },
 
       cci_cName: {
+        type: String,
+      },
+      cci_email: {
         type: String,
       },
       cci_skypeAddress: {
@@ -100,13 +109,13 @@ let CISchema = new Schema(
       },
       COM: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'COM',
+        ref: "COM",
       },
     },
   },
   {
-    collection: 'Records',
+    collection: "Records",
   }
-)
+);
 
-module.exports = CI = mongoose.model('CI', CISchema)
+module.exports = CI = mongoose.model("CI", CISchema);

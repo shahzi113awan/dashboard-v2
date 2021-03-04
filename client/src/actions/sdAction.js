@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const Create = (obj, id) => async (dispatch) => {
+export const CreateSD = (obj, id) => async (dispatch) => {
   try {
     await axios.put("/api/sd", { sd: obj, id: id }).then((res) => {
       dispatch({
@@ -15,7 +15,7 @@ export const Create = (obj, id) => async (dispatch) => {
     });
   }
 };
-export const GetOne = (id) => async (dispatch) => {
+export const GetOneSD = (id) => async (dispatch) => {
   await axios.get("/api/ci/" + id, { id: id }).then((res) => {
     dispatch({
       type: "GET_SD",
@@ -23,4 +23,3 @@ export const GetOne = (id) => async (dispatch) => {
     });
   });
 };
-export default Create;

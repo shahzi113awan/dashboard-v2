@@ -4,7 +4,7 @@ let CLSchema = new Schema(
   {
     cl: {
       pendingCount: {
-        type: Number,
+        type: Array,
       },
       fcaf_status: {
         type: String,

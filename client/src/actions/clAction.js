@@ -1,8 +1,8 @@
 import axios from "axios";
-export const Create = (obj, id) => async (dispatch) => {
+export const CreateCL = (obj, id) => async (dispatch) => {
   try {
     let url = "/api/cl/";
-    axios.put(url, { cl: obj, id: id }).then(
+    await axios.put(url, { cl: obj, id: id }).then(
       (res) =>
         dispatch({
           type: "CREATE_cl",
@@ -16,7 +16,7 @@ export const Create = (obj, id) => async (dispatch) => {
     });
   }
 };
-export const GetOne = (id) => async (dispatch) => {
+export const GetOneCL = (id) => async (dispatch) => {
   await axios.get("/api/ci/" + id, { id: id }).then((res) => {
     // console.log("dispatchingggggggg");
     dispatch({
@@ -25,4 +25,3 @@ export const GetOne = (id) => async (dispatch) => {
     });
   });
 };
-export default Create;

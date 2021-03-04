@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Create, GetOne } from "../actions/sdAction";
+import { CreateSD, GetOneSD } from "../actions/sdAction";
 
 export default function CTI() {
   const dispatch = useDispatch();
@@ -12,8 +12,10 @@ export default function CTI() {
   const data = useSelector((state) => state.sdReducer.state);
   console.log(data);
   const { urlid } = useParams();
+  const link = `/kyb/${urlid}`;
+
   useEffect(() => {
-    urlid ? dispatch(GetOne(urlid)) : console.log("creating");
+    urlid ? dispatch(GetOneSD(urlid)) : console.log("creating");
   }, [urlid]);
   const [KYB_SD, setKYB_SD] = useState({
     // fsd_cbs: 'Pending',
@@ -37,12 +39,12 @@ export default function CTI() {
   }, [data]);
   const onSubmit = (e) => {
     console.log(KYB_SD);
-    dispatch(Create(KYB_SD, id));
+    dispatch(CreateSD(KYB_SD, id));
 
     history.push("/check-list");
   };
   const onUpdateSubmit = (e) => {
-    dispatch(Create(KYB_SD, urlid));
+    dispatch(CreateSD(KYB_SD, urlid));
     history.push("/check-list/" + urlid);
   };
   return (
@@ -225,11 +227,17 @@ export default function CTI() {
             </FormGroup>
           </Col>
         </Row>
-
+        <Button tag={Link} to={link}>
+          Previous
+        </Button>
         {urlid ? (
-          <Button onClick={onUpdateSubmit}>Update and Next</Button>
+          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+            Update and Next
+          </Button>
         ) : (
-          <Button onClick={onSubmit}>Save and Next</Button>
+          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
+            Save and Next
+          </Button>
         )}
       </Form>
     </div>
