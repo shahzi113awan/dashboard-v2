@@ -8,18 +8,18 @@ export default function CI(props) {
   const dispatch = useDispatch();
   const { urlid } = useParams();
 
+  useEffect(() => {
+    urlid ? dispatch(GetOneCI(urlid)) : console.log("creating");
+  }, [urlid]);
   const data1 = useSelector((state) => state.ciReducer.state);
   const isLoading = useSelector((state) => state.ciReducer.isLoading);
   const id = useSelector((state) => state.ciReducer._id);
   console.log(id);
-  console.log(data1);
+  console.log(data1.ci);
   console.log(urlid);
   console.log(isLoading);
   const history = useHistory();
 
-  useEffect(() => {
-    urlid ? dispatch(GetOneCI(urlid)) : console.log("creating");
-  }, [urlid]);
   // console.log('**********')
   // console.log(isLoading)
 

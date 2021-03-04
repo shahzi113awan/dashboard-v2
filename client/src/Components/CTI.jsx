@@ -15,7 +15,7 @@ const CTI = ({ Done, completed, pending }) => {
   // console.log(urlid);
   const data = useSelector((state) => state.ctiReducer.state);
   const dataKYc = useSelector((state) => state.kycReducer.state);
-  console.log(dataKYc);
+  console.log(data);
   const id = useSelector((state) => state.ciReducer.id);
   const link = `/ci/${urlid}`;
 
