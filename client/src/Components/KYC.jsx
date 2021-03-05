@@ -131,7 +131,7 @@ const KYC = ({ Done, Received, pending }) => {
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="shareHolds">Share Holds</Label>
+              <Label for="shareHolds">Holers</Label>
               <Input
                 className={"custom-select"}
                 value={KYC.kyc_sHolds}
