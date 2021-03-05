@@ -242,7 +242,7 @@ export default function CI(props) {
             </Col>
             <Col md={6}>
               <FormGroup>
-                <Label for="CCR">EEA Documents:</Label>
+                <Label for="CCR">Documents:</Label>
                 <select
                   className="custom-select"
                   value={CI.tpi_EEADocuments}
