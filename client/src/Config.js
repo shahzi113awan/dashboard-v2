@@ -1,7 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 // import firebase from 'firebase/app'
-// import 'firebase/storage'
+import 'firebase/storage'
 import 'firebase/analytics'
 
 var firebaseConfig = {
@@ -16,4 +16,5 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 // firebase.analytics()
+firebase.storage()
 export { firebase }
