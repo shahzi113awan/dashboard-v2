@@ -96,7 +96,7 @@ const ChecklistR = (props) => {
   };
   const handleClickRead = (e) => {
     // console.log(props.path.slice("./"));
-    window.open(`http://localhost:5000/get/${props.path}`, "_blank");
+    window.open(props.path);
     console.log(props.path);
     console.log(view);
     if (view) return <div></div>;

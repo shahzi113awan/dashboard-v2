@@ -175,7 +175,7 @@ export default function MainDashboard() {
                       {res.ci.tpi_EEADocuments ? res.ci.tpi_EEADocuments : ''}
                     </td>
                     <td>{res.ci.tpi_TLoAR ? res.ci.tpi_TLoAR : ''}</td>
-                    <td>{res.cti.cti_fcaForm || ''}</td>
+                    <td>{res.cti.cti_fcaForm ? res.cti.cti_fcaForm:'' }</td>
                     <td>
                       {res.cti.cti_bInformation ? res.cti.cti_bInformation : ''}
                     </td>
