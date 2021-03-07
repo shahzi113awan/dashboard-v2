@@ -16,7 +16,10 @@ import MainDashboard from './Components/MainDashboard'
 import { Header } from './Components/Navbar'
 import Applications from './Components/Application/Application'
 import LoginT from './Components/LoginT'
+import ApprovalForm from "./Components/Approval form/Approval";
 // import checklistR from "./Components/CheckList/"
+import MainApp from "./Components/Approval form/mainApp";
+import AppDb from "./Components/Approval form/appDb";
 import { firebase } from './Config'
 
 function App() {
@@ -42,6 +45,9 @@ function App() {
                 <Header />
                 <Route exact path='/' component={MainDashboard} />
                 <Route exact path='/Applications' component={Applications} />
+                <Route exact path='/App' component={ApprovalForm} />
+                <Route exact path='/mainApp' component={MainApp} />
+                <Route exact path='/appdb' component={AppDb} />
 
                 <Route exact path='/ci' component={CI} />
                 <Route exact path='/ci/:urlid' component={CI} />

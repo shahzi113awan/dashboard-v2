@@ -9,6 +9,7 @@ const cti = require("./routes/api/CTI");
 const cl = require("./routes/api/CL");
 const kyc = require("./routes/api/KYC");
 const kyb = require("./routes/api/KYB");
+const appr = require("./routes/api/Approval");
 const sd = require("./routes/api/supportingDoc");
 const uploadRoute = require("./routes/api/uploadRoutes");
 
@@ -32,6 +33,7 @@ app.use("/api", cl);
 app.use("/api", kyc);
 app.use("/api", kyb);
 app.use("/api", sd);
+app.use("/api", appr);
 app.use("/api", uploadRoute);
 
 // const __dirname = path.resolve();
