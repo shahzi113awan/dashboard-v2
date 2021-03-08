@@ -211,15 +211,9 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           />
-<<<<<<< HEAD
           {/* <ChecklistR
             text={"Office Tenancy Agreement "}
             name={"ota_status"}
-=======
-          <ChecklistR
-            text={'Office Tenancy Agreement '}
-            name={'ota_status'}
->>>>>>> playground
             value={CL.ota_status}
             fc='ota_fileName'
             Change={(e) => {
@@ -277,15 +271,9 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           />
-<<<<<<< HEAD
           {/* <ChecklistR
             text={"Ownership Structure Chart "}
             name={"owsc_status"}
-=======
-          <ChecklistR
-            text={'Ownership Structure Chart '}
-            name={'owsc_status'}
->>>>>>> playground
             value={CL.owsc_status}
             fc='owsc_fileName'
             Change={(e) => {
@@ -339,15 +327,9 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           />
-<<<<<<< HEAD
           {/* <ChecklistR
             text={"Power of Attorney Document: "}
             name={"pad_status"}
-=======
-          <ChecklistR
-            text={'Power of Attorney Document: '}
-            name={'pad_status'}
->>>>>>> playground
             value={CL.pad_status}
             fc='pad_fileName'
             Change={(e) => {
@@ -489,15 +471,9 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           />
-<<<<<<< HEAD
           {/* <ChecklistR
             text={"Current Commercial Register Extract"}
             name={"ccre_status"}
-=======
-          <ChecklistR
-            text={'Current Commercial Register Extract'}
-            name={'ccre_status'}
->>>>>>> playground
             value={CL.ccre_status}
             fc='ccre_fileName'
             Change={(e) => {
@@ -591,15 +567,9 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           />
-<<<<<<< HEAD
           {/* <ChecklistR
             text={"FBO Company Registration"}
             name={"fcR_status"}
-=======
-          <ChecklistR
-            text={'FBO Company Registration'}
-            name={'fcR_status'}
->>>>>>> playground
             value={CL.fcR_status}
             fc='fcR_fileName'
             Change={(e) => {
@@ -621,15 +591,9 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           />
-<<<<<<< HEAD
           {/* <ChecklistR
             text={"Confirmation & Declaration Form (GGS Only)"}
             name={"cdf_status"}
-=======
-          <ChecklistR
-            text={'Confirmation & Declaration Form (GGS Only)'}
-            name={'cdf_status'}
->>>>>>> playground
             value={CL.cdf_status}
             fc='cdf_fileName'
             Change={(e) => {
