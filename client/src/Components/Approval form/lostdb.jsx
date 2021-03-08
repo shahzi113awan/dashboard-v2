@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { Get, Delete } from "../../actions/appActions";
+import { Get, Delete,GetLost } from "../../actions/appActions";
 import moment from "moment";
 
 export default function MainDashboard() {
@@ -11,7 +11,7 @@ export default function MainDashboard() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Get());
+    dispatch(GetLost());
   }, [dispatch]);
   const [db, setDb] = useState([]);
   const data = useSelector((state) => state.appReducer.state);

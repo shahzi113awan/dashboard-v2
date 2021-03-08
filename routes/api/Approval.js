@@ -56,8 +56,18 @@ router.get("/App/:id", (req, res) => {
 });
 
 // READ Apps
+router.get("/AppL", (req, res) => {
+  ApprovalSchema.find({ "App.status": "Lost" }, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      console.log("xxxxxx");
+      res.json(data);
+    }
+  });
+});
 router.get("/App", (req, res) => {
-  ApprovalSchema.find((error, data) => {
+  ApprovalSchema.find({ "App.status": "Approve" }, (error, data) => {
     if (error) {
       return next(error);
     } else {

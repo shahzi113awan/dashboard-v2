@@ -82,8 +82,8 @@ const KYC = ({ Done, Received, pending }) => {
       const days = moment.duration(End.diff(Start)).asDays();
 
       setremainig(days);
-      if (days > 90) setColor("#ADFF2F");
-      else if (days < 90 && days > 45) setColor("#FFBF00");
+      if (days < 180) setColor("#ADFF2F");
+      // else if (days < 180 && days > 45) setColor("#FFBF00");
       else setColor("	#FA8072");
       return days;
     }
@@ -99,8 +99,8 @@ const KYC = ({ Done, Received, pending }) => {
       const days = moment.duration(End.diff(Start)).asDays();
 
       setremainig1(days);
-      if (days > 90) setColor1("#ADFF2F");
-      else if (days < 90 && days > 45) setColor1("#FFBF00");
+      if (days < 45) setColor1("#ADFF2F");
+      // else if (days < 90 && days > 45) setColor1("#FFBF00");
       else setColor1("	#FA8072");
       return days;
     }
@@ -131,7 +131,23 @@ const KYC = ({ Done, Received, pending }) => {
           </Col>
           <Col md={6}>
             <FormGroup>
-              <Label for="shareHolds">Holers</Label>
+              <Label for="shareRegister">Holders</Label>
+              <select
+                className={"custom-select"}
+                value={KYC.kyc_sholders}
+                id="1"
+                name="kyc_sholders"
+                onChange={handleInput}
+              >
+                <option>Director</option>
+                <option>Shareholder Director</option>
+                <option>Shareholder</option>
+              </select>
+            </FormGroup>
+          </Col>
+          <Col md={6}>
+            <FormGroup>
+              <Label for="shareHolds">Share Holds percentage</Label>
               <Input
                 className={"custom-select"}
                 value={KYC.kyc_sHolds}
@@ -311,6 +327,13 @@ const KYC = ({ Done, Received, pending }) => {
               </Input>
             </FormGroup>
           </Col>
+          <Col md={12}>
+            <FormGroup>
+              <h4>
+                <span>Power Of Attorney Document:</span>
+              </h4>
+            </FormGroup>
+          </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="PAd">Power Of Attorney Document:</Label>
@@ -332,9 +355,13 @@ const KYC = ({ Done, Received, pending }) => {
           Previous
         </Button>
         {urlid ? (
-          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>Update and Next</Button>
+          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+            Update and Next
+          </Button>
         ) : (
-          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>Save and Next</Button>
+          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
+            Save and Next
+          </Button>
         )}
       </Form>
     </div>

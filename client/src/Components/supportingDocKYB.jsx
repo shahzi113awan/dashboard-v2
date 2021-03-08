@@ -67,7 +67,13 @@ export default function CTI() {
           <Col md={6}>
             <FormGroup>
               <Label for="certificate">Corporate Bank Statements:</Label>
-              <select
+              <Input
+                readOnly
+                value={"Not Required"}
+                name="kyb_aoa"
+                onLoad={handleInput}
+              ></Input>
+              {/* <select
                 className={
                   KYB_SD.fsd_cbs === "Pending"
                     ? "border-red custom-select"
@@ -80,13 +86,19 @@ export default function CTI() {
               >
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
-              </select>
+              </select> */}
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="memo">Personal Bank Statements:</Label>
-              <select
+              <Input
+                readOnly
+                value={"Not Required"}
+                name="kyb_aoa"
+                onLoad={handleInput}
+              ></Input>
+              {/* <select
                 className={
                   KYB_SD.fsd_pbs === "Pending"
                     ? "border-red custom-select"
@@ -99,13 +111,19 @@ export default function CTI() {
               >
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
-              </select>
+              </select> */}
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="articles">Proof of Wealth:</Label>
-              <select
+              <Input
+                readOnly
+                value={"Not Required"}
+                name="kyb_aoa"
+                onLoad={handleInput}
+              ></Input>
+              {/* <select
                 className={
                   KYB_SD.fsd_pow === "Pending"
                     ? "border-red custom-select"
@@ -118,13 +136,19 @@ export default function CTI() {
               >
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
-              </select>
+              </select> */}
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="shareRegister">Company AML Policy:</Label>
-              <select
+              <Input
+                readOnly
+                value={"Not Required"}
+                name="kyb_aoa"
+                onLoad={handleInput}
+              ></Input>
+              {/* <select
                 className={
                   KYB_SD.fsd_cap === "Pending"
                     ? "border-red custom-select"
@@ -137,7 +161,7 @@ export default function CTI() {
               >
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
-              </select>
+              </select> */}
             </FormGroup>
           </Col>
           <Col md={10}>
@@ -150,7 +174,13 @@ export default function CTI() {
           <Col md={6}>
             <FormGroup>
               <Label for="shareCertificate">Gambling or Forex License:</Label>
-              <select
+              <Input
+                readOnly
+                value={"Not Required"}
+                name="kyb_aoa"
+                onLoad={handleInput}
+              ></Input>
+              {/* <select
                 className={
                   KYB_SD.lta_gfl === "Pending"
                     ? "border-red custom-select"
@@ -163,18 +193,14 @@ export default function CTI() {
               >
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
-              </select>
+              </select> */}
             </FormGroup>
           </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Copywrite or Re-seller Agreement:</Label>
               <select
-                className={
-                  KYB_SD.lta_cra === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
+                className={"custom-select"}
                 value={KYB_SD.lta_cra}
                 id="1"
                 name="lta_cra"
@@ -189,11 +215,7 @@ export default function CTI() {
             <FormGroup>
               <Label for="CCR">Fulfilment or Drop Shipping Agreement:</Label>
               <select
-                className={
-                  KYB_SD.lta_fdsa === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
+                className={"custom-select"}
                 value={KYB_SD.lta_fdsa}
                 id="1"
                 name="lta_fdsa"
@@ -210,7 +232,13 @@ export default function CTI() {
               <Label for="CCR">
                 FBO Company Registration (Nutra Merchants):
               </Label>
-              <select
+              <Input
+                readOnly
+                value={"Not Required"}
+                name="kyb_aoa"
+                onLoad={handleInput}
+              ></Input>
+              {/* <select
                 className={
                   KYB_SD.lta_fbo_cr === "Pending"
                     ? "border-red custom-select"
@@ -223,7 +251,7 @@ export default function CTI() {
               >
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
-              </select>
+              </select> */}
             </FormGroup>
           </Col>
         </Row>

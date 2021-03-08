@@ -1,9 +1,13 @@
 import React from "react";
 import { Card, Button, CardTitle, CardText } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+
 import { useHistory } from "react-router-dom";
+import { Get } from "../../actions/ciAction";
 
 const Applications = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   return (
     <div className="container" style={{ width: "20%", flexDirection: "row" }}>
@@ -21,6 +25,7 @@ const Applications = () => {
 
           <Button
             onClick={(e) => {
+              dispatch(Get());
               history.push("/");
             }}
           >

@@ -278,204 +278,9 @@ export default function CI(props) {
             </Col>
           </Row>
         </div>
-        {/* **************************** */}
-        <hr className="border-primary" />
-        <div className="border p-3 shadow">
-          <div>
-            <h2>
-              <span class="badge badge-success">
-                Management Company Information:
-              </span>
-            </h2>
-          </div>
-
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="mci_crAddress">Management Company Address:</Label>
-                <Input
-                  className="cusrom"
-                  value={CI.mci_mcrAddress}
-                  name="mci_mcrAddress"
-                  onChange={handleInput}
-                  required={false}
-                  type="address"
-                  id="address"
-                  placeholder="Management Company Registered Address"
-                ></Input>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="mci_crAddress">Company Registered Address:</Label>
-                <Input
-                  className="cusrom"
-                  value={CI.mci_crAddress}
-                  name="mci_crAddress"
-                  onChange={handleInput}
-                  required={false}
-                  type="address"
-                  id="address"
-                  placeholder="Company Registered Address"
-                ></Input>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="address">Company Registered Number: </Label>
-                <Input
-                  className="cusrom"
-                  value={CI.mci_crNumber}
-                  name="mci_crNumber"
-                  onChange={handleInput}
-                  required={false}
-                  type="number"
-                  id="regnumber"
-                  placeholder="Registeration Number"
-                ></Input>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="address">
-                  Company Trading Address (If Applicable):
-                </Label>
-                <Input
-                  className="cusrom"
-                  value={CI.mci_ctAddress}
-                  name="mci_ctAddress"
-                  onChange={handleInput}
-                  required={false}
-                  type="address"
-                  id="address"
-                  placeholder="Company Trading Address :"
-                ></Input>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="address">Vertical / Trading Sector: </Label>
-                <Input
-                  className="cusrom"
-                  value={CI.mci_vtSector}
-                  name="mci_vtSector"
-                  onChange={handleInput}
-                  required={false}
-                  type="text"
-                  id="address"
-                  placeholder="Company Trading Address :"
-                ></Input>
-              </FormGroup>
-            </Col>
-          </Row>
-          {/* **************************** */}
-          {/* <hr className="border-primary"/> */}
-          <div>
-            <h2>
-              <span class="badge badge-success">
-                Company Contact Information:
-              </span>
-            </h2>
-          </div>
-
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="address">Contact Name:</Label>
-                <Input
-                  className="cusrom"
-                  value={CI.cci_cName}
-                  name="cci_cName"
-                  onChange={handleInput}
-                  required={false}
-                  type="Text"
-                  id="Contact-name"
-                  placeholder="Contact name"
-                ></Input>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="address">E-mail Address:</Label>
-                <Input
-                  className="cusrom"
-                  value={CI.cci_email}
-                  name="cci_email"
-                  onChange={handleInput}
-                  required={false}
-                  type="Text"
-                  id="Contact-email"
-                  placeholder="Email"
-                ></Input>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="address">Skype Address:</Label>
-                <Input
-                  className="cusrom"
-                  value={CI.cci_skypeAddress}
-                  name="cci_skypeAddress"
-                  onChange={handleInput}
-                  required={false}
-                  type="text"
-                  id="skypeAddress"
-                  placeholder="Skype Address:											
-                                "
-                ></Input>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="address">Mobile Number: </Label>
-                <Input
-                  className="cusrom"
-                  value={CI.cci_mNumber}
-                  name="cci_mNumber"
-                  onChange={handleInput}
-                  required={false}
-                  type="phone"
-                  id="mobile"
-                  placeholder="Mobile Number:"
-                ></Input>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="address">Landline Number: </Label>
-                <Input
-                  className="cusrom"
-                  value={CI.cci_lNumber}
-                  name="cci_lNumber"
-                  onChange={handleInput}
-                  required={false}
-                  type="phone"
-                  id="landlinemobile"
-                  placeholder="Landline Number:  "
-                ></Input>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="address">OTP Mobile Number (IBAN Only): </Label>
-                <Input
-                  className="cusrom"
-                  value={CI.cci_otpMNumber}
-                  name="cci_otpMNumber"
-                  onChange={handleInput}
-                  required={false}
-                  type="phone"
-                  id="address"
-                  placeholder="OTP Mobile Number (IBAN Only)"
-                ></Input>
-              </FormGroup>
-            </Col>
-          </Row>
-        </div>
-
-        {/* ================================================ */}
 
         {/* **************************** */}
+
         <hr className="border-primary" />
         <div className="border p-3 shadow">
           <div>
@@ -551,16 +356,16 @@ export default function CI(props) {
             </Col>
           </Row>
           {/* **************************** */}
-          {/* <hr className="border-primary"/> */}
-          {/* <div>
+          <hr className="border-primary" />
+          <div>
             <h2>
               <span class="badge badge-success">
                 Company Contact Information:{" "}
               </span>
             </h2>
-          </div> */}
+          </div>
 
-          {/* <Row form>
+          <Row form>
             <Col md={6}>
               <FormGroup>
                 <Label for="address">Contact Name:</Label>
@@ -624,7 +429,7 @@ export default function CI(props) {
             </Col>
             <Col md={6}>
               <FormGroup>
-                <Label for="address">OTP Mobile Number (IBAN Only): </Label>
+                <Label for="address">Email: </Label>
                 <Input
                   className="cusrom"
                   value={CI.cci_2_otpMNumber}
@@ -633,7 +438,7 @@ export default function CI(props) {
                   required={false}
                   type="otpmobile"
                   id="address"
-                  placeholder="Company Trading Address :"
+                  placeholder="Email :"
                 ></Input>
               </FormGroup>
             </Col>
@@ -652,7 +457,206 @@ export default function CI(props) {
                 ></Input>
               </FormGroup>
             </Col>
-          </Row> */}
+          </Row>
+
+          {/* **************************** */}
+
+          <hr className="border-primary" />
+          <div className="border p-3 shadow">
+            <div>
+              <h2>
+                <span class="badge badge-success">
+                  Management Company Information:
+                </span>
+              </h2>
+            </div>
+
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="mci_crAddress">Management Company Address:</Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.mci_mcrAddress}
+                    name="mci_mcrAddress"
+                    onChange={handleInput}
+                    required={false}
+                    type="address"
+                    id="address"
+                    placeholder="Management Company Registered Address"
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="mci_crAddress">Company Registered Address:</Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.mci_crAddress}
+                    name="mci_crAddress"
+                    onChange={handleInput}
+                    required={false}
+                    type="address"
+                    id="address"
+                    placeholder="Company Registered Address"
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="address">Company Registered Number: </Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.mci_crNumber}
+                    name="mci_crNumber"
+                    onChange={handleInput}
+                    required={false}
+                    type="number"
+                    id="regnumber"
+                    placeholder="Registeration Number"
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="address">
+                    Company Trading Address (If Applicable):
+                  </Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.mci_ctAddress}
+                    name="mci_ctAddress"
+                    onChange={handleInput}
+                    required={false}
+                    type="address"
+                    id="address"
+                    placeholder="Company Trading Address :"
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="address">Vertical / Trading Sector: </Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.mci_vtSector}
+                    name="mci_vtSector"
+                    onChange={handleInput}
+                    required={false}
+                    type="text"
+                    id="address"
+                    placeholder="Company Trading Address :"
+                  ></Input>
+                </FormGroup>
+              </Col>
+            </Row>
+            {/* **************************** */}
+            {/* <hr className="border-primary"/> */}
+            <div>
+              <h2>
+                <span class="badge badge-success">
+                  Company Contact Information:
+                </span>
+              </h2>
+            </div>
+
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="address">Contact Name:</Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.cci_cName}
+                    name="cci_cName"
+                    onChange={handleInput}
+                    required={false}
+                    type="Text"
+                    id="Contact-name"
+                    placeholder="Contact name"
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="address">E-mail Address:</Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.cci_email}
+                    name="cci_email"
+                    onChange={handleInput}
+                    required={false}
+                    type="Text"
+                    id="Contact-email"
+                    placeholder="Email"
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="address">Skype Address:</Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.cci_skypeAddress}
+                    name="cci_skypeAddress"
+                    onChange={handleInput}
+                    required={false}
+                    type="text"
+                    id="skypeAddress"
+                    placeholder="Skype Address:											
+                                "
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="address">Mobile Number: </Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.cci_mNumber}
+                    name="cci_mNumber"
+                    onChange={handleInput}
+                    required={false}
+                    type="phone"
+                    id="mobile"
+                    placeholder="Mobile Number:"
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="address">Landline Number: </Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.cci_lNumber}
+                    name="cci_lNumber"
+                    onChange={handleInput}
+                    required={false}
+                    type="phone"
+                    id="landlinemobile"
+                    placeholder="Landline Number:  "
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="address">OTP Mobile Number (IBAN Only): </Label>
+                  <Input
+                    className="cusrom"
+                    value={CI.cci_otpMNumber}
+                    name="cci_otpMNumber"
+                    onChange={handleInput}
+                    required={false}
+                    type="phone"
+                    id="address"
+                    placeholder="OTP Mobile Number (IBAN Only)"
+                  ></Input>
+                </FormGroup>
+              </Col>
+            </Row>
+          </div>
+
+          {/* ================================================ */}
+
           {urlid ? (
             <Button onClick={onUpdateSubmit}>Update and Next</Button>
           ) : (

@@ -191,7 +191,7 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           />
-          <ChecklistR
+          {/* <ChecklistR
             text={"Office Tenancy Agreement "}
             name={"ota_status"}
             value={CL.ota_status}
@@ -202,7 +202,7 @@ export const CheckList = () => {
             FileUpload={(e) => {
               ImageHandler(e);
             }}
-          />
+          /> */}
           <ChecklistR
             text={" Acquiring Processing Statements"}
             name={"aps_status"}
@@ -251,7 +251,7 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           />
-          <ChecklistR
+          {/* <ChecklistR
             text={"Ownership Structure Chart "}
             name={"owsc_status"}
             value={CL.owsc_status}
@@ -262,8 +262,8 @@ export const CheckList = () => {
             FileUpload={(e) => {
               ImageHandler(e);
             }}
-          />
-          <ChecklistR
+          /> */}
+          {/* <ChecklistR
             text={"Business Plan"}
             name={"bp_status"}
             value={CL.bp_status}
@@ -274,7 +274,7 @@ export const CheckList = () => {
             FileUpload={(e) => {
               ImageHandler(e);
             }}
-          />
+          /> */}
 
           <ChecklistR
             text={"Lead Director-Passport "}
@@ -300,7 +300,7 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           />
-          <ChecklistR
+          {/* <ChecklistR
             text={"Power of Attorney Document: "}
             name={"pad_status"}
             value={CL.pad_status}
@@ -311,7 +311,7 @@ export const CheckList = () => {
             FileUpload={(e) => {
               ImageHandler(e);
             }}
-          />
+          /> */}
           <ChecklistR
             text={"Second Director-Passport"}
             name={"sdp_status"}
@@ -444,7 +444,7 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           />
-          <ChecklistR
+          {/* <ChecklistR
             text={"Current Commercial Register Extract"}
             name={"ccre_status"}
             value={CL.ccre_status}
@@ -515,7 +515,7 @@ export const CheckList = () => {
             FileUpload={(e) => {
               ImageHandler(e);
             }}
-          />
+          /> */}
           <ChecklistR
             text={"Copywrite or Re-seller Agreement"}
             name={"cora_status"}
@@ -540,7 +540,7 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           />
-          <ChecklistR
+          {/* <ChecklistR
             text={"FBO Company Registration"}
             name={"fcR_status"}
             value={CL.fcR_status}
@@ -551,7 +551,7 @@ export const CheckList = () => {
             FileUpload={(e) => {
               ImageHandler(e);
             }}
-          />
+          /> */}
           <ChecklistR
             text={"Sales Handoff Sheet (CCBill Only)"}
             name={"shs_status"}
@@ -564,7 +564,7 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           />
-          <ChecklistR
+          {/* <ChecklistR
             text={"Confirmation & Declaration Form (GGS Only)"}
             name={"cdf_status"}
             value={CL.cdf_status}
@@ -575,7 +575,7 @@ export const CheckList = () => {
             FileUpload={(e) => {
               ImageHandler(e);
             }}
-          />
+          /> */}
         </Row>
         <Button tag={Link} to={link}>
           Previous

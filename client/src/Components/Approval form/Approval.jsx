@@ -21,7 +21,7 @@ export default function ApprovalForm() {
   const data1 = useSelector((state) => state.appReducer.state);
   console.log(data1);
   const [App, setApp] = useState({
-    status: "",
+    status: "Approve",
     af_rcn: "",
     af_ad: "",
     af_sol: "",
@@ -56,7 +56,7 @@ export default function ApprovalForm() {
   const onUpdateSubmit = async (e) => {
     e.preventDefault();
     await dispatch(UpdateOne(App, urlid));
-    // dispatch(Get());
+    dispatch(Get());
     history.push("/mainApp");
 
     // history.push("/sdkyb/" + urlid);
@@ -66,7 +66,7 @@ export default function ApprovalForm() {
     e.preventDefault();
     console.log(App);
     await dispatch(CreateApp(App));
-    // dispatch(Get());
+    dispatch(Get());
     history.push("/mainApp");
   };
   return (

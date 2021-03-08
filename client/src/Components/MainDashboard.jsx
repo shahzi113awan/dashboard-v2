@@ -133,25 +133,25 @@ export default function MainDashboard() {
               data.map((res, index) => {
                 return (
                   <tr>
-                    <th scope='row'>1</th>
-                    <td style={{ position: 'relative' }}>
-                      {' '}
-                      <Link to={'/ci/' + res._id}>
-                        {res.ci.tpi_rcName ? res.ci.tpi_rcName : 'Default Name'}
+                    <th scope="row">1</th>
+                    <td style={{ position: "relative" }}>
+                      {" "}
+                      <Link to={"/ci/" + res._id}>
+                        {res.ci.tpi_rcName ? res.ci.tpi_rcName : "Default Name"}
                       </Link>
                     </td>
-                    <td>{34 - res.cl.pendingCount.length}</td>
+                    <td>22</td>
                     <td>{res.cl.pendingCount.length}</td>
-                    <td>14</td>
+                    <td>{22 - res.cl.pendingCount.length}</td>
                     <td>
-                      <button type='submit'>0</button>
+                      <button type="submit">0</button>
                     </td>
                     <td>
-                      {res.ci.tpi_aaSolution ? res.ci.tpi_aaSolution : ''}
+                      {res.ci.tpi_aaSolution ? res.ci.tpi_aaSolution : ""}
                     </td>
                     <td
                       onClick={() => {
-                        window.open(res.ci.tci_wUrl, '_blank')
+                        window.open(res.ci.tci_wUrl, "_blank");
                       }}
                     >
                       {/* <a href="https://www.google.com" type="submit">
@@ -164,79 +164,79 @@ export default function MainDashboard() {
                     <td>6.95%</td>
                     <td>{res.ci.tpi_date}</td>
                     <td>{cal(res.ci.tpi_date)}</td>
-                    <td>{res.ci.tpi_ntc ? res.ci.tpi_ntc : ''}</td>
-                    <td>{res.ci.tpi_vtSector ? res.ci.tpi_vtSector : ''}</td>
-                    <td>{res.ci.tpi_brPartner ? res.ci.tpi_brPartner : ''}</td>
-                    <td>{res.ci.tpi_aBdmOwner ? res.ci.tpi_aBdmOwner : ''}</td>
+                    <td>{res.ci.tpi_ntc ? res.ci.tpi_ntc : ""}</td>
+                    <td>{res.ci.tpi_vtSector ? res.ci.tpi_vtSector : ""}</td>
+                    <td>{res.ci.tpi_brPartner ? res.ci.tpi_brPartner : ""}</td>
+                    <td>{res.ci.tpi_aBdmOwner ? res.ci.tpi_aBdmOwner : ""}</td>
                     <td>
-                      {res.ci.tpi_ccLocation ? res.ci.tpi_ccLocation : ''}
+                      {res.ci.tpi_ccLocation ? res.ci.tpi_ccLocation : ""}
                     </td>
                     <td>
-                      {res.ci.tpi_EEADocuments ? res.ci.tpi_EEADocuments : ''}
+                      {res.ci.tpi_EEADocuments ? res.ci.tpi_EEADocuments : ""}
                     </td>
-                    <td>{res.ci.tpi_TLoAR ? res.ci.tpi_TLoAR : ''}</td>
-                    <td>{res.cti.cti_fcaForm || ''}</td>
+                    <td>{res.ci.tpi_TLoAR ? res.ci.tpi_TLoAR : ""}</td>
+                    <td>{res.cti.cti_fcaForm || ""}</td>
                     <td>
-                      {res.cti.cti_bInformation ? res.cti.cti_bInformation : ''}
+                      {res.cti.cti_bInformation ? res.cti.cti_bInformation : ""}
                     </td>
                     <td>
-                      {res.cti.cti_otAgreement ? res.cti.cti_otAgreement : ''}
+                      {res.cti.cti_otAgreement ? res.cti.cti_otAgreement : ""}
                     </td>
                     <td> </td>
-                    <td>{res.cti.cti_hwUrl ? res.cti.cti_hwUrl : ''}</td>
+                    <td>{res.cti.cti_hwUrl ? res.cti.cti_hwUrl : ""}</td>
                     <td>
-                      {res.cti.cti_wCompliance ? res.cti.cti_wCompliance : ''}
+                      {res.cti.cti_wCompliance ? res.cti.cti_wCompliance : ""}
                     </td>
                     <td>
-                      {res.cti.cti_wUrl_proofD ? res.cti.cti_wUrl_proofD : ''}
+                      {res.cti.cti_wUrl_proofD ? res.cti.cti_wUrl_proofD : ""}
                     </td>
                     <td>{res.cl.owsc_status}</td>
-                    <td>{res.cti.cti_bPlan ? res.cti.cti_bPlan : ''}</td>
-                    <td>{res.kyc.kyc_name ? res.kyc.kyc_name : ''}</td>
-                    <td>{res.kyc.kyc_sHolds ? res.kyc.kyc_sHolds : ''}</td>
+                    <td>{res.cti.cti_bPlan ? res.cti.cti_bPlan : ""}</td>
+                    <td>{res.kyc.kyc_name ? res.kyc.kyc_name : ""}</td>
+                    <td>{res.kyc.kyc_sHolds ? res.kyc.kyc_sHolds : ""}</td>
                     <td>{res.kyc.kyc_notarized}</td>
                     <td>
-                      {res.kyc.kyc_nationality ? res.kyc.kyc_nationality : ''}
+                      {res.kyc.kyc_nationality ? res.kyc.kyc_nationality : ""}
                     </td>
                     <td>
-                      {res.kyc.kyc_notarized ? res.kyc.kyc_notarized : ''}
+                      {res.kyc.kyc_notarized ? res.kyc.kyc_notarized : ""}
                     </td>
                     <td>
-                      {res.kyc.kyc_ExpiryDate ? res.kyc.kyc_ExpiryDate : ''}
+                      {res.kyc.kyc_ExpiryDate ? res.kyc.kyc_ExpiryDate : ""}
                     </td>
-                    <td>{res.kyc.kyc_Address ? res.kyc.kyc_Address : ''}</td>
-                    <td>{res.kyc.kyc_toProof ? res.kyc.kyc_toProof : ''}</td>
+                    <td>{res.kyc.kyc_Address ? res.kyc.kyc_Address : ""}</td>
+                    <td>{res.kyc.kyc_toProof ? res.kyc.kyc_toProof : ""}</td>
                     <td>
-                      {res.kyc.kyc_notarized ? res.kyc.kyc_notarized : ''}
+                      {res.kyc.kyc_notarized ? res.kyc.kyc_notarized : ""}
                     </td>
                     <td>01 January, 2021</td>
                     <td>1 April, 2021</td>
                     <td>3</td>
                     <td>
-                      {res.kyc.kyc_paDocument ? res.kyc.kyc_paDocument : ''}
+                      {res.kyc.kyc_paDocument ? res.kyc.kyc_paDocument : ""}
                     </td>
-                    <td>{res.sd.fsd_cbs ? res.sd.fsd_cbs : ''}</td>
-                    <td>{res.sd.fsd_pbs ? res.sd.fsd_pbs : ''}</td>
-                    <td>{res.sd.fsd_pow ? res.sd.fsd_pow : ''}</td>
-                    <td>{res.sd.fsd_cap ? res.sd.fsd_cap : ''}</td>
-                    <td>{res.sd.lta_gfl ? res.sd.lta_gfl : ''}</td>
-                    <td>{res.sd.lta_cra ? res.sd.lta_cra : ''}</td>
-                    <td>{res.sd.lta_fdsa ? res.sd.lta_fdsa : ''}</td>
-                    <td>{res.sd.lta_fbo_cr ? res.sd.lta_fbo_cr : ''}</td>
+                    <td>{res.sd.fsd_cbs ? res.sd.fsd_cbs : ""}</td>
+                    <td>{res.sd.fsd_pbs ? res.sd.fsd_pbs : ""}</td>
+                    <td>{res.sd.fsd_pow ? res.sd.fsd_pow : ""}</td>
+                    <td>{res.sd.fsd_cap ? res.sd.fsd_cap : ""}</td>
+                    <td>{res.sd.lta_gfl ? res.sd.lta_gfl : ""}</td>
+                    <td>{res.sd.lta_cra ? res.sd.lta_cra : ""}</td>
+                    <td>{res.sd.lta_fdsa ? res.sd.lta_fdsa : ""}</td>
+                    <td>{res.sd.lta_fbo_cr ? res.sd.lta_fbo_cr : ""}</td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td>
                       <Button
                         onClick={(e) => {
-                          del(res._id)
+                          del(res._id);
                         }}
                       >
                         Delete
                       </Button>
                     </td>
                   </tr>
-                )
+                );
               })}
           </tbody>
         </table>

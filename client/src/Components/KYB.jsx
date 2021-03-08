@@ -62,9 +62,7 @@ export default function KYB() {
               <Label for="certificate">Certificate of Incorporation:</Label>
               <select
                 className={
-                  KYB.kyb_coi === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
+                   "custom-select"
                 }
                 value={KYB.kyb_coi}
                 // value={"Not Required"}
@@ -82,9 +80,7 @@ export default function KYB() {
               <Label for="memo">Memorandum of Association:</Label>
               <select
                 className={
-                  KYB.kyb_moa === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
+                   "custom-select"
                 }
                 value={KYB.kyb_moa}
                 // value={"Not Required"}
@@ -126,9 +122,7 @@ export default function KYB() {
               <Label for="shareRegister">Share Register:</Label>
               <select
                 className={
-                  KYB.kyb_sRegister === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
+                   "custom-select"
                 }
                 value={KYB.kyb_sRegister}
                 // value={"Not Required"}
@@ -148,9 +142,7 @@ export default function KYB() {
               </Label>
               <select
                 className={
-                  KYB.kyb_scs === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
+                   "custom-select"
                 }
                 value={KYB.kyb_scs}
                 // value={"Not Required"}

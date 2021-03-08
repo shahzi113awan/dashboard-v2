@@ -1,6 +1,6 @@
 const initialState = {
   state: {
-    status: "",
+    status: "Approve",
     af_rcn: "",
     af_ad: "",
     af_sol: "",

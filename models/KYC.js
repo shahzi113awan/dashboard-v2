@@ -10,6 +10,9 @@ let KYCSchema = new Schema(
       kyc_sHolds: {
         type: String,
       },
+      kyc_sholders: {
+        type: String,
+      },
       kyc_pID: {
         type: String,
       },

@@ -2,6 +2,7 @@ const initialState = {
   state: {
     kyc_name: "",
     kyc_sHolds: "",
+    kyc_sholders:"",
     kyc_pID: "",
     kyc_startDate: "",
     kyc_ExpiryDate: "",
