@@ -1,5 +1,6 @@
 const initialState = {
   state: {
+    status: "",
     af_rcn: "",
     af_ad: "",
     af_sol: "",

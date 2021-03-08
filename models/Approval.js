@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 let ApprovalSchema = new Schema(
   {
-    status: {
-      type: String,
-    },
     App: {
+      status: {
+        type: String,
+      },
       af_rcn: {
         type: String,
       },

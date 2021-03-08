@@ -3,7 +3,7 @@ export const CreateApp = (obj) => async (dipatch) => {
   await axios
     .post("/api/App", {
       App: obj,
-    //   status: obj.status,
+      //   status: obj.status,
     })
     .then((res) => {
       console.log("App action");
@@ -19,17 +19,26 @@ export const CreateApp = (obj) => async (dipatch) => {
 export const Get = (obj) => async (dispatch) => {
   dispatch(setLoading());
 
-  const { data } = await axios.get("/api/App");
+  const { data } = await axios.get("/api/App"); 
   dispatch({
     type: "GET_App",
+    payload: data,
+  });
+};
+export const Inital = (data) => async (dispatch) => {
+  dispatch(setLoading());
+
+  
+  dispatch({
+    type: "INITIAL_App",
     payload: data,
   });
 };
 export const GetOneApp = (id) => async (dispatch) => {
   dispatch(setLoading());
   await axios.get("/api/App/" + id, { id: id }).then((res) => {
-    // console.log("from action");
-    // console.log(res.data);
+    console.log("from action");
+    console.log(res.data);
 
     dispatch({
       type: "GET_App",

@@ -7,13 +7,21 @@ import {
   Update,
   GetOneApp,
   UpdateOne,
+  Get,
 } from "../../actions/appActions";
 
 export default function ApprovalForm() {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const { urlid } = useParams();
+  console.log(urlid);
+  useEffect(() => {
+    urlid ? dispatch(GetOneApp(urlid)) : console.log("creating");
+  }, [urlid]);
   const data1 = useSelector((state) => state.appReducer.state);
-  // console.log(data1);
+  console.log(data1);
   const [App, setApp] = useState({
+    status: "",
     af_rcn: "",
     af_ad: "",
     af_sol: "",
@@ -45,18 +53,21 @@ export default function ApprovalForm() {
   useEffect(() => {
     setApp(App);
   }, App);
-  // const onUpdateSubmit = (e) => {
-  //   e.preventDefault();
-  //   dispatch(CreateApp(App, urlid));
-  //   // history.push("/sdkyb/" + urlid);
-  // };
-  const onSubmit = (e) => {
+  const onUpdateSubmit = async (e) => {
+    e.preventDefault();
+    await dispatch(UpdateOne(App, urlid));
+    // dispatch(Get());
+    history.push("/mainApp");
+
+    // history.push("/sdkyb/" + urlid);
+  };
+  const onSubmit = async (e) => {
     console.log(App);
     e.preventDefault();
     console.log(App);
-    dispatch(CreateApp(App));
-
-    //  history.push("/CTI");
+    await dispatch(CreateApp(App));
+    // dispatch(Get());
+    history.push("/mainApp");
   };
   return (
     <div className="container">
@@ -102,7 +113,7 @@ export default function ApprovalForm() {
               <select
                 className="custom-select"
                 id="1"
-                name="af_solution"
+                name="af_sol"
                 value={App.af_sol}
                 onChange={handleInput}
               >
@@ -221,16 +232,16 @@ export default function ApprovalForm() {
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Trading / New To Cards (NTC)*:</Label>
-              <Input
-                className="cusrom"
-                onChange={handleInput}
-                required={false}
-                type="text"
+              <select
+                className="custom-select"
                 value={App.af_ntc}
+                id="1"
                 name="af_ntc"
-                id="Name"
-                placeholder="NTC"
-              ></Input>
+                onChange={handleInput}
+              >
+                <option> NTC </option>
+                <option>New to Cards</option>
+              </select>
             </FormGroup>
           </Col>{" "}
           <Col md={6}>
@@ -310,52 +321,69 @@ export default function ApprovalForm() {
           </Col>{" "}
           <Col md={6}>
             <FormGroup>
-              <Label for="CCR">EEA Documents*:</Label>
-              <Input
-                className="cusrom"
-                onChange={handleInput}
-                required={false}
-                type="text"
+              <Label for="CCR"> Documents*:</Label>
+              <select
+                className="custom-select"
                 value={App.af_eea}
+                id="1"
                 name="af_eea"
-                id="Name"
-                placeholder="EEA Documents"
-              ></Input>
+                onChange={handleInput}
+              >
+                <option> EEA </option>
+                <option>USA</option>
+                <option>International</option>
+              </select>
             </FormGroup>
           </Col>{" "}
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Trading License or Agreements Required*:</Label>
-              <Input
-                className="cusrom"
-                onChange={handleInput}
-                required={false}
-                type="text"
+              <select
+                className="custom-select"
                 value={App.af_tla}
-                name="af_tla"
-                id="Name"
-                placeholder="Trading License"
-              ></Input>
+                id="1"
+                name="App.af_tla"
+                onChange={handleInput}
+              >
+                <option>Licenced </option>
+                <option>Gambling</option>
+                <option>Forex</option>
+                <option>Trade</option>
+                <option>Fulfilment</option>
+                <option>Other</option>
+                <option>unlicenced</option>
+              </select>
             </FormGroup>
           </Col>{" "}
+          <Col md={12}>
+            <FormGroup>
+              <Label for="memo">Status</Label>
+              <select
+                className="custom-select"
+                id="1"
+                name="status"
+                value={App.status}
+                onChange={handleInput}
+              >
+                <option>Approve</option>
+                <option>Lost</option>
+              </select>
+            </FormGroup>
+          </Col>
         </Row>
-        <Button type="submit" onClick={onSubmit}>
+        {/* <Button tag={Link} to={"/appdb"} type="submit" onClick={onSubmit}>
           Submit
-        </Button>
+        </Button> */}
         {/* <Button tag={Link} to={link}>
           Previous
         </Button> */}
-        {/* <Link to='/supporting-doc-kyb'> */}
-        {/* {urlid ? (
-          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-            Update and Next
-          </Button>
-        ) : (
-          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
-            Save and Next
-          </Button>
-        )} */}
-        {/* </Link> */}
+        <Link to="/appdb">
+          {urlid ? (
+            <Button onClick={onUpdateSubmit}>Update</Button>
+          ) : (
+            <Button onClick={onSubmit}>Save</Button>
+          )}
+        </Link>
       </Form>
     </div>
   );

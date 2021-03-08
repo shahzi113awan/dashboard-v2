@@ -29,6 +29,28 @@ const MainApp = () => {
         </Card>
       </div>
       <div>
+        <div>
+        <Card
+          body
+          inverse
+          style={{
+            backgroundColor: "#333",
+            borderColor: "#333",
+            marginBottom: "5%",
+          }}
+        >
+          <CardTitle tag="h5">Lost Dashboard</CardTitle>
+
+          <Button
+            onClick={(e) => {
+              history.push("/lostappdb");
+            }}
+          >
+            Go to Lost Dashboard
+          </Button>
+        </Card>
+      </div>
+      <div></div>
         <Card
           body
           inverse
