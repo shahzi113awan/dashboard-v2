@@ -174,13 +174,8 @@ export default function MainDashboard() {
                     <td>
                       {res.ci.tpi_EEADocuments ? res.ci.tpi_EEADocuments : ""}
                     </td>
-<<<<<<< HEAD
                     <td>{res.ci.tpi_TLoAR ? res.ci.tpi_TLoAR : ""}</td>
                     <td>{res.cti.cti_fcaForm || ""}</td>
-=======
-                    <td>{res.ci.tpi_TLoAR ? res.ci.tpi_TLoAR : ''}</td>
-                    <td>{res.cti.cti_fcaForm ? res.cti.cti_fcaForm:'' }</td>
->>>>>>> playground
                     <td>
                       {res.cti.cti_bInformation ? res.cti.cti_bInformation : ""}
                     </td>
