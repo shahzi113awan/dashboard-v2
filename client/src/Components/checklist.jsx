@@ -5,7 +5,7 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 import ChecklistR from './CheckList/checklistR'
 import { useDispatch, useSelector } from 'react-redux'
 import { CreateCL, GetOneCL } from '../actions/clAction'
-import { Get } from '../actions/ciAction'
+import { Get, setLoading } from '../actions/ciAction'
 import axios from 'axios'
 import { firebase } from '../Config'
 export const CheckList = () => {
@@ -21,6 +21,7 @@ export const CheckList = () => {
   const [image, setImage] = useState('')
   const [countArr, setcountArr] = useState([])
   const [url, setURL] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const { urlid } = useParams()
   const link = `/sdkyb/${urlid}`
@@ -133,6 +134,7 @@ export const CheckList = () => {
     // console.log(e.target.name);
     const formData = new FormData()
     formData.append('', file)
+    setIsLoading(true)
     try {
       let fName = new Date().getTime() + '_' + fileName
       const uploadTask = firebase.storage().ref(`/files/${fName}`).put(file)
@@ -157,6 +159,7 @@ export const CheckList = () => {
               ...CL,
               [e.target.name]: url,
             })
+            setIsLoading(false)
           })
       })
     } catch (error) {
@@ -173,9 +176,28 @@ export const CheckList = () => {
       : dispatch(CreateCL(CL, id))
     history.push('/')
   }
-
+  console.log(isLoading)
   return (
     <div className='container'>
+      {isLoading == true ? (
+        <div
+          style={{
+            position: 'absolute',
+            zIndex: 10,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'lightgrey',
+            opacity: 0.8,
+            left: 0,
+            // bottom: 0,
+          }}
+        >
+          <h1 style={{ backgroundColor: 'black', textAlign:'center', color:'white', marginTop:'20%' }}>Uploading...</h1>
+        </div>
+      ) : (
+        ''
+      )}
+
       <div>
         <h2>
           <span class='badge badge-success'>COMPANY INFORMATION </span>
