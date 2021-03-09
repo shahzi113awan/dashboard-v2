@@ -24,33 +24,33 @@ const KYC = ({ Done, Received, pending }) => {
   // console.log(data)
   const [KYC, setKYC] = useState([
     {
-      
-        kyc_name: "",
-        kyc_sHolds: "",
-        kyc_sholders: "",
-        kyc_pID: "",
-        kyc_startDate: "",
-        kyc_ExpiryDate: "",
-        kyc_nationality: "",
-        kyc_notarized: "",
-        kyc_Address: "",
-        kyc_adstartDate: "",
-        kyc_adExpiryDate: "",
-        kyc_toProof: "",
-        kyc_paDocument: "",
+      kyc_name: "",
+      kyc_sHolds: "",
+      kyc_sholders: "",
+      kyc_pID: "",
+      kyc_startDate: "",
+      kyc_ExpiryDate: "",
+      kyc_nationality: "",
+      kyc_notarized: "",
+      kyc_Address: "",
+      kyc_adstartDate: "",
+      kyc_adExpiryDate: "",
+      kyc_toProof: "",
+      kyc_paDocument: "",
     },
   ]);
-  function handleInput(e,index) {
+  const handleInput = async (e, index) => {
+    e.preventDefault();
     const { name, value } = e.target;
     const list = [...KYC];
     list[index][name] = value;
     console.log(KYC);
-    setKYC({
-      list,
-    });
-  }
+    await setKYC(list);
+  };
   //handle add and remove
-  const handleRemoveClick = (index) => {
+  const handleRemoveClick = (e, index) => {
+    e.preventDefault();
+
     const list = [...KYC];
     list.splice(index, 1);
     setKYC(list);
@@ -145,7 +145,7 @@ const KYC = ({ Done, Received, pending }) => {
       </div>
 
       <Form>
-        {KYC.map((KYC, id) => {
+        {KYC.map((kyc, id) => {
           return (
             <div>
               <Row form>
@@ -154,7 +154,7 @@ const KYC = ({ Done, Received, pending }) => {
                     <Label for="Name">Name</Label>
                     <Input
                       className={"custom-select"}
-                      value={KYC.kyc_name}
+                      value={kyc.kyc_name}
                       name="kyc_name"
                       onChange={(e) => handleInput(e, id)}
                       type="text"
@@ -168,7 +168,7 @@ const KYC = ({ Done, Received, pending }) => {
                     <Label for="shareRegister">Holders</Label>
                     <select
                       className={"custom-select"}
-                      value={KYC.kyc_sholders}
+                      value={kyc.kyc_sholders}
                       id="1"
                       name="kyc_sholders"
                       onChange={(e) => {
@@ -186,7 +186,7 @@ const KYC = ({ Done, Received, pending }) => {
                     <Label for="shareHolds">Share Holds percentage</Label>
                     <Input
                       className={"custom-select"}
-                      value={KYC.kyc_sHolds}
+                      value={kyc.kyc_sHolds}
                       name="kyc_sHolds"
                       onChange={(e) => {
                         handleInput(e, id);
@@ -209,7 +209,7 @@ const KYC = ({ Done, Received, pending }) => {
                     <Label for="passportID">Passport</Label>
                     <Input
                       className={"custom-select"}
-                      value={KYC.kyc_pID}
+                      value={kyc.kyc_pID}
                       name="kyc_pID"
                       onChange={(e) => {
                         handleInput(e, id);
@@ -225,7 +225,7 @@ const KYC = ({ Done, Received, pending }) => {
                     <Label for="ExpiryDate">Issue Date</Label>
                     <Input
                       className={"custom-select"}
-                      value={KYC.kyc_startDate}
+                      value={kyc.kyc_startDate}
                       name="kyc_startDate"
                       onChange={(e) => {
                         handleInput(e, id);
@@ -241,7 +241,7 @@ const KYC = ({ Done, Received, pending }) => {
                     <Label for="ExpiryDate">Expiry Date</Label>
                     <Input
                       className={"custom-select"}
-                      value={KYC.kyc_ExpiryDate}
+                      value={kyc.kyc_ExpiryDate}
                       name="kyc_ExpiryDate"
                       onChange={(e) => {
                         handleInput(e, id);
@@ -272,7 +272,7 @@ const KYC = ({ Done, Received, pending }) => {
                       }}
                       required={false}
                       type="text"
-                      value={KYC.kyc_nationality}
+                      value={kyc.kyc_nationality}
                       name="kyc_nationality"
                       id="Name"
                       placeholder="Company Name"
@@ -284,7 +284,7 @@ const KYC = ({ Done, Received, pending }) => {
                     <Label for="Notaized">Notarized</Label>
                     <Input
                       className={"custom-select"}
-                      value={KYC.kyc_notarized}
+                      value={kyc.kyc_notarized}
                       name="kyc_notarized"
                       onChange={(e) => {
                         handleInput(e, id);
@@ -309,7 +309,7 @@ const KYC = ({ Done, Received, pending }) => {
                     <Label for="Address">Proof of Address</Label>
                     <Input
                       className={"custom-select"}
-                      value={KYC.kyc_Address}
+                      value={kyc.kyc_Address}
                       name="kyc_Address"
                       onChange={(e) => {
                         handleInput(e, id);
@@ -325,7 +325,7 @@ const KYC = ({ Done, Received, pending }) => {
                     <Label for="ExpiryDate">Issue Date</Label>
                     <Input
                       className={"custom-select"}
-                      value={KYC.kyc_adstartDate}
+                      value={kyc.kyc_adstartDate}
                       name="kyc_adstartDate"
                       onChange={(e) => {
                         handleInput(e, id);
@@ -341,7 +341,7 @@ const KYC = ({ Done, Received, pending }) => {
                     <Label for="ExpiryDate">Expiry Date</Label>
                     <Input
                       className={"custom-select"}
-                      value={KYC.kyc_adExpiryDate}
+                      value={kyc.kyc_adExpiryDate}
                       name="kyc_adExpiryDate"
                       onChange={(e) => {
                         handleInput(e, id);
@@ -372,7 +372,7 @@ const KYC = ({ Done, Received, pending }) => {
                         handleInput(e, id);
                       }}
                       className={"custom-select"}
-                      value={KYC.kyc_toProof}
+                      value={kyc.kyc_toProof}
                     >
                       <option value="Utility Bill">Utility Bill</option>
                       <option value="Utility Bill">Bank</option>
@@ -399,7 +399,7 @@ const KYC = ({ Done, Received, pending }) => {
                         handleInput(e, id);
                       }}
                       className={"custom-select"}
-                      // value={KYC.kyc_paDocument}
+                      // value={kyc.kyc_paDocument}
                       value={"Not Required"}
                       readOnly
                     >
@@ -409,15 +409,22 @@ const KYC = ({ Done, Received, pending }) => {
                   </FormGroup>
                 </Col>
               </Row>
-              <div className="btn-box">
+              <div className="btn-box" style={{ margin: "2%" }}>
                 {KYC.length !== 1 && (
-                  <button className="mr10" onClick={() => handleRemoveClick(id)}>
+                  <Button
+                    className="mr10"
+                    onClick={() => handleRemoveClick(id)}
+                  >
                     Remove
-                  </button>
+                  </Button>
                 )}
-               
-                  <button onClick={e=>handleAddClick(e)}>Add</button>
-               
+
+                <Button
+                  style={{ marginLeft: "10%" }}
+                  onClick={(e) => handleAddClick(e)}
+                >
+                  Add
+                </Button>
               </div>
             </div>
           );
