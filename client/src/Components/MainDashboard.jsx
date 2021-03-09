@@ -1,59 +1,82 @@
-import { Button } from 'reactstrap'
+import { Button } from "reactstrap";
 
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
-import { Get, Delete } from '../actions/ciAction'
-import moment from 'moment'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { Get, Delete } from "../actions/ciAction";
+import Loader from "react-loader-spinner";
+
+import moment from "moment";
 
 export default function MainDashboard() {
-  const history = useHistory()
+  const history = useHistory();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Get())
-  }, [dispatch])
-  const [db, setDb] = useState([])
-  const data = useSelector((state) => state.ciReducer.state)
+    dispatch(Get());
+  }, [dispatch]);
+  const [db, setDb] = useState([]);
+  const data = useSelector((state) => state.ciReducer.state);
   // const isLoading = 'useSelector((state) => state.ciReducer.isLoading)'
-  console.log(data)
+  console.log(data);
   useEffect(() => {
-    setDb(data)
-  }, [data])
+    setDb(data);
+  }, [data]);
   console.log(db);
-  const isLoading = useSelector((state) => state.ciReducer.isLoading)
+  const isLoading = useSelector((state) => state.ciReducer.isLoading);
   if (!data) {
-    window.location.reload()
+    window.location.reload();
   }
-  console.log(isLoading)
+  console.log(isLoading);
   const del = async (id) => {
-    await dispatch(Delete(id))
-    window.location.reload()
+    await dispatch(Delete(id));
+    window.location.reload();
     // dispatch(Get());
-  }
+  };
   const cal = (val) => {
-    console.log(val)
-    const Start = moment(new Date())
-    console.log(Start)
-    const End = moment(val).add(90, 'd').format('YYYY-MM-DD')
-    const Ending = moment(End)
-    console.log(Ending)
-    const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays())
-    console.log(days)
-    return days
-  }
-  console.log(isLoading)
-  console.log(db)
+    console.log(val);
+    const Start = moment(new Date());
+    console.log(Start);
+    const End = moment(val).add(90, "d").format("YYYY-MM-DD");
+    const Ending = moment(End);
+    console.log(Ending);
+    const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays());
+    console.log(days);
+    return days;
+  };
+  console.log(isLoading);
+  console.log(db);
   return isLoading ? (
-    <h1 className='text-center'>Loading</h1>
+    <div
+      style={{
+        position: "absolute",
+        zIndex: 10,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "lightgrey",
+        opacity: 0.8,
+        left: 0,
+        // bottom: 0,
+      }}
+    >
+      <div
+        style={{
+          textAlign: "center",
+          // color: "white",
+          marginTop: "20%",
+        }}
+      >
+        <Loader type="Puff" color="#161f22" height={100} width={100} />
+      </div>
+    </div>
   ) : (
-    <div className='container-fluid'>
-      <div class='table-responsive mt-5'>
-        <table class='table table-striped'>
+    <div className="container-fluid">
+      <div class="table-responsive mt-5">
+        <table class="table table-striped">
           <thead>
             <tr>
-              <th scope='col'> # </th>
-              <th scope='col' style={{ width: '200px' }} classNa>
+              <th scope="col"> # </th>
+              <th scope="col" style={{ width: "200px" }} classNa>
                 Registered Company Name
               </th>
               <th scope='col'>Total Pending</th>
@@ -116,18 +139,18 @@ export default function MainDashboard() {
               <th scope="col ">Share Certificate(s) - Signed</th>
               <th scope="col">Current Commercial Register Extract</th>
               <th scope="col">Notarised</th> */}
-              <th scope='col '> Corporate Bank Statements</th>
-              <th scope='col'>Personal Bank Statements</th>
-              <th scope='col'>Proof of Wealth</th>
-              <th scope='col '> Company AML Policy</th>
-              <th scope='col'>Gambling or Forex License</th>
-              <th scope='col '>Copywrite or Re-seller Agreement</th>
-              <th scope='col '>Fulfilment or Drop shipping Agreement</th>
-              <th scope='col '>FBO Company Registration (Nutra Merchants)</th>
-              <th scope='col'>Sales Handoff Sheet (CCBill Only)</th>
-              <th scope='col'>SPARE</th>
-              <th scope='col '> SPARE</th>
-              <th scope='col '> Delete</th>
+              <th scope="col "> Corporate Bank Statements</th>
+              <th scope="col">Personal Bank Statements</th>
+              <th scope="col">Proof of Wealth</th>
+              <th scope="col "> Company AML Policy</th>
+              <th scope="col">Gambling or Forex License</th>
+              <th scope="col ">Copywrite or Re-seller Agreement</th>
+              <th scope="col ">Fulfilment or Drop shipping Agreement</th>
+              <th scope="col ">FBO Company Registration (Nutra Merchants)</th>
+              <th scope="col">Sales Handoff Sheet (CCBill Only)</th>
+              <th scope="col">SPARE</th>
+              <th scope="col "> SPARE</th>
+              <th scope="col "> Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -177,7 +200,7 @@ export default function MainDashboard() {
                       {res.ci.tpi_EEADocuments ? res.ci.tpi_EEADocuments : ""}
                     </td>
                     <td>{res.ci.tpi_TLoAR ? res.ci.tpi_TLoAR : ""}</td>
-                    <td>{res.cti.cti_fcaForm || ""}</td>
+                    <td>{res.cti.cti_fcaForm ? res.cti.cti_fcaForm : ""}</td>
                     <td>
                       {res.cti.cti_bInformation ? res.cti.cti_bInformation : ""}
                     </td>
@@ -254,5 +277,5 @@ export default function MainDashboard() {
         </table>
       </div>
     </div>
-  )
+  );
 }

@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Get, Delete } from "../../actions/appActions";
+import Loader from "react-loader-spinner";
+
 import moment from "moment";
 
 export default function MainDashboard() {
@@ -35,7 +37,28 @@ export default function MainDashboard() {
   console.log(isLoading);
   //   console.log(db);
   return isLoading ? (
-    <h1 className="text-center">Loading</h1>
+    <div
+      style={{
+        position: "absolute",
+        zIndex: 10,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "lightgrey",
+        opacity: 0.8,
+        left: 0,
+        // bottom: 0,
+      }}
+    >
+      <div
+        style={{
+          textAlign: "center",
+          // color: "white",
+          marginTop: "20%",
+        }}
+      >
+        <Loader type="Puff" color="#161f22" height={100} width={100} />
+      </div>
+    </div>
   ) : (
     <div className="container-fluid">
       <div class="table-responsive mt-5">
