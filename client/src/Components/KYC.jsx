@@ -22,25 +22,63 @@ const KYC = ({ Done, Received, pending }) => {
 
   // console.log(id);
   // console.log(data)
-  const [KYC, setKYC] = useState({
-    // kyc_name: '',
-    // kyc_sHolds: '',
-    // kyc_pID: '',
-    // kyc_startDate: '',
-    // kyc_ExpiryDate: '12',
-    // kyc_nationality: '',
-    // kyc_notarized: '',
-    // kyc_Address: '',
-    // kyc_toProof: '',
-    // kyc_paDocument: '',
-  });
-  function handleInput(evt) {
+  const [KYC, setKYC] = useState([
+    {
+      
+        kyc_name: "",
+        kyc_sHolds: "",
+        kyc_sholders: "",
+        kyc_pID: "",
+        kyc_startDate: "",
+        kyc_ExpiryDate: "",
+        kyc_nationality: "",
+        kyc_notarized: "",
+        kyc_Address: "",
+        kyc_adstartDate: "",
+        kyc_adExpiryDate: "",
+        kyc_toProof: "",
+        kyc_paDocument: "",
+    },
+  ]);
+  function handleInput(e,index) {
+    const { name, value } = e.target;
+    const list = [...KYC];
+    list[index][name] = value;
     console.log(KYC);
     setKYC({
-      ...KYC,
-      [evt.target.name]: evt.target.value,
+      list,
     });
   }
+  //handle add and remove
+  const handleRemoveClick = (index) => {
+    const list = [...KYC];
+    list.splice(index, 1);
+    setKYC(list);
+  };
+
+  // handle click event of the Add button
+  const handleAddClick = (e) => {
+    e.preventDefault();
+    setKYC([
+      ...KYC,
+      {
+        kyc_name: "",
+        kyc_sHolds: "",
+        kyc_sholders: "",
+        kyc_pID: "",
+        kyc_startDate: "",
+        kyc_ExpiryDate: "",
+        kyc_nationality: "",
+        kyc_notarized: "",
+        kyc_Address: "",
+        kyc_adstartDate: "",
+        kyc_adExpiryDate: "",
+        kyc_toProof: "",
+        kyc_paDocument: "",
+      },
+    ]);
+  };
+
   useEffect(() => {
     setKYC(data);
   }, [data]);
@@ -63,14 +101,6 @@ const KYC = ({ Done, Received, pending }) => {
   const [remainig1, setremainig1] = useState(0);
   const [color1, setColor1] = useState("none");
 
-  // const [value, setValue] = useState("");
-  // const options = useMemo(() => countryList().getData(), []);
-  // const changeHandler = (value) => {
-  //   console.log(value.label);
-  //   setKYC({ kyc_nationality: value.label });
-  // };
-
-  //CalculateDays
   useEffect(() => {
     if (KYC.kyc_startDate && KYC.kyc_ExpiryDate) {
       const Start = moment(KYC.kyc_startDate);
@@ -113,244 +143,285 @@ const KYC = ({ Done, Received, pending }) => {
           <span class="badge badge-success">KNOW YOUR CUSTOMER (KYC)</span>
         </h2>
       </div>
-      <Form>
-        <Row form>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="Name">Name</Label>
-              <Input
-                className={"custom-select"}
-                value={KYC.kyc_name}
-                name="kyc_name"
-                onChange={handleInput}
-                type="text"
-                id="Name"
-                placeholder="Share Holder Name"
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="shareRegister">Holders</Label>
-              <select
-                className={"custom-select"}
-                value={KYC.kyc_sholders}
-                id="1"
-                name="kyc_sholders"
-                onChange={handleInput}
-              >
-                <option>Director</option>
-                <option>Shareholder Director</option>
-                <option>Shareholder</option>
-              </select>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="shareHolds">Share Holds percentage</Label>
-              <Input
-                className={"custom-select"}
-                value={KYC.kyc_sHolds}
-                name="kyc_sHolds"
-                onChange={handleInput}
-                type="number"
-                id="shareHolds"
-                placeholder="Share Holds Percent"
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={12}>
-            <FormGroup>
-              <h4>
-                <span>Passport / ID</span>
-              </h4>
-            </FormGroup>
-          </Col>
-          <Col md={4}>
-            <FormGroup>
-              <Label for="passportID">Passport</Label>
-              <Input
-                className={"custom-select"}
-                value={KYC.kyc_pID}
-                name="kyc_pID"
-                onChange={handleInput}
-                type="text"
-                id="passportID"
-                placeholder=" Passport or ID"
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={3}>
-            <FormGroup>
-              <Label for="ExpiryDate">Issue Date</Label>
-              <Input
-                className={"custom-select"}
-                value={KYC.kyc_startDate}
-                name="kyc_startDate"
-                onChange={handleInput}
-                type="date"
-                id="startDate"
-                placeholder=" Passport or ID"
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={3}>
-            <FormGroup>
-              <Label for="ExpiryDate">Expiry Date</Label>
-              <Input
-                className={"custom-select"}
-                value={KYC.kyc_ExpiryDate}
-                name="kyc_ExpiryDate"
-                onChange={handleInput}
-                type="date"
-                id="ExpiryDate"
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={2}>
-            <FormGroup>
-              <Label for="remainingDays">Remaining Days</Label>
-              <Input
-                style={{ backgroundColor: color }}
-                type="text"
-                disabled={true}
-                value={remainig}
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="Nationality">Country/Nationality</Label>
-              <Input
-                className="cusrom"
-                onChange={handleInput}
-                required={false}
-                type="text"
-                value={KYC.kyc_nationality}
-                name="kyc_nationality"
-                id="Name"
-                placeholder="Company Name"
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="Notaized">Notarized</Label>
-              <Input
-                className={"custom-select"}
-                value={KYC.kyc_notarized}
-                name="kyc_notarized"
-                onChange={handleInput}
-                type="select"
-                placeholder=" Nationality"
-              >
-                <option value="No">No</option>
-                <option value="yes">yes</option>
-              </Input>
-            </FormGroup>
-          </Col>
-          <Col md={12}>
-            <FormGroup>
-              <h4>
-                <span>Proof of Personal Address (POA)</span>
-              </h4>
-            </FormGroup>
-          </Col>
-          <Col md={4}>
-            <FormGroup>
-              <Label for="Address">Proof of Address</Label>
-              <Input
-                className={"custom-select"}
-                value={KYC.kyc_Address}
-                name="kyc_Address"
-                onChange={handleInput}
-                type="text"
-                id="Address"
-                placeholder="Address"
-              />
-            </FormGroup>
-          </Col>
-          <Col md={3}>
-            <FormGroup>
-              <Label for="ExpiryDate">Issue Date</Label>
-              <Input
-                className={"custom-select"}
-                value={KYC.kyc_adstartDate}
-                name="kyc_adstartDate"
-                onChange={handleInput}
-                type="date"
-                id="adstartDate"
-              ></Input>
-            </FormGroup>
-          </Col>
 
-          <Col md={3}>
-            <FormGroup>
-              <Label for="ExpiryDate">Expiry Date</Label>
-              <Input
-                className={"custom-select"}
-                value={KYC.kyc_adExpiryDate}
-                name="kyc_adExpiryDate"
-                onChange={handleInput}
-                type="date"
-                id="adExpiryDate"
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={2}>
-            <FormGroup>
-              <Label for="remainingDays">Remaining Days</Label>
-              <Input
-                style={{ backgroundColor: color1 }}
-                type="text"
-                disabled={true}
-                value={remainig1}
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="typeOfProof">Type of Proof</Label>
-              <Input
-                type="select"
-                name="kyc_toProof"
-                onChange={handleInput}
-                className={"custom-select"}
-                value={KYC.kyc_toProof}
-              >
-                <option value="Utility Bill">Utility Bill</option>
-                <option value="Utility Bill">Bank</option>
-                <option value="Utility Bill">Credit</option>
-                <option value="Utility Bill">Council</option>
-                <option value="Utility Bill">Tax</option>
-                <option value="Utility Bill">Other</option>
-              </Input>
-            </FormGroup>
-          </Col>
-          <Col md={12}>
-            <FormGroup>
-              <h4>
-                <span>Power Of Attorney Document:</span>
-              </h4>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="PAd">Power Of Attorney Document:</Label>
-              <Input
-                name="kyc_paDocument"
-                onChange={handleInput}
-                className={"custom-select"}
-                // value={KYC.kyc_paDocument}
-                value={"Not Required"}
-                readOnly
-              >
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </Input>
-            </FormGroup>
-          </Col>
-        </Row>
+      <Form>
+        {KYC.map((KYC, id) => {
+          return (
+            <div>
+              <Row form>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="Name">Name</Label>
+                    <Input
+                      className={"custom-select"}
+                      value={KYC.kyc_name}
+                      name="kyc_name"
+                      onChange={(e) => handleInput(e, id)}
+                      type="text"
+                      id="Name"
+                      placeholder="Share Holder Name"
+                    ></Input>
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="shareRegister">Holders</Label>
+                    <select
+                      className={"custom-select"}
+                      value={KYC.kyc_sholders}
+                      id="1"
+                      name="kyc_sholders"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                    >
+                      <option>Director</option>
+                      <option>Shareholder Director</option>
+                      <option>Shareholder</option>
+                    </select>
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="shareHolds">Share Holds percentage</Label>
+                    <Input
+                      className={"custom-select"}
+                      value={KYC.kyc_sHolds}
+                      name="kyc_sHolds"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      type="number"
+                      id="shareHolds"
+                      placeholder="Share Holds Percent"
+                    ></Input>
+                  </FormGroup>
+                </Col>
+                <Col md={12}>
+                  <FormGroup>
+                    <h4>
+                      <span>Passport / ID</span>
+                    </h4>
+                  </FormGroup>
+                </Col>
+                <Col md={4}>
+                  <FormGroup>
+                    <Label for="passportID">Passport</Label>
+                    <Input
+                      className={"custom-select"}
+                      value={KYC.kyc_pID}
+                      name="kyc_pID"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      type="text"
+                      id="passportID"
+                      placeholder=" Passport or ID"
+                    ></Input>
+                  </FormGroup>
+                </Col>
+                <Col md={3}>
+                  <FormGroup>
+                    <Label for="ExpiryDate">Issue Date</Label>
+                    <Input
+                      className={"custom-select"}
+                      value={KYC.kyc_startDate}
+                      name="kyc_startDate"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      type="date"
+                      id="startDate"
+                      placeholder=" Passport or ID"
+                    ></Input>
+                  </FormGroup>
+                </Col>
+                <Col md={3}>
+                  <FormGroup>
+                    <Label for="ExpiryDate">Expiry Date</Label>
+                    <Input
+                      className={"custom-select"}
+                      value={KYC.kyc_ExpiryDate}
+                      name="kyc_ExpiryDate"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      type="date"
+                      id="ExpiryDate"
+                    ></Input>
+                  </FormGroup>
+                </Col>
+                <Col md={2}>
+                  <FormGroup>
+                    <Label for="remainingDays">Remaining Days</Label>
+                    <Input
+                      style={{ backgroundColor: color }}
+                      type="text"
+                      disabled={true}
+                      value={remainig}
+                    ></Input>
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="Nationality">Country/Nationality</Label>
+                    <Input
+                      className="cusrom"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      required={false}
+                      type="text"
+                      value={KYC.kyc_nationality}
+                      name="kyc_nationality"
+                      id="Name"
+                      placeholder="Company Name"
+                    ></Input>
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="Notaized">Notarized</Label>
+                    <Input
+                      className={"custom-select"}
+                      value={KYC.kyc_notarized}
+                      name="kyc_notarized"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      type="select"
+                      placeholder=" Nationality"
+                    >
+                      <option value="No">No</option>
+                      <option value="yes">yes</option>
+                    </Input>
+                  </FormGroup>
+                </Col>
+                <Col md={12}>
+                  <FormGroup>
+                    <h4>
+                      <span>Proof of Personal Address (POA)</span>
+                    </h4>
+                  </FormGroup>
+                </Col>
+                <Col md={4}>
+                  <FormGroup>
+                    <Label for="Address">Proof of Address</Label>
+                    <Input
+                      className={"custom-select"}
+                      value={KYC.kyc_Address}
+                      name="kyc_Address"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      type="text"
+                      id="Address"
+                      placeholder="Address"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={3}>
+                  <FormGroup>
+                    <Label for="ExpiryDate">Issue Date</Label>
+                    <Input
+                      className={"custom-select"}
+                      value={KYC.kyc_adstartDate}
+                      name="kyc_adstartDate"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      type="date"
+                      id="adstartDate"
+                    ></Input>
+                  </FormGroup>
+                </Col>
+
+                <Col md={3}>
+                  <FormGroup>
+                    <Label for="ExpiryDate">Expiry Date</Label>
+                    <Input
+                      className={"custom-select"}
+                      value={KYC.kyc_adExpiryDate}
+                      name="kyc_adExpiryDate"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      type="date"
+                      id="adExpiryDate"
+                    ></Input>
+                  </FormGroup>
+                </Col>
+                <Col md={2}>
+                  <FormGroup>
+                    <Label for="remainingDays">Remaining Days</Label>
+                    <Input
+                      style={{ backgroundColor: color1 }}
+                      type="text"
+                      disabled={true}
+                      value={remainig1}
+                    ></Input>
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="typeOfProof">Type of Proof</Label>
+                    <Input
+                      type="select"
+                      name="kyc_toProof"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      className={"custom-select"}
+                      value={KYC.kyc_toProof}
+                    >
+                      <option value="Utility Bill">Utility Bill</option>
+                      <option value="Utility Bill">Bank</option>
+                      <option value="Utility Bill">Credit</option>
+                      <option value="Utility Bill">Council</option>
+                      <option value="Utility Bill">Tax</option>
+                      <option value="Utility Bill">Other</option>
+                    </Input>
+                  </FormGroup>
+                </Col>
+                <Col md={12}>
+                  <FormGroup>
+                    <h4>
+                      <span>Power Of Attorney Document:</span>
+                    </h4>
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="PAd">Power Of Attorney Document:</Label>
+                    <Input
+                      name="kyc_paDocument"
+                      onChange={(e) => {
+                        handleInput(e, id);
+                      }}
+                      className={"custom-select"}
+                      // value={KYC.kyc_paDocument}
+                      value={"Not Required"}
+                      readOnly
+                    >
+                      <option value="Pending">Pending</option>
+                      <option value="Received">Received</option>
+                    </Input>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <div className="btn-box">
+                {KYC.length !== 1 && (
+                  <button className="mr10" onClick={() => handleRemoveClick(id)}>
+                    Remove
+                  </button>
+                )}
+               
+                  <button onClick={e=>handleAddClick(e)}>Add</button>
+               
+              </div>
+            </div>
+          );
+        })}
         <Button tag={Link} to={link}>
           Previous
         </Button>

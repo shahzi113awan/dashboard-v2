@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 let KYCSchema = new Schema(
   {
-    kyc: {
+    kyc: [{
       kyc_name: {
         type: String,
       },
@@ -43,7 +43,7 @@ let KYCSchema = new Schema(
       kyc_paDocument: {
         type: String,
       },
-    },
+    }],
   },
   {
     collection: "Records",

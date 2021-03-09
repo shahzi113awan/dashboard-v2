@@ -1,5 +1,5 @@
 const initialState = {
-  state: {
+  state: [{
     kyc_name: "",
     kyc_sHolds: "",
     kyc_sholders:"",
@@ -13,7 +13,7 @@ const initialState = {
     kyc_adExpiryDate: "",
     kyc_toProof: "",
     kyc_paDocument: "",
-  },
+  }],
 };
 
 export const kycReducer = (state = initialState, action) => {

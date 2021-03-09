@@ -82,7 +82,9 @@ export default function MainDashboard() {
               <th scope='col '> Website URL - Proof of Domain</th>
               <th scope='col '>Ownership Structure Chart</th>
               <th scope='col '>Business Plan</th>
-              <th scope='col'>Shareholder / Director Name</th>
+              <th scope='col '>Shareholds</th>
+
+              {/* <th scope='col'>Shareholder / Director Name</th>
               <th scope='col'>Shareholding Percentage</th>
               <th scope='col '> Lead Director Passport</th>
               <th scope='col'>Country / Nationality</th>
@@ -94,7 +96,7 @@ export default function MainDashboard() {
               <th scope='col '>POA Start Date</th>
               <th scope='col'>POA Expiry Date (+90 days)</th>
               <th scope='col'>Expiry Days</th>
-              <th scope='col '> Power of Attorney Document</th>
+              <th scope='col '> Power of Attorney Document</th> */}
               {/* <th scope="col">Shareholder / Director Name</th>
               <th scope="col">Shareholding Percentage</th>
               <th scope="col "> Client Passport</th>
@@ -192,7 +194,17 @@ export default function MainDashboard() {
                     </td>
                     <td>{res.cl.owsc_status}</td>
                     <td>{res.cti.cti_bPlan ? res.cti.cti_bPlan : ""}</td>
-                    <td>{res.kyc.kyc_name ? res.kyc.kyc_name : ""}</td>
+                    <td>
+                      <Button
+                        
+                          
+                         tag={Link}
+                         to={'/kycshowing'}
+                      >
+                       Go To shareholds
+                      </Button>
+                    </td>
+                    {/* <td>{res.kyc.kyc_name ? res.kyc.kyc_name : ""}</td>
                     <td>{res.kyc.kyc_sHolds ? res.kyc.kyc_sHolds : ""}</td>
                     <td>{res.kyc.kyc_notarized}</td>
                     <td>
@@ -214,7 +226,7 @@ export default function MainDashboard() {
                     <td>3</td>
                     <td>
                       {res.kyc.kyc_paDocument ? res.kyc.kyc_paDocument : ""}
-                    </td>
+                    </td> */}
                     <td>{res.sd.fsd_cbs ? res.sd.fsd_cbs : ""}</td>
                     <td>{res.sd.fsd_pbs ? res.sd.fsd_pbs : ""}</td>
                     <td>{res.sd.fsd_pow ? res.sd.fsd_pow : ""}</td>

@@ -18,6 +18,7 @@ export const CreateKYC = (obj, id) => async (dispatch) => {
 };
 export const GetOneKYC = (id) => async (dispatch) => {
   await axios.get("/api/ci/" + id, { id: id }).then((res) => {
+    console.log(res.data.kyc)
     dispatch({
       type: "GET_KYC",
       payload: res.data.kyc,

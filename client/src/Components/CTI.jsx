@@ -48,14 +48,14 @@ const CTI = ({ Done, completed, pending }) => {
     setCTI(data);
   }, [data]);
   
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     console.log(CTI);
-    dispatch(CreateCTI(CTI, id));
+   await dispatch(CreateCTI(CTI, id));
 
     history.push("/KYC");
   };
-  const onUpdateSubmit = (e) => {
-    dispatch(CreateCTI(CTI, urlid));
+  const onUpdateSubmit = async(e) => {
+   await dispatch(CreateCTI(CTI, urlid));
     history.push("/KYC/" + urlid);
   };
 
