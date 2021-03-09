@@ -45,7 +45,7 @@ const KYC = ({ Done, Received, pending }) => {
     const list = [...KYC];
     list[index][name] = value;
     console.log(KYC);
-    await setKYC(list);
+    setKYC(list);
   };
   //handle add and remove
   const handleRemoveClick = (e, index) => {
