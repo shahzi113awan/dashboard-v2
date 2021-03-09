@@ -20,8 +20,7 @@ const KYC = ({ Done, Received, pending }) => {
     urlid ? dispatch(GetOneKYC(urlid)) : console.log("creating");
   }, [urlid]);
 
-  // console.log(id);
-  // console.log(data)
+ 
   const [KYC, setKYC] = useState([
     {
       kyc_name: "",
@@ -100,7 +99,7 @@ const KYC = ({ Done, Received, pending }) => {
   const [color, setColor] = useState("none");
   const [remainig1, setremainig1] = useState(0);
   const [color1, setColor1] = useState("none");
-
+console.log(KYC.kyc_startDate);
   useEffect(() => {
     if (KYC.kyc_startDate && KYC.kyc_ExpiryDate) {
       const Start = moment(KYC.kyc_startDate);
@@ -420,10 +419,10 @@ const KYC = ({ Done, Received, pending }) => {
                 )}
 
                 <Button
-                  style={{ marginLeft: "10%" }}
+                  style={{ marginLeft: "90%" }}
                   onClick={(e) => handleAddClick(e)}
                 >
-                  Add
+                  Add Another
                 </Button>
               </div>
             </div>
