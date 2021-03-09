@@ -199,7 +199,7 @@ export default function MainDashboard() {
                         
                           
                          tag={Link}
-                         to={'/kycshowing'}
+                         to={'/kycshowcase/'+res._id}
                       >
                        Go To shareholds
                       </Button>

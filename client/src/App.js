@@ -3,6 +3,7 @@ import logo from './logo.svg'
 import './App.css'
 import './assets/css/Tcss.css'
 import KYC from './Components/KYC'
+import KYCShowcase from './Components/KYCShowcase'
 import Multiple from './Components/MultipleShareKYC'
 import CTI from './Components/CTI'
 import KYB from './Components/KYB'
@@ -58,6 +59,7 @@ function App() {
                 <Route exact path='/cti/:urlid' component={CTI} />
                 <Route exact path='/kyc' component={KYC} />
                 <Route exact path='/kyc/:urlid' component={KYC} />
+                <Route exact path='/kycshowcase/:id' component={KYCShowcase} />
                 <Route exact path='/kyb' component={KYB} />
                 <Route exact path='/kyb/:urlid' component={KYB} />
                 <Route exact path='/sdkyb' component={SDKYB} />
