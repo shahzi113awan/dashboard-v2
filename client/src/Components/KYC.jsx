@@ -20,9 +20,9 @@ const KYC = ({ Done, Received, pending }) => {
     urlid ? dispatch(GetOneKYC(urlid)) : console.log("creating");
   }, [urlid]);
 
- 
   const [KYC, setKYC] = useState([
     {
+      Rdays: "",
       kyc_name: "",
       kyc_sHolds: "",
       kyc_sholders: "",
@@ -61,6 +61,7 @@ const KYC = ({ Done, Received, pending }) => {
     setKYC([
       ...KYC,
       {
+        Rdays: "",
         kyc_name: "",
         kyc_sHolds: "",
         kyc_sholders: "",
@@ -99,42 +100,52 @@ const KYC = ({ Done, Received, pending }) => {
   const [color, setColor] = useState("none");
   const [remainig1, setremainig1] = useState(0);
   const [color1, setColor1] = useState("none");
-console.log(KYC.kyc_startDate);
-  useEffect(() => {
-    if (KYC.kyc_startDate && KYC.kyc_ExpiryDate) {
-      const Start = moment(KYC.kyc_startDate);
+  console.log(KYC.kyc_startDate);
+  const calculate = (e, id) => {
+    console.log(id);
+    console.log(KYC[id].kyc_startDate);
 
-      console.log(Start);
-      const End = moment(KYC.kyc_ExpiryDate);
-      console.log(End);
-      console.log(KYC.kyc_ExpiryDate);
-      const days = moment.duration(End.diff(Start)).asDays();
+    const Start = moment(KYC[id].kyc_startDate);
 
-      setremainig(days);
-      if (days < 180) setColor("#ADFF2F");
-      // else if (days < 180 && days > 45) setColor("#FFBF00");
-      else setColor("	#FA8072");
-      return days;
-    }
-  }, [KYC.kyc_ExpiryDate, KYC.kyc_startDate]);
-  useEffect(() => {
-    if (KYC.kyc_adstartDate && KYC.kyc_adExpiryDate) {
-      const Start = moment(KYC.kyc_adstartDate);
+    console.log(Start);
+    const End = moment(KYC[id].kyc_ExpiryDate);
+    console.log(End);
+    console.log(KYC[id].kyc_ExpiryDate);
+    const days = moment.duration(End.diff(Start)).asDays();
 
-      console.log(Start);
-      const End = moment(KYC.kyc_adExpiryDate);
-      console.log(End);
-      console.log(KYC.kyc_adExpiryDate);
-      const days = moment.duration(End.diff(Start)).asDays();
+    // const list = [...KYC[id]];
+    // list[id][Rdays] = days;
+    // console.log(KYC);
+    // setKYC(list);
+    setKYC({
+      ...KYC[id],
+      Rdays: days,
+    });
+    return days;
 
-      setremainig1(days);
-      if (days < 45) setColor1("#ADFF2F");
-      // else if (days < 90 && days > 45) setColor1("#FFBF00");
-      else setColor1("	#FA8072");
-      return days;
-    }
-  }, [KYC.kyc_adExpiryDate, KYC.kyc_adstartDate]);
+    // useEffect(() => {
+    //   if (KYC.kyc_adstartDate && KYC.kyc_adExpiryDate) {
+    //     const Start = moment(KYC.kyc_adstartDate);
 
+    //     console.log(Start);
+    //     const End = moment(KYC.kyc_adExpiryDate);
+    //     console.log(End);
+    //     console.log(KYC.kyc_adExpiryDate);
+    //     const days = moment.duration(End.diff(Start)).asDays();
+
+    //     setremainig1(days);
+    //     if (days < 45) setColor1("#ADFF2F");
+    //     // else if (days < 90 && days > 45) setColor1("#FFBF00");
+    //     else setColor1("	#FA8072");
+    //     return days;
+    //   }
+    // }, [KYC.kyc_adExpiryDate, KYC.kyc_adstartDate]);
+    //  function calculate(date1, date2) {
+    //    const d1 = new Date(date1);
+    //    const d2 = new Date(date2);
+    //    const diffInMs = Math.abs(d2 - d1);
+    //    return diffInMs / (1000 * 60 * 60 * 24);
+  };
   return (
     <div className="container">
       <div>
@@ -254,10 +265,31 @@ console.log(KYC.kyc_startDate);
                   <FormGroup>
                     <Label for="remainingDays">Remaining Days</Label>
                     <Input
-                      style={{ backgroundColor: color }}
+                      style={{
+                        backgroundColor:
+                          moment
+                            .duration(
+                              moment(kyc.kyc_ExpiryDate).diff(
+                                moment(kyc.kyc_startDate)
+                              )
+                            )
+                            .asDays() < 180
+                            ? "pink"
+                            : "#32CD32",
+                      }}
                       type="text"
                       disabled={true}
-                      value={remainig}
+                      value={
+                        kyc.kyc_ExpiryDate
+                          ? moment
+                              .duration(
+                                moment(kyc.kyc_ExpiryDate).diff(
+                                  moment(kyc.kyc_startDate)
+                                )
+                              )
+                              .asDays()
+                          : ""
+                      }
                     ></Input>
                   </FormGroup>
                 </Col>
@@ -354,10 +386,31 @@ console.log(KYC.kyc_startDate);
                   <FormGroup>
                     <Label for="remainingDays">Remaining Days</Label>
                     <Input
-                      style={{ backgroundColor: color1 }}
+                      style={{
+                        backgroundColor:
+                          moment
+                            .duration(
+                              moment(kyc.kyc_ExpiryDate).diff(
+                                moment(kyc.kyc_startDate)
+                              )
+                            )
+                            .asDays() < 45
+                            ? "pink"
+                            : "#32CD32",
+                      }}
                       type="text"
                       disabled={true}
-                      value={remainig1}
+                      value={
+                        kyc.kyc_adExpiryDate
+                          ? moment
+                              .duration(
+                                moment(kyc.kyc_adExpiryDate).diff(
+                                  moment(kyc.kyc_adstartDate)
+                                )
+                              )
+                              .asDays()
+                          : ""
+                      }
                     ></Input>
                   </FormGroup>
                 </Col>

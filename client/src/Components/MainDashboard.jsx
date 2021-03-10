@@ -79,33 +79,33 @@ export default function MainDashboard() {
               <th scope="col" style={{ width: "200px" }} classNa>
                 Registered Company Name
               </th>
-              <th scope='col'>Total Pending</th>
-              <th scope='col '>Total Collected</th>
-              <th scope='col'>Total Outstanding</th>
-              <th scope='col'>10 Day Report</th>
-              <th scope='col '>Allocated Acquirer / Solution</th>
-              <th scope='col'>Company Info & Checkout Page</th>
-              <th scope='col'>Pre Approval ems Buy Rate</th>
-              <th scope='col '>Pre Approval ems Sel Rate</th>
-              <th scope='col '>Application Boarded Date</th>
-              <th scope='col'>Aged Days</th>
-              <th scope='col'>Trading / New to Cards (NTC)</th>
-              <th scope='col '>Vertical / Trading Sector</th>
-              <th scope='col '>Business / Referral Partner</th>
-              <th scope='col '>Assigned BDM / Owner</th>
-              <th scope='col'>Compliance Country Location</th>
-              <th scope='col'>EEA Documents</th>
-              <th scope='col '> Trading License or Agreements Required</th>
-              <th scope='col '>Fully Completed Application Form</th>
-              <th scope='col '>Bank Information (Welcome Letter)</th>
-              <th scope='col'>Office Tenancy Agreement</th>
-              <th scope='col'>Acquiring Processing Statements</th>
-              <th scope='col '> Headline Website URL Address</th>
-              <th scope='col'>Website Compliance</th>
-              <th scope='col '> Website URL - Proof of Domain</th>
-              <th scope='col '>Ownership Structure Chart</th>
-              <th scope='col '>Business Plan</th>
-              <th scope='col '>Shareholds</th>
+              <th scope="col">Total Pending</th>
+              <th scope="col ">Total Collected</th>
+              <th scope="col">Total Outstanding</th>
+              <th scope="col">10 Day Report</th>
+              <th scope="col ">Allocated Acquirer / Solution</th>
+              <th scope="col">Company Info & Checkout Page</th>
+              <th scope="col">Pre Approval ems Buy Rate</th>
+              <th scope="col ">Pre Approval ems Sel Rate</th>
+              <th scope="col ">Application Boarded Date</th>
+              <th scope="col">Aged Days</th>
+              <th scope="col">Trading / New to Cards (NTC)</th>
+              <th scope="col ">Vertical / Trading Sector</th>
+              <th scope="col ">Business / Referral Partner</th>
+              <th scope="col ">Assigned BDM / Owner</th>
+              <th scope="col">Compliance Country Location</th>
+              <th scope="col">EEA Documents</th>
+              <th scope="col "> Trading License or Agreements Required</th>
+              <th scope="col ">Fully Completed Application Form</th>
+              <th scope="col ">Bank Information (Welcome Letter)</th>
+              <th scope="col">Office Tenancy Agreement</th>
+              <th scope="col">Acquiring Processing Statements</th>
+              <th scope="col "> Headline Website URL Address</th>
+              <th scope="col">Website Compliance</th>
+              <th scope="col "> Website URL - Proof of Domain</th>
+              <th scope="col ">Ownership Structure Chart</th>
+              <th scope="col ">Business Plan</th>
+              <th scope="col ">Shareholds</th>
 
               {/* <th scope='col'>Shareholder / Director Name</th>
               <th scope='col'>Shareholding Percentage</th>
@@ -148,7 +148,7 @@ export default function MainDashboard() {
               <th scope="col ">Fulfilment or Drop shipping Agreement</th>
               <th scope="col ">FBO Company Registration (Nutra Merchants)</th>
               <th scope="col">Sales Handoff Sheet (CCBill Only)</th>
-              <th scope="col">SPARE</th>
+              {/* <th scope="col">SPARE</th> */}
               <th scope="col "> SPARE</th>
               <th scope="col "> Delete</th>
             </tr>
@@ -158,7 +158,7 @@ export default function MainDashboard() {
               data.map((res, index) => {
                 return (
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{index + 1}</th>
                     <td style={{ position: "relative" }}>
                       {" "}
                       <Link to={"/ci/" + res._id}>
@@ -188,7 +188,7 @@ export default function MainDashboard() {
                     <td>4.95%</td>
                     <td>6.95%</td>
                     <td>{res.ci.tpi_date}</td>
-                    <td>{cal(res.ci.tpi_date)}</td>
+                    <td>{res.ci.tpi_date ? cal(res.ci.tpi_date) : ""}</td>
                     <td>{res.ci.tpi_ntc ? res.ci.tpi_ntc : ""}</td>
                     <td>{res.ci.tpi_vtSector ? res.ci.tpi_vtSector : ""}</td>
                     <td>{res.ci.tpi_brPartner ? res.ci.tpi_brPartner : ""}</td>
@@ -200,31 +200,20 @@ export default function MainDashboard() {
                       {res.ci.tpi_EEADocuments ? res.ci.tpi_EEADocuments : ""}
                     </td>
                     <td>{res.ci.tpi_TLoAR ? res.ci.tpi_TLoAR : ""}</td>
-                    <td>{res.cti.cti_fcaForm ? res.cti.cti_fcaForm : ""}</td>
-                    <td>
-                      {res.cti.cti_bInformation ? res.cti.cti_bInformation : ""}
-                    </td>
+                    <td>{res.cl.fcaf_status ? res.cl.fcaf_status : ""}</td>
+                    <td>{res.cl.bi_status ? res.cl.bi_status : ""}</td>
                     <td>
                       {res.cti.cti_otAgreement ? res.cti.cti_otAgreement : ""}
                     </td>
-                    <td> </td>
-                    <td>{res.cti.cti_hwUrl ? res.cti.cti_hwUrl : ""}</td>
-                    <td>
-                      {res.cti.cti_wCompliance ? res.cti.cti_wCompliance : ""}
-                    </td>
-                    <td>
-                      {res.cti.cti_wUrl_proofD ? res.cti.cti_wUrl_proofD : ""}
-                    </td>
+                    <td> {res.cl.aps_status}</td>
+                    <td>{res.cl.hwua_status}</td>
+                    <td>{res.cl.wc_status}</td>
+                    <td>{res.cl.wuod_status}</td>
                     <td>{res.cl.owsc_status}</td>
                     <td>{res.cti.cti_bPlan ? res.cti.cti_bPlan : ""}</td>
                     <td>
-                      <Button
-                        
-                          
-                         tag={Link}
-                         to={'/kycshowcase/'+res._id}
-                      >
-                       Go To shareholds
+                      <Button tag={Link} to={"/kycshowcase/" + res._id}>
+                        Go To shareholds
                       </Button>
                     </td>
                     {/* <td>{res.kyc.kyc_name ? res.kyc.kyc_name : ""}</td>
@@ -255,12 +244,18 @@ export default function MainDashboard() {
                     <td>{res.sd.fsd_pow ? res.sd.fsd_pow : ""}</td>
                     <td>{res.sd.fsd_cap ? res.sd.fsd_cap : ""}</td>
                     <td>{res.sd.lta_gfl ? res.sd.lta_gfl : ""}</td>
-                    <td>{res.sd.lta_cra ? res.sd.lta_cra : ""}</td>
+                    <td>{res.cl.cora_status}</td>
                     <td>{res.sd.lta_fdsa ? res.sd.lta_fdsa : ""}</td>
-                    <td>{res.sd.lta_fbo_cr ? res.sd.lta_fbo_cr : ""}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td> </td>
+                    <td>{res.cl.shs_status}</td>
+
+                    <td>
+                      {" "}
+                      <Button tag={Link} to={"/spareshowcase/" + res._id}>
+                        Check Spare docs
+                      </Button>
+                    </td>
+                    {/* <td></td> */}
                     <td>
                       <Button
                         onClick={(e) => {

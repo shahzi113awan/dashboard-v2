@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Button, Form } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import ChecklistR from "./CheckList/checklistR";
+import SpChecklistR from "./CheckList/spchecklistR";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateCL, GetOneCL } from "../actions/clAction";
 import { Get, setLoading } from "../actions/ciAction";
@@ -15,7 +16,6 @@ export const CheckList = () => {
   const history = useHistory();
   const data = useSelector((state) => state.clReducer.state);
   const id = useSelector((state) => state.ciReducer.id);
-  console.log("tio update data");
   console.log(data);
   //States
 
@@ -110,8 +110,16 @@ export const CheckList = () => {
     setCL(data);
   }, [data]);
   // console.log(CL);
+  const handletext = (e) => {
+    console.log(e.target.name);
+    setCL({
+      ...CL,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleChange = (e) => {
-    console.log(e.target.value);
+    console.log(e.target.name);
     console.log(countArr);
     if (e.target.value === "Received") {
       countArr.push(e.target.value);
@@ -124,11 +132,17 @@ export const CheckList = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  const handleChangeSpare = (e) => {
+    setCL({
+      ...CL,
+      [e.target.name]: e.target.value,
+    });
+  };
+  console.log(isLoading);
   // console.log(CL);
   //ImageHandler
   const ImageHandler = async (e) => {
-    console.log(e);
+    console.log(e.target.name);
     const file = e.target.files[0];
     const fileName = e.target.files[0].name;
     // console.log(fileName);
@@ -195,7 +209,6 @@ export const CheckList = () => {
         >
           <div
             style={{
-              
               textAlign: "center",
               // color: "white",
               marginTop: "20%",
@@ -246,8 +259,10 @@ export const CheckList = () => {
           {/* <ChecklistR
             text={"Office Tenancy Agreement "}
             name={"ota_status"}
-            value={CL.ota_status}
             fc='ota_fileName'
+            value={CL.ota_status}
+            path={CL.ota_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -258,8 +273,9 @@ export const CheckList = () => {
           <ChecklistR
             text={" Acquiring Processing Statements"}
             name={"aps_status"}
-            value={CL.aps_status}
             fc="aps_fileName"
+            value={CL.aps_status}
+            path={CL.aps_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -270,8 +286,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Headline Website URL Address"}
             name={"hwua_status"}
-            value={CL.hwua_status}
             fc="hwua_fileName"
+            value={CL.hwua_status}
+            path={CL.hwua_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -282,8 +299,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Website Compliance "}
             name={"wc_status"}
-            value={CL.wc_status}
             fc="wc_fileName"
+            value={CL.wc_status}
+            path={CL.wc_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -294,8 +312,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Website URL-Proof of Domain"}
             name={"wuod_status"}
-            value={CL.wuod_status}
             fc="CL.wuod_fileName"
+            value={CL.wuod_status}
+            path={CL.wuod_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -306,8 +325,10 @@ export const CheckList = () => {
           {/* <ChecklistR
             text={"Ownership Structure Chart "}
             name={"owsc_status"}
-            value={CL.owsc_status}
             fc='owsc_fileName'
+            value={CL.owsc_status}
+            path={CL.owsc_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -318,8 +339,10 @@ export const CheckList = () => {
           <ChecklistR
             text={'Business Plan'}
             name={'bp_status'}
-            value={CL.bp_status}
             fc='bp_fileName'
+            value={CL.bp_status}
+            path={CL.bp_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -331,8 +354,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Lead Director-Passport "}
             name={"ldp_status"}
-            value={CL.ldp_status}
             fc="ldp_fileName"
+            value={CL.ldp_status}
+            path={CL.ldp_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -343,8 +367,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Lead Director-Proof of Address"}
             name={"ldpa_status"}
-            value={CL.ldpa_status}
             fc="ldpa_fileName"
+            value={CL.ldpa_status}
+            path={CL.ldpa_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -355,8 +380,10 @@ export const CheckList = () => {
           {/* <ChecklistR
             text={"Power of Attorney Document: "}
             name={"pad_status"}
-            value={CL.pad_status}
             fc='pad_fileName'
+            value={CL.pad_status}
+            path={CL.pad_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -367,8 +394,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Second Director-Passport"}
             name={"sdp_status"}
-            value={CL.sdp_status}
             fc="sdp_fileName"
+            value={CL.sdp_status}
+            path={CL.sdp_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -379,8 +407,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Second Director-Proof of Address"}
             name={"sdpa_status"}
-            value={CL.sdpa_status}
             fc="sdpa_fileName"
+            value={CL.sdpa_status}
+            path={CL.sdpa_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -391,8 +420,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Third Director-Passport"}
             name={"tdp_status"}
-            value={CL.tdp_status}
             fc="tdp_fileName"
+            value={CL.tdp_status}
+            path={CL.tdp_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -403,8 +433,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Third Director-Proof of Address"}
             name={"tdpa_status"}
-            value={CL.tdpa_status}
             fc="tdpa_fileName"
+            value={CL.tdpa_status}
+            path={CL.tdpa_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -415,8 +446,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Fourth Director-Passport"}
             name={"fdp_status"}
-            value={CL.fdp_status}
             fc="fdp_fileName"
+            value={CL.fdp_status}
+            path={CL.fdp_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -427,8 +459,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Fourth Director-Proof of Address"}
             name={"fdpa_status"}
-            value={CL.fdpa_status}
             fc="fdpa_fileName"
+            value={CL.fdpa_status}
+            path={CL.fdpa_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -439,8 +472,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Certificate of Incorporation "}
             name={"coi_status"}
-            value={CL.coi_status}
             fc="coi_fileName"
+            value={CL.coi_status}
+            path={CL.coi_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -451,8 +485,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Memorandum of Association"}
             name={"moa_status"}
-            value={CL.moa_status}
             fc="moa_fileName"
+            value={CL.moa_status}
+            path={CL.moa_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -463,8 +498,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Articles of Association"}
             name={"aoa_status"}
-            value={CL.aoa_status}
             fc="aoa_fileName"
+            value={CL.aoa_status}
+            path={CL.aoa_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -475,8 +511,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Share Register"}
             name={"sr_status"}
-            value={CL.sr_status}
             fc="sr_fileName"
+            value={CL.sr_status}
+            path={CL.sr_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -487,8 +524,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Share Certificate(s)-Signed"}
             name={"scs_status"}
-            value={CL.scs_status}
             fc="scs_fileName"
+            value={CL.scs_status}
+            path={CL.scs_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -499,8 +537,10 @@ export const CheckList = () => {
           {/* <ChecklistR
             text={"Current Commercial Register Extract"}
             name={"ccre_status"}
-            value={CL.ccre_status}
             fc='ccre_fileName'
+            value={CL.ccre_status}
+            path={CL.ccre_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -511,8 +551,10 @@ export const CheckList = () => {
           <ChecklistR
             text={'Corporate Bank Statements'}
             name={'cbs_status'}
-            value={CL.cbs_status}
             fc='cbs_fileName'
+            value={CL.cbs_status}
+            path={CL.cbs_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -523,8 +565,10 @@ export const CheckList = () => {
           <ChecklistR
             text={'Personal Bank Statements'}
             name={'pbs_status'}
-            value={CL.pbs_status}
             fc='pbs_fileName'
+            value={CL.pbs_status}
+            path={CL.pbs_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -535,8 +579,10 @@ export const CheckList = () => {
           <ChecklistR
             text={'Proof of Wealth'}
             name={'pow_status'}
-            value={CL.pow_status}
             fc='pow_fileName'
+            value={CL.pow_status}
+            path={CL.pow_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -547,8 +593,10 @@ export const CheckList = () => {
           <ChecklistR
             text={'Company AML Policy'}
             name={'cap_status'}
-            value={CL.cap_status}
             fc='cap_fileName'
+            value={CL.cap_status}
+            path={CL.cap_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -559,8 +607,10 @@ export const CheckList = () => {
           <ChecklistR
             text={'Gambling or Forex License'}
             name={'gofl_status'}
-            value={CL.gofl_status}
             fc='gofl_fileName'
+            value={CL.gofl_status}
+            path={CL.gofl_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -571,8 +621,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Copywrite or Re-seller Agreement"}
             name={"cora_status"}
-            value={CL.cora_status}
             fc="cora_fileName"
+            value={CL.cora_status}
+            path={CL.cora_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -583,8 +634,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Fulfilment or Drop Shipping Agreement"}
             name={"fodsa_status"}
-            value={CL.fodsa_status}
             fc="fodsa_fileName"
+            value={CL.fodsa_status}
+            path={CL.fodsa_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -595,8 +647,10 @@ export const CheckList = () => {
           {/* <ChecklistR
             text={"FBO Company Registration"}
             name={"fcR_status"}
-            value={CL.fcR_status}
             fc='fcR_fileName'
+            value={CL.fcR_status}
+            path={CL.fcR_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}
@@ -607,8 +661,9 @@ export const CheckList = () => {
           <ChecklistR
             text={"Sales Handoff Sheet (CCBill Only)"}
             name={"shs_status"}
-            value={CL.shs_status}
             fc="shs_fileName"
+            value={CL.shs_status}
+            path={CL.shs_fileName}
             Change={(e) => {
               handleChange(e);
             }}
@@ -616,11 +671,124 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           />
-          {/* <ChecklistR
+
+          {/* spare */}
+
+          <SpChecklistR
+            placeholder={"spare"}
+            name={"spare"}
+            nameT="spare_Text"
+            fc="spare_fileName"
+            value={CL.spare}
+            valueT={CL.spare_Text}
+            path={CL.spare_fileName}
+            onChangetext={(e) => {
+              handletext(e);
+            }}
+            Change={(e) => {
+              handleChangeSpare(e);
+            }}
+            FileUpload={(e) => {
+              ImageHandler(e);
+            }}
+          />
+          <SpChecklistR
+            placeholder={"spare"}
+            name={"spare1"}
+            nameT="spare1_Text"
+            fc="spare1_fileName"
+            value={CL.spare1}
+            valueT={CL.spare1_Text}
+            path={CL.spare1_fileName}
+            onChangetext={(e) => {
+              handletext(e);
+            }}
+            Change={(e) => {
+              handleChangeSpare(e);
+            }}
+            FileUpload={(e) => {
+              ImageHandler(e);
+            }}
+          />
+          <SpChecklistR
+            placeholder={"spare"}
+            name={"spare2"}
+            nameT="spare2_Text"
+            fc="spare2_fileName"
+            value={CL.spare2}
+            valueT={CL.spare2_Text}
+            path={CL.spare2_fileName}
+            onChangetext={(e) => {
+              handletext(e);
+            }}
+            Change={(e) => {
+              handleChangeSpare(e);
+            }}
+            FileUpload={(e) => {
+              ImageHandler(e);
+            }}
+          />
+          <SpChecklistR
+            placeholder={"spare"}
+            name={"spare3"}
+            nameT="spare3_Text"
+            fc="spare3_fileName"
+            value={CL.spare3}
+            valueT={CL.spare3_Text}
+            path={CL.spare3_fileName}
+            onChangetext={(e) => {
+              handletext(e);
+            }}
+            Change={(e) => {
+              handleChangeSpare(e);
+            }}
+            FileUpload={(e) => {
+              ImageHandler(e);
+            }}
+          />
+          <SpChecklistR
+            placeholder={"spare"}
+            name={"spare4"}
+            nameT="spare4_Text"
+            fc="spare4_fileName"
+            value={CL.spare4}
+            valueT={CL.spare4_Text}
+            path={CL.spare4_fileName}
+            onChangetext={(e) => {
+              handletext(e);
+            }}
+            Change={(e) => {
+              handleChangeSpare(e);
+            }}
+            FileUpload={(e) => {
+              ImageHandler(e);
+            }}
+          />
+          <SpChecklistR
+            placeholder={"spare"}
+            name={"spare5"}
+            nameT="spare5_Text"
+            fc="spare5_fileName"
+            value={CL.spare5}
+            valueT={CL.spare5_Text}
+            path={CL.spare5_fileName}
+            onChangetext={(e) => {
+              handletext(e);
+            }}
+            Change={(e) => {
+              handleChangeSpare(e);
+            }}
+            FileUpload={(e) => {
+              ImageHandler(e);
+            }}
+          />
+          {/* <SpChecklistR
             text={"Confirmation & Declaration Form (GGS Only)"}
             name={"cdf_status"}
-            value={CL.cdf_status}
             fc='cdf_fileName'
+            value={CL.cdf_status}
+            path={CL.cdf_fileName}
+
             Change={(e) => {
               handleChange(e)
             }}

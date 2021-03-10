@@ -44,6 +44,7 @@ export default function MainDashboard() {
     console.log(days);
     return days;
   };
+
   console.log(isLoading);
   console.log(db);
   return isLoading ? (
@@ -62,7 +63,11 @@ export default function MainDashboard() {
               <th scope="col "> Lead Director Passport</th>
               <th scope="col">Country / Nationality</th>
               <th scope="col">Notarised</th>
+              <th scope="col "> Start Date</th>
+
               <th scope="col "> Expiry Date</th>
+              <th scope="col "> Remaining Days</th>
+
               <th scope="col">Proof of Address (POA)</th>
               <th scope="col "> Type of POA</th>
               <th scope="col ">Notarised</th>
@@ -93,16 +98,36 @@ export default function MainDashboard() {
                           {data1.kyc_notarized ? data1.kyc_notarized : ""}
                         </td>
                         <td>
+                          {data1.kyc_startDate ? data1.kyc_startDate : ""}
+                        </td>
+                        <td>
                           {data1.kyc_ExpiryDate ? data1.kyc_ExpiryDate : ""}
+                        </td>
+                        <td>
+                          {data1.kyc_startDate && moment
+                            .duration(
+                              moment(data1.kyc_ExpiryDate).diff(
+                                moment(data1.kyc_startDate)
+                              )
+                            )
+                            .asDays()}
                         </td>
                         <td>{data1.kyc_Address ? data1.kyc_Address : ""}</td>
                         <td>{data1.kyc_toProof ? data1.kyc_toProof : ""}</td>
                         <td>
                           {data1.kyc_notarized ? data1.kyc_notarized : ""}
                         </td>
-                        <td>01 January, 2021</td>
-                        <td>1 April, 2021</td>
-                        <td>3</td>
+                        <td>{data1.kyc_adstartDate}</td>
+                        <td>{data1.kyc_adExpiryDate}</td>
+                        <td>
+                          {moment
+                            .duration(
+                              moment(data1.kyc_adExpiryDate).diff(
+                                moment(data1.kyc_adstartDate)
+                              )
+                            )
+                            .asDays()}
+                        </td>
                         <td>
                           {data1.kyc_paDocument ? data1.kyc_paDocument : ""}
                         </td>

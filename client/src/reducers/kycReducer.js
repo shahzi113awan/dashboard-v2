@@ -1,5 +1,6 @@
 const initialState = {
   state: [{
+    Rdays:"",
     kyc_name: "",
     kyc_sHolds: "",
     kyc_sholders:"",

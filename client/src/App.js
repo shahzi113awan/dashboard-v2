@@ -4,6 +4,7 @@ import './App.css'
 import './assets/css/Tcss.css'
 import KYC from './Components/KYC'
 import KYCShowcase from './Components/KYCShowcase'
+import SpareShowcase from "./Components/spareShowcase";
 import Multiple from './Components/MultipleShareKYC'
 import CTI from './Components/CTI'
 import KYB from './Components/KYB'
@@ -65,6 +66,8 @@ function App() {
                 <Route exact path='/sdkyb' component={SDKYB} />
                 <Route exact path='/sdkyb/:urlid' component={SDKYB} />
                 <Route exact path='/check-List' component={CheckList} />
+                <Route exact path='/spareshowcase/:id' component={SpareShowcase} />
+
                 <Route exact path='/check-List/:urlid' component={CheckList} />
                 <Route
                   exact
