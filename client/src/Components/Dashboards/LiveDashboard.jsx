@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { Get, Delete } from "../actions/ciAction";
+import { GetLive, Delete } from "../../actions/ciAction";
 import Loader from "react-loader-spinner";
 
 import moment from "moment";
@@ -13,7 +13,7 @@ export default function MainDashboard() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Get());
+    dispatch(GetLive());
   }, [dispatch]);
   const [db, setDb] = useState([]);
   const data = useSelector((state) => state.ciReducer.state);
@@ -31,7 +31,7 @@ export default function MainDashboard() {
   const del = async (id) => {
     await dispatch(Delete(id));
     window.location.reload();
-    // dispatch(Get());
+    // dispatch(GetLive());
   };
   const cal = (val) => {
     console.log(val);
@@ -76,7 +76,7 @@ export default function MainDashboard() {
           <thead>
             <tr>
               <th scope="col"> # </th>
-              <th scope="col" style={{ width: "200px" }} classNa>
+              <th scope="col" style={{ width: "200px" }}>
                 Registered Company Name
               </th>
               <th scope="col">Total Pending</th>
@@ -150,7 +150,7 @@ export default function MainDashboard() {
               <th scope="col">Sales Handoff Sheet (CCBill Only)</th>
               {/* <th scope="col">SPARE</th> */}
               <th scope="col "> SPARE</th>
-              <th scope="col "> Delete</th>
+              {/* <th scope="col "> Delete</th> */}
             </tr>
           </thead>
           <tbody>
@@ -175,7 +175,10 @@ export default function MainDashboard() {
                       {res.ci.tpi_aaSolution ? res.ci.tpi_aaSolution : ""}
                     </td>
                     <td
-                      style={{ textDecoration: "underline black", cursor:"pointer" }}
+                      style={{
+                        textDecoration: "underline black",
+                        cursor: "pointer",
+                      }}
                       onClick={() => {
                         window.open(`https://${res.ci.tci_wUrl}`, "_blank");
                       }}
@@ -257,15 +260,15 @@ export default function MainDashboard() {
                       </Button>
                     </td>
                     {/* <td></td> */}
-                    <td>
-                      <Button
-                        onClick={(e) => {
-                          del(res._id);
-                        }}
-                      >
-                        Delete
-                      </Button>
-                    </td>
+                    {/* <td>
+                        <Button
+                          onClick={(e) => {
+                            del(res._id);
+                          }}
+                        >
+                          Delete
+                        </Button>
+                      </td> */}
                   </tr>
                 );
               })}

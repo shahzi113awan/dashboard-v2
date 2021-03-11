@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Link, useHistory, useParams } from "react-router-dom";
+import {  Link, useHistory, useParams } from "react-router-dom";
+import {   GetOneCL } from "../actions/clAction";
 
 import { CreateCTI, GetOneCTI } from "../actions/ctiAction";
 
-// import { completed, pending } from '../actions/completedAction'
-
-const CTI = ({ Done, completed, pending }) => {
+const CTI = ( ) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const historyback = BrowserRouter();
   const { urlid } = useParams();
-  // console.log(urlid);
   const data = useSelector((state) => state.ctiReducer.state);
+  const dataCL = useSelector((state) => state.clReducer.state);
   const dataKYc = useSelector((state) => state.kycReducer.state);
   console.log(data);
   const id = useSelector((state) => state.ciReducer.id);
   const link = `/ci/${urlid}`;
 
-  // console.log(data);
-  // console.log(id);
   useEffect(() => {
+    dispatch(GetOneCL(urlid));
     urlid ? dispatch(GetOneCTI(urlid)) : console.log("creating");
   }, [urlid]);
-
+  const [CL, setCL] = useState({});
   const [CTI, setCTI] = React.useState({
     // cti_fcaForm: 'Pending',
     // cti_bInformation: 'Pending',
@@ -47,15 +44,18 @@ const CTI = ({ Done, completed, pending }) => {
   useEffect(() => {
     setCTI(data);
   }, [data]);
-  
-  const onSubmit = async(e) => {
+  useEffect(() => {
+    setCL(dataCL);
+  }, [dataCL]);
+  console.log(CL.fcaf_status);
+  const onSubmit = async (e) => {
     console.log(CTI);
-   await dispatch(CreateCTI(CTI, id));
+    await dispatch(CreateCTI(CTI, id));
 
     history.push("/KYC");
   };
-  const onUpdateSubmit = async(e) => {
-   await dispatch(CreateCTI(CTI, urlid));
+  const onUpdateSubmit = async (e) => {
+    await dispatch(CreateCTI(CTI, urlid));
     history.push("/KYC/" + urlid);
   };
 
@@ -73,7 +73,7 @@ const CTI = ({ Done, completed, pending }) => {
               <Label for="certificate">Fully Completed Application Form:</Label>
               <select
                 className={"custom-select"}
-                value={CTI.cti_fcaForm}
+                value={CL.fcaf_status ? CL.fcaf_status : CTI.cti_fcaForm}
                 // value={'Not Required'}
                 id="1"
                 name="cti_fcaForm"

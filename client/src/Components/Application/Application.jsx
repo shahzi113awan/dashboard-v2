@@ -3,7 +3,7 @@ import { Card, Button, CardTitle, CardText } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useHistory } from "react-router-dom";
-import { Get } from "../../actions/ciAction";
+import { Get,GetLive,GetTrading } from "../../actions/ciAction";
 
 const Applications = () => {
   const history = useHistory();
@@ -66,7 +66,14 @@ const Applications = () => {
         >
           <CardTitle tag="h5">Live DAshboard</CardTitle>
 
-          <Button disabled>Pending</Button>
+          <Button
+            onClick={(e) => {
+              dispatch(GetLive())
+              history.push("/LiveDb");
+            }}
+          >
+            Go to Live Dashboard
+          </Button>
         </Card>
       </div>
       <div>
@@ -79,9 +86,16 @@ const Applications = () => {
             marginBottom: "5%",
           }}
         >
-          <CardTitle tag="h5">TradingDAshboard</CardTitle>
+          <CardTitle tag="h5">Trading Dashboard</CardTitle>
 
-          <Button disabled>Pending</Button>
+          <Button
+            onClick={(e) => {
+              dispatch(GetTrading())
+              history.push("/TradingDb");
+            }}
+          >
+            Go to Trading Dashboard
+          </Button>
         </Card>
       </div>
       <div></div>

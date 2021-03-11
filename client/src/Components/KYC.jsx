@@ -7,7 +7,7 @@ import Select from "react-select";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { Received, pending } from "../actions/completedAction";
 import { CreateKYC, GetOneKYC } from "../actions/kycAction";
-const KYC = ({ Done, Received, pending }) => {
+const KYC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const data = useSelector((state) => state.kycReducer.state);
@@ -123,28 +123,13 @@ const KYC = ({ Done, Received, pending }) => {
     });
     return days;
 
-    // useEffect(() => {
-    //   if (KYC.kyc_adstartDate && KYC.kyc_adExpiryDate) {
-    //     const Start = moment(KYC.kyc_adstartDate);
-
-    //     console.log(Start);
-    //     const End = moment(KYC.kyc_adExpiryDate);
-    //     console.log(End);
-    //     console.log(KYC.kyc_adExpiryDate);
-    //     const days = moment.duration(End.diff(Start)).asDays();
-
-    //     setremainig1(days);
-    //     if (days < 45) setColor1("#ADFF2F");
-    //     // else if (days < 90 && days > 45) setColor1("#FFBF00");
-    //     else setColor1("	#FA8072");
-    //     return days;
-    //   }
-    // }, [KYC.kyc_adExpiryDate, KYC.kyc_adstartDate]);
-    //  function calculate(date1, date2) {
-    //    const d1 = new Date(date1);
-    //    const d2 = new Date(date2);
-    //    const diffInMs = Math.abs(d2 - d1);
-    //    return diffInMs / (1000 * 60 * 60 * 24);
+    //At the End logic of days calculator
+  };
+  const validator = (e, id) => {
+    if (e.target.value > 100 || e.target.value < 0) {
+      alert("Please Type Percentage within 0 and 100 Thanks");
+      e.target.value = 0;
+    }
   };
   return (
     <div className="container">
@@ -199,9 +184,12 @@ const KYC = ({ Done, Received, pending }) => {
                       value={kyc.kyc_sHolds}
                       name="kyc_sHolds"
                       onChange={(e) => {
+                        validator(e, id);
                         handleInput(e, id);
                       }}
                       type="number"
+                      min="1"
+                      max="100"
                       id="shareHolds"
                       placeholder="Share Holds Percent"
                     ></Input>
@@ -390,8 +378,8 @@ const KYC = ({ Done, Received, pending }) => {
                         backgroundColor:
                           moment
                             .duration(
-                              moment(kyc.kyc_ExpiryDate).diff(
-                                moment(kyc.kyc_startDate)
+                              moment(kyc.kyc_adExpiryDate).diff(
+                                moment(kyc.kyc_adstartDate)
                               )
                             )
                             .asDays() < 45
@@ -505,3 +493,27 @@ export default connect(mapStateToProps, {
   Received,
   pending,
 })(KYC);
+
+//LOgic of days calculator
+// useEffect(() => {
+//   if (KYC.kyc_adstartDate && KYC.kyc_adExpiryDate) {
+//     const Start = moment(KYC.kyc_adstartDate);
+
+//     console.log(Start);
+//     const End = moment(KYC.kyc_adExpiryDate);
+//     console.log(End);
+//     console.log(KYC.kyc_adExpiryDate);
+//     const days = moment.duration(End.diff(Start)).asDays();
+
+//     setremainig1(days);
+//     if (days < 45) setColor1("#ADFF2F");
+//     // else if (days < 90 && days > 45) setColor1("#FFBF00");
+//     else setColor1("	#FA8072");
+//     return days;
+//   }
+// }, [KYC.kyc_adExpiryDate, KYC.kyc_adstartDate]);
+//  function calculate(date1, date2) {
+//    const d1 = new Date(date1);
+//    const d2 = new Date(date2);
+//    const diffInMs = Math.abs(d2 - d1);
+//    return diffInMs / (1000 * 60 * 60 * 24);

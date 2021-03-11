@@ -1,5 +1,6 @@
 const initialState = {
   state: {
+    cistatus:"",
     tpi_rcName: "",
     tpi_aaSolution: "CCBILL",
     tpi_iP: "",

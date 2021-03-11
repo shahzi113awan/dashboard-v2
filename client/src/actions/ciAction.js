@@ -27,6 +27,26 @@ export const Get = (obj) => async (dispatch) => {
     payload: data,
   });
 };
+//Live Getter
+export const GetLive = (obj) => async (dispatch) => {
+  dispatch(setLoading());
+
+  const { data } = await axios.get("/api/ciLive");
+  dispatch({
+    type: "GET_CI",
+    payload: data,
+  });
+};
+//Archive Getter
+export const GetTrading = (obj) => async (dispatch) => {
+  dispatch(setLoading());
+
+  const { data } = await axios.get("/api/ciTrading");
+  dispatch({
+    type: "GET_CI",
+    payload: data,
+  });
+};
 export const GetOneCI = (id) => async (dispatch) => {
   dispatch(setLoading());
   await axios.get("/api/ci/" + id, { id: id }).then((res) => {

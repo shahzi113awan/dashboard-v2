@@ -15,6 +15,8 @@ import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 import MainDashboard from './Components/MainDashboard'
+import LiveDashboard from './Components/Dashboards/LiveDashboard'
+import TradingDashboard from "./Components/Dashboards/TradingDashboard";
 import { Header } from './Components/Navbar'
 import Applications from './Components/Application/Application'
 import LoginT from './Components/LoginT'
@@ -41,37 +43,43 @@ function App() {
             {!user ? (
               <div>
                 {/* <Header /> */}
-                <Route exact path='/' component={LoginT} />
+                <Route exact path="/" component={LoginT} />
               </div>
             ) : (
               <div>
                 <Header />
-                <Route exact path='/' component={MainDashboard} />
-                <Route exact path='/Applications' component={Applications} />
-                <Route exact path='/App' component={ApprovalForm} />
-                <Route exact path='/App/:urlid' component={ApprovalForm} />
-                <Route exact path='/mainApp' component={MainApp} />
-                <Route exact path='/appdb' component={AppDb} />
-                <Route exact path='/lostappdb' component={LostDB} />
+                <Route exact path="/" component={MainDashboard} />
+                <Route exact path="/LiveDb" component={LiveDashboard} />
+                <Route exact path="/TradingDb" component={TradingDashboard} />
+                <Route exact path="/Applications" component={Applications} />
+                <Route exact path="/App" component={ApprovalForm} />
+                <Route exact path="/App/:urlid" component={ApprovalForm} />
+                <Route exact path="/mainApp" component={MainApp} />
+                <Route exact path="/appdb" component={AppDb} />
+                <Route exact path="/lostappdb" component={LostDB} />
 
-                <Route exact path='/ci' component={CI} />
-                <Route exact path='/ci/:urlid' component={CI} />
-                <Route exact path='/cti' component={CTI} />
-                <Route exact path='/cti/:urlid' component={CTI} />
-                <Route exact path='/kyc' component={KYC} />
-                <Route exact path='/kyc/:urlid' component={KYC} />
-                <Route exact path='/kycshowcase/:id' component={KYCShowcase} />
-                <Route exact path='/kyb' component={KYB} />
-                <Route exact path='/kyb/:urlid' component={KYB} />
-                <Route exact path='/sdkyb' component={SDKYB} />
-                <Route exact path='/sdkyb/:urlid' component={SDKYB} />
-                <Route exact path='/check-List' component={CheckList} />
-                <Route exact path='/spareshowcase/:id' component={SpareShowcase} />
-
-                <Route exact path='/check-List/:urlid' component={CheckList} />
+                <Route exact path="/ci" component={CI} />
+                <Route exact path="/ci/:urlid" component={CI} />
+                <Route exact path="/cti" component={CTI} />
+                <Route exact path="/cti/:urlid" component={CTI} />
+                <Route exact path="/kyc" component={KYC} />
+                <Route exact path="/kyc/:urlid" component={KYC} />
+                <Route exact path="/kycshowcase/:id" component={KYCShowcase} />
+                <Route exact path="/kyb" component={KYB} />
+                <Route exact path="/kyb/:urlid" component={KYB} />
+                <Route exact path="/sdkyb" component={SDKYB} />
+                <Route exact path="/sdkyb/:urlid" component={SDKYB} />
+                <Route exact path="/check-List" component={CheckList} />
                 <Route
                   exact
-                  path='/supporting-doc-kyb/:urlid'
+                  path="/spareshowcase/:id"
+                  component={SpareShowcase}
+                />
+
+                <Route exact path="/check-List/:urlid" component={CheckList} />
+                <Route
+                  exact
+                  path="/supporting-doc-kyb/:urlid"
                   component={SDKYB}
                 />
               </div>
@@ -80,7 +88,7 @@ function App() {
         </Router>
       </Provider>
     </div>
-  )
+  );
 }
 
 export default App

@@ -84,6 +84,22 @@ export default function CI(props) {
   // ) :
   return (
     <div className="mt-4 mb-5 container">
+      <div style={{ margin: "2%" }}>
+        <Label>MOVE TO</Label>
+        <select
+          className={"custom-select"}
+          value={CI.cistatus}
+          // value={"Not Required"}
+          id="1"
+          name="cistatus"
+          onChange={handleInput}
+        >
+          <option> </option>
+          <option> Live </option>
+          <option>Trading</option>
+        </select>
+      </div>
+
       <div>
         <h2>
           <span class="badge badge-success">COMPANY INFORMATION </span>
@@ -266,13 +282,15 @@ export default function CI(props) {
                   name="tpi_TLoAR"
                   onChange={handleInput}
                 >
-                  <option>Licenced </option>
+                  <option>Not Required</option>
+
+                  <option>unlicenced</option>
+                  {/* <option>Licenced </option> */}
                   <option>Gambling</option>
                   <option>Forex</option>
                   <option>Trade</option>
                   <option>Fulfilment</option>
                   <option>Other</option>
-                  <option>unlicenced</option>
                 </select>
               </FormGroup>
             </Col>

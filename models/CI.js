@@ -6,7 +6,11 @@ let CISchema = new Schema(
     name: {
       type: String,
     },
+
     ci: {
+      cistatus: {
+        type: String,
+      },
       tpi_rcName: {
         type: String,
       },
