@@ -18,7 +18,7 @@ const CTI = ( ) => {
   const link = `/ci/${urlid}`;
 
   useEffect(() => {
-    dispatch(GetOneCL(urlid));
+    // dispatch(GetOneCL(urlid));
     urlid ? dispatch(GetOneCTI(urlid)) : console.log("creating");
   }, [urlid]);
   const [CL, setCL] = useState({});
