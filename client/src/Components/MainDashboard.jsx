@@ -18,15 +18,12 @@ export default function MainDashboard() {
   const [db, setDb] = useState([]);
   const data = useSelector((state) => state.ciReducer.state);
   // const isLoading = 'useSelector((state) => state.ciReducer.isLoading)'
+  const isLoading = useSelector((state) => state.ciReducer.isLoading);
   console.log(data);
   useEffect(() => {
     setDb(data);
   }, [data]);
-  console.log(db);
-  const isLoading = useSelector((state) => state.ciReducer.isLoading);
-  if (!data) {
-    window.location.reload();
-  }
+  
   console.log(isLoading);
   const del = async (id) => {
     await dispatch(Delete(id));
@@ -45,6 +42,7 @@ export default function MainDashboard() {
     return days;
   };
   console.log(isLoading);
+ 
   console.log(db);
   return isLoading ? (
     <div
@@ -175,7 +173,10 @@ export default function MainDashboard() {
                       {res.ci.tpi_aaSolution ? res.ci.tpi_aaSolution : ""}
                     </td>
                     <td
-                      style={{ textDecoration: "underline black", cursor:"pointer" }}
+                      style={{
+                        textDecoration: "underline black",
+                        cursor: "pointer",
+                      }}
                       onClick={() => {
                         window.open(`https://${res.ci.tci_wUrl}`, "_blank");
                       }}

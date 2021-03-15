@@ -24,6 +24,7 @@ import ApprovalForm from "./Components/Approval form/Approval";
 // import checklistR from "./Components/CheckList/"
 import MainApp from "./Components/Approval form/mainApp";
 import AppDb from "./Components/Approval form/appDb";
+import MainAppDb from "./Components/Approval form/mainAppDb";
 import LostDB from "./Components/Approval form/lostdb";
 import { firebase } from './Config'
 
@@ -56,6 +57,7 @@ function App() {
                 <Route exact path="/App/:urlid" component={ApprovalForm} />
                 <Route exact path="/mainApp" component={MainApp} />
                 <Route exact path="/appdb" component={AppDb} />
+                <Route exact path="/mainappdb" component={MainAppDb} />
                 <Route exact path="/lostappdb" component={LostDB} />
 
                 <Route exact path="/ci" component={CI} />

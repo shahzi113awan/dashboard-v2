@@ -24,9 +24,7 @@ export default function MainDashboard() {
   }, [data]);
   console.log(db);
   const isLoading = useSelector((state) => state.ciReducer.isLoading);
-  if (!data) {
-    window.location.reload();
-  }
+
   console.log(isLoading);
   const del = async (id) => {
     await dispatch(Delete(id));
@@ -156,78 +154,71 @@ export default function MainDashboard() {
           <tbody>
             {data &&
               data.map((res, index) => {
-               
-                  return (
-                    <tr>
-                      <th scope="row">{index + 1}</th>
-                      <td style={{ position: "relative" }}>
-                        {" "}
-                        <Link to={"/ci/" + res._id}>
-                          {res.ci.tpi_rcName
-                            ? res.ci.tpi_rcName
-                            : "Default Name"}
-                        </Link>
-                      </td>
-                      <td>22</td>
-                      <td>{res.cl.pendingCount.length}</td>
-                      <td>{22 - res.cl.pendingCount.length}</td>
-                      <td>
-                        <button type="submit">0</button>
-                      </td>
-                      <td>
-                        {res.ci.tpi_aaSolution ? res.ci.tpi_aaSolution : ""}
-                      </td>
-                      <td
-                        style={{
-                          textDecoration: "underline black",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => {
-                          window.open(`https://${res.ci.tci_wUrl}`, "_blank");
-                        }}
-                      >
-                        {/* <a href="https://www.google.com" type="submit">
+                return (
+                  <tr>
+                    <th scope="row">{index + 1}</th>
+                    <td style={{ position: "relative" }}>
+                      {" "}
+                      <Link to={"/ci/" + res._id}>
+                        {res.ci.tpi_rcName ? res.ci.tpi_rcName : "Default Name"}
+                      </Link>
+                    </td>
+                    <td>22</td>
+                    <td>{res.cl.pendingCount.length}</td>
+                    <td>{22 - res.cl.pendingCount.length}</td>
+                    <td>
+                      <button type="submit">0</button>
+                    </td>
+                    <td>
+                      {res.ci.tpi_aaSolution ? res.ci.tpi_aaSolution : ""}
+                    </td>
+                    <td
+                      style={{
+                        textDecoration: "underline black",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        window.open(`https://${res.ci.tci_wUrl}`, "_blank");
+                      }}
+                    >
+                      {/* <a href="https://www.google.com" type="submit">
                         url
                       </a> */}
 
-                        {res.ci.tci_wUrl}
-                      </td>
-                      <td>4.95%</td>
-                      <td>6.95%</td>
-                      <td>{res.ci.tpi_date}</td>
-                      <td>{res.ci.tpi_date ? cal(res.ci.tpi_date) : ""}</td>
-                      <td>{res.ci.tpi_ntc ? res.ci.tpi_ntc : ""}</td>
-                      <td>{res.ci.tpi_vtSector ? res.ci.tpi_vtSector : ""}</td>
-                      <td>
-                        {res.ci.tpi_brPartner ? res.ci.tpi_brPartner : ""}
-                      </td>
-                      <td>
-                        {res.ci.tpi_aBdmOwner ? res.ci.tpi_aBdmOwner : ""}
-                      </td>
-                      <td>
-                        {res.ci.tpi_ccLocation ? res.ci.tpi_ccLocation : ""}
-                      </td>
-                      <td>
-                        {res.ci.tpi_EEADocuments ? res.ci.tpi_EEADocuments : ""}
-                      </td>
-                      <td>{res.ci.tpi_TLoAR ? res.ci.tpi_TLoAR : ""}</td>
-                      <td>{res.cl.fcaf_status ? res.cl.fcaf_status : ""}</td>
-                      <td>{res.cl.bi_status ? res.cl.bi_status : ""}</td>
-                      <td>
-                        {res.cti.cti_otAgreement ? res.cti.cti_otAgreement : ""}
-                      </td>
-                      <td> {res.cl.aps_status}</td>
-                      <td>{res.cl.hwua_status}</td>
-                      <td>{res.cl.wc_status}</td>
-                      <td>{res.cl.wuod_status}</td>
-                      <td>{res.cl.owsc_status}</td>
-                      <td>{res.cti.cti_bPlan ? res.cti.cti_bPlan : ""}</td>
-                      <td>
-                        <Button tag={Link} to={"/kycshowcase/" + res._id}>
-                          Go To shareholds
-                        </Button>
-                      </td>
-                      {/* <td>{res.kyc.kyc_name ? res.kyc.kyc_name : ""}</td>
+                      {res.ci.tci_wUrl}
+                    </td>
+                    <td>4.95%</td>
+                    <td>6.95%</td>
+                    <td>{res.ci.tpi_date}</td>
+                    <td>{res.ci.tpi_date ? cal(res.ci.tpi_date) : ""}</td>
+                    <td>{res.ci.tpi_ntc ? res.ci.tpi_ntc : ""}</td>
+                    <td>{res.ci.tpi_vtSector ? res.ci.tpi_vtSector : ""}</td>
+                    <td>{res.ci.tpi_brPartner ? res.ci.tpi_brPartner : ""}</td>
+                    <td>{res.ci.tpi_aBdmOwner ? res.ci.tpi_aBdmOwner : ""}</td>
+                    <td>
+                      {res.ci.tpi_ccLocation ? res.ci.tpi_ccLocation : ""}
+                    </td>
+                    <td>
+                      {res.ci.tpi_EEADocuments ? res.ci.tpi_EEADocuments : ""}
+                    </td>
+                    <td>{res.ci.tpi_TLoAR ? res.ci.tpi_TLoAR : ""}</td>
+                    <td>{res.cl.fcaf_status ? res.cl.fcaf_status : ""}</td>
+                    <td>{res.cl.bi_status ? res.cl.bi_status : ""}</td>
+                    <td>
+                      {res.cti.cti_otAgreement ? res.cti.cti_otAgreement : ""}
+                    </td>
+                    <td> {res.cl.aps_status}</td>
+                    <td>{res.cl.hwua_status}</td>
+                    <td>{res.cl.wc_status}</td>
+                    <td>{res.cl.wuod_status}</td>
+                    <td>{res.cl.owsc_status}</td>
+                    <td>{res.cti.cti_bPlan ? res.cti.cti_bPlan : ""}</td>
+                    <td>
+                      <Button tag={Link} to={"/kycshowcase/" + res._id}>
+                        Go To shareholds
+                      </Button>
+                    </td>
+                    {/* <td>{res.kyc.kyc_name ? res.kyc.kyc_name : ""}</td>
                     <td>{res.kyc.kyc_sHolds ? res.kyc.kyc_sHolds : ""}</td>
                     <td>{res.kyc.kyc_notarized}</td>
                     <td>
@@ -250,24 +241,24 @@ export default function MainDashboard() {
                     <td>
                       {res.kyc.kyc_paDocument ? res.kyc.kyc_paDocument : ""}
                     </td> */}
-                      <td>{res.sd.fsd_cbs ? res.sd.fsd_cbs : ""}</td>
-                      <td>{res.sd.fsd_pbs ? res.sd.fsd_pbs : ""}</td>
-                      <td>{res.sd.fsd_pow ? res.sd.fsd_pow : ""}</td>
-                      <td>{res.sd.fsd_cap ? res.sd.fsd_cap : ""}</td>
-                      <td>{res.sd.lta_gfl ? res.sd.lta_gfl : ""}</td>
-                      <td>{res.cl.cora_status}</td>
-                      <td>{res.sd.lta_fdsa ? res.sd.lta_fdsa : ""}</td>
-                      <td> </td>
-                      <td>{res.cl.shs_status}</td>
+                    <td>{res.sd.fsd_cbs ? res.sd.fsd_cbs : ""}</td>
+                    <td>{res.sd.fsd_pbs ? res.sd.fsd_pbs : ""}</td>
+                    <td>{res.sd.fsd_pow ? res.sd.fsd_pow : ""}</td>
+                    <td>{res.sd.fsd_cap ? res.sd.fsd_cap : ""}</td>
+                    <td>{res.sd.lta_gfl ? res.sd.lta_gfl : ""}</td>
+                    <td>{res.cl.cora_status}</td>
+                    <td>{res.sd.lta_fdsa ? res.sd.lta_fdsa : ""}</td>
+                    <td> </td>
+                    <td>{res.cl.shs_status}</td>
 
-                      <td>
-                        {" "}
-                        <Button tag={Link} to={"/spareshowcase/" + res._id}>
-                          Check Spare docs
-                        </Button>
-                      </td>
-                      {/* <td></td> */}
-                      {/* <td>
+                    <td>
+                      {" "}
+                      <Button tag={Link} to={"/spareshowcase/" + res._id}>
+                        Check Spare docs
+                      </Button>
+                    </td>
+                    {/* <td></td> */}
+                    {/* <td>
                         <Button
                           onClick={(e) => {
                             del(res._id);
@@ -276,10 +267,9 @@ export default function MainDashboard() {
                           Delete
                         </Button>
                       </td> */}
-                    </tr>
-                  );
-                }
-              )}
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

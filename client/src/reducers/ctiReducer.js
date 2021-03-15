@@ -23,6 +23,11 @@ export const ctiReducer = (state = initialState, action) => {
         ...state,
         state: action.payload,
       };
+    case "INITIALIZE_CTI":
+      return {
+        ...state,
+        state: action.payload,
+      };
 
     default:
       return state;

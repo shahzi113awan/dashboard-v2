@@ -3,6 +3,7 @@ import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateCI, Update, GetOneCI, UpdateOne } from "../actions/ciAction";
+import { INITIATECTI } from "../actions/ctiAction";
 
 export default function CI(props) {
   const dispatch = useDispatch();
@@ -57,6 +58,21 @@ export default function CI(props) {
   useEffect(() => {
     setCI(data1);
   }, [data1]);
+
+  const [CTI, setCTI] = React.useState({
+    cti_fcaForm: "Pending",
+    cti_bInformation: "Pending",
+    cti_otAgreement: "",
+    cti_hwUrl: "Pending",
+    cti_wCompliance: "",
+    cti_wUrl_proofDomain: "Pending",
+    cti_osChart: "Pending",
+    cti_bPlan: "Pending",
+  });
+  useEffect(() => {
+    dispatch(INITIATECTI(CTI));
+  }, [dispatch]);
+
   function handleInput(evt) {
     setCI({
       ...CI,

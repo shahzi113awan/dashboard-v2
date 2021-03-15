@@ -1,7 +1,7 @@
- 
-  
 import axios from "axios";
 export const CreateCI = (obj) => async (dipatch) => {
+  console.log("create action should");
+
   await axios
     .post("/api/ci", {
       ci: obj,
@@ -19,6 +19,7 @@ export const CreateCI = (obj) => async (dipatch) => {
 };
 
 export const Get = (obj) => async (dispatch) => {
+  console.log("this action should");
   dispatch(setLoading());
 
   const { data } = await axios.get("/api/ci");
@@ -48,18 +49,22 @@ export const GetTrading = (obj) => async (dispatch) => {
   });
 };
 export const GetOneCI = (id) => async (dispatch) => {
+  console.log("getone action should");
+
   dispatch(setLoading());
   await axios.get("/api/ci/" + id, { id: id }).then((res) => {
     // console.log("from action");
     // console.log(res.data);
 
     dispatch({
-      type: "GET_CI",
+      type: "GETONE_CI",
       payload: res.data.ci,
     });
   });
 };
 export const Update = (obj, id) => async (dispatch) => {
+  console.log("update action should");
+
   try {
     let url = "/api/cti";
     await axios.put(url, { cti: obj, id: id }).then(
@@ -94,6 +99,8 @@ export const Delete = (id) => async (dispatch) => {
 };
 
 export const UpdateOne = (obj, urlid) => async (dispatch) => {
+  console.log("update one action should");
+
   try {
     let url = "/api/ci";
     await axios.put(url, { ci: obj, id: urlid }).then(
@@ -116,4 +123,3 @@ export const setLoading = () => (dispatch) => {
     type: "LOADING",
   });
 };
- 

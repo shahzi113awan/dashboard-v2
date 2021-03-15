@@ -17,7 +17,28 @@ const MainApp = () => {
             marginBottom: "5%",
           }}
         >
-          <CardTitle tag="h5">Approval  Dashboard</CardTitle>
+          <CardTitle tag="h5">Main Approval Dashboard</CardTitle>
+
+          <Button
+            onClick={(e) => {
+              history.push("/mainappdb");
+            }}
+          >
+            Go to Main Approval Dashboard
+          </Button>
+        </Card>
+      </div>
+      <div>
+        <Card
+          body
+          inverse
+          style={{
+            backgroundColor: "#333",
+            borderColor: "#333",
+            marginBottom: "5%",
+          }}
+        >
+          <CardTitle tag="h5">Approval Dashboard</CardTitle>
 
           <Button
             onClick={(e) => {
@@ -30,27 +51,27 @@ const MainApp = () => {
       </div>
       <div>
         <div>
-        <Card
-          body
-          inverse
-          style={{
-            backgroundColor: "#333",
-            borderColor: "#333",
-            marginBottom: "5%",
-          }}
-        >
-          <CardTitle tag="h5">Lost Dashboard</CardTitle>
-
-          <Button
-            onClick={(e) => {
-              history.push("/lostappdb");
+          <Card
+            body
+            inverse
+            style={{
+              backgroundColor: "#333",
+              borderColor: "#333",
+              marginBottom: "5%",
             }}
           >
-            Go to Lost Dashboard
-          </Button>
-        </Card>
-      </div>
-      <div></div>
+            <CardTitle tag="h5">Lost Dashboard</CardTitle>
+
+            <Button
+              onClick={(e) => {
+                history.push("/lostappdb");
+              }}
+            >
+              Go to Lost Dashboard
+            </Button>
+          </Card>
+        </div>
+        <div></div>
         <Card
           body
           inverse
@@ -71,8 +92,6 @@ const MainApp = () => {
           </Button>
         </Card>
       </div>
-      
-        
     </div>
   );
 };

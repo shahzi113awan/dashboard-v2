@@ -184,11 +184,11 @@ export const CheckList = () => {
   };
 
   console.log(CL);
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     urlid
-      ? dispatch(CreateCL(CL, urlid)) && dispatch(Get())
-      : dispatch(CreateCL(CL, id));
+      ? (await dispatch(CreateCL(CL, urlid))) && dispatch(Get())
+      : dispatch(CreateCL(CL, id)) && dispatch(Get());
     history.push("/");
   };
   console.log(isLoading);
@@ -495,7 +495,7 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           />
-          <ChecklistR
+          {/* <ChecklistR
             text={"Articles of Association"}
             name={"aoa_status"}
             fc="aoa_fileName"
@@ -507,7 +507,7 @@ export const CheckList = () => {
             FileUpload={(e) => {
               ImageHandler(e);
             }}
-          />
+          /> */}
           <ChecklistR
             text={"Share Register"}
             name={"sr_status"}

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { GetLive, Delete } from "../../actions/ciAction";
+
 import Loader from "react-loader-spinner";
 
 import moment from "moment";
@@ -24,9 +25,7 @@ export default function MainDashboard() {
   }, [data]);
   console.log(db);
   const isLoading = useSelector((state) => state.ciReducer.isLoading);
-  if (!data) {
-    window.location.reload();
-  }
+  
   console.log(isLoading);
   const del = async (id) => {
     await dispatch(Delete(id));

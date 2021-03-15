@@ -21,7 +21,7 @@ export default function ApprovalForm() {
   const data1 = useSelector((state) => state.appReducer.state);
   console.log(data1);
   const [App, setApp] = useState({
-    status: "Approve",
+    status: " ",
     af_rcn: "",
     af_ad: "",
     af_sol: "",
@@ -365,6 +365,7 @@ export default function ApprovalForm() {
                 value={App.status}
                 onChange={handleInput}
               >
+                <option></option>
                 <option>Approve</option>
                 <option>Lost</option>
               </select>

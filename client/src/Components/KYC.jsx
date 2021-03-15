@@ -5,21 +5,40 @@ import moment from "moment";
 import countryList from "react-select-country-list";
 import Select from "react-select";
 import { useDispatch, useSelector, connect } from "react-redux";
-import { Received, pending } from "../actions/completedAction";
-import { CreateKYC, GetOneKYC } from "../actions/kycAction";
+import { CreateKYC, GetOneKYC, INITIATEKYC } from "../actions/kycAction";
+import { INITIATEKYB } from "../actions/kybAction";
+
+import Loader from "react-loader-spinner";
+
 const KYC = () => {
+  //initializing functions
   const dispatch = useDispatch();
   const history = useHistory();
+  //getting data from reducers
   const data = useSelector((state) => state.kycReducer.state);
   const id = useSelector((state) => state.ciReducer.id);
+  const isLoading = useSelector((state) => state.kycReducer.isLoading);
+  console.log(isLoading);
+
   const { urlid } = useParams();
   const link = `/cti/${urlid}`;
 
-  console.log(id);
-  useEffect(() => {
-    urlid ? dispatch(GetOneKYC(urlid)) : console.log("creating");
-  }, [urlid]);
+  console.log(typeof data);
 
+  useEffect(async () => {
+    urlid ? await dispatch(GetOneKYC(urlid)) : console.log("creating");
+  }, [urlid]);
+  const [KYB, setKYB] = useState({
+    kyb_coi: "Pending",
+    kyb_moa: "Pending",
+    kyb_aoa: "Pending",
+    kyb_sRegister: "Pending",
+    kyb_scs: "Pending",
+    kyb_ccre: "Pending",
+  });
+  useEffect(() => {
+    dispatch(INITIATEKYB(KYB));
+  }, [dispatch]);
   const [KYC, setKYC] = useState([
     {
       Rdays: "",
@@ -38,6 +57,7 @@ const KYC = () => {
       kyc_paDocument: "",
     },
   ]);
+
   const handleInput = async (e, index) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -48,8 +68,6 @@ const KYC = () => {
   };
   //handle add and remove
   const handleRemoveClick = (e, index) => {
-    e.preventDefault();
-
     const list = [...KYC];
     list.splice(index, 1);
     setKYC(list);
@@ -82,7 +100,7 @@ const KYC = () => {
   useEffect(() => {
     setKYC(data);
   }, [data]);
-
+  console.log(data);
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(KYC);
@@ -96,42 +114,36 @@ const KYC = () => {
     history.push("/KYB/" + urlid);
   };
 
-  const [remainig, setremainig] = useState(0);
-  const [color, setColor] = useState("none");
-  const [remainig1, setremainig1] = useState(0);
-  const [color1, setColor1] = useState("none");
-  console.log(KYC.kyc_startDate);
-  const calculate = (e, id) => {
-    console.log(id);
-    console.log(KYC[id].kyc_startDate);
-
-    const Start = moment(KYC[id].kyc_startDate);
-
-    console.log(Start);
-    const End = moment(KYC[id].kyc_ExpiryDate);
-    console.log(End);
-    console.log(KYC[id].kyc_ExpiryDate);
-    const days = moment.duration(End.diff(Start)).asDays();
-
-    // const list = [...KYC[id]];
-    // list[id][Rdays] = days;
-    // console.log(KYC);
-    // setKYC(list);
-    setKYC({
-      ...KYC[id],
-      Rdays: days,
-    });
-    return days;
-
-    //At the End logic of days calculator
-  };
   const validator = (e, id) => {
     if (e.target.value > 100 || e.target.value < 0) {
       alert("Please Type Percentage within 0 and 100 Thanks");
       e.target.value = 0;
     }
   };
-  return (
+  return urlid && isLoading ? (
+    <div
+      style={{
+        position: "absolute",
+        zIndex: 10,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "lightgrey",
+        opacity: 0.8,
+        left: 0,
+        // bottom: 0,
+      }}
+    >
+      <div
+        style={{
+          textAlign: "center",
+          // color: "white",
+          marginTop: "20%",
+        }}
+      >
+        <Loader type="Puff" color="#161f22" height={100} width={100} />
+      </div>
+    </div>
+  ) : (
     <div className="container">
       <div>
         <h2>
@@ -489,10 +501,7 @@ const KYC = () => {
 const mapStateToProps = (state) => ({
   Done: state.completedReducer.complete,
 });
-export default connect(mapStateToProps, {
-  Received,
-  pending,
-})(KYC);
+export default KYC;
 
 //LOgic of days calculator
 // useEffect(() => {
@@ -517,3 +526,33 @@ export default connect(mapStateToProps, {
 //    const d2 = new Date(date2);
 //    const diffInMs = Math.abs(d2 - d1);
 //    return diffInMs / (1000 * 60 * 60 * 24);
+
+// const [remainig, setremainig] = useState(0);
+// const [color, setColor] = useState("none");
+// const [remainig1, setremainig1] = useState(0);
+// const [color1, setColor1] = useState("none");
+// console.log(KYC.kyc_startDate);
+// const calculate = (e, id) => {
+//   console.log(id);
+//   console.log(KYC[id].kyc_startDate);
+
+//   const Start = moment(KYC[id].kyc_startDate);
+
+//   console.log(Start);
+//   const End = moment(KYC[id].kyc_ExpiryDate);
+//   console.log(End);
+//   console.log(KYC[id].kyc_ExpiryDate);
+//   const days = moment.duration(End.diff(Start)).asDays();
+
+//   // const list = [...KYC[id]];
+//   // list[id][Rdays] = days;
+//   // console.log(KYC);
+//   // setKYC(list);
+//   setKYC({
+//     ...KYC[id],
+//     Rdays: days,
+//   });
+//   return days;
+
+//   //At the End logic of days calculator
+// };

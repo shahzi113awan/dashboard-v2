@@ -25,6 +25,15 @@ export const Get = (obj) => async (dispatch) => {
     payload: data,
   });
 };
+export const GetApproved = (obj) => async (dispatch) => {
+  dispatch(setLoading());
+
+  const { data } = await axios.get("/api/AppA"); 
+  dispatch({
+    type: "GET_App",
+    payload: data,
+  });
+};
 export const GetLost = (obj) => async (dispatch) => {
   dispatch(setLoading());
 
