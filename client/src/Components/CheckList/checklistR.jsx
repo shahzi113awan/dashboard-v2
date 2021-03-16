@@ -169,7 +169,7 @@ const ChecklistR = (props) => {
             size={30}
             color={"green"}
             onClick={(e) => {
-              handleClickEdit(e);
+              setView(true) && handleClickEdit(e);
             }}
           />
         </FormGroup>
@@ -184,12 +184,17 @@ const ChecklistR = (props) => {
           />
         </FormGroup>
       </Col>
-      {/* <Modal isOpen={view} toggle={toggler}>
-        <ModalHeader toggle={toggler}>Modal title</ModalHeader>
-        <ModalBody>
-          <img src={`http://localhost:5000/get/${props.path}`} alt="" />
+      <Modal isOpen={view} toggle={toggler}>
+        <ModalHeader toggle={toggler}>Note</ModalHeader>
+        <ModalBody style={{ backgroundColor: "#32CD32" }}>
+          <textarea
+            style={{ width: "100%" }}
+            name={props.note}
+            value={props.notesVal}
+            onChange={props.notesHandle}
+          />
         </ModalBody>
-      </Modal> */}
+      </Modal>
     </React.Fragment>
   );
 };

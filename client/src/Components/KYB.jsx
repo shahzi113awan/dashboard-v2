@@ -164,7 +164,7 @@ export default function KYB() {
               </Label>
               <select
                 className={"custom-select"}
-                value={CL.scs_status?CL.scs_status:KYB.kyb_scs}
+                value={CL.scs_status ? CL.scs_status : KYB.kyb_scs}
                 // value={"Not Required"}
                 id="1"
                 name="kyb_scs"
@@ -197,14 +197,19 @@ export default function KYB() {
             </FormGroup>
           </Col>
         </Row>
-        <Button tag={Link} to={link}>
+        {/* <Button tag={Link} to={link}>
           Previous
-        </Button>
+        </Button> */}
         {/* <Link to='/supporting-doc-kyb'> */}
         {urlid ? (
-          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-            Update and Next
-          </Button>
+          <div>
+            <Button tag={Link} to={link}>
+              Previous
+            </Button>
+            <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+              Update and Next
+            </Button>
+          </div>
         ) : (
           <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
             Save and Next

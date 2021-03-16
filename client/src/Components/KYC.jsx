@@ -481,13 +481,18 @@ const KYC = () => {
             </div>
           );
         })}
-        <Button tag={Link} to={link}>
+        {/* <Button tag={Link} to={link}>
           Previous
-        </Button>
+        </Button> */}
         {urlid ? (
-          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-            Update and Next
-          </Button>
+          <div>
+            <Button tag={Link} to={link}>
+              Previous
+            </Button>
+            <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+              Update and Next
+            </Button>
+          </div>
         ) : (
           <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
             Save and Next
@@ -498,9 +503,7 @@ const KYC = () => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  Done: state.completedReducer.complete,
-});
+ 
 export default KYC;
 
 //LOgic of days calculator

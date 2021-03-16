@@ -15,7 +15,11 @@ import {
 } from "reactstrap";
 // import { Link } from "react-router-dom";
 const SpChecklistR = (props) => {
-  const toggler = () => {};
+  const [view, setView] = useState(false);
+
+  const toggler = () => {
+    setView(!view);
+  };
   const handleClickRead = (e) => {
     // console.log(props.path.slice("./"));
     window.open(props.path);
@@ -94,7 +98,7 @@ const SpChecklistR = (props) => {
             size={30}
             color={"green"}
             onClick={(e) => {
-              handleClickEdit(e);
+              setView(true) && handleClickEdit(e);
             }}
           />
         </FormGroup>
@@ -109,12 +113,17 @@ const SpChecklistR = (props) => {
           />
         </FormGroup>
       </Col>
-      {/* <Modal isOpen={view} toggle={toggler}>
-        <ModalHeader toggle={toggler}>Modal title</ModalHeader>
-        <ModalBody>
-          <img src={`http://localhost:5000/get/${props.path}`} alt="" />
+      <Modal isOpen={view} toggle={toggler}>
+        <ModalHeader toggle={toggler}>Note</ModalHeader>
+        <ModalBody style={{ backgroundColor: "#32CD32" }}>
+          <textarea
+            style={{ width: "100%", }}
+            name={props.note}
+            value={props.notesVal}
+            onChange={props.notesHandle}
+          />
         </ModalBody>
-      </Modal> */}
+      </Modal>
     </React.Fragment>
   );
 };

@@ -181,7 +181,9 @@ const CTI = () => {
               <Label for="CCR">Website URL - Proof of Domain:</Label>
               <select
                 className={"custom-select"}
-                value={CL.wuod_status?CL.wuod_status:CTI.cti_wUrl_proofDomain}
+                value={
+                  CL.wuod_status ? CL.wuod_status : CTI.cti_wUrl_proofDomain
+                }
                 value={"Not Required"}
                 id="1"
                 name="cti_wUrl_proofDomain"
@@ -231,13 +233,18 @@ const CTI = () => {
             </FormGroup>
           </Col>
         </Row>
-        <Button tag={Link} to={link}>
+        {/* <Button tag={Link} to={link}>
           Previous
-        </Button>
+        </Button> */}
         {urlid ? (
-          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-            Update and Next
-          </Button>
+          <div>
+            <Button tag={Link} to={link}>
+              Previous
+            </Button>
+            <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+              Update and Next
+            </Button>
+          </div>
         ) : (
           <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
             Save and Next{" "}
