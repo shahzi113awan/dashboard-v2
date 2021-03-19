@@ -139,7 +139,7 @@ const ChecklistR = (props) => {
           path={props.path}
           size={30}
           onClick={(e) => {
-            setView(true);
+            
             handleClickRead(e, props.path);
           }}
         />

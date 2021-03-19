@@ -80,6 +80,12 @@ export const ciReducer = (state = [], action) => {
         state: action.payload,
         id: action.id,
       };
+    case "UPDATE_ID":
+      return {
+        ...state,
+        state: action.payload,
+        id: action.id,
+      };
     case "GET_CI":
       return {
         ...state,

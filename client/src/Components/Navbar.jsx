@@ -69,38 +69,70 @@ export const Header = (props) => {
             <NavItem>
               <NavLink>Reports</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink
-                onClick={(e) => {
-                  dispatch(GetTrading());
-                }}
-                tag={Link}
-                to="/TradingDb"
-              >
-                <img
-                  style={{ height: "20%", width: "20%" }}
-                  src="./dashboard-icon-3.png"
-                  alt="Tradimg Dashboard"
-                />
-              </NavLink>
-              Trading Dashboard
-            </NavItem>
-            <NavItem>
-              <NavLink
-                onClick={(e) => {
-                  dispatch(GetLive());
-                }}
-                tag={Link}
-                to="/LiveDb"
-              >
-                <img
-                  style={{ height: "20%", width: "20%", textAlign: "center" }}
-                  src="./images.png"
-                  alt="Tradimg Dashboard"
-                />
-              </NavLink>
-              Live Dashboard
-            </NavItem>
+            <div style={{ width: "10%", padding: "0% !important" }}>
+              <NavItem>
+                <NavLink
+                  onClick={(e) => {
+                    dispatch(GetTrading());
+                  }}
+                  tag={Link}
+                  to="/TradingDb"
+                >
+                  <img
+                    style={{ height: "20%", width: "30%", marginRight: "2%" }}
+                    src="./dashboard-icon-3.png"
+                    alt="Tradimg Dashboard"
+                  />
+                  Trading
+                </NavLink>
+              </NavItem>
+            </div>
+            <div style={{ width: "10%", padding: "0% !important" }}>
+              <NavItem>
+                <NavLink
+                  onClick={(e) => {
+                    dispatch(GetLive());
+                  }}
+                  tag={Link}
+                  to="/LiveDb"
+                >
+                  <img
+                    style={{
+                      height: "20%",
+                      width: "30%",
+                      textAlign: "center",
+                      marginRight: "2%",
+                    }}
+                    src="./images.png"
+                    alt="Tradimg Dashboard"
+                  />
+                  Live
+                </NavLink>
+              </NavItem>
+            </div>
+            <div style={{ width: "10%", padding: "0% !important" }}>
+              <NavItem>
+                <NavLink
+                  onClick={(e) => {
+                    dispatch(Get());
+                  }}
+                  tag={Link}
+                  to="/ArchiveDb"
+                >
+                  <img
+                    style={{
+                      height: "20%",
+                      width: "30%",
+                      textAlign: "center",
+                      marginRight: "2%",
+                    }}
+                    src="./archive.png"
+                    alt="Archive Dashboard"
+                  />
+                  Archive
+                </NavLink>
+              </NavItem>
+            </div>
             <NavItem>
               <NavLink>Reports</NavLink>
             </NavItem>

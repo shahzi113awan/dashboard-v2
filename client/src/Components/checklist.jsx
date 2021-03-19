@@ -204,9 +204,9 @@ export const CheckList = () => {
         <div
           style={{
             position: "absolute",
-            zIndex: 10,
+            zIndex: 100,
             width: "100%",
-            height: "100%",
+            height: "300%",
             backgroundColor: "lightgrey",
             opacity: 0.8,
             left: 0,

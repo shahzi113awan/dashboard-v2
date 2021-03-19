@@ -16,6 +16,7 @@ const CTI = () => {
   const dataKYc = useSelector((state) => state.kycReducer.state);
   console.log(dataKYc);
   const id = useSelector((state) => state.ciReducer.id);
+  console.log(id);
   const link = `/ci/${urlid}`;
 
   useEffect(() => {

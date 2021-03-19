@@ -117,7 +117,12 @@ export const UpdateOne = (obj, urlid) => async (dispatch) => {
     });
   }
 };
-
+export const GetId = (id)=>(dispatch)=>{
+dispatch({
+  type:'UPDATE_ID',
+  id:id
+})
+}
 export const setLoading = () => (dispatch) => {
   dispatch({
     type: "LOADING",
