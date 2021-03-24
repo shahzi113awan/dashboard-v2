@@ -21,9 +21,10 @@ const SpChecklistR = (props) => {
     setView(!view);
   };
   const handleClickRead = (e) => {
-    // console.log(props.path.slice("./"));
-    window.open(props.path);
     console.log(props.path);
+    // console.log(props.path.slice("./"));
+    if (props.path != "") window.open(props.path);
+    else alert("No file");
   };
   const handleClickEdit = (e) => {
     console.log("hi from edit");
@@ -67,6 +68,7 @@ const SpChecklistR = (props) => {
       <Col md={1}>
         <AiOutlineFolderView
           path={props.path}
+          color={props.path === "" ? "green" : "black"}
           size={30}
           onClick={(e) => {
             handleClickRead(e, props.path);
@@ -96,7 +98,7 @@ const SpChecklistR = (props) => {
         <FormGroup>
           <AiFillEdit
             size={30}
-            color={"green"}
+            color={props.notesVal === undefined ? "green" : "black"}
             onClick={(e) => {
               setView(true) && handleClickEdit(e);
             }}
@@ -117,7 +119,7 @@ const SpChecklistR = (props) => {
         <ModalHeader toggle={toggler}>Note</ModalHeader>
         <ModalBody style={{ backgroundColor: "#32CD32" }}>
           <textarea
-            style={{ width: "100%", }}
+            style={{ width: "100%" }}
             name={props.note}
             value={props.notesVal}
             onChange={props.notesHandle}

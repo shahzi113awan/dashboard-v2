@@ -57,7 +57,9 @@ export const Header = (props) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink>Solutions</NavLink>
+              <NavLink tag={Link} to="/solution-app">
+                Solutions
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>ISO Partners</NavLink>

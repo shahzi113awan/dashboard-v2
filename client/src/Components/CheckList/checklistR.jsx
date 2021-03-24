@@ -96,7 +96,9 @@ const ChecklistR = (props) => {
   };
   const handleClickRead = (e) => {
     // console.log(props.path.slice("./"));
-    window.open(props.path);
+    console.log(props.notesVal);
+    if (props.path != "fileName") window.open(props.path);
+    else alert("No file");
     console.log(props.path);
     console.log(view);
     if (view) return <div></div>;
@@ -137,9 +139,9 @@ const ChecklistR = (props) => {
       <Col md={1}>
         <AiOutlineFolderView
           path={props.path}
+          color={props.path === "fileName" ? "green" : "black"}
           size={30}
           onClick={(e) => {
-            
             handleClickRead(e, props.path);
           }}
         />
@@ -167,7 +169,7 @@ const ChecklistR = (props) => {
         <FormGroup>
           <AiFillEdit
             size={30}
-            color={"green"}
+            color={props.notesVal === " " ? "green" : "black"}
             onClick={(e) => {
               setView(true) && handleClickEdit(e);
             }}

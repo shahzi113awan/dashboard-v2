@@ -1,42 +1,48 @@
-import React, { Component, useState, useEffect } from 'react'
-import logo from './logo.svg'
-import './App.css'
-import './assets/css/Tcss.css'
-import KYC from './Components/KYC'
-import KYCShowcase from './Components/KYCShowcase'
+import React, { Component, useState, useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import "./assets/css/Tcss.css";
+import KYC from "./Components/KYC";
+import KYCShowcase from "./Components/KYCShowcase";
 import SpareShowcase from "./Components/spareShowcase";
-import Multiple from './Components/MultipleShareKYC'
-import CTI from './Components/CTI'
-import KYB from './Components/KYB'
-import SDKYB from './Components/supportingDocKYB'
-import CI from './Components/CI'
-import { CheckList } from './Components/checklist'
-import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import store from './store'
-import MainDashboard from './Components/MainDashboard'
-import LiveDashboard from './Components/Dashboards/LiveDashboard'
+import Multiple from "./Components/MultipleShareKYC";
+import CTI from "./Components/CTI";
+import KYB from "./Components/KYB";
+import SDKYB from "./Components/supportingDocKYB";
+import CI from "./Components/CI";
+import { CheckList } from "./Components/checklist";
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+import MainDashboard from "./Components/MainDashboard";
+import LiveDashboard from "./Components/Dashboards/LiveDashboard";
 import TradingDashboard from "./Components/Dashboards/TradingDashboard";
 import ArchiveDashboard from "./Components/Dashboards/ArchiveDashboard";
-import { Header } from './Components/Navbar'
-import Applications from './Components/Application/Application'
-import LoginT from './Components/LoginT'
+import { Header } from "./Components/Navbar";
+import Applications from "./Components/Application/Application";
+import LoginT from "./Components/LoginT";
 import ApprovalForm from "./Components/Approval form/Approval";
 // import checklistR from "./Components/CheckList/"
 import MainApp from "./Components/Approval form/mainApp";
 import AppDb from "./Components/Approval form/appDb";
 import MainAppDb from "./Components/Approval form/mainAppDb";
 import LostDB from "./Components/Approval form/lostdb";
-import { firebase } from './Config'
+import SolutionNav from "./Components/Solutions/SolutionNav";
+import SolutionNavParam from "./Components/Solutions/SolNavParams";
+import SOLDB from "./Components/Solutions/SolutionDB";
+import SolApp from "./Components/Solutions/Application";
+import NewContact from "./Components/Solutions/Newcontact";
+import ContactDB from "./Components/Solutions/contactDB";
+import { firebase } from "./Config";
 
 function App() {
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState("");
   useEffect(() => {
     firebase.auth().onAuthStateChanged((res) => {
-      console.log(res)
-      setUser(res)
-    })
-  }, [1])
+      console.log(res);
+      setUser(res);
+    });
+  }, [1]);
   return (
     <div>
       <Provider store={store}>
@@ -74,6 +80,28 @@ function App() {
                 <Route exact path="/sdkyb" component={SDKYB} />
                 <Route exact path="/sdkyb/:urlid" component={SDKYB} />
                 <Route exact path="/check-List" component={CheckList} />
+                <Route exact path="/solution-nav" component={SolutionNav} />
+                <Route
+                  exact
+                  path="/solution-nav/:urlid"
+                  component={SolutionNav}
+                />
+                <Route
+                  exact
+                  path="/solution-nav-params"
+                  component={SolutionNavParam}
+                />
+                <Route
+                  exact
+                  path="/solution-nav-params/:urlid"
+                  component={SolutionNavParam}
+                />
+                <Route exact path="/solution-app" component={SolApp} />
+                <Route exact path="/solution-DB" component={SOLDB} />
+                <Route exact path="/contact" component={NewContact} />
+                <Route exact path="/contact/:urlid" component={NewContact} />
+                <Route exact path="/contact-list" component={ContactDB} />
+
                 <Route
                   exact
                   path="/spareshowcase/:id"
@@ -95,4 +123,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

@@ -136,7 +136,7 @@ export default function CI(props) {
               <FormGroup>
                 <Label for="certificate">Registered Company Name: </Label>
                 <Input
-                  className="cusrom"
+                  className="custom"
                   onChange={handleInput}
                   required={true}
                   type="text"

@@ -4,15 +4,14 @@ import 'firebase/auth'
 import 'firebase/storage'
 import 'firebase/analytics'
 
-var firebaseConfig = {
-  apiKey: 'AIzaSyD2FKnXzf86bJ54ga_cv7sxfmYCQUZPh4I',
-  authDomain: 'ems-portal-eb788.firebaseapp.com',
-  projectId: 'ems-portal-eb788',
-  storageBucket: 'ems-portal-eb788.appspot.com',
-  messagingSenderId: '1048802296593',
-  appId: '1:1048802296593:web:c3257d426a4cb3b6eec2b0',
-  measurementId: 'G-MZJHMYGNE4',
-}
+ var firebaseConfig = {
+   apiKey: "AIzaSyA_SuPywmvekXR2bwdBcUuEnxZr_UTlFXY",
+   authDomain: "ems-portlal.firebaseapp.com",
+   projectId: "ems-portlal",
+   storageBucket: "ems-portlal.appspot.com",
+   messagingSenderId: "533829865742",
+   appId: "1:533829865742:web:e677fa6246b9e1d503075f",
+ };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 // firebase.analytics()

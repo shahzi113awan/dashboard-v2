@@ -7,6 +7,9 @@ import { clReducer } from "./clReducer";
 import { kycReducer } from "./kycReducer";
 import { sdReducer } from "./sdReducer";
 import { appReducer } from "./appReducer";
+import { contactReducer } from "./contactReducer";
+import { solReducer } from "./solutionNavReducer";
+import { solParamsReducer } from "./solutionNavparamsReducer";
 export default combineReducers({
   completedReducer,
   kybReducer,
@@ -16,4 +19,7 @@ export default combineReducers({
   kycReducer,
   sdReducer,
   appReducer,
+  contactReducer,
+  solReducer,
+  solParamsReducer,
 });
