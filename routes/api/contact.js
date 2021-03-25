@@ -56,9 +56,9 @@ router.get("/contact/:id", (req, res) => {
 });
 
 // READ contacts
- 
-router.get("/contact", (req, res) => {
-  contactSchema.find( (error, data) => {
+
+router.get("/contact/", (req, res) => {
+  contactSchema.find((error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -74,7 +74,7 @@ router.route("/contact/").put((req, res, next) => {
   console.log(req);
   contactSchema.updateOne(
     { _id: req.body.id },
-    { $set: { contact: req.body.Contact } },
+    { $set: { contact: req.body.contact } },
     // {$set: req.body},
 
     (error, data) => {

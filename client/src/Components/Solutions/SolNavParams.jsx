@@ -79,7 +79,7 @@ const SolutionNavParam = () => {
   const onUpdateSubmit = async () => {
     await dispatch(UpdateOne(SN, urlid));
 
-    history.push("/solution-app/");
+    history.push("/solution-app");
   };
   return (
     <div className="container">

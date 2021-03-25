@@ -47,23 +47,7 @@ export const GetOnecontact = (id) => async (dispatch) => {
     });
   });
 };
-export const Update = (obj, id) => async (dispatch) => {
-  try {
-    let url = "/api/cti";
-    await axios.put(url, { cti: obj, id: id }).then(
-      (res) =>
-        dispatch({
-          type: "CREATE_CTI",
-          payload: res.data,
-        }),
-      console.log("XXXXXX" + id)
-    );
-  } catch {
-    dispatch({
-      type: "Error",
-    });
-  }
-};
+ 
 export const Delete = (id) => async (dispatch) => {
   try {
     let url = "/api/contact/";
@@ -83,7 +67,7 @@ export const Delete = (id) => async (dispatch) => {
 
 export const UpdateOne = (obj, urlid) => async (dispatch) => {
   try {
-    let url = "/api/contact";
+    let url = "/api/contact/";
     await axios.put(url, { contact: obj, id: urlid }).then(
       (res) =>
         dispatch({
