@@ -72,18 +72,19 @@ export default function MainDashboard() {
           <tbody>
             {data &&
               data.map((res, index) => {
+                if(res.sol){
                 return (
                   <tr>
                     <td>{index + 1}</td>
                     <td>
                       <Link to={"/solution-nav/" + res._id}>
-                        {res.solution_name ? res.solution_name : "Default Name"}
+                        {res.sol.solution_name ? res.sol.solution_name : "Default Name"}
                       </Link>
                     </td>
-                    <td>{res.solution_type}</td>
+                    <td>{res.sol.solution_type}</td>
                   </tr>
                 );
-              })}
+              }})}
           </tbody>
         </table>
       </div>

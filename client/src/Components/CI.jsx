@@ -6,6 +6,7 @@ import { CreateCI, Update, GetOneCI, UpdateOne } from "../actions/ciAction";
 import { INITIATECTI } from "../actions/ctiAction";
 
 export default function CI(props) {
+  const [copy, setCopy] = useState(false)
   const dispatch = useDispatch();
   const { urlid } = useParams();
 
@@ -44,6 +45,7 @@ export default function CI(props) {
     cci_mNumber: "",
     cci_lNumber: "",
     cci_otpMNumber: "",
+    cci_otpMNumber1: "",
     tci_crAddress: "",
     tci_crNumber: "",
     tci_ctAddress: "",
@@ -74,6 +76,10 @@ export default function CI(props) {
   }, [dispatch]);
 
   function handleInput(evt) {
+    if (copy === true) {
+      evt.target.value = ""
+    }
+    setCopy(false)
     setCI({
       ...CI,
       [evt.target.name]: evt.target.value,
@@ -98,6 +104,12 @@ export default function CI(props) {
   // return isLoading && urlid ? (
   //   <h1>Loading</h1>
   // ) :
+  const paste = (e) => {
+    setCopy(true)
+    console.log(e.target.value)
+    alert("please  don'paste in this field")
+
+  }
   return (
     <div className="mt-4 mb-5 container">
       <div style={{ margin: "2%" }}>
@@ -208,7 +220,7 @@ export default function CI(props) {
                   type="date"
                   name="tpi_date"
                   id="date"
-                  // placeholder="Company URL"
+                // placeholder="Company URL"
                 ></Input>
               </FormGroup>
             </Col>
@@ -320,7 +332,7 @@ export default function CI(props) {
           <div>
             <h2>
               <span class="badge badge-success">
-                Trading Company Information:
+                Application/ Company Trading  Information:
               </span>
             </h2>
           </div>
@@ -394,7 +406,7 @@ export default function CI(props) {
           <div>
             <h2>
               <span class="badge badge-success">
-                Company Contact Information:{" "}
+                Application/ Company Contact Information:{" "}
               </span>
             </h2>
           </div>
@@ -491,6 +503,22 @@ export default function CI(props) {
                 ></Input>
               </FormGroup>
             </Col>
+            <Col md={6}>
+              <FormGroup>
+                <Label for="address"> Retype Email: </Label>
+                <Input
+                  className="cusrom"
+                  onPaste={e => { paste(e) }}
+                  value={CI.cci_2_otpMNumber1}
+                  name="cci_2_otpMNumber1"
+                  onChange={handleInput}
+                  required={false}
+                  type="otpmobile"
+                  id="address"
+                  placeholder="Email :"
+                ></Input>
+              </FormGroup>
+            </Col>
           </Row>
 
           {/* **************************** */}
@@ -500,7 +528,7 @@ export default function CI(props) {
             <div>
               <h2>
                 <span class="badge badge-success">
-                  Management Company Information:
+                  Management Company Contact Information:
                 </span>
               </h2>
             </div>
@@ -589,7 +617,7 @@ export default function CI(props) {
             <div>
               <h2>
                 <span class="badge badge-success">
-                  Company Contact Information:
+                  Application/ Company Contact Information:
                 </span>
               </h2>
             </div>

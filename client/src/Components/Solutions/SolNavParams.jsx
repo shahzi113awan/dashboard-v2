@@ -10,7 +10,7 @@ import {
   GetOnesol,
   UpdateOne,
 } from "../../actions/solutionNavparamAction";
-
+import { Get } from '../../actions/solutionNavAction'
 const SolutionNavParam = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -73,13 +73,14 @@ const SolutionNavParam = () => {
   const onSubmit = async (e) => {
     // console.log(SN);
     await dispatch(CreatesolParams(SN, id));
-
-    history.push("/solution-app");
+    dispatch(Get())
+    history.push("/solution-DB");
   };
   const onUpdateSubmit = async () => {
     await dispatch(UpdateOne(SN, urlid));
+    dispatch(Get())
 
-    history.push("/solution-app");
+    history.push("/solution-DB");
   };
   return (
     <div className="container">

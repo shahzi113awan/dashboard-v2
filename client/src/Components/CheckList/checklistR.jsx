@@ -12,6 +12,8 @@ import {
   Modal,
   ModalBody,
   ModalHeader,
+  Label,
+  CustomInput
 } from "reactstrap";
 // import { Link } from "react-router-dom";
 const ChecklistR = (props) => {
@@ -128,12 +130,19 @@ const ChecklistR = (props) => {
       </Col>
       <Col md={2}>
         <FormGroup>
-          <Input
+
+          <Label for="CustomFileBrowser">File Upload</Label>
+          <CustomInput type="file" id="CustomFileBrowser" name={props.fc} value={props.file} onChange={props.FileUpload} />
+
+          {/* <Input
+
             type="file"
             name={props.fc}
             value={props.file}
             onChange={props.FileUpload}
-          ></Input>
+          >
+
+          </Input> */}
         </FormGroup>
       </Col>
       <Col md={1}>

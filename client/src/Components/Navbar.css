@@ -1,0 +1,36 @@
+.nav {
+ align-content: "start";
+    background-color:rgb(56, 51, 51) !important
+}
+.navlink {
+    color: white !important;
+    text-decoration: none;
+    
+}
+ 
+.item{
+    font-size: 20px;
+    font-weight: lighter;
+}
+ .navlink:hover {
+    
+    color: white;
+    
+  }
+ .navlink1:hover {
+    
+    color: transparent;
+    
+  }
+ .activelink{
+     color:rgb(113, 231, 113) !important;
+ }
+ .span:hover{
+     color:  rgb(113, 231, 113);;
+ }
+ 
+ 
+.span1{
+    color: rgb(0, 0, 0);
+}
+ 

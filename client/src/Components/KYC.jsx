@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Col, Row, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Col, Row, Form, FormGroup, Label, Input, Button, CarouselIndicators } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import moment from "moment";
+import Rdays from './ReusableComp/RemainingDays'
 import countryList from "react-select-country-list";
 import Select from "react-select";
 import { useDispatch, useSelector, connect } from "react-redux";
@@ -120,6 +121,7 @@ const KYC = () => {
       e.target.value = 0;
     }
   };
+  console.log(moment(KYC[0].kyc_startDate))
   return urlid && isLoading ? (
     <div
       style={{
@@ -145,6 +147,111 @@ const KYC = () => {
     </div>
   ) : (
     <div className="container">
+      {KYC.map((kyc, id) => {
+        return (
+          <div style={{ display: "flex" }}>
+            <Col md={3}>
+              {/* <Rdays datevalue={kyc.kyc_ExpiryDate} stdate={kyc.kyc_startDate} expdate={kyc.kyc_adExpiryDate}/> */}
+              <FormGroup>
+                <Label for="Name">Name</Label>
+                <Input
+                  className={"custom-select"}
+                  value={kyc.kyc_name}
+                  name="kyc_name"
+                  onChange={(e) => handleInput(e, id)}
+
+                  type="text"
+                  id="Name"
+                  placeholder="Share Holder Name"
+                ></Input>
+              </FormGroup>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Label for="shareRegister">Holders</Label>
+                <select
+                  className={"custom-select"}
+                  value={kyc.kyc_sholders}
+                  id="1"
+                  name="kyc_sholders"
+                  onChange={(e) => {
+                    handleInput(e, id);
+                  }}
+                >
+                  <option>Director</option>
+                  <option>Shareholder Director</option>
+                  <option>Shareholder</option>
+                </select>
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label for="remainingDays">Passport</Label>
+                <Input
+                  style={{
+                    backgroundColor:
+                      moment
+                        .duration(
+                          moment(kyc.kyc_ExpiryDate).diff(
+                            moment(new Date())
+                          )
+                        )
+                        .asDays() < 180
+                        ? "pink"
+                        : "#32CD32",
+                  }}
+                  type="text"
+                  disabled={true}
+                  value={
+                    kyc.kyc_ExpiryDate
+                      ? Math.ceil(moment
+                        .duration(
+                          moment(new Date()).diff(
+                            moment(kyc.kyc_startDate)
+                          )
+                        )
+                        .asDays())
+                      : ""
+                  }
+                ></Input>
+              </FormGroup>
+            </Col>
+            <Col md={2}>
+              <FormGroup>
+                <Label for="remainingDays">POA</Label>
+                <Input
+                  style={{
+                    backgroundColor:
+                      Math.ceil(moment
+                        .duration(
+                          moment(kyc.kyc_adExpiryDate).diff(
+                            moment(new Date())
+                          )
+                        )
+                        .asDays()) < 45
+                        ? "pink"
+                        : "#32CD32",
+                  }}
+                  type="text"
+                  disabled={true}
+                  value={
+                    kyc.kyc_adExpiryDate
+                      ? Math.ceil(moment
+                        .duration(
+                          moment(kyc.kyc_adExpiryDate).diff(
+                            moment(new Date())
+                          )
+                        )
+                        .asDays())
+                      : ""
+                  }
+                ></Input>
+              </FormGroup>
+            </Col>
+          </div>
+
+        )
+      })}
       <div>
         <h2>
           <span class="badge badge-success">KNOW YOUR CUSTOMER (KYC)</span>
@@ -157,6 +264,7 @@ const KYC = () => {
             <div>
               <Row form>
                 <Col md={6}>
+                  {/* <Rdays datevalue={kyc.kyc_ExpiryDate} stdate={kyc.kyc_startDate} expdate={kyc.kyc_adExpiryDate}/> */}
                   <FormGroup>
                     <Label for="Name">Name</Label>
                     <Input
@@ -164,6 +272,7 @@ const KYC = () => {
                       value={kyc.kyc_name}
                       name="kyc_name"
                       onChange={(e) => handleInput(e, id)}
+
                       type="text"
                       id="Name"
                       placeholder="Share Holder Name"
@@ -270,7 +379,7 @@ const KYC = () => {
                           moment
                             .duration(
                               moment(kyc.kyc_ExpiryDate).diff(
-                                moment(kyc.kyc_startDate)
+                                moment(new Date())
                               )
                             )
                             .asDays() < 180
@@ -281,13 +390,13 @@ const KYC = () => {
                       disabled={true}
                       value={
                         kyc.kyc_ExpiryDate
-                          ? moment
-                              .duration(
-                                moment(kyc.kyc_ExpiryDate).diff(
-                                  moment(kyc.kyc_startDate)
-                                )
+                          ? Math.ceil(moment
+                            .duration(
+                              moment(new Date()).diff(
+                                moment(kyc.kyc_startDate)
                               )
-                              .asDays()
+                            )
+                            .asDays())
                           : ""
                       }
                     ></Input>
@@ -388,13 +497,13 @@ const KYC = () => {
                     <Input
                       style={{
                         backgroundColor:
-                          moment
+                          Math.ceil(moment
                             .duration(
                               moment(kyc.kyc_adExpiryDate).diff(
-                                moment(kyc.kyc_adstartDate)
+                                moment(new Date())
                               )
                             )
-                            .asDays() < 45
+                            .asDays()) < 45
                             ? "pink"
                             : "#32CD32",
                       }}
@@ -402,13 +511,13 @@ const KYC = () => {
                       disabled={true}
                       value={
                         kyc.kyc_adExpiryDate
-                          ? moment
-                              .duration(
-                                moment(kyc.kyc_adExpiryDate).diff(
-                                  moment(kyc.kyc_adstartDate)
-                                )
+                          ? Math.ceil(moment
+                            .duration(
+                              moment(kyc.kyc_adExpiryDate).diff(
+                                moment(new Date())
                               )
-                              .asDays()
+                            )
+                            .asDays())
                           : ""
                       }
                     ></Input>
@@ -503,7 +612,7 @@ const KYC = () => {
   );
 };
 
- 
+
 export default KYC;
 
 //LOgic of days calculator

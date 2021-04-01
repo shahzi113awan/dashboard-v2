@@ -7,9 +7,9 @@ import {
   Update,
   GetOneApp,
   UpdateOne,
-  Get,
+  
 } from "../../actions/appActions";
-
+import {Get} from '../../actions/appActions'
 export default function ApprovalForm() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ export default function ApprovalForm() {
     e.preventDefault();
     await dispatch(UpdateOne(App, urlid));
     dispatch(Get());
-    history.push("/mainApp");
+    history.push("/mainappdb");
 
     // history.push("/sdkyb/" + urlid);
   };
@@ -67,7 +67,7 @@ export default function ApprovalForm() {
     console.log(App);
     await dispatch(CreateApp(App));
     dispatch(Get());
-    history.push("/mainApp");
+    history.push("/mainappdb");
   };
   return (
     <div className="container">

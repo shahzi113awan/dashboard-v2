@@ -1,4 +1,5 @@
 import { Button } from "reactstrap";
+import '../assets/css/db.css'
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -68,87 +69,87 @@ export default function MainDashboard() {
       </div>
     </div>
   ) : (
-    <div className="container-fluid">
-      <div class="table-responsive mt-5">
+    <div className="container-fluid" >
+      <div className="table-responsive mt-5">
         <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col"> # </th>
-              <th scope="col" style={{ width: "200px" }} classNa>
+          <thead className="thead">
+            <tr className="tr ">
+              <th className="th" scope="col"> # </th>
+              <th style={{ width: "100%" }} className="th" scope="col" style={{ width: "200px" }}  >
                 Registered Company Name
               </th>
-              <th scope="col">Total Pending</th>
-              <th scope="col ">Total Collected</th>
-              <th scope="col">Total Outstanding</th>
-              <th scope="col">10 Day Report</th>
-              <th scope="col ">Allocated Acquirer / Solution</th>
-              <th scope="col">Company Info & Checkout Page</th>
-              <th scope="col">Pre Approval ems Buy Rate</th>
-              <th scope="col ">Pre Approval ems Sel Rate</th>
-              <th scope="col ">Application Boarded Date</th>
-              <th scope="col">Aged Days</th>
-              <th scope="col">Trading / New to Cards (NTC)</th>
-              <th scope="col ">Vertical / Trading Sector</th>
-              <th scope="col ">Business / Referral Partner</th>
-              <th scope="col ">Assigned BDM / Owner</th>
-              <th scope="col">Compliance Country Location</th>
-              <th scope="col">EEA Documents</th>
-              <th scope="col "> Trading License or Agreements Required</th>
-              <th scope="col ">Fully Completed Application Form</th>
-              <th scope="col ">Bank Information (Welcome Letter)</th>
-              <th scope="col">Office Tenancy Agreement</th>
-              <th scope="col">Acquiring Processing Statements</th>
-              <th scope="col "> Headline Website URL Address</th>
-              <th scope="col">Website Compliance</th>
-              <th scope="col "> Website URL - Proof of Domain</th>
-              <th scope="col ">Ownership Structure Chart</th>
-              <th scope="col ">Business Plan</th>
-              <th scope="col ">Shareholds</th>
+              <th className="th" scope="col">Total Pending</th>
+              <th className="th" scope="col ">Total Collected</th>
+              <th className="th" scope="col">Total Outstanding</th>
+              <th className="th" scope="col">10 Day Report</th>
+              <th className="th" scope="col ">Allocated Acquirer / Solution</th>
+              <th className="th" scope="col">Company Info & Checkout Page</th>
+              <th className="th" scope="col">Pre Approval ems Buy Rate</th>
+              <th className="th" scope="col ">Pre Approval ems Sel Rate</th>
+              <th className="th" scope="col ">Application Boarded Date</th>
+              <th className="th" scope="col">Aged Days</th>
+              <th className="th" scope="col">Trading / New to Cards (NTC)</th>
+              <th className="th" scope="col ">Vertical / Trading Sector</th>
+              <th className="th" scope="col ">Business / Referral Partner</th>
+              <th className="th" scope="col ">Assigned BDM / Owner</th>
+              <th className="th" scope="col">Compliance Country Location</th>
+              <th className="th" scope="col">EEA Documents</th>
+              <th className="th" scope="col "> Trading License or Agreements Required</th>
+              <th className="th" scope="col ">Fully Completed Application Form</th>
+              <th className="th" scope="col ">Bank Information (Welcome Letter)</th>
+              <th className="th" scope="col">Office Tenancy Agreement</th>
+              <th className="th" scope="col">Acquiring Processing Statements</th>
+              <th className="th" scope="col "> Headline Website URL Address</th>
+              <th className="th" scope="col">Website Compliance</th>
+              <th className="th" scope="col "> Website URL - Proof of Domain</th>
+              <th className="th" scope="col ">Ownership Structure Chart</th>
+              <th className="th" scope="col ">Business Plan</th>
+              <th className="th" scope="col ">Shareholds</th>
 
-              {/* <th scope='col'>Shareholder / Director Name</th>
-              <th scope='col'>Shareholding Percentage</th>
-              <th scope='col '> Lead Director Passport</th>
-              <th scope='col'>Country / Nationality</th>
-              <th scope='col'>Notarised</th>
-              <th scope='col '> Expiry Date</th>
-              <th scope='col'>Proof of Address (POA)</th>
-              <th scope='col '> Type of POA</th>
-              <th scope='col '>Notarised</th>
-              <th scope='col '>POA Start Date</th>
-              <th scope='col'>POA Expiry Date (+90 days)</th>
-              <th scope='col'>Expiry Days</th>
-              <th scope='col '> Power of Attorney Document</th> */}
-              {/* <th scope="col">Shareholder / Director Name</th>
-              <th scope="col">Shareholding Percentage</th>
-              <th scope="col "> Client Passport</th>
-              <th scope="col">Country / Nationality</th>
-              <th scope="col "> Notarised</th>
-              <th scope="col ">Expiry Date</th>
-              <th scope="col ">Proof of Address (POA)</th>
-              <th scope="col">Type of POA</th>
-              <th scope="col">Notarised</th>
-              <th scope="col "> POA Start Date</th>
-              <th scope="col">POA Expiry Date (+90 days)</th>
-              <th scope="col">Expiry Days</th>
-              <th scope="col "> Certificate of Incorporation</th>
-              <th scope="col">Memorandum of Association</th>
-              <th scope="col ">Articles of Association</th>
-              <th scope="col ">Share Register</th>
-              <th scope="col ">Share Certificate(s) - Signed</th>
-              <th scope="col">Current Commercial Register Extract</th>
-              <th scope="col">Notarised</th> */}
-              <th scope="col "> Corporate Bank Statements</th>
-              <th scope="col">Personal Bank Statements</th>
-              <th scope="col">Proof of Wealth</th>
-              <th scope="col "> Company AML Policy</th>
-              <th scope="col">Gambling or Forex License</th>
-              <th scope="col ">Copywrite or Re-seller Agreement</th>
-              <th scope="col ">Fulfilment or Drop shipping Agreement</th>
-              <th scope="col ">FBO Company Registration (Nutra Merchants)</th>
-              <th scope="col">Sales Handoff Sheet (CCBill Only)</th>
-              {/* <th scope="col">SPARE</th> */}
-              <th scope="col "> SPARE</th>
-              <th scope="col "> Delete</th>
+              {/* <th className="th" scope='col'>Shareholder / Director Name</th>
+              <th className="th" scope='col'>Shareholding Percentage</th>
+              <th className="th" scope='col '> Lead Director Passport</th>
+              <th className="th" scope='col'>Country / Nationality</th>
+              <th className="th" scope='col'>Notarised</th>
+              <th className="th" scope='col '> Expiry Date</th>
+              <th className="th" scope='col'>Proof of Address (POA)</th>
+              <th className="th" scope='col '> Type of POA</th>
+              <th className="th" scope='col '>Notarised</th>
+              <th className="th" scope='col '>POA Start Date</th>
+              <th className="th" scope='col'>POA Expiry Date (+90 days)</th>
+              <th className="th" scope='col'>Expiry Days</th>
+              <th className="th" scope='col '> Power of Attorney Document</th> */}
+              {/* <th className="th" scope="col">Shareholder / Director Name</th>
+              <th className="th" scope="col">Shareholding Percentage</th>
+              <th className="th" scope="col "> Client Passport</th>
+              <th className="th" scope="col">Country / Nationality</th>
+              <th className="th" scope="col "> Notarised</th>
+              <th className="th" scope="col ">Expiry Date</th>
+              <th className="th" scope="col ">Proof of Address (POA)</th>
+              <th className="th" scope="col">Type of POA</th>
+              <th className="th" scope="col">Notarised</th>
+              <th className="th" scope="col "> POA Start Date</th>
+              <th className="th" scope="col">POA Expiry Date (+90 days)</th>
+              <th className="th" scope="col">Expiry Days</th>
+              <th className="th" scope="col "> Certificate of Incorporation</th>
+              <th className="th" scope="col">Memorandum of Association</th>
+              <th className="th" scope="col ">Articles of Association</th>
+              <th className="th" scope="col ">Share Register</th>
+              <th className="th" scope="col ">Share Certificate(s) - Signed</th>
+              <th className="th" scope="col">Current Commercial Register Extract</th>
+              <th className="th" scope="col">Notarised</th> */}
+              <th className="th" scope="col "> Corporate Bank Statements</th>
+              <th className="th" scope="col">Personal Bank Statements</th>
+              <th className="th" scope="col">Proof of Wealth</th>
+              <th className="th" scope="col "> Company AML Policy</th>
+              <th className="th" scope="col">Gambling or Forex License</th>
+              <th className="th" scope="col ">Copywrite or Re-seller Agreement</th>
+              <th className="th" scope="col ">Fulfilment or Drop shipping Agreement</th>
+              <th className="th" scope="col ">FBO Company Registration (Nutra Merchants)</th>
+              <th className="th" scope="col">Sales Handoff Sheet (CCBill Only)</th>
+              {/* <th className="th" scope="col">SPARE</th> */}
+              <th className="th" scope="col "> SPARE</th>
+              <th className="th" scope="col "> Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -168,8 +169,8 @@ export default function MainDashboard() {
                         <th scope="row">{index + 1}</th>
                         <td style={{ position: "relative" }}>
                           {" "}
-                          <Link to={"/ci/" + res._id}>
-                            {res.ci.tpi_rcName
+                          <Link className="name" to={"/ci/" + res._id}>
+                            {res.ci.tpi_rcName != " "
                               ? res.ci.tpi_rcName
                               : "Default Name"}
                           </Link>
@@ -178,7 +179,9 @@ export default function MainDashboard() {
                         <td>{res.cl.pendingCount.length}</td>
                         <td>{22 - res.cl.pendingCount.length}</td>
                         <td>
-                          <button type="submit">0</button>
+                          <Link> <img style={{ width: "50%" }} src="./report.png" alt="report" /></Link>
+
+                          {/* <button type="submit">0</button> */}
                         </td>
                         <td>
                           {res.ci.tpi_aaSolution ? res.ci.tpi_aaSolution : ""}
@@ -201,7 +204,7 @@ export default function MainDashboard() {
                         <td>4.95%</td>
                         <td>6.95%</td>
                         <td>{res.ci.tpi_date}</td>
-                        <td>{res.ci.tpi_date ? cal(res.ci.tpi_date) : ""}</td>
+                        <td className={cal(res.ci.tpi_date) > 90 ? "date" : "okdate"}>{res.ci.tpi_date ? cal(res.ci.tpi_date) : ""}</td>
                         <td>{res.ci.tpi_ntc ? res.ci.tpi_ntc : ""}</td>
                         <td>
                           {res.ci.tpi_vtSector ? res.ci.tpi_vtSector : ""}

@@ -7,6 +7,7 @@ import RSolutionNav from "./ReusableComponents/RsolNavParam";
 import Options from "./ReusableComponents/RParams";
 import {
   CreateContact,
+  GetContacts,
   GetOnecontact,
   UpdateOne,
 } from "../../actions/contactAction";
@@ -54,13 +55,13 @@ const SolutionNavParam = () => {
 
   const onSubmit = async (e) => {
     await dispatch(CreateContact(Contact));
-
-    history.push("/solution-app");
+    dispatch(GetContacts())
+    history.push("/contact-list");
   };
   const onUpdateSubmit = async () => {
     await dispatch(UpdateOne(Contact, urlid));
-
-    history.push("/solution-app");
+    dispatch(GetContacts())
+    history.push("/contact-list");
   };
   return (
     <div className="container">
@@ -83,7 +84,7 @@ const SolutionNavParam = () => {
             value={Contact.fn}
             name="fn"
             handleChange={(e) => handleChange(e)}
-            placeholder={"Solution Name"}
+            placeholder={" Name"}
           />
           <RSolutionNav
             text={"Company"}
