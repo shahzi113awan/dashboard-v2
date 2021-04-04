@@ -4,6 +4,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateSD, GetOneSD, INITIATESD } from "../actions/sdAction";
 import { GetOneCL } from "../actions/clAction";
+import {INITIATESpare} from '../actions/spareAction'
 
 export default function CTI() {
   const dispatch = useDispatch();
@@ -12,6 +13,15 @@ export default function CTI() {
   // console.log(id);
   const data = useSelector((state) => state.sdReducer.state);
   const dataCL = useSelector((state) => state.clReducer.state);
+  const [Spare, setSpare] = useState([{
+    text: "",
+    note: "",
+    status: "",
+    path: ""
+  }])
+  useEffect(() => {
+    dispatch(INITIATESpare(Spare));
+  }, [dispatch]);
 
   console.log(data);
   const { urlid } = useParams();

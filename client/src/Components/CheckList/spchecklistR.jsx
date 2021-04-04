@@ -4,6 +4,8 @@ import {
   AiOutlineFolderView,
   AiFillEdit,
   AiOutlineReload,
+  AiFillPlusCircle,
+  AiOutlineDelete
 } from "react-icons/ai";
 import {
   Col,
@@ -117,6 +119,23 @@ const SpChecklistR = (props) => {
             onClick={(e) => {
               handleClickReload(e);
             }}
+          />
+        </FormGroup>
+      </Col>
+      <Col>
+        <FormGroup>
+          <AiFillPlusCircle
+
+            size={30}
+            onClick={props.add}
+          />
+        </FormGroup>
+      </Col>
+      <Col>
+        <FormGroup>
+          <AiOutlineDelete
+            size={30}
+            onClick={props.delete}
           />
         </FormGroup>
       </Col>

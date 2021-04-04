@@ -4,6 +4,7 @@ import { kybReducer } from "./kybReducer";
 import { ciReducer } from "./ciReducer";
 import { ctiReducer } from "./ctiReducer";
 import { clReducer } from "./clReducer";
+import { SpareReducer } from "./spareReducer";
 import { kycReducer } from "./kycReducer";
 import { sdReducer } from "./sdReducer";
 import { appReducer } from "./appReducer";
@@ -22,4 +23,5 @@ export default combineReducers({
   contactReducer,
   solReducer,
   solParamsReducer,
+  SpareReducer
 });

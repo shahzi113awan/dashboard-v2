@@ -10,11 +10,14 @@ import { Get, setLoading } from "../actions/ciAction";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import { firebase } from "../Config";
+import { CreateSpare } from "../actions/spareAction";
 export const CheckList = () => {
   const dispatch = useDispatch();
 
   const history = useHistory();
   const data = useSelector((state) => state.clReducer.state);
+  const SpareData = useSelector((state) => state.SpareReducer.state)
+  console.log(SpareData);
   const id = useSelector((state) => state.ciReducer.id);
   console.log(data);
   //States
@@ -32,6 +35,16 @@ export const CheckList = () => {
       ? dispatch(GetOneCL(urlid)) && setcountArr(data.pendingCount)
       : console.log("creating");
   }, [urlid]);
+  const [Spare, setSpare] = useState([
+    {
+      text: "",
+      note: "",
+      status: "",
+      path: ""
+    },
+  ])
+
+
   const [CL, setCL] = React.useState({
     // fcaf_status: "",
     // fcaf_fileName: "Pending",
@@ -104,19 +117,101 @@ export const CheckList = () => {
     // df_status: "pending",
     // df_fileName: "fileName",
   });
+  //Spare Section -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=--
+  useEffect(() => {
+    setSpare(SpareData)
+  }, [SpareData])
+  const handletextSpare = async (e, index) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    const list = [...Spare];
+    list[index][name] = value;
+    setSpare(list);
+  };
+  const handleChangeSpare = async (e, index) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    const list = [...Spare];
+    list[index][name] = value;
+    setSpare(list);
+  };
+  const handleNotesSpare = async (e, index) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    const list = [...Spare];
+    list[index][name] = value;
+    setSpare(list);
+  };
+  // handle click event of the Add button
+  const handleAddClick = (e) => {
+    e.preventDefault();
+    setSpare([
+      ...Spare,
+      {
+        text: "",
+        note: "",
+        status: "",
+        path: ""
+      },
+    ]);
+  };
 
+  //handle add and remove
+  const handleRemoveClick = (e, index) => {
+    const list = [...Spare];
+    list.splice(index, 1);
+    setSpare(list);
+  };
+  const ImageHandlerSpare = async (e, index) => {
+    console.log(e.target.name);
+    const file = e.target.files[0];
+    const fileName = e.target.files[0].name;
+    // console.log(fileName);
+    // console.log(e.target.name);
+    const formData = new FormData();
+    formData.append("", file);
+    setIsLoading(true);
+    try {
+      let fName = new Date().getTime() + "_" + fileName;
+      const uploadTask = firebase.storage().ref(`/files/${fName}`).put(file);
+      uploadTask.on("state_changed", console.log, console.error, () => {
+        firebase
+          .storage()
+          .ref("files")
+          .child(fName)
+          .getDownloadURL()
+          .then((url) => {
+            // file = null
+            setURL(url);
+            console.log(url);
+            // const config = {
+            //   headers: {
+            //     "Content-Type": "multipart/form-data",
+            //   },
+            // };
+            // const { data } = axios.post("api/upload", formData, config);
+            setImage(url);
+            e.preventDefault();
+            const { name, value } = e.target;
+            const list = [...Spare];
+            list[index][name] = url;
+            setSpare(list);
+            setIsLoading(false);
+          });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(url);
+  };
+
+  //Spare section End-=-=-=-=====-=-=-=-==============-=---=-=-=-===============-
   useEffect(() => {
     setcountArr(data.pendingCount);
     setCL(data);
   }, [data]);
   // console.log(CL);
-  const handletext = (e) => {
-    console.log(e.target.name);
-    setCL({
-      ...CL,
-      [e.target.name]: e.target.value,
-    });
-  };
+
 
   const handleChange = (e) => {
     console.log(e.target.name);
@@ -132,12 +227,12 @@ export const CheckList = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const handleChangeSpare = (e) => {
-    setCL({
-      ...CL,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const handleChangeSpare = (e) => {
+  //   setCL({
+  //     ...CL,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
   const handleNotes = (e) => {
     setCL({
       ...CL,
@@ -195,9 +290,12 @@ export const CheckList = () => {
     urlid
       ? (await dispatch(CreateCL(CL, urlid))) && dispatch(Get())
       : dispatch(CreateCL(CL, id)) && dispatch(Get());
+    urlid
+      ? (await dispatch(CreateSpare(Spare, urlid)))
+      : dispatch(CreateSpare(Spare, id));
     history.push("/");
+    console.log(Spare)
   };
-  console.log(isLoading);
   return (
     <div className="container">
       {isLoading == true ? (
@@ -835,8 +933,39 @@ export const CheckList = () => {
           />
 
           {/* spare */}
+          {
+            Spare.map((res, id) => {
+              return (
+                <SpChecklistR
+                  placeholder={"spare"}
+                  name={"status"}
+                  nameT="text"
+                  fc="path"
+                  note="note"
+                  notesVal={res.note}
+                  value={res.status}
+                  valueT={res.text}
+                  path={res.path}
+                  onChangetext={(e) => {
+                    handletextSpare(e, id);
+                  }}
+                  Change={(e) => {
+                    handleChangeSpare(e, id);
+                  }}
+                  notesHandle={(e) => {
+                    handleNotesSpare(e, id);
+                  }}
+                  FileUpload={(e) => {
+                    ImageHandlerSpare(e, id);
+                  }}
+                  add={(e) => { handleAddClick(e); }}
+                  delete={(e) => { handleRemoveClick(e, id); }}
+                />
+              )
+            })
+          }
 
-          <SpChecklistR
+          {/* <SpChecklistR
             placeholder={"spare"}
             name={"spare"}
             nameT="spare_Text"
@@ -973,7 +1102,7 @@ export const CheckList = () => {
             FileUpload={(e) => {
               ImageHandler(e);
             }}
-          />
+          /> */}
           {/* <SpChecklistR
             text={"Confirmation & Declaration Form (GGS Only)"}
             name={"cdf_status"}
