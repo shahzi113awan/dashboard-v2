@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { GetOneSpare } from "../actions/spareAction";
+import { Get } from "../actions/ciAction"
 
 export default function MainDashboard() {
   const { id } = useParams();
@@ -11,16 +11,16 @@ export default function MainDashboard() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(GetOneSpare(id));
+    dispatch(Get());
   }, [dispatch]);
   const [db, setDb] = useState([]);
-  const data = useSelector((state) => state.SpareReducer.state);
+  const data = useSelector((state) => state.ciReducer.state);
   // const isLoading = 'useSelector((state) => state.ciReducer.isLoading)'
   useEffect(() => {
     setDb(data);
   }, [data]);
   console.log(db);
-  const isLoading = useSelector((state) => state.SpareReducer.isLoading);
+  const isLoading = useSelector((state) => state.ciReducer.isLoading);
    
  console.log(isLoading);
   console.log(db);
@@ -41,19 +41,19 @@ export default function MainDashboard() {
           <tbody>
             {data &&
               data.map((res, index) => {
-                
+                if (res._id == id) {
                   return (
                     <React.Fragment>
                       <tr>
                         {/* <h1>hahaha</h1> */}
                         <th scope="row">{index + 1}</th>
-                        <td>{res.text}</td>
-                        <td>{res.status}</td>
+                        <td>{res.spare.text}</td>
+                        <td>{res.spare.status}</td>
                       </tr>
                        
                     </React.Fragment>
                   );
-                
+                  }
               })}
           </tbody>
         </table>
