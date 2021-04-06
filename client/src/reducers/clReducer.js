@@ -1,8 +1,8 @@
 const initialState = {
   state: {
     pendingCount: [],
-    fcaf_status: "",
-    fcaf_fileName: "Pending",
+    fcaf_status: "pending",
+    fcaf_fileName: "fileName",
     fcaf_note: " ",
     cdf_status: "pending",
     cdf_fileName: "fileName",

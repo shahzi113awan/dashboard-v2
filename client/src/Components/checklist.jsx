@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Row, Button, Form } from "reactstrap";
+import { Row, Button, Form, Col, FormGroup } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import ChecklistR from "./CheckList/checklistR";
 import SpChecklistR from "./CheckList/spchecklistR";
@@ -333,47 +333,55 @@ export const CheckList = () => {
 
       <Form>
         <Row form>
-          <ChecklistR
-            text={"Fully Completed Application Form "}
-            name={"fcaf_status"}
-            fc="fcaf_fileName"
-            note="fcaf_note"
-            notesVal={CL.fcaf_note}
-            value={CL.fcaf_status}
-            path={CL.fcaf_fileName}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Bank Information (Welcome Letter) "}
-            name={"bi_status"}
-            fc="bi_fileName"
-            note="bi_note"
-            notesVal={CL.bi_note}
-            value={CL.bi_status}
-            path={CL.bi_fileName}
-            Change={(e) => {
-              console.log("changing");
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          {/* <ChecklistR
+          <React.Fragment style={{ backgroundColor: 'pink' }}>
+            <Col md={10}>
+              <FormGroup>
+                <h4>
+                  <span>Trading Information:</span>
+                </h4>
+              </FormGroup>
+            </Col>
+            <ChecklistR
+              text={"Fully Completed Application Form "}
+              name={"fcaf_status"}
+              fc="fcaf_fileName"
+              note="fcaf_note"
+              notesVal={CL.fcaf_note}
+              value={CL.fcaf_status}
+              path={CL.fcaf_fileName}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Bank Information (Welcome Letter) "}
+              name={"bi_status"}
+              fc="bi_fileName"
+              note="bi_note"
+              notesVal={CL.bi_note}
+              value={CL.bi_status}
+              path={CL.bi_fileName}
+              Change={(e) => {
+                console.log("changing");
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            {/* <ChecklistR
             text={"Office Tenancy Agreement "}
             name={"ota_status"}
             fc='ota_fileName'
@@ -393,79 +401,79 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           /> */}
-          <ChecklistR
-            text={" Acquiring Processing Statements"}
-            name={"aps_status"}
-            fc="aps_fileName"
-            note="aps_note"
-            notesVal={CL.aps_note}
-            value={CL.aps_status}
-            path={CL.aps_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Headline Website URL Address"}
-            name={"hwua_status"}
-            fc="hwua_fileName"
-            note="hwua_note"
-            notesVal={CL.hwua_note}
-            value={CL.hwua_status}
-            path={CL.hwua_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Website Compliance "}
-            name={"wc_status"}
-            fc="wc_fileName"
-            note="wc_note"
-            notesVal={CL.wc_note}
-            value={CL.wc_status}
-            path={CL.wc_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Website URL-Proof of Domain"}
-            name={"wuod_status"}
-            fc="wuod_fileName"
-            note="wuod_note"
-            notesVal={CL.wuod_note}
-            value={CL.wuod_status}
-            path={CL.wuod_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          {/* <ChecklistR
+            <ChecklistR
+              text={" Acquiring Processing Statements"}
+              name={"aps_status"}
+              fc="aps_fileName"
+              note="aps_note"
+              notesVal={CL.aps_note}
+              value={CL.aps_status}
+              path={CL.aps_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Headline Website URL Address"}
+              name={"hwua_status"}
+              fc="hwua_fileName"
+              note="hwua_note"
+              notesVal={CL.hwua_note}
+              value={CL.hwua_status}
+              path={CL.hwua_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Website Compliance "}
+              name={"wc_status"}
+              fc="wc_fileName"
+              note="wc_note"
+              notesVal={CL.wc_note}
+              value={CL.wc_status}
+              path={CL.wc_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Website URL-Proof of Domain"}
+              name={"wuod_status"}
+              fc="wuod_fileName"
+              note="wuod_note"
+              notesVal={CL.wuod_note}
+              value={CL.wuod_status}
+              path={CL.wuod_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            {/* <ChecklistR
             text={"Ownership Structure Chart "}
             name={"owsc_status"}
             fc='owsc_fileName'
@@ -500,7 +508,14 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           /> */}
-
+          </React.Fragment>
+          <Col md={10}>
+            <FormGroup>
+              <h4>
+                <span>Know Your Customer (KYC):</span>
+              </h4>
+            </FormGroup>
+          </Col>
           <ChecklistR
             text={"Lead Director-Passport "}
             name={"ldp_status"}
@@ -662,6 +677,13 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           />
+          <Col md={10}>
+            <FormGroup>
+              <h4>
+                <span>Know Your Business(KYB):</span>
+              </h4>
+            </FormGroup>
+          </Col>
           <ChecklistR
             text={"Certificate of Incorporation "}
             name={"coi_status"}
@@ -770,6 +792,13 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           />
+           <Col md={10}>
+            <FormGroup>
+              <h4>
+                <span>Supporting Documents:</span>
+              </h4>
+            </FormGroup>
+          </Col>
           <ChecklistR
             text={'Corporate Bank Statements'}
             name={'cbs_status'}
@@ -859,6 +888,13 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           /> */}
+          <Col md={10}>
+            <FormGroup>
+              <h4>
+                <span>Supporting Documents:</span>
+              </h4>
+            </FormGroup>
+          </Col>
           <ChecklistR
             text={"Copywrite or Re-seller Agreement"}
             name={"cora_status"}
@@ -931,7 +967,13 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           />
-
+          <Col md={10}>
+            <FormGroup>
+              <h4>
+                <span>Miscellaneous :</span>
+              </h4>
+            </FormGroup>
+          </Col>
           {/* spare */}
           {
             Spare.map((res, id) => {

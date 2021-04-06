@@ -131,8 +131,7 @@ const ChecklistR = (props) => {
       <Col md={2}>
         <FormGroup>
 
-          <Label for="CustomFileBrowser">File Upload</Label>
-          <CustomInput type="file" id="CustomFileBrowser" name={props.fc} value={props.file} onChange={props.FileUpload} />
+          <Input type="file" id="CustomFileBrowser" name={props.fc} value={props.file} onChange={props.FileUpload} />
 
           {/* <Input
 
