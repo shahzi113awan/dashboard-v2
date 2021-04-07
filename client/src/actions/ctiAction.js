@@ -1,4 +1,4 @@
-  import axios from "axios";
+import axios from "axios";
 export const CreateCTI = (obj, id) => async (dispatch) => {
   try {
     let url = "/api/cti";
@@ -18,10 +18,15 @@ export const CreateCTI = (obj, id) => async (dispatch) => {
 };
 export const GetOneCTI = (id) => async (dispatch) => {
   await axios.get("/api/ci/" + id, { id: id }).then((res) => {
-    
     dispatch({
       type: "GET_CTI",
       payload: res.data.cti,
     });
+  });
+};
+export const INITIATECTI = (data) => async (dispatch) => {
+  dispatch({
+    type: "INITIALIZE_CTI",
+    payload: data,
   });
 };

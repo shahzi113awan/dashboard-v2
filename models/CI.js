@@ -6,7 +6,11 @@ let CISchema = new Schema(
     name: {
       type: String,
     },
+
     ci: {
+      cistatus: {
+        type: String,
+      },
       tpi_rcName: {
         type: String,
       },
@@ -75,6 +79,9 @@ let CISchema = new Schema(
       cci_otpMNumber: {
         type: String,
       },
+      cci_otpMNumber1: {
+        type: String,
+      },
 
       tci_crAddress: {
         type: String,
@@ -101,6 +108,10 @@ let CISchema = new Schema(
       cci_2_lNumber: {
         type: String,
       },
+      cci_2_lNumber1: {
+        type: String,
+      },
+
       cci_2_otpMNumber: {
         type: String,
       },

@@ -1,4 +1,4 @@
-const initialState = [];
+const initialState = {   isLoading: true,};
 // cti_fcaForm: 'Pending',
 // cti_bInformation: 'Pending',
 // cti_otAgreement: '',
@@ -14,9 +14,14 @@ export const mDBReducer = (state = initialState, action) => {
       return {
         ...state,
         state: action.payload,
+        isLoading: false,
       };
       break;
-
+    case "LOADING":
+      return {
+        ...state,
+        isLoading: true,
+      };
     default:
       return state;
       break;

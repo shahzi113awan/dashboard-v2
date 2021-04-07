@@ -1,39 +1,59 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
+import { GetOneCL } from "../actions/clAction";
 
 import { CreateCTI, GetOneCTI } from "../actions/ctiAction";
+import { GetOneKYC, INITIATEKYC } from "../actions/kycAction";
 
-// import { completed, pending } from '../actions/completedAction'
-
-const CTI = ({ Done, completed, pending }) => {
+const CTI = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const historyback = BrowserRouter();
   const { urlid } = useParams();
-  // console.log(urlid);
   const data = useSelector((state) => state.ctiReducer.state);
+  const dataCL = useSelector((state) => state.clReducer.state);
   const dataKYc = useSelector((state) => state.kycReducer.state);
-  console.log(data);
+  console.log(dataKYc);
   const id = useSelector((state) => state.ciReducer.id);
+  console.log(id);
   const link = `/ci/${urlid}`;
 
-  // console.log(data);
-  // console.log(id);
   useEffect(() => {
     urlid ? dispatch(GetOneCTI(urlid)) : console.log("creating");
+    urlid ? dispatch(GetOneCL(urlid)) : console.log("No Check List");
   }, [urlid]);
-
+  const [CL, setCL] = useState({});
+  const [KYC, setKYC] = useState([
+    {
+      Rdays: "",
+      kyc_name: "",
+      kyc_sHolds: "",
+      kyc_sholders: "",
+      kyc_pID: "",
+      kyc_startDate: "",
+      kyc_ExpiryDate: "",
+      kyc_nationality: "",
+      kyc_notarized: "",
+      kyc_Address: "",
+      kyc_adstartDate: "",
+      kyc_adExpiryDate: "",
+      kyc_toProof: "",
+      kyc_paDocument: "",
+    },
+  ]);
+  useEffect(() => {
+    dispatch(INITIATEKYC(KYC));
+  }, [dispatch]);
   const [CTI, setCTI] = React.useState({
-    // cti_fcaForm: 'Pending',
-    // cti_bInformation: 'Pending',
-    // cti_otAgreement: '',
-    // cti_hwUrl: 'Pending',
-    // cti_wCompliance: '',
-    // cti_wUrl_proofDomain: 'Pending',
-    // cti_osChart: 'Pending',
-    // cti_bPlan: 'Pending',
+    cti_fcaForm: "Pending",
+    cti_bInformation: "Pending",
+    cti_otAgreement: "",
+    cti_hwUrl: "Pending",
+    cti_wCompliance: "",
+    cti_wUrl_proofDomain: "Pending",
+    cti_osChart: "Pending",
+    cti_bPlan: "Pending",
   });
   // console.log(CTI)
   function handleInput(evt) {
@@ -47,10 +67,14 @@ const CTI = ({ Done, completed, pending }) => {
   useEffect(() => {
     setCTI(data);
   }, [data]);
-  
-  const onSubmit = (e) => {
+  useEffect(() => {
+    setCL(dataCL);
+  }, [dataCL]);
+
+  const onSubmit = async (e) => {
+    console.log("now it is called");
     console.log(CTI);
-    dispatch(CreateCTI(CTI, id));
+    await dispatch(CreateCTI(CTI, id));
 
     history.push("/KYC");
   };
@@ -73,7 +97,7 @@ const CTI = ({ Done, completed, pending }) => {
               <Label for="certificate">Fully Completed Application Form:</Label>
               <select
                 className={"custom-select"}
-                value={CTI.cti_fcaForm}
+                value={CL.fcaf_status ? CL.fcaf_status : CTI.cti_fcaForm}
                 // value={'Not Required'}
                 id="1"
                 name="cti_fcaForm"
@@ -89,7 +113,7 @@ const CTI = ({ Done, completed, pending }) => {
               <Label for="memo">Bank Information (Welcome Letter):</Label>
               <select
                 className={"custom-select"}
-                value={CTI.cti_bInformation}
+                value={CL.bi_status ? CL.bi_status : CTI.cti_bInformation}
                 // value={"Not Required"}
                 id="1"
                 name="cti_bInformation"
@@ -127,7 +151,7 @@ const CTI = ({ Done, completed, pending }) => {
               <Label for="shareRegister">Headline Website URL Address:</Label>
               <select
                 className={"custom-select"}
-                value={CTI.cti_hwUrl}
+                value={CL.hwua_status ? CL.hwua_status : CTI.cti_hwUrl}
                 id="1"
                 name="cti_hwUrl"
                 onChange={handleInput}
@@ -144,7 +168,7 @@ const CTI = ({ Done, completed, pending }) => {
               <Label for="shareCertificate">Website Compliance:</Label>
               <Input
                 className={"custom-select"}
-                value={CTI.cti_wCompliance}
+                value={CL.wc_status ? CL.wc_status : CTI.cti_wCompliance}
                 name="cti_wCompliance"
                 onChange={handleInput}
                 type="url"
@@ -158,7 +182,9 @@ const CTI = ({ Done, completed, pending }) => {
               <Label for="CCR">Website URL - Proof of Domain:</Label>
               <select
                 className={"custom-select"}
-                value={CTI.cti_wUrl_proofDomain}
+                value={
+                  CL.wuod_status ? CL.wuod_status : CTI.cti_wUrl_proofDomain
+                }
                 value={"Not Required"}
                 id="1"
                 name="cti_wUrl_proofDomain"
@@ -208,13 +234,18 @@ const CTI = ({ Done, completed, pending }) => {
             </FormGroup>
           </Col>
         </Row>
-        <Button tag={Link} to={link}>
+        {/* <Button tag={Link} to={link}>
           Previous
-        </Button>
+        </Button> */}
         {urlid ? (
-          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-            Update and Next
-          </Button>
+          <div>
+            <Button tag={Link} to={link}>
+              Previous
+            </Button>
+            <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+              Update and Next
+            </Button>
+          </div>
         ) : (
           <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
             Save and Next{" "}

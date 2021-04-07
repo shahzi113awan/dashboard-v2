@@ -1,0 +1,28 @@
+th{
+    text-align: center;
+    /* color: blanchedalmond; */
+}
+ .th{
+     text-align: center;
+    padding: 2000%;
+     border: white solid 2px;
+     background-color:rgb(113, 231, 113);;
+ }
+ .date{
+     border-radius: 5px;
+     background-color: pink;
+ }
+ .okdate{
+    border-radius: 15px;
+
+     background-color: greenyellow;
+ }
+ .name{
+     color:blue;
+     font-style: italic;
+ }
+ td{
+     text-align: center;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+ 

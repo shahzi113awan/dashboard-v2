@@ -13,6 +13,8 @@ const initialState = {
 
 export const sdReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "INITIALIZE_SD":
+      return { ...state, state: action.payload  };
     case "CREATE_SD":
       return {
         ...state,

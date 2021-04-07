@@ -2,32 +2,73 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
-
+import {
+  CreateApp,
+  Update,
+  GetOneApp,
+  UpdateOne,
+  
+} from "../../actions/appActions";
+import {Get} from '../../actions/appActions'
 export default function ApprovalForm() {
-  const [AF, setAF] = useState({
-af_rcn:"",
-af_ad:"",
-af_sol:"",
-af_brp:"",
-af_abo:"",
-af_iP:"",
-af_appB:"",
-af_appS:"",
-af_ntc:"",
-af_vts:"",
-af_twa:"",
-af_wbaN:"",
-af_wbaP:"",
-af_ccl:"",
-af_eea:"",
-af_tla:""
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { urlid } = useParams();
+  console.log(urlid);
+  useEffect(() => {
+    urlid ? dispatch(GetOneApp(urlid)) : console.log("creating");
+  }, [urlid]);
+  const data1 = useSelector((state) => state.appReducer.state);
+  console.log(data1);
+  const [App, setApp] = useState({
+    status: " ",
+    af_rcn: "",
+    af_ad: "",
+    af_sol: "",
+    af_brp: "",
+    af_abo: "",
+    af_iP: "",
+    af_appB: "",
+    af_appS: "",
+    af_ntc: "",
+    af_vts: "",
+    af_twa: "",
+    af_wbaN: "",
+    af_wbaP: "",
+    af_ccl: "",
+    af_eea: "",
+    af_tla: "",
   });
-  const onUpdateSubmit = (e) => {
-    e.preventDefault();
-    dispatch(CreateKYB(KYB, urlid));
-    history.push("/sdkyb/" + urlid);
-  };
 
+  useEffect(() => {
+    setApp(data1);
+  }, [data1]);
+
+  function handleInput(evt) {
+    setApp({
+      ...App,
+      [evt.target.name]: evt.target.value,
+    });
+  }
+  useEffect(() => {
+    setApp(App);
+  }, App);
+  const onUpdateSubmit = async (e) => {
+    e.preventDefault();
+    await dispatch(UpdateOne(App, urlid));
+    dispatch(Get());
+    history.push("/mainappdb");
+
+    // history.push("/sdkyb/" + urlid);
+  };
+  const onSubmit = async (e) => {
+    console.log(App);
+    e.preventDefault();
+    console.log(App);
+    await dispatch(CreateApp(App));
+    dispatch(Get());
+    history.push("/mainappdb");
+  };
   return (
     <div className="container">
       <div>
@@ -45,7 +86,7 @@ af_tla:""
                 onChange={handleInput}
                 required={true}
                 type="text"
-                value={AF.af_rcn}
+                value={App.af_rcn}
                 name="af_rcn"
                 id="Name"
                 placeholder="Company Name"
@@ -60,7 +101,7 @@ af_tla:""
                 onChange={handleInput}
                 required={true}
                 type="date"
-                value={AF.af_ad}
+                value={App.af_ad}
                 name="af_ad"
                 id="Name"
               ></Input>
@@ -72,8 +113,8 @@ af_tla:""
               <select
                 className="custom-select"
                 id="1"
-                name="af_solution"
-                value={AF.af_sol}
+                name="af_sol"
+                value={App.af_sol}
                 onChange={handleInput}
               >
                 <option>CCBILL</option>
@@ -86,11 +127,15 @@ af_tla:""
               </select>
             </FormGroup>
           </Col>
-          <div>
-            <h2>
-              <span class="badge badge-success">EMS / PayWyz Information:</span>
-            </h2>
-          </div>
+          <Col md={12}>
+            <div>
+              <h2>
+                <span class="badge badge-success">
+                  EMS / PayWyz Information:
+                </span>
+              </h2>
+            </div>
+          </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Business / Referral Partner:</Label>
@@ -99,7 +144,7 @@ af_tla:""
                 onChange={handleInput}
                 required={false}
                 type="text"
-                value={AF.af_brp}
+                value={App.af_brp}
                 name="af_brp"
                 id="Name"
                 placeholder="Referral Partner"
@@ -114,7 +159,7 @@ af_tla:""
                 onChange={handleInput}
                 required={false}
                 type="text"
-                value={AF.af_abo}
+                value={App.af_abo}
                 name="af_abo"
                 id="Name"
                 placeholder="Assigned - BDM"
@@ -129,20 +174,22 @@ af_tla:""
                 onChange={handleInput}
                 required={false}
                 type="text"
-                value={AF.af_iP}
+                value={App.af_iP}
                 name="af_iP"
                 id="Name"
                 placeholder="Introductory Person"
               ></Input>
             </FormGroup>
           </Col>{" "}
-          <div>
-            <h2>
-              <span class="badge badge-success">
-                Expected / Offered Commercials:
-              </span>
-            </h2>
-          </div>
+          <Col md={12}>
+            <div>
+              <h2>
+                <span class="badge badge-success">
+                  Expected / Offered Commercials:
+                </span>
+              </h2>
+            </div>
+          </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Approval EMS / PayWyz - Buy Rate:</Label>
@@ -151,7 +198,7 @@ af_tla:""
                 onChange={handleInput}
                 required={false}
                 type="text"
-                value={AF.af_appB}
+                value={App.af_appB}
                 name="af_appB"
                 id="Name"
                 placeholder="Approval EMS Buy rate"
@@ -166,33 +213,35 @@ af_tla:""
                 onChange={handleInput}
                 required={false}
                 type="text"
-                value={Af.af_appS}
+                value={App.af_appS}
                 name="af_appS"
                 id="Name"
                 placeholder="Approval EMS sell rate"
               ></Input>
             </FormGroup>
           </Col>{" "}
-          <div>
-            <h2>
-              <span class="badge badge-success">
-                Company Trading Information:
-              </span>
-            </h2>
-          </div>
+          <Col md={12}>
+            <div>
+              <h2>
+                <span class="badge badge-success">
+                  Company Trading Information:
+                </span>
+              </h2>
+            </div>
+          </Col>
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Trading / New To Cards (NTC)*:</Label>
-              <Input
-                className="cusrom"
-                onChange={handleInput}
-                required={false}
-                type="text"
-                value={AF.af_ntc}
+              <select
+                className="custom-select"
+                value={App.af_ntc}
+                id="1"
                 name="af_ntc"
-                id="Name"
-                placeholder="NTC"
-              ></Input>
+                onChange={handleInput}
+              >
+                <option> NTC </option>
+                <option>New to Cards</option>
+              </select>
             </FormGroup>
           </Col>{" "}
           <Col md={6}>
@@ -203,7 +252,7 @@ af_tla:""
                 onChange={handleInput}
                 required={false}
                 type="text"
-                value={AF.af_vts}
+                value={App.af_vts}
                 name="af_vts"
                 id="Name"
                 placeholder="Trading Sector"
@@ -218,7 +267,7 @@ af_tla:""
                 onChange={handleInput}
                 required={false}
                 type="text"
-                value={AF.af_twa}
+                value={App.af_twa}
                 name="af_twa"
                 id="Name"
                 placeholder="Trading Website Address"
@@ -233,7 +282,7 @@ af_tla:""
                 onChange={handleInput}
                 required={false}
                 type="text"
-                value={AF.af_wbaN}
+                value={App.af_wbaN}
                 name="af_wbaN"
                 id="Name"
                 placeholder="Website Backoffice=user name"
@@ -248,7 +297,7 @@ af_tla:""
                 onChange={handleInput}
                 required={false}
                 type="text"
-                value={AF.af_wbaP}
+                value={App.af_wbaP}
                 name="af_wbaP"
                 id="Name"
                 placeholder="Website Backoffice-Password"
@@ -263,7 +312,7 @@ af_tla:""
                 onChange={handleInput}
                 required={false}
                 type="text"
-                value={AF.af_ccl}
+                value={App.af_ccl}
                 name="af_ccl"
                 id="Name"
                 placeholder="Country Location"
@@ -272,49 +321,70 @@ af_tla:""
           </Col>{" "}
           <Col md={6}>
             <FormGroup>
-              <Label for="CCR">EEA Documents*:</Label>
-              <Input
-                className="cusrom"
-                onChange={handleInput}
-                required={false}
-                type="text"
-                value={AF.af_eea}
+              <Label for="CCR"> Documents*:</Label>
+              <select
+                className="custom-select"
+                value={App.af_eea}
+                id="1"
                 name="af_eea"
-                id="Name"
-                placeholder="EEA Documents"
-              ></Input>
+                onChange={handleInput}
+              >
+                <option> EEA </option>
+                <option>USA</option>
+                <option>International</option>
+              </select>
             </FormGroup>
           </Col>{" "}
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Trading License or Agreements Required*:</Label>
-              <Input
-                className="cusrom"
+              <select
+                className="custom-select"
+                value={App.af_tla}
+                id="1"
+                name="App.af_tla"
                 onChange={handleInput}
-                required={false}
-                type="text"
-                value={AF.af_tla}
-                name="af_tla"
-                id="Name"
-                placeholder="Trading License"
-              ></Input>
+              >
+                <option>Licenced </option>
+                <option>Gambling</option>
+                <option>Forex</option>
+                <option>Trade</option>
+                <option>Fulfilment</option>
+                <option>Other</option>
+                <option>unlicenced</option>
+              </select>
             </FormGroup>
           </Col>{" "}
+          <Col md={12}>
+            <FormGroup>
+              <Label for="memo">Status</Label>
+              <select
+                className="custom-select"
+                id="1"
+                name="status"
+                value={App.status}
+                onChange={handleInput}
+              >
+                <option></option>
+                <option>Approve</option>
+                <option>Lost</option>
+              </select>
+            </FormGroup>
+          </Col>
         </Row>
-        <Button tag={Link} to={link}>
+        {/* <Button tag={Link} to={"/appdb"} type="submit" onClick={onSubmit}>
+          Submit
+        </Button> */}
+        {/* <Button tag={Link} to={link}>
           Previous
-        </Button>
-        {/* <Link to='/supporting-doc-kyb'> */}
-        {urlid ? (
-          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-            Update and Next
-          </Button>
-        ) : (
-          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
-            Save and Next
-          </Button>
-        )}
-        {/* </Link> */}
+        </Button> */}
+        <Link to="/appdb">
+          {urlid ? (
+            <Button onClick={onUpdateSubmit}>Update</Button>
+          ) : (
+            <Button onClick={onSubmit}>Save</Button>
+          )}
+        </Link>
       </Form>
     </div>
   );

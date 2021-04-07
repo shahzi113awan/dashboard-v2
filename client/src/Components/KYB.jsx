@@ -2,27 +2,51 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { CreateKYB, GetOneKYB } from "../actions/kybAction";
+import { CreateKYB, GetOneKYB, INITIATEKYB } from "../actions/kybAction";
+import { GetOneCL } from "../actions/clAction";
+
+import {   INITIATESD } from "../actions/sdAction";
+
 
 export default function KYB() {
   const dispatch = useDispatch();
   const { urlid } = useParams();
   const history = useHistory();
   const data = useSelector((state) => state.kybReducer.state);
+  const dataCL = useSelector((state) => state.clReducer.state);
+
   const id = useSelector((state) => state.ciReducer.id);
   console.log(id);
-  const link =`/kyc/${urlid}`
+  const link = `/kyc/${urlid}`;
   const [KYB, setKYB] = useState({
-    // kyb_coi: 'Pending',
-    // kyb_moa: 'Pending',
-    // kyb_aoa: 'Pending',
-    // kyb_sRegister: 'Pending',
-    // kyb_scs: 'Pending',
-    // kyb_ccre: 'Pending',
+    kyb_coi: "Pending",
+    kyb_moa: "Pending",
+    kyb_aoa: "Pending",
+    kyb_sRegister: "Pending",
+    kyb_scs: "Pending",
+    kyb_ccre: "Pending",
   });
+  const [KYB_SD, setKYB_SD] = useState({
+    fsd_cbs: "Pending",
+    fsd_pbs: "Pending",
+    fsd_pow: "Pending",
+    fsd_cap: "Pending",
+    lta_gfl: "Pending",
+    lta_cra: "Pending",
+    lta_fdsa: "Pending",
+    lta_fbo_cr: "Pending",
+  });
+    useEffect(() => {
+      dispatch(INITIATESD(KYB_SD));
+    }, [dispatch]);
   useEffect(() => {
     urlid ? dispatch(GetOneKYB(urlid)) : console.log("creating");
+    urlid ? dispatch(GetOneCL(urlid)) : console.log("No Check List");
+
   }, [urlid]);
+  const [CL, setCL] = useState({});
+
+
   console.log(KYB);
   function handleInput(evt) {
     console.log(KYB);
@@ -35,10 +59,14 @@ export default function KYB() {
   useEffect(() => {
     setKYB(data);
   }, [data]);
-  const onSubmit = (e) => {
+    useEffect(() => {
+      setCL(dataCL);
+    }, [dataCL]);
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log(KYB);
-    dispatch(CreateKYB(KYB, id));
+    await dispatch(CreateKYB(KYB, id));
+    INITIATEKYB(KYB);
 
     history.push("/sdkyb");
   };
@@ -61,12 +89,8 @@ export default function KYB() {
             <FormGroup>
               <Label for="certificate">Certificate of Incorporation:</Label>
               <select
-                className={
-                  KYB.kyb_coi === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
-                value={KYB.kyb_coi}
+                className={"custom-select"}
+                value={CL.coi_status ? CL.coi_status : KYB.kyb_coi}
                 // value={"Not Required"}
                 id="1"
                 name="kyb_coi"
@@ -81,12 +105,8 @@ export default function KYB() {
             <FormGroup>
               <Label for="memo">Memorandum of Association:</Label>
               <select
-                className={
-                  KYB.kyb_moa === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
-                value={KYB.kyb_moa}
+                className={"custom-select"}
+                value={CL.moa_status ? CL.moa_status : KYB.kyb_moa}
                 // value={"Not Required"}
                 id="1"
                 name="kyb_moa"
@@ -125,12 +145,8 @@ export default function KYB() {
             <FormGroup>
               <Label for="shareRegister">Share Register:</Label>
               <select
-                className={
-                  KYB.kyb_sRegister === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
-                value={KYB.kyb_sRegister}
+                className={"custom-select"}
+                value={CL.sr_status ? CL.sr_status : KYB.kyb_sRegister}
                 // value={"Not Required"}
                 id="1"
                 name="kyb_sRegister"
@@ -147,12 +163,8 @@ export default function KYB() {
                 Share Certificate(s) - Signed:
               </Label>
               <select
-                className={
-                  KYB.kyb_scs === "Pending"
-                    ? "border-red custom-select"
-                    : "custom-select"
-                }
-                value={KYB.kyb_scs}
+                className={"custom-select"}
+                value={CL.scs_status ? CL.scs_status : KYB.kyb_scs}
                 // value={"Not Required"}
                 id="1"
                 name="kyb_scs"
@@ -185,14 +197,19 @@ export default function KYB() {
             </FormGroup>
           </Col>
         </Row>
-        <Button tag={Link} to={link}>
+        {/* <Button tag={Link} to={link}>
           Previous
-        </Button>
+        </Button> */}
         {/* <Link to='/supporting-doc-kyb'> */}
         {urlid ? (
-          <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-            Update and Next
-          </Button>
+          <div>
+            <Button tag={Link} to={link}>
+              Previous
+            </Button>
+            <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+              Update and Next
+            </Button>
+          </div>
         ) : (
           <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
             Save and Next

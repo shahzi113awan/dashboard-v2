@@ -23,3 +23,9 @@ export const GetOneSD = (id) => async (dispatch) => {
     });
   });
 };
+export const INITIATESD = (data) => async (dispatch) => {
+  dispatch({
+    type: "INITIALIZE_SD",
+    payload: data,
+  });
+};

@@ -7,8 +7,13 @@ dotenv.config();
 const ci = require("./routes/api/CI");
 const cti = require("./routes/api/CTI");
 const cl = require("./routes/api/CL");
+const Spare = require("./routes/api/Spare");
 const kyc = require("./routes/api/KYC");
 const kyb = require("./routes/api/KYB");
+const appr = require("./routes/api/Approval");
+const contact = require("./routes/api/contact");
+const SolutionNav = require("./routes/api/solutioNavParams");
+const solutionNavParam = require("./routes/api/solutioNav");
 const sd = require("./routes/api/supportingDoc");
 const uploadRoute = require("./routes/api/uploadRoutes");
 
@@ -18,6 +23,7 @@ app.use(bodyParser.json());
 
 // DB Config
 const db = require("./config/keys").mongoURI;
+const solutionNav = require("./models/solutionNav");
 
 // Connect to DB
 mongoose
@@ -29,10 +35,15 @@ mongoose
 app.use("/api", ci);
 app.use("/api", cti);
 app.use("/api", cl);
+app.use("/api", Spare);
 app.use("/api", kyc);
 app.use("/api", kyb);
 app.use("/api", sd);
+app.use("/api", appr);
+app.use("/api", contact);
 app.use("/api", uploadRoute);
+app.use("/api", SolutionNav);
+app.use("/api", solutionNavParam);
 
 // const __dirname = path.resolve();
 app.use("/get", express.static(path.join(__dirname, "/uploads")));

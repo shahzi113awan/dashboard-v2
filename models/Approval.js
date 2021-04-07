@@ -2,57 +2,62 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 let ApprovalSchema = new Schema(
   {
-    af_rcn: {
+    App: {
+      status: {
         type: String,
       },
-    af_ad: {
+      af_rcn: {
         type: String,
       },
-    af_sol: {
+      af_ad: {
         type: String,
       },
-    af_brp: {
+      af_sol: {
         type: String,
       },
-    af_abo: {
+      af_brp: {
         type: String,
       },
-    af_iP: {
+      af_abo: {
         type: String,
       },
-    af_appB: {
+      af_iP: {
         type: String,
       },
-    af_appS: {
+      af_appB: {
         type: String,
       },
-    af_ntc: {
+      af_appS: {
         type: String,
       },
-    af_vts: {
+      af_ntc: {
         type: String,
       },
-    af_twa: {
+      af_vts: {
         type: String,
       },
-    af_wbaN: {
+      af_twa: {
         type: String,
       },
-    af_wbaP: {
+      af_wbaN: {
         type: String,
       },
-    af_ccl: {
+      af_wbaP: {
         type: String,
       },
-    af_eea: {
+      af_ccl: {
         type: String,
       },
-    af_tla: {
+      af_eea: {
         type: String,
       },
+      af_tla: {
+        type: String,
+      },
+    },
   },
   {
-    collection: "Records",
+    collection: "Approvals",
   }
 );
 module.exports = KYB = mongoose.model("APP", ApprovalSchema);

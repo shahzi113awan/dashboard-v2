@@ -12,6 +12,8 @@ import {
   Modal,
   ModalBody,
   ModalHeader,
+  Label,
+  CustomInput
 } from "reactstrap";
 // import { Link } from "react-router-dom";
 const ChecklistR = (props) => {
@@ -96,7 +98,9 @@ const ChecklistR = (props) => {
   };
   const handleClickRead = (e) => {
     // console.log(props.path.slice("./"));
-    window.open(`http://localhost:5000/get/${props.path}`, "_blank");
+    console.log(props.notesVal);
+    if (props.path != "fileName") window.open(props.path);
+    else alert("No file");
     console.log(props.path);
     console.log(view);
     if (view) return <div></div>;
@@ -126,20 +130,26 @@ const ChecklistR = (props) => {
       </Col>
       <Col md={2}>
         <FormGroup>
-          <Input
+
+          <Input type="file" id="CustomFileBrowser" name={props.fc} value={props.file} onChange={props.FileUpload} />
+
+          {/* <Input
+
             type="file"
             name={props.fc}
             value={props.file}
             onChange={props.FileUpload}
-          ></Input>
+          >
+
+          </Input> */}
         </FormGroup>
       </Col>
       <Col md={1}>
         <AiOutlineFolderView
           path={props.path}
+          color={props.path === "fileName" ? "green" : "black"}
           size={30}
           onClick={(e) => {
-            setView(true);
             handleClickRead(e, props.path);
           }}
         />
@@ -167,9 +177,9 @@ const ChecklistR = (props) => {
         <FormGroup>
           <AiFillEdit
             size={30}
-            color={"green"}
+            color={props.notesVal === " " ? "green" : "black"}
             onClick={(e) => {
-              handleClickEdit(e);
+              setView(true) && handleClickEdit(e);
             }}
           />
         </FormGroup>
@@ -184,12 +194,17 @@ const ChecklistR = (props) => {
           />
         </FormGroup>
       </Col>
-      {/* <Modal isOpen={view} toggle={toggler}>
-        <ModalHeader toggle={toggler}>Modal title</ModalHeader>
-        <ModalBody>
-          <img src={`http://localhost:5000/get/${props.path}`} alt="" />
+      <Modal isOpen={view} toggle={toggler}>
+        <ModalHeader toggle={toggler}>Note</ModalHeader>
+        <ModalBody style={{ backgroundColor: "#32CD32" }}>
+          <textarea
+            style={{ width: "100%" }}
+            name={props.note}
+            value={props.notesVal}
+            onChange={props.notesHandle}
+          />
         </ModalBody>
-      </Modal> */}
+      </Modal>
     </React.Fragment>
   );
 };
