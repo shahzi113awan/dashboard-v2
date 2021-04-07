@@ -206,8 +206,8 @@ const KYC = () => {
                     kyc.kyc_ExpiryDate
                       ? Math.ceil(moment
                         .duration(
-                          moment(new Date()).diff(
-                            moment(kyc.kyc_startDate)
+                          moment(kyc.kyc_ExpiryDate).diff(
+                            moment( new Date())
                           )
                         )
                         .asDays())
@@ -392,8 +392,8 @@ const KYC = () => {
                         kyc.kyc_ExpiryDate
                           ? Math.ceil(moment
                             .duration(
-                              moment(new Date()).diff(
-                                moment(kyc.kyc_startDate)
+                              moment(kyc.kyc_ExpiryDate).diff(
+                                moment(new Date())
                               )
                             )
                             .asDays())

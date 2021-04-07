@@ -71,7 +71,32 @@ export default function MainDashboard() {
   ) : (
     <div className="container-fluid" >
       <div className="table-responsive mt-5">
+        {/* <table>
+          <thead>
+            <tr>
+              <th  colspan="2">Pending Documents</th>
+              <th>Commercials</th>
+            </tr>
+          </thead>
+        </table> */}
         <table class="table table-striped">
+          <thead>
+            <tr>
+              <th colSpan='2'></th>
+              <th style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: 'pink' }} colSpan='3'  >Pending Documents</th>
+              <th colSpan='3'></th>
+
+
+              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#d3d3d3' }} colSpan='2'>Commercials</th>
+              <th colSpan='9'></th>
+              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#add8e6' }} colSpan='9'>Company Trading Information</th>
+              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#FED8B1' }} colSpan='1'>KYC/Share Holds</th>
+              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#FED8B0' }} colSpan='7'>KYB/Know Your Business</th>
+              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#b19cd9' }} colSpan='9'>Supporting Documents</th>
+              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#FFFACD' }} colSpan='1'>Spare</th>
+              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '	#ADFF2F' }} colSpan='1'>Delete</th>
+            </tr>
+          </thead>
           <thead className="thead">
             <tr className="tr ">
               <th className="th" scope="col"> # </th>
@@ -95,6 +120,7 @@ export default function MainDashboard() {
               <th className="th" scope="col">Compliance Country Location</th>
               <th className="th" scope="col">EEA Documents</th>
               <th className="th" scope="col "> Trading License or Agreements Required</th>
+
               <th className="th" scope="col ">Fully Completed Application Form</th>
               <th className="th" scope="col ">Bank Information (Welcome Letter)</th>
               <th className="th" scope="col">Office Tenancy Agreement</th>
@@ -131,13 +157,14 @@ export default function MainDashboard() {
               <th className="th" scope="col "> POA Start Date</th>
               <th className="th" scope="col">POA Expiry Date (+90 days)</th>
               <th className="th" scope="col">Expiry Days</th>
+              */}
               <th className="th" scope="col "> Certificate of Incorporation</th>
               <th className="th" scope="col">Memorandum of Association</th>
               <th className="th" scope="col ">Articles of Association</th>
               <th className="th" scope="col ">Share Register</th>
               <th className="th" scope="col ">Share Certificate(s) - Signed</th>
               <th className="th" scope="col">Current Commercial Register Extract</th>
-              <th className="th" scope="col">Notarised</th> */}
+              <th className="th" scope="col">Notarised</th>
               <th className="th" scope="col "> Corporate Bank Statements</th>
               <th className="th" scope="col">Personal Bank Statements</th>
               <th className="th" scope="col">Proof of Wealth</th>
@@ -265,6 +292,13 @@ export default function MainDashboard() {
                     <td>
                       {res.kyc.kyc_paDocument ? res.kyc.kyc_paDocument : ""}
                     </td> */}
+                    <td>{res.cl.coi_status}</td>
+                    <td>{res.cl.moa_status}</td>
+                    <td>{res.cl.aoa_status}</td>
+                    <td>{res.cl.sr_status}</td>
+                    <td>{res.cl.scs_status}</td>
+                    <td>{res.cl.ccre_status}</td>
+                    <td>{res.cl.coi_note}</td>
                         <td>{res.sd.fsd_cbs ? res.sd.fsd_cbs : ""}</td>
                         <td>{res.sd.fsd_pbs ? res.sd.fsd_pbs : ""}</td>
                         <td>{res.sd.fsd_pow ? res.sd.fsd_pow : ""}</td>
