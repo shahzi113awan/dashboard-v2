@@ -133,8 +133,34 @@ export const Header = (props) => {
               </NavLink> */}
             </NavItem>
             <NavItem className="item">
-              <NavLink activeClassName="activelink" className="navlink"> <span className="span">ISO Partners</span></NavLink>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle className="navlink" nav caret>
+                  <span className="span">ISO Partners</span>
+                </DropdownToggle>
+                <DropdownMenu className="DropdownMenu1" right>
+                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/contact"   >
+                    <span className="span1">Add New Contact</span>
+                  </DropdownItem>
+                  {/* <DropdownItem divider /> */}
+                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/solution-nav"   >
+                    <span className="span1">Add New Solution</span>
+                  </DropdownItem>
+                  <DropdownItem activeClassName="activelink1" tag={NAV} to='/contact-list' onClick={e => { dispatch(GetContacts()) }}>
+                    <span className="span1">Contact Dashboard</span>
+                  </DropdownItem>
+                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/solution-DB"   >
+                    <span className="span1"> Solution Dashboard</span>
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+
+              {/* <NavLink activeClassName="activelink" className="navlink" tag={NAV} to="/solution-app">
+                <span className="span">Solutions</span>
+              </NavLink> */}
             </NavItem>
+            {/* <NavItem className="item">
+              <NavLink activeClassName="activelink" className="navlink"> <span className="span">ISO Partners</span></NavLink>
+            </NavItem> */}
             <NavItem className="item">
               <NavLink activeClassName="activelink" className="navlink"> <span className="span">Merchant/IBAN</span></NavLink>
             </NavItem>
