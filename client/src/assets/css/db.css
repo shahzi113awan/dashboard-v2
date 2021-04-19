@@ -4,9 +4,11 @@ th{
 }
  .th{
      text-align: center;
-    padding: 2000%;
+    width: auto;
      border: white solid 2px;
      background-color:rgb(113, 231, 113);;
+  
+     
  }
  .date{
      border-radius: 5px;

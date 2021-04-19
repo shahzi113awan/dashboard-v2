@@ -1,0 +1,45 @@
+.sidebar{
+    margin-top: 3%;
+    background: rgb(113, 231, 113)!important;
+
+}
+.navside{
+    float: left;
+    top: -60;
+    width: 020%;
+    height: 100%;
+    border-radius: 3%;
+    margin-top: 90px;
+}
+.itemside{
+    font-size: 20px;
+    font-weight: heavier;
+    color: white !important;
+    text-decoration: none !important;
+    text-align: center;
+    margin-top: 5%;
+    height: 30%;
+    margin-bottom: 3%;
+    
+}
+.itemside:hover{
+    font-size: 20px;
+    font-weight: heavier;
+    color:rgb(113, 231, 113)!important; ;
+    text-decoration: none !important;
+    text-align: center;
+    background: rgb(78, 76, 76);
+  border-radius: 20%;
+}
+
+.nav {
+    color: white !important;
+    text-decoration: none;
+    
+}
+.spanside{
+    color: rgb(241, 233, 233);
+}
+.spanside:hover{
+    color: rgb(113, 231, 113);
+}

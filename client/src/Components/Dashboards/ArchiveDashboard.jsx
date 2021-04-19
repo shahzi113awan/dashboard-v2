@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Get, Delete, GetId } from "../../actions/ciAction";
+import '../../assets/css/db.css'
 
 import Loader from "react-loader-spinner";
 
@@ -74,16 +75,16 @@ export default function MainDashboard() {
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col"> # </th>
-              <th scope="col" style={{ width: "200px" }}>
+              <th className="th" scope="col"> # </th>
+              <th className="th" scope="col" style={{ width: "200px" }}>
                 Registered Company Name
               </th>
-              <th scope="col">Company Information</th>
-              <th scope="col ">Company Trading Info</th>
-              <th scope="col">Know Your Customer</th>
-              <th scope="col">Know your Business</th>
-              <th scope="col ">Supporting Docs</th>
-              <th scope="col ">Check List</th>
+              <th className="th" scope="col">Company Information</th>
+              <th className="th" scope="col ">Company Trading Info</th>
+              <th className="th" scope="col">Know Your Customer</th>
+              <th className="th" scope="col">Know your Business</th>
+              <th className="th" scope="col ">Supporting Docs</th>
+              <th className="th" scope="col ">Check List</th>
             </tr>
           </thead>
           <tbody>
@@ -93,7 +94,7 @@ export default function MainDashboard() {
                   if (res.ci) {
                     return (
                       <tr>
-                        <th scope="row">{index + 1}</th>
+                        <th className="th" scope="row">{index + 1}</th>
                         <td style={{ position: "relative" }}>
                           {" "}
                           <Link to={"/ci/" + res._id}>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CreateSD, GetOneSD, INITIATESD } from "../actions/sdAction";
 import { GetOneCL } from "../actions/clAction";
 import {INITIATESpare} from '../actions/spareAction'
+import SideNav from './Sidebar/Sidebar'
 
 export default function CTI() {
   const dispatch = useDispatch();
@@ -67,6 +68,8 @@ export default function CTI() {
     history.push("/check-list/" + urlid);
   };
   return (
+    <div>
+    { urlid ? (<SideNav id={urlid}></SideNav>) : (<div></div>)}
     <div className="container">
       <div>
         <h2>
@@ -290,6 +293,7 @@ export default function CTI() {
           </Button>
         )}
       </Form>
+    </div>
     </div>
   );
 }

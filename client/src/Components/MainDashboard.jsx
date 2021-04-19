@@ -214,7 +214,7 @@ export default function MainDashboard() {
 
                         <td>{res.ci.tpi_iP}</td>
                         <td>22</td>
-                        <td>{res.cl.pendingCount.length}</td>
+                        <td >{res.cl.pendingCount.length}</td>
                         <td>{22 - res.cl.pendingCount.length}</td>
                         <td>
                           <Link> <img style={{ width: "50%" }} src="./report.png" alt="report" /></Link>
@@ -271,7 +271,7 @@ export default function MainDashboard() {
                             ? res.cti.cti_otAgreement
                             : ""}
                         </td>
-                        <td> {res.cl.aps_status}</td>
+                        <td  > {res.cl.aps_status}</td>
                         <td>{res.cl.hwua_status}</td>
                         <td>{res.cl.wc_status}</td>
                         <td>{res.cl.wuod_status}</td>
