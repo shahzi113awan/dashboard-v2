@@ -82,19 +82,21 @@ export default function MainDashboard() {
         <table class="table table-striped">
           <thead>
             <tr>
+              <th colSpan='1'></th>
+              <th colSpan='4' style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: '#FFFACD' }}>Company Information</th>
+
+              <th style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: 'pink' }} colSpan='4'  >Pending Documents</th>
               <th colSpan='2'></th>
-              <th style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: 'pink' }} colSpan='3'  >Pending Documents</th>
-              <th colSpan='3'></th>
 
 
-              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#d3d3d3' }} colSpan='2'>Commercials</th>
+              <th style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: '#d3d3d3' }} colSpan='2'>Commercials</th>
               <th colSpan='9'></th>
-              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#add8e6' }} colSpan='9'>Company Trading Information</th>
-              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#FED8B1' }} colSpan='1'>KYC/Share Holds</th>
-              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#FED8B0' }} colSpan='7'>KYB/Know Your Business</th>
-              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#b19cd9' }} colSpan='9'>Supporting Documents</th>
-              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '#FFFACD' }} colSpan='1'>Spare</th>
-              <th style={{  textAlign: 'center' , border: '1px solid grey', backgroundColor: '	#ADFF2F' }} colSpan='1'>Delete</th>
+              <th style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: '#add8e6' }} colSpan='9'>Company Trading Information</th>
+              <th style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: '#B0B0B0' }} colSpan='1'>KYC/Share Holds</th>
+              <th style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: '#FED8B0' }} colSpan='7'>KYB/Know Your Business</th>
+              <th style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: '#b19cd9' }} colSpan='9'>Supporting Documents</th>
+              <th style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: '#FFFACD' }} colSpan='1'>Spare</th>
+              <th style={{ textAlign: 'center', border: '1px solid grey', backgroundColor: '	#ADFF2F' }} colSpan='1'>Delete</th>
             </tr>
           </thead>
           <thead className="thead">
@@ -103,6 +105,9 @@ export default function MainDashboard() {
               <th style={{ width: "100%" }} className="th" scope="col" style={{ width: "200px" }}  >
                 Registered Company Name
               </th>
+              <th className="th" scope="col">Business / Referral Partner</th>
+              <th className="th" scope="col" >Assigned BDM /Owner</th>
+              <th className="th" scope="col"> Introductory  Person </th>
               <th className="th" scope="col">Total Pending</th>
               <th className="th" scope="col ">Total Collected</th>
               <th className="th" scope="col">Total Outstanding</th>
@@ -111,12 +116,14 @@ export default function MainDashboard() {
               <th className="th" scope="col">Company Info & Checkout Page</th>
               <th className="th" scope="col">Pre Approval ems Buy Rate</th>
               <th className="th" scope="col ">Pre Approval ems Sel Rate</th>
+              <th></th>
+              <th></th>
               <th className="th" scope="col ">Application Boarded Date</th>
               <th className="th" scope="col">Aged Days</th>
               <th className="th" scope="col">Trading / New to Cards (NTC)</th>
               <th className="th" scope="col ">Vertical / Trading Sector</th>
-              <th className="th" scope="col ">Business / Referral Partner</th>
-              <th className="th" scope="col ">Assigned BDM / Owner</th>
+              {/* <th className="th" scope="col ">Business / Referral Partner</th>
+              <th className="th" scope="col ">Assigned BDM / Owner</th> */}
               <th className="th" scope="col">Compliance Country Location</th>
               <th className="th" scope="col">EEA Documents</th>
               <th className="th" scope="col "> Trading License or Agreements Required</th>
@@ -202,8 +209,12 @@ export default function MainDashboard() {
                               : "Default Name"}
                           </Link>
                         </td>
+                        <td>{res.ci.tpi_brPartner}</td>
+                        <td>{res.ci.tpi_aBdmOwner}</td>
+
+                        <td>{res.ci.tpi_iP}</td>
                         <td>22</td>
-                        <td>{res.cl.pendingCount.length}</td>
+                        <td >{res.cl.pendingCount.length}</td>
                         <td>{22 - res.cl.pendingCount.length}</td>
                         <td>
                           <Link> <img style={{ width: "50%" }} src="./report.png" alt="report" /></Link>
@@ -230,18 +241,20 @@ export default function MainDashboard() {
                         </td>
                         <td>4.95%</td>
                         <td>6.95%</td>
+                        <td></td>
+                        <td></td>
                         <td>{res.ci.tpi_date}</td>
                         <td className={cal(res.ci.tpi_date) > 90 ? "date" : "okdate"}>{res.ci.tpi_date ? cal(res.ci.tpi_date) : ""}</td>
                         <td>{res.ci.tpi_ntc ? res.ci.tpi_ntc : ""}</td>
                         <td>
                           {res.ci.tpi_vtSector ? res.ci.tpi_vtSector : ""}
                         </td>
-                        <td>
+                        {/* <td>
                           {res.ci.tpi_brPartner ? res.ci.tpi_brPartner : ""}
                         </td>
                         <td>
                           {res.ci.tpi_aBdmOwner ? res.ci.tpi_aBdmOwner : ""}
-                        </td>
+                        </td> */}
                         <td>
                           {res.ci.tpi_ccLocation ? res.ci.tpi_ccLocation : ""}
                         </td>
@@ -258,7 +271,7 @@ export default function MainDashboard() {
                             ? res.cti.cti_otAgreement
                             : ""}
                         </td>
-                        <td> {res.cl.aps_status}</td>
+                        <td  > {res.cl.aps_status}</td>
                         <td>{res.cl.hwua_status}</td>
                         <td>{res.cl.wc_status}</td>
                         <td>{res.cl.wuod_status}</td>
@@ -292,13 +305,13 @@ export default function MainDashboard() {
                     <td>
                       {res.kyc.kyc_paDocument ? res.kyc.kyc_paDocument : ""}
                     </td> */}
-                    <td>{res.cl.coi_status}</td>
-                    <td>{res.cl.moa_status}</td>
-                    <td>{res.cl.aoa_status}</td>
-                    <td>{res.cl.sr_status}</td>
-                    <td>{res.cl.scs_status}</td>
-                    <td>{res.cl.ccre_status}</td>
-                    <td>{res.cl.coi_note}</td>
+                        <td>{res.cl.coi_status}</td>
+                        <td>{res.cl.moa_status}</td>
+                        <td>{res.cl.aoa_status}</td>
+                        <td>{res.cl.sr_status}</td>
+                        <td>{res.cl.scs_status}</td>
+                        <td>{res.cl.ccre_status}</td>
+                        <td>{res.cl.coi_note}</td>
                         <td>{res.sd.fsd_cbs ? res.sd.fsd_cbs : ""}</td>
                         <td>{res.sd.fsd_pbs ? res.sd.fsd_pbs : ""}</td>
                         <td>{res.sd.fsd_pow ? res.sd.fsd_pow : ""}</td>

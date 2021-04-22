@@ -4,6 +4,7 @@ import { Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { CreateKYB, GetOneKYB, INITIATEKYB } from "../actions/kybAction";
 import { GetOneCL } from "../actions/clAction";
+import SideNav from './Sidebar/Sidebar'
 
 import {   INITIATESD } from "../actions/sdAction";
 
@@ -77,6 +78,8 @@ export default function KYB() {
   };
 
   return (
+    <div>
+    { urlid ? (<SideNav id={urlid}></SideNav>) : (<div></div>)}
     <div className="container">
       <div>
         <h2>
@@ -217,6 +220,7 @@ export default function KYB() {
         )}
         {/* </Link> */}
       </Form>
+    </div>
     </div>
   );
 }

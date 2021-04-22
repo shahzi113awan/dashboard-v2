@@ -11,6 +11,8 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 import { firebase } from "../Config";
 import { CreateSpare } from "../actions/spareAction";
+import SideNav from './Sidebar/Sidebar'
+
 export const CheckList = () => {
   const dispatch = useDispatch();
 
@@ -297,91 +299,93 @@ export const CheckList = () => {
     console.log(Spare)
   };
   return (
-    <div className="container">
-      {isLoading == true ? (
-        <div
-          style={{
-            position: "absolute",
-            zIndex: 100,
-            width: "100%",
-            height: "300%",
-            backgroundColor: "lightgrey",
-            opacity: 0.8,
-            left: 0,
-            // bottom: 0,
-          }}
-        >
+    <div>
+      { urlid ? (<SideNav id={urlid}></SideNav>) : (<div></div>)}
+      <div className="container">
+        {isLoading == true ? (
           <div
             style={{
-              textAlign: "center",
-              // color: "white",
-              marginTop: "20%",
+              position: "absolute",
+              zIndex: 100,
+              width: "100%",
+              height: "300%",
+              backgroundColor: "lightgrey",
+              opacity: 0.8,
+              left: 0,
+              // bottom: 0,
             }}
           >
-            <Loader type="Puff" color="#161f22" height={100} width={100} />
+            <div
+              style={{
+                textAlign: "center",
+                // color: "white",
+                marginTop: "20%",
+              }}
+            >
+              <Loader type="Puff" color="#161f22" height={100} width={100} />
+            </div>
           </div>
+        ) : (
+          ""
+        )}
+
+        <div>
+          <h2>
+            <span class="badge badge-success">COMPANY INFORMATION </span>
+          </h2>
         </div>
-      ) : (
-        ""
-      )}
 
-      <div>
-        <h2>
-          <span class="badge badge-success">COMPANY INFORMATION </span>
-        </h2>
-      </div>
-
-      <Form>
-        <Row form>
-          <React.Fragment style={{ backgroundColor: 'pink' }}>
-            <Col md={10}>
-              <FormGroup>
-                <h4>
-                  <span>Trading Information:</span>
-                </h4>
-              </FormGroup>
-            </Col>
-            <ChecklistR
-              text={"Fully Completed Application Form "}
-              name={"fcaf_status"}
-              fc="fcaf_fileName"
-              note="fcaf_note"
-              notesVal={CL.fcaf_note}
-              value={CL.fcaf_status}
-              path={CL.fcaf_fileName}
-              notesHandle={(e) => {
-                handleNotes(e);
-              }}
-              Change={(e) => {
-                handleChange(e);
-              }}
-              notesHandle={(e) => {
-                handleNotes(e);
-              }}
-              FileUpload={(e) => {
-                ImageHandler(e);
-              }}
-            />
-            <ChecklistR
-              text={"Bank Information (Welcome Letter) "}
-              name={"bi_status"}
-              fc="bi_fileName"
-              note="bi_note"
-              notesVal={CL.bi_note}
-              value={CL.bi_status}
-              path={CL.bi_fileName}
-              Change={(e) => {
-                console.log("changing");
-                handleChange(e);
-              }}
-              notesHandle={(e) => {
-                handleNotes(e);
-              }}
-              FileUpload={(e) => {
-                ImageHandler(e);
-              }}
-            />
-            {/* <ChecklistR
+        <Form>
+          <Row form>
+            <React.Fragment style={{ backgroundColor: 'pink' }}>
+              <Col md={10}>
+                <FormGroup>
+                  <h4>
+                    <span>Trading Information:</span>
+                  </h4>
+                </FormGroup>
+              </Col>
+              <ChecklistR
+                text={"Fully Completed Application Form "}
+                name={"fcaf_status"}
+                fc="fcaf_fileName"
+                note="fcaf_note"
+                notesVal={CL.fcaf_note}
+                value={CL.fcaf_status}
+                path={CL.fcaf_fileName}
+                notesHandle={(e) => {
+                  handleNotes(e);
+                }}
+                Change={(e) => {
+                  handleChange(e);
+                }}
+                notesHandle={(e) => {
+                  handleNotes(e);
+                }}
+                FileUpload={(e) => {
+                  ImageHandler(e);
+                }}
+              />
+              <ChecklistR
+                text={"Bank Information (Welcome Letter) "}
+                name={"bi_status"}
+                fc="bi_fileName"
+                note="bi_note"
+                notesVal={CL.bi_note}
+                value={CL.bi_status}
+                path={CL.bi_fileName}
+                Change={(e) => {
+                  console.log("changing");
+                  handleChange(e);
+                }}
+                notesHandle={(e) => {
+                  handleNotes(e);
+                }}
+                FileUpload={(e) => {
+                  ImageHandler(e);
+                }}
+              />
+              {/* <ChecklistR
             text={"Office Tenancy Agreement "}
             name={"ota_status"}
             fc='ota_fileName'
@@ -401,79 +405,79 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           /> */}
-            <ChecklistR
-              text={" Acquiring Processing Statements"}
-              name={"aps_status"}
-              fc="aps_fileName"
-              note="aps_note"
-              notesVal={CL.aps_note}
-              value={CL.aps_status}
-              path={CL.aps_fileName}
-              Change={(e) => {
-                handleChange(e);
-              }}
-              notesHandle={(e) => {
-                handleNotes(e);
-              }}
-              FileUpload={(e) => {
-                ImageHandler(e);
-              }}
-            />
-            <ChecklistR
-              text={"Headline Website URL Address"}
-              name={"hwua_status"}
-              fc="hwua_fileName"
-              note="hwua_note"
-              notesVal={CL.hwua_note}
-              value={CL.hwua_status}
-              path={CL.hwua_fileName}
-              Change={(e) => {
-                handleChange(e);
-              }}
-              notesHandle={(e) => {
-                handleNotes(e);
-              }}
-              FileUpload={(e) => {
-                ImageHandler(e);
-              }}
-            />
-            <ChecklistR
-              text={"Website Compliance "}
-              name={"wc_status"}
-              fc="wc_fileName"
-              note="wc_note"
-              notesVal={CL.wc_note}
-              value={CL.wc_status}
-              path={CL.wc_fileName}
-              Change={(e) => {
-                handleChange(e);
-              }}
-              notesHandle={(e) => {
-                handleNotes(e);
-              }}
-              FileUpload={(e) => {
-                ImageHandler(e);
-              }}
-            />
-            <ChecklistR
-              text={"Website URL-Proof of Domain"}
-              name={"wuod_status"}
-              fc="wuod_fileName"
-              note="wuod_note"
-              notesVal={CL.wuod_note}
-              value={CL.wuod_status}
-              path={CL.wuod_fileName}
-              Change={(e) => {
-                handleChange(e);
-              }}
-              notesHandle={(e) => {
-                handleNotes(e);
-              }}
-              FileUpload={(e) => {
-                ImageHandler(e);
-              }}
-            />
-            {/* <ChecklistR
+              <ChecklistR
+                text={" Acquiring Processing Statements"}
+                name={"aps_status"}
+                fc="aps_fileName"
+                note="aps_note"
+                notesVal={CL.aps_note}
+                value={CL.aps_status}
+                path={CL.aps_fileName}
+                Change={(e) => {
+                  handleChange(e);
+                }}
+                notesHandle={(e) => {
+                  handleNotes(e);
+                }}
+                FileUpload={(e) => {
+                  ImageHandler(e);
+                }}
+              />
+              <ChecklistR
+                text={"Headline Website URL Address"}
+                name={"hwua_status"}
+                fc="hwua_fileName"
+                note="hwua_note"
+                notesVal={CL.hwua_note}
+                value={CL.hwua_status}
+                path={CL.hwua_fileName}
+                Change={(e) => {
+                  handleChange(e);
+                }}
+                notesHandle={(e) => {
+                  handleNotes(e);
+                }}
+                FileUpload={(e) => {
+                  ImageHandler(e);
+                }}
+              />
+              <ChecklistR
+                text={"Website Compliance "}
+                name={"wc_status"}
+                fc="wc_fileName"
+                note="wc_note"
+                notesVal={CL.wc_note}
+                value={CL.wc_status}
+                path={CL.wc_fileName}
+                Change={(e) => {
+                  handleChange(e);
+                }}
+                notesHandle={(e) => {
+                  handleNotes(e);
+                }}
+                FileUpload={(e) => {
+                  ImageHandler(e);
+                }}
+              />
+              <ChecklistR
+                text={"Website URL-Proof of Domain"}
+                name={"wuod_status"}
+                fc="wuod_fileName"
+                note="wuod_note"
+                notesVal={CL.wuod_note}
+                value={CL.wuod_status}
+                path={CL.wuod_fileName}
+                Change={(e) => {
+                  handleChange(e);
+                }}
+                notesHandle={(e) => {
+                  handleNotes(e);
+                }}
+                FileUpload={(e) => {
+                  ImageHandler(e);
+                }}
+              />
+              {/* <ChecklistR
             text={"Ownership Structure Chart "}
             name={"owsc_status"}
             fc='owsc_fileName'
@@ -508,51 +512,51 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           /> */}
-          </React.Fragment>
-          <Col md={10}>
-            <FormGroup>
-              <h4>
-                <span>Know Your Customer (KYC):</span>
-              </h4>
-            </FormGroup>
-          </Col>
-          <ChecklistR
-            text={"Lead Director-Passport "}
-            name={"ldp_status"}
-            fc="ldp_fileName"
-            note="ldp_note"
-            notesVal={CL.ldp_note}
-            value={CL.ldp_status}
-            path={CL.ldp_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Lead Director-Proof of Address"}
-            name={"ldpa_status"}
-            fc="ldpa_fileName"
-            note="ldpa_note"
-            notesVal={CL.ldpa_note}
-            value={CL.ldpa_status}
-            path={CL.ldpa_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          {/* <ChecklistR
+            </React.Fragment>
+            <Col md={10}>
+              <FormGroup>
+                <h4>
+                  <span>Know Your Customer (KYC):</span>
+                </h4>
+              </FormGroup>
+            </Col>
+            <ChecklistR
+              text={"Lead Director-Passport "}
+              name={"ldp_status"}
+              fc="ldp_fileName"
+              note="ldp_note"
+              notesVal={CL.ldp_note}
+              value={CL.ldp_status}
+              path={CL.ldp_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Lead Director-Proof of Address"}
+              name={"ldpa_status"}
+              fc="ldpa_fileName"
+              note="ldpa_note"
+              notesVal={CL.ldpa_note}
+              value={CL.ldpa_status}
+              path={CL.ldpa_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            {/* <ChecklistR
             text={"Power of Attorney Document: "}
             name={"pad_status"}
             fc='pad_fileName'
@@ -569,158 +573,158 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           /> */}
-          <ChecklistR
-            text={"Second Director-Passport"}
-            name={"sdp_status"}
-            fc="sdp_fileName"
-            note="sdp_note"
-            notesVal={CL.sdp_note}
-            value={CL.sdp_status}
-            path={CL.sdp_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Second Director-Proof of Address"}
-            name={"sdpa_status"}
-            fc="sdpa_fileName"
-            note="sdpa_note"
-            notesVal={CL.sdpa_note}
-            value={CL.sdpa_status}
-            path={CL.sdpa_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Third Director-Passport"}
-            name={"tdp_status"}
-            fc="tdp_fileName"
-            note="tdp_note"
-            notesVal={CL.tdp_note}
-            value={CL.tdp_status}
-            path={CL.tdp_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Third Director-Proof of Address"}
-            name={"tdpa_status"}
-            fc="tdpa_fileName"
-            note="tdpa_note"
-            notesVal={CL.tdpa_note}
-            value={CL.tdpa_status}
-            path={CL.tdpa_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Fourth Director-Passport"}
-            name={"fdp_status"}
-            fc="fdp_fileName"
-            note="fdp_note"
-            notesVal={CL.fdp_note}
-            value={CL.fdp_status}
-            path={CL.fdp_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Fourth Director-Proof of Address"}
-            name={"fdpa_status"}
-            fc="fdpa_fileName"
-            note="fdpa_note"
-            notesVal={CL.fdpa_note}
-            value={CL.fdpa_status}
-            path={CL.fdpa_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <Col md={10}>
-            <FormGroup>
-              <h4>
-                <span>Know Your Business(KYB):</span>
-              </h4>
-            </FormGroup>
-          </Col>
-          <ChecklistR
-            text={"Certificate of Incorporation "}
-            name={"coi_status"}
-            fc="coi_fileName"
-            note="coi_note"
-            notesVal={CL.coi_note}
-            value={CL.coi_status}
-            path={CL.coi_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Memorandum of Association"}
-            name={"moa_status"}
-            fc="moa_fileName"
-            note="moa_note"
-            notesVal={CL.moa_note}
-            value={CL.moa_status}
-            path={CL.moa_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          {/* <ChecklistR
+            <ChecklistR
+              text={"Second Director-Passport"}
+              name={"sdp_status"}
+              fc="sdp_fileName"
+              note="sdp_note"
+              notesVal={CL.sdp_note}
+              value={CL.sdp_status}
+              path={CL.sdp_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Second Director-Proof of Address"}
+              name={"sdpa_status"}
+              fc="sdpa_fileName"
+              note="sdpa_note"
+              notesVal={CL.sdpa_note}
+              value={CL.sdpa_status}
+              path={CL.sdpa_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Third Director-Passport"}
+              name={"tdp_status"}
+              fc="tdp_fileName"
+              note="tdp_note"
+              notesVal={CL.tdp_note}
+              value={CL.tdp_status}
+              path={CL.tdp_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Third Director-Proof of Address"}
+              name={"tdpa_status"}
+              fc="tdpa_fileName"
+              note="tdpa_note"
+              notesVal={CL.tdpa_note}
+              value={CL.tdpa_status}
+              path={CL.tdpa_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Fourth Director-Passport"}
+              name={"fdp_status"}
+              fc="fdp_fileName"
+              note="fdp_note"
+              notesVal={CL.fdp_note}
+              value={CL.fdp_status}
+              path={CL.fdp_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Fourth Director-Proof of Address"}
+              name={"fdpa_status"}
+              fc="fdpa_fileName"
+              note="fdpa_note"
+              notesVal={CL.fdpa_note}
+              value={CL.fdpa_status}
+              path={CL.fdpa_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <Col md={10}>
+              <FormGroup>
+                <h4>
+                  <span>Know Your Business(KYB):</span>
+                </h4>
+              </FormGroup>
+            </Col>
+            <ChecklistR
+              text={"Certificate of Incorporation "}
+              name={"coi_status"}
+              fc="coi_fileName"
+              note="coi_note"
+              notesVal={CL.coi_note}
+              value={CL.coi_status}
+              path={CL.coi_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Memorandum of Association"}
+              name={"moa_status"}
+              fc="moa_fileName"
+              note="moa_note"
+              notesVal={CL.moa_note}
+              value={CL.moa_status}
+              path={CL.moa_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            {/* <ChecklistR
             text={"Articles of Association"}
             name={"aoa_status"}
             fc="aoa_fileName"
@@ -739,43 +743,43 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           /> */}
-          <ChecklistR
-            text={"Share Register"}
-            name={"sr_status"}
-            fc="sr_fileName"
-            note="sr_note"
-            notesVal={CL.sr_note}
-            value={CL.sr_status}
-            path={CL.sr_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Share Certificate(s)-Signed"}
-            name={"scs_status"}
-            fc="scs_fileName"
-            note="scs_note"
-            notesVal={CL.scs_note}
-            value={CL.scs_status}
-            path={CL.scs_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          {/* <ChecklistR
+            <ChecklistR
+              text={"Share Register"}
+              name={"sr_status"}
+              fc="sr_fileName"
+              note="sr_note"
+              notesVal={CL.sr_note}
+              value={CL.sr_status}
+              path={CL.sr_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Share Certificate(s)-Signed"}
+              name={"scs_status"}
+              fc="scs_fileName"
+              note="scs_note"
+              notesVal={CL.scs_note}
+              value={CL.scs_status}
+              path={CL.scs_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            {/* <ChecklistR
             text={"Current Commercial Register Extract"}
             name={"ccre_status"}
             fc='ccre_fileName'
@@ -888,50 +892,50 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           /> */}
-          <Col md={10}>
-            <FormGroup>
-              <h4>
-                <span>Supporting Documents:</span>
-              </h4>
-            </FormGroup>
-          </Col>
-          <ChecklistR
-            text={"Copywrite or Re-seller Agreement"}
-            name={"cora_status"}
-            fc="cora_fileName"
-            note="cora_note"
-            notesVal={CL.cora_note}
-            value={CL.cora_status}
-            path={CL.cora_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <ChecklistR
-            text={"Fulfilment or Drop Shipping Agreement"}
-            name={"fodsa_status"}
-            fc="fodsa_fileName"
-            note="fodsa_note"
-            notesVal={CL.fodsa_note}
-            value={CL.fodsa_status}
-            path={CL.fodsa_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          {/* <ChecklistR
+            <Col md={10}>
+              <FormGroup>
+                <h4>
+                  <span>Supporting Documents:</span>
+                </h4>
+              </FormGroup>
+            </Col>
+            <ChecklistR
+              text={"Copywrite or Re-seller Agreement"}
+              name={"cora_status"}
+              fc="cora_fileName"
+              note="cora_note"
+              notesVal={CL.cora_note}
+              value={CL.cora_status}
+              path={CL.cora_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <ChecklistR
+              text={"Fulfilment or Drop Shipping Agreement"}
+              name={"fodsa_status"}
+              fc="fodsa_fileName"
+              note="fodsa_note"
+              notesVal={CL.fodsa_note}
+              value={CL.fodsa_status}
+              path={CL.fodsa_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            {/* <ChecklistR
             text={"FBO Company Registration"}
             name={"fcR_status"}
             fc='fcR_fileName'
@@ -949,65 +953,65 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           /> */}
-          <ChecklistR
-            text={"Sales Handoff Sheet (CCBill Only)"}
-            name={"shs_status"}
-            fc="shs_fileName"
-            note="shs_note"
-            notesVal={CL.shs_note}
-            value={CL.shs_status}
-            path={CL.shs_fileName}
-            Change={(e) => {
-              handleChange(e);
-            }}
-            notesHandle={(e) => {
-              handleNotes(e);
-            }}
-            FileUpload={(e) => {
-              ImageHandler(e);
-            }}
-          />
-          <Col md={10}>
-            <FormGroup>
-              <h4>
-                <span>Miscellaneous :</span>
-              </h4>
-            </FormGroup>
-          </Col>
-          {/* spare */}
-          {
-            Spare.map((res, id) => {
-              return (
-                <SpChecklistR
-                  placeholder={"spare"}
-                  name={"status"}
-                  nameT="text"
-                  fc="path"
-                  note="note"
-                  notesVal={res.note}
-                  value={res.status}
-                  valueT={res.text}
-                  path={res.path}
-                  onChangetext={(e) => {
-                    handletextSpare(e, id);
-                  }}
-                  Change={(e) => {
-                    handleChangeSpare(e, id);
-                  }}
-                  notesHandle={(e) => {
-                    handleNotesSpare(e, id);
-                  }}
-                  FileUpload={(e) => {
-                    ImageHandlerSpare(e, id);
-                  }}
-                  add={(e) => { handleAddClick(e); }}
-                  delete={(e) => { handleRemoveClick(e, id); }}
-                />
-              )
-            })
-          }
+            <ChecklistR
+              text={"Sales Handoff Sheet (CCBill Only)"}
+              name={"shs_status"}
+              fc="shs_fileName"
+              note="shs_note"
+              notesVal={CL.shs_note}
+              value={CL.shs_status}
+              path={CL.shs_fileName}
+              Change={(e) => {
+                handleChange(e);
+              }}
+              notesHandle={(e) => {
+                handleNotes(e);
+              }}
+              FileUpload={(e) => {
+                ImageHandler(e);
+              }}
+            />
+            <Col md={10}>
+              <FormGroup>
+                <h4>
+                  <span>Miscellaneous :</span>
+                </h4>
+              </FormGroup>
+            </Col>
+            {/* spare */}
+            {
+              Spare.map((res, id) => {
+                return (
+                  <SpChecklistR
+                    placeholder={"spare"}
+                    name={"status"}
+                    nameT="text"
+                    fc="path"
+                    note="note"
+                    notesVal={res.note}
+                    value={res.status}
+                    valueT={res.text}
+                    path={res.path}
+                    onChangetext={(e) => {
+                      handletextSpare(e, id);
+                    }}
+                    Change={(e) => {
+                      handleChangeSpare(e, id);
+                    }}
+                    notesHandle={(e) => {
+                      handleNotesSpare(e, id);
+                    }}
+                    FileUpload={(e) => {
+                      ImageHandlerSpare(e, id);
+                    }}
+                    add={(e) => { handleAddClick(e); }}
+                    delete={(e) => { handleRemoveClick(e, id); }}
+                  />
+                )
+              })
+            }
 
-          {/* <SpChecklistR
+            {/* <SpChecklistR
             placeholder={"spare"}
             name={"spare"}
             nameT="spare_Text"
@@ -1145,7 +1149,7 @@ export const CheckList = () => {
               ImageHandler(e);
             }}
           /> */}
-          {/* <SpChecklistR
+            {/* <SpChecklistR
             text={"Confirmation & Declaration Form (GGS Only)"}
             name={"cdf_status"}
             fc='cdf_fileName'
@@ -1162,19 +1166,20 @@ export const CheckList = () => {
               ImageHandler(e)
             }}
           /> */}
-        </Row>
-        {urlid && (
-          <Button tag={Link} to={link}>
-            Previous
-          </Button>
-        )}
+          </Row>
+          {urlid && (
+            <Button tag={Link} to={link}>
+              Previous
+            </Button>
+          )}
 
-        <Link>
-          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
-            Update Details
+          <Link>
+            <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
+              Update Details
           </Button>
-        </Link>
-      </Form>
+          </Link>
+        </Form>
+      </div>
     </div>
   );
 };

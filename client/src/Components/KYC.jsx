@@ -8,6 +8,7 @@ import Select from "react-select";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { CreateKYC, GetOneKYC, INITIATEKYC } from "../actions/kycAction";
 import { INITIATEKYB } from "../actions/kybAction";
+import SideNav from './Sidebar/Sidebar'
 
 import Loader from "react-loader-spinner";
 
@@ -146,9 +147,12 @@ const KYC = () => {
       </div>
     </div>
   ) : (
+       <div>
+          { urlid ? (<SideNav id={urlid}></SideNav>) : (<div></div>)}
     <div className="container">
       {KYC.map((kyc, id) => {
         return (
+         
           <div style={{ display: "flex" }}>
             <Col md={3}>
               {/* <Rdays datevalue={kyc.kyc_ExpiryDate} stdate={kyc.kyc_startDate} expdate={kyc.kyc_adExpiryDate}/> */}
@@ -608,6 +612,7 @@ const KYC = () => {
           </Button>
         )}
       </Form>
+    </div>
     </div>
   );
 };

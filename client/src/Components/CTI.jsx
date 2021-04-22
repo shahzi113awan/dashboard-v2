@@ -3,6 +3,7 @@ import { Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { GetOneCL } from "../actions/clAction";
+import SideNav from './Sidebar/Sidebar'
 
 import { CreateCTI, GetOneCTI } from "../actions/ctiAction";
 import { GetOneKYC, INITIATEKYC } from "../actions/kycAction";
@@ -84,6 +85,8 @@ const CTI = () => {
   };
 
   return (
+    <div>
+    { urlid ? (<SideNav id={urlid}></SideNav>) : (<div></div>)}
     <div className="container">
       <div>
         <h2>
@@ -252,6 +255,7 @@ const CTI = () => {
           </Button>
         )}
       </Form>
+    </div>
     </div>
   );
 };
