@@ -186,7 +186,7 @@ export const Header = (props) => {
                 tag={NAV}
                 to="/TradingDb"
               >
-                <BsGraphUp   ></BsGraphUp>
+                <BsGraphUp className="logo"  ></BsGraphUp>
                 <span className="span"> Trading</span>
               </NavLink>
             </NavItem>
@@ -200,7 +200,7 @@ export const Header = (props) => {
                 to="/LiveDb"
               >
 
-                <CgMediaPodcast size={30}></CgMediaPodcast>
+                <CgMediaPodcast className="logo" size={30}></CgMediaPodcast>
                 <span className="span"> Live</span>
               </NavLink>
             </NavItem>
@@ -214,7 +214,7 @@ export const Header = (props) => {
                 tag={NAV}
                 to="/ArchiveDb"
               >
-                <IoMdArchive size={30}></IoMdArchive>
+                <IoMdArchive className="logo" size={30}></IoMdArchive>
                 <span className="span"> Archive</span>
               </NavLink>
             </NavItem>

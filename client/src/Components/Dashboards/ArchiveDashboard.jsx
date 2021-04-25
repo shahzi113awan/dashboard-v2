@@ -75,7 +75,7 @@ export default function MainDashboard() {
         <table class="table table-striped">
           <thead>
             <tr>
-              <th className="th" scope="col"> # </th>
+              <th className="badge badge-pill badge-success"  scope="col"> # </th>
               <th className="th" scope="col" style={{ width: "200px" }}>
                 Registered Company Name
               </th>
@@ -94,7 +94,7 @@ export default function MainDashboard() {
                   if (res.ci) {
                     return (
                       <tr>
-                        <th className="th" scope="row">{index + 1}</th>
+                        <th className="badge badge-pill badge-success"   >{index + 1}</th>
                         <td style={{ position: "relative" }}>
                           {" "}
                           <Link to={"/ci/" + res._id}>

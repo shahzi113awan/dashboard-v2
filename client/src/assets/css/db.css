@@ -1,21 +1,106 @@
 th{
     text-align: center;
+    
     /* color: blanchedalmond; */
 }
- .th{
+ .th{ 
+ 
+
+       
+       white-space: normal;
+    font-size: 0.8rem !important;
      text-align: center;
     width: auto;
-     border: white solid 2px;
-     background-color:rgb(113, 231, 113);;
+     border: white solid 2px !important;
+     background-color: rgb(185, 179, 179);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   
+    transform:
+      perspective(75em)
+      rotateX(18deg);
+    box-shadow:
+      rgba(22, 31, 39, 0.42) 0px 60px 123px -25px,
+      rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
+    border-radius: 10px;
+    border: 1px solid;
+    border-color:
+      rgb(213, 220, 226)
+      rgb(213, 220, 226)
+      rgb(184, 194, 204);
+   
+ 
+ 
+ }
+ .thci{
+     padding: 3px!important;
+      width: 100% !important;
+       white-space: normal;
+    font-size: 0.6rem !important;
+     text-align: center;
+    width: auto;
+     border: white solid 2px !important;
+     background-color:#c8e6ca;;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
      
  }
+ .thcti{
+     padding: 3px!important;
+      width: 100% !important;
+       white-space: normal;
+    font-size: 0.6rem !important;
+     text-align: center;
+    width: auto;
+     border: white solid 2px !important;
+     background-color: #a2bcd6;;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+     
+ }
+ .thkyb{
+     padding: 3px!important;
+      width: 100% !important;
+       white-space: normal;
+    font-size: 0.6rem !important;
+     text-align: center;
+    width: auto;
+     border: white solid 2px !important;
+     background-color: #f3d6b7;;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+     
+ }
+ .thsd{
+     padding: 3px!important;
+      width: 100% !important;
+       white-space: normal;
+    font-size: 0.6rem !important;
+     text-align: center;
+    width: auto;
+     border: white solid 2px !important;
+     background-color: #FFFACD;;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ 
+     
+ }
+ .tdci{
+     background-color: #c8e6ca ;
+ }
+ .tdcti{
+     background-color:  #a2bcd6 ;
+ }
+ .tdkyb{
+     background-color:  #f3d6b7 ;
+ }
+ .tdsd{
+     background-color:  #FFFACD ;
+ }
  .date{
-     border-radius: 5px;
+     border-radius: 3px;
      background-color: pink;
  }
  .okdate{
-    border-radius: 15px;
+    border-radius: 3px;
 
      background-color: greenyellow;
  }
@@ -24,7 +109,49 @@ th{
      font-style: italic;
  }
  td{
+     background-color: rgb(197, 195, 195);
      text-align: center;
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
  }
  
+ 
+ .shadowci {
+      background-color: #c8e6ca !important;
+     text-align: center;
+ border-radius: 4px !important;
+ -webkit-box-shadow: 3px 3px 5px 6px   #536654;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+ -moz-box-shadow:    3px 3px 5px 6px  #749176;  /* Firefox 3.5 - 3.6 */
+ box-shadow:         3px 3px 5px 6px   #677e68;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  }
+ .shadowcti {
+      background-color: #a2bcd6 !important;
+     text-align: center;
+ border-radius: 4px !important;
+ -webkit-box-shadow: 3px 3px 5px 6px   #6083a7;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+ -moz-box-shadow:    3px 3px 5px 6px  #6083a7;  /* Firefox 3.5 - 3.6 */
+ box-shadow:         3px 3px 5px 6px   #6083a7;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  }
+ .shadowkyb {
+      background-color: #f3d6b7 !important;
+     text-align: center;
+ border-radius: 4px !important;
+ -webkit-box-shadow: 3px 3px 5px 6px #c7b29c   ;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+ -moz-box-shadow:    3px 3px 5px 6px #c7b29c  ;  /* Firefox 3.5 - 3.6 */
+ box-shadow:         3px 3px 5px 6px #c7b29c    ;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  }
+ .shadowsd {
+      background-color: #FFFACD !important;
+     text-align: center;
+ border-radius: 4px !important;
+ -webkit-box-shadow: 3px 3px 5px 6px #dbd7ad   ;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+ -moz-box-shadow:    3px 3px 5px 6px #dbd7ad  ;  /* Firefox 3.5 - 3.6 */
+ box-shadow:         3px 3px 5px 6px #dbd7ad    ;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  }
+ .shadow1 {
+      background-color: #b9b9b8 !important;
+     text-align: center;
+ border-radius: 4px !important;
+ -webkit-box-shadow: 3px 3px 5px 6px #979794   ;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+ -moz-box-shadow:    3px 3px 5px 6px #979794   ;  /* Firefox 3.5 - 3.6 */
+ box-shadow:         3px 3px 5px 6px #979794     ;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  }
