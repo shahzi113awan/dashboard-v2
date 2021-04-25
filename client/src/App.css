@@ -6,6 +6,9 @@
   height: 40vmin;
   pointer-events: none;
 }
+.dashboard_main_div{
+  overflow-x: scroll;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

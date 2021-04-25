@@ -44,8 +44,8 @@ export const Header = (props) => {
   };
   return (
     <div style={{ marginBottom: 10 }}>
-      <Navbar className="container-fluid" className="nav" light expand="md">
-        <NavItem className="item" className="item">
+      <Navbar className="container-fluid nav" light expand="md">
+        <NavItem className="item" >
           <NavLink
             className="navlink"
             activeClassName="activelink"
@@ -186,7 +186,7 @@ export const Header = (props) => {
                 tag={NAV}
                 to="/TradingDb"
               >
-                <BsGraphUp className="logo"  ></BsGraphUp>
+                <BsGraphUp   ></BsGraphUp>
                 <span className="span"> Trading</span>
               </NavLink>
             </NavItem>
@@ -200,7 +200,7 @@ export const Header = (props) => {
                 to="/LiveDb"
               >
 
-                <CgMediaPodcast className="logo" size={30}></CgMediaPodcast>
+                <CgMediaPodcast size={30}></CgMediaPodcast>
                 <span className="span"> Live</span>
               </NavLink>
             </NavItem>
@@ -214,7 +214,7 @@ export const Header = (props) => {
                 tag={NAV}
                 to="/ArchiveDb"
               >
-                <IoMdArchive className="logo" size={30}></IoMdArchive>
+                <IoMdArchive size={30}></IoMdArchive>
                 <span className="span"> Archive</span>
               </NavLink>
             </NavItem>

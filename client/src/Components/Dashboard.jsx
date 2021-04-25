@@ -1,7 +1,7 @@
 import { Button } from "reactstrap";
 import '../assets/css/db.css'
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Get, Delete } from "../actions/ciAction";
@@ -12,15 +12,38 @@ import moment from "moment";
 
 export default function Dashboard({data,isLoading}) {
   const history = useHistory();
-  
+  const scrolling = useRef(null);  
 
   const dispatch = useDispatch();
   const [db, setDb] = useState([]);
   
   // const isLoading = 'useSelector((state) => state.ciReducer.isLoading)'
   
-   
-  useEffect(() => {
+//   window.onscroll = function() {scrollFunction()};
+//  const  scrollFunction = () =>  {
+//     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+//       console.log(document.documentElement.scrollLeft,'if')
+//     } else {
+//       console.log(document.documentElement.scrollRight, 'else')
+//     }
+//   }
+  // scrolling.current
+  const scrolle = document.getElementById('scrolling')
+ const onScrolling = (e) => {
+  //  if(e.target.scrollLeft <= 40){
+  //   console.log('right button')
+  //  }else if(e.target.scrollLeft <= 40){
+  //   console.log("left button")
+  //  }
+  console.log(e.target, 'window')
+  // console.log(e.target.scrollLeft, 'scroll')
+  }
+// window.scrollTo(0, scrolling.current.offsetTop, 'what')
+// scrolling.scrollTo(200,200)
+// scrolling.onScroll((e)=> console.log(e))
+
+
+useEffect(() => {
     setDb(data);
   }, [data]);
 
@@ -42,8 +65,9 @@ export default function Dashboard({data,isLoading}) {
     return days;
   };
   console.log(isLoading);
+  
 
-  console.log(db);
+  // console.log(db);
   return isLoading ? (
     <div
       style={{
@@ -68,7 +92,7 @@ export default function Dashboard({data,isLoading}) {
       </div>
     </div>
   ) : (
-    <div className="container-fluid" >
+    <div className="container-fluid"  >
 
       {/* <table>
           <thead>
@@ -79,7 +103,7 @@ export default function Dashboard({data,isLoading}) {
           </thead>
         </table> */}
 
-      <table style={{ fontSize: 'smaller' }} class="table table-striped" class="table table-bordered">
+      <table style={{ fontSize: 'smaller' }} onScroll={onScrolling} ref={scrolling}id="scrolling" className="table table-responsive">
         <thead style={{ position: 'sticky', }}>
           <tr >
             <th colSpan='1'></th>
