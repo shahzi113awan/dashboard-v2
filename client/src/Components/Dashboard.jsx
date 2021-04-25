@@ -17,30 +17,10 @@ export default function Dashboard({data,isLoading}) {
   const dispatch = useDispatch();
   const [db, setDb] = useState([]);
   
-  // const isLoading = 'useSelector((state) => state.ciReducer.isLoading)'
   
-//   window.onscroll = function() {scrollFunction()};
-//  const  scrollFunction = () =>  {
-//     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-//       console.log(document.documentElement.scrollLeft,'if')
-//     } else {
-//       console.log(document.documentElement.scrollRight, 'else')
-//     }
-//   }
-  // scrolling.current
-  const scrolle = document.getElementById('scrolling')
  const onScrolling = (e) => {
-  //  if(e.target.scrollLeft <= 40){
-  //   console.log('right button')
-  //  }else if(e.target.scrollLeft <= 40){
-  //   console.log("left button")
-  //  }
   console.log(e.target, 'window')
-  // console.log(e.target.scrollLeft, 'scroll')
   }
-// window.scrollTo(0, scrolling.current.offsetTop, 'what')
-// scrolling.scrollTo(200,200)
-// scrolling.onScroll((e)=> console.log(e))
 
 
 useEffect(() => {
