@@ -83,7 +83,7 @@ useEffect(() => {
           </thead>
         </table> */}
 
-      <table style={{ fontSize: 'smaller' }} onScroll={onScrolling} ref={scrolling}id="scrolling" className="table table-responsive">
+      <table style={{ fontSize: 'smaller' }} onScroll={onScrolling} ref={scrolling}id="scrolling" className="table table-strip">
         <thead style={{ position: 'sticky', }}>
           <tr >
             <th colSpan='1'></th>
