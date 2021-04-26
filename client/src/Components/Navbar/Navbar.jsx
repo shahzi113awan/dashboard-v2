@@ -44,7 +44,7 @@ export const Header = (props) => {
   };
   return (
     <div style={{ marginBottom: 10 }}>
-      <Navbar className="container-fluid nav" light expand="md">
+      <Navbar className="container-fluid headnav" light expand="md">
         <NavItem className="item" >
           <NavLink
             className="navlink"

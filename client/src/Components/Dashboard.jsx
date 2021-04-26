@@ -6,71 +6,57 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Get, Delete } from "../actions/ciAction";
 import Loader from "react-loader-spinner";
-import { HiOutlineDocumentReport } from 'react-icons/hi'
+import { HiOutlineDocumentReport,HiArrowRight,HiArrowLeft } from 'react-icons/hi'
 
 import moment from "moment";
 
-export default function Dashboard({data,isLoading}) {
+export default function Dashboard({ data, isLoading }) {
+
   const history = useHistory();
-  const scrolling = useRef(null);  
-  const rightButton = useRef(null);  
-  const leftButton = useRef(null);  
+  const ref = useRef(null);
 
   const dispatch = useDispatch();
   const [db, setDb] = useState([]);
-  const [tableEvent, setTableEvent] = useState([]);
-  
-  
+
+  const [highlight, sethighlight] = useState(false);
+  const [Index, setIndex] = useState();
   const onScrolling = (e) => {
-    setTableEvent(e);
-
-    if(e.target.scrollLeft <= 100){
-      // console.log(rightButton.current.style, 'rightbutton')
-      rightButton.current.style.display = "none"
-    }else if(e.target.scrollLeft >= 100){
-      // console.log(leftButton.current.style, 'leftbutton')
-      leftButton.current.style.display = "none"
-      rightButton.current.style.display = "block"
-    }
+    // console.log(e.target, 'window')
   }
-  
-  const scrollToLeft =()=>{
-    console.log(tableEvent)
-    // tableEvent.target.scrollTo(0,0)
-  }
-  const scrollToRight=()=> {
-    // tableEvent.target.scrollTo(500,0)
 
-  }
-  // useEffect(() => {
-  //   console.log(leftButton.current.style, "leftbutton")
-  // })
 
-useEffect(() => {
+  useEffect(() => {
     setDb(data);
   }, [data]);
 
-  console.log(isLoading);
+  // console.log(isLoading);
   const del = async (id) => {
     await dispatch(Delete(id));
     window.location.reload();
     // dispatch(Get());
   };
   const cal = (val) => {
-    console.log(val);
+    // console.log(val);
     const Start = moment(new Date());
-    console.log(Start);
+    // console.log(Start);
     const End = moment(val).add(90, "d").format("YYYY-MM-DD");
     const Ending = moment(End);
-    console.log(Ending);
+    // console.log(Ending);
     const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays());
-    console.log(days);
+    // console.log(days);
     return days;
   };
-  console.log(isLoading);
-  
-
-  // console.log(db);
+  // console.log(isLoading);
+  const scroll = (scrollOffset) => {
+    ref.current.scrollLeft += scrollOffset;
+  };
+  const toggle = (e, index) => {
+    console.log("JJJ")
+    setIndex(index)
+    console.log(Index);
+    sethighlight(!highlight)
+  }
+  console.log(Index);
   return isLoading ? (
     <div
       style={{
@@ -96,8 +82,8 @@ useEffect(() => {
     </div>
   ) : (
     <div className="container-fluid"  >
-      <button ref={leftButton} onClick={scrollToRight}>right</button>
-      <button ref={rightButton} onClick={scrollToLeft}>left</button>
+  <div  onClick={() => scroll(-2000)} className="scrollers"><HiArrowLeft  style={{marginTop:'700%',position:'sticky'}} size={50} color={'white'}></HiArrowLeft></div>
+        <div  onClick={() => scroll(2000)} style={{marginLeft:'96%'}}  className="scrollers"><HiArrowRight  style={{marginTop:'700%',position:'sticky'}} size={50} color={'white'}></HiArrowRight></div>
       {/* <table>
           <thead>
             <tr>
@@ -107,7 +93,10 @@ useEffect(() => {
           </thead>
         </table> */}
 
-      <table style={{ fontSize: 'smaller' }} onScroll={onScrolling} ref={scrolling}id="scrolling" className="table table-strip">
+      <table style={{ fontSize: 'smaller' }} onScroll={onScrolling} ref={ref} id="scrolling" className="table table-responsive">
+
+      
+
         <thead style={{ position: 'sticky', }}>
           <tr >
             <th colSpan='1'></th>
@@ -227,7 +216,7 @@ useEffect(() => {
                   res.sd
                 ) {
                   return (
-                    <tr>
+                    <tr style={{ border: Index == index ? 'solid black 3px' : '' }} onClick={e => { toggle(e, index) }}>
                       <th scope="row">  <span className="badge badge-pill badge-success">{index + 1}</span></th>
 
                       <td className="tdci" style={{ position: "relative" }}>
@@ -374,7 +363,9 @@ useEffect(() => {
               }
             })}
         </tbody>
+
       </table>
+
     </div>
 
 

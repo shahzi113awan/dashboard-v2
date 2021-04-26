@@ -155,3 +155,20 @@ th{
  -moz-box-shadow:    3px 3px 5px 6px #979794   ;  /* Firefox 3.5 - 3.6 */
  box-shadow:         3px 3px 5px 6px #979794     ;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
   }
+  .rowtr{
+      background-color: #536654 !important;
+      border: black solid 1px !important;
+    
+  }
+  .scrollers{
+   scroll-behavior:smooth; position:fixed;  display: block; background-color: transparent; height: 2000px;width: '200px';
+   border: none;
+   opacity: 0.3;
+  }
+  .scrollers:hover{
+   scroll-behavior:smooth; position:fixed;  display: block;   height: 2000px
+   ;border:'2px solid black' !important; color: black;
+   background-color: black !important;
+   
+  }
+  
