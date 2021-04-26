@@ -13,15 +13,38 @@ import moment from "moment";
 export default function Dashboard({data,isLoading}) {
   const history = useHistory();
   const scrolling = useRef(null);  
+  const rightButton = useRef(null);  
+  const leftButton = useRef(null);  
 
   const dispatch = useDispatch();
   const [db, setDb] = useState([]);
+  const [tableEvent, setTableEvent] = useState([]);
   
   
- const onScrolling = (e) => {
-  console.log(e.target, 'window')
-  }
+  const onScrolling = (e) => {
+    setTableEvent(e);
 
+    if(e.target.scrollLeft <= 100){
+      // console.log(rightButton.current.style, 'rightbutton')
+      rightButton.current.style.display = "none"
+    }else if(e.target.scrollLeft >= 100){
+      // console.log(leftButton.current.style, 'leftbutton')
+      leftButton.current.style.display = "none"
+      rightButton.current.style.display = "block"
+    }
+  }
+  
+  const scrollToLeft =()=>{
+    console.log(tableEvent)
+    // tableEvent.target.scrollTo(0,0)
+  }
+  const scrollToRight=()=> {
+    // tableEvent.target.scrollTo(500,0)
+
+  }
+  // useEffect(() => {
+  //   console.log(leftButton.current.style, "leftbutton")
+  // })
 
 useEffect(() => {
     setDb(data);
@@ -73,7 +96,8 @@ useEffect(() => {
     </div>
   ) : (
     <div className="container-fluid"  >
-
+      <button ref={leftButton} onClick={scrollToRight}>right</button>
+      <button ref={rightButton} onClick={scrollToLeft}>left</button>
       {/* <table>
           <thead>
             <tr>
