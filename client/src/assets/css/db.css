@@ -179,3 +179,9 @@ th{
         z-index: 2;
       }
    */
+    /* table thead th:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+      }
+   */
