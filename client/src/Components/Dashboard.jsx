@@ -93,11 +93,11 @@ export default function Dashboard({ data, isLoading }) {
           </thead>
         </table> */}
 
-      <table style={{ fontSize: 'smaller' }} onScroll={onScrolling} ref={ref} id="scrolling" className="table table-responsive">
+      <table style={{ fontSize: 'smaller',position:'relative',tableLayout:'fixed ' }} onScroll={onScrolling} ref={ref} id="scrolling" className="table table-responsive">
 
       
 
-        <thead style={{ position: 'sticky', }}>
+        <thead className="test" >
           <tr >
             <th colSpan='1'></th>
             <th className="shadowci" colSpan='4'  >Company Information</th>
@@ -221,7 +221,7 @@ export default function Dashboard({ data, isLoading }) {
 
                       <td className="tdci" style={{ position: "relative" }}>
                         {" "}
-                        <Link className="name" to={"/ci/" + res._id}>
+                        <Link  className="name" to={"/ci/" + res._id}>
                           {res.ci.tpi_rcName != " "
                             ? res.ci.tpi_rcName
                             : "Default Name"}

@@ -38,6 +38,15 @@ export const GetLive = (obj) => async (dispatch) => {
     payload: data,
   });
 };
+export const GetArchive = (obj) => async (dispatch) => {
+  dispatch(setLoading());
+
+  const { data } = await axios.get("/api/ciArchive");
+  dispatch({
+    type: "GET_CI",
+    payload: data,
+  });
+};
 //Archive Getter
 export const GetTrading = (obj) => async (dispatch) => {
   dispatch(setLoading());

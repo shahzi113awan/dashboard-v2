@@ -19,7 +19,7 @@ import { CgMediaPodcast } from 'react-icons/cg'
 import { IoMdArchive } from 'react-icons/io'
 import { BsGraphUp } from 'react-icons/bs'
 // import { load } from "dotenv/types";
-import { Get, GetLive, GetTrading } from "../../actions/ciAction";
+import { Get, GetLive, GetTrading,GetArchive } from "../../actions/ciAction";
 import { Get as GetDB, GetLost, GetApproved } from '../../actions/appActions'
 import { GetContacts } from '../../actions/contactAction'
 
@@ -81,8 +81,15 @@ export const Header = (props) => {
                   <DropdownItem activeClassName="activelink1" tag={NAV} to="/TradingDb" onClick={e => { dispatch(GetTrading()) }} >
                     <span className="span1">Trading Dashboard</span>
                   </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/ArchiveDb" onClick={e => { dispatch(Get()); }} >
+                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/ArchiveDb" onClick={e => { dispatch(GetArchive()); }} >
                     <span className="span1">Archive Dashboard</span>
+                  </DropdownItem>
+                
+                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/integrationDb"   >
+                    <span className="span1">Integration Dashboard</span>
+                  </DropdownItem>
+                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/drafts" onClick={e => { dispatch(Get()); }} >
+                    <span className="span1">Drafts</span>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -209,7 +216,7 @@ export const Header = (props) => {
             <NavItem className="itemLogo">
               <NavLink activeClassName="activelink" className="navlink"
                 onClick={(e) => {
-                  dispatch(Get());
+                  dispatch(GetArchive());
                 }}
                 tag={NAV}
                 to="/ArchiveDb"

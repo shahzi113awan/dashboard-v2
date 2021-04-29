@@ -71,6 +71,7 @@ th{
      
  }
  .thsd{
+     position: sticky !important;
      padding: 3px!important;
       width: 100% !important;
        white-space: normal;
@@ -171,4 +172,10 @@ th{
    background-color: black !important;
    
   }
+ 
+    table thead th:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+      }
   

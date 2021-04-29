@@ -3,10 +3,10 @@ import { Button } from "reactstrap";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { Get, Delete, GetId } from "../../actions/ciAction";
-import '../../assets/css/db.css'
-
+import { GetArchive, Delete } from "../../actions/ciAction";
 import Loader from "react-loader-spinner";
+import Dashboard from '../Dashboard'
+
 
 import moment from "moment";
 
@@ -15,7 +15,7 @@ export default function MainDashboard() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Get());
+    dispatch(GetArchive());
   }, [dispatch]);
   const [db, setDb] = useState([]);
   const data = useSelector((state) => state.ciReducer.state);
@@ -46,148 +46,5 @@ export default function MainDashboard() {
   };
   console.log(isLoading);
   console.log(db);
-  return isLoading ? (
-    <div
-      style={{
-        position: "absolute",
-        zIndex: 10,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "lightgrey",
-        opacity: 0.8,
-        left: 0,
-        // bottom: 0,
-      }}
-    >
-      <div
-        style={{
-          textAlign: "center",
-          // color: "white",
-          marginTop: "20%",
-        }}
-      >
-        <Loader type="Puff" color="#161f22" height={100} width={100} />
-      </div>
-    </div>
-  ) : (
-    <div className="container-fluid">
-      <div class="table-responsive mt-5">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th className="badge badge-pill badge-success"  scope="col"> # </th>
-              <th className="th" scope="col" style={{ width: "200px" }}>
-                Registered Company Name
-              </th>
-              <th className="th" scope="col">Company Information</th>
-              <th className="th" scope="col ">Company Trading Info</th>
-              <th className="th" scope="col">Know Your Customer</th>
-              <th className="th" scope="col">Know your Business</th>
-              <th className="th" scope="col ">Supporting Docs</th>
-              <th className="th" scope="col ">Check List</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data &&
-              data.map((res, index) => {
-                {
-                  if (res.ci) {
-                    return (
-                      <tr>
-                        <th className="badge badge-pill badge-success"   >{index + 1}</th>
-                        <td style={{ position: "relative" }}>
-                          {" "}
-                          <Link to={"/ci/" + res._id}>
-                            {res.ci.tpi_rcName === ""
-                              ? "Default Name"
-                              : res.ci.tpi_rcName}
-                          </Link>
-                        </td>
-                        <td>{res.ci ? "Done" : "Missing"}</td>
-
-                        <td>
-                          {res.cti ? (
-                            "Done"
-                          ) : (
-                            <Button
-                              tag={Link}
-                              onClick={(e) => {
-                                dispatch(GetId(res._id));
-                              }}
-                              to={"/cti/"}
-                            >
-                              {"Missing"}
-                            </Button>
-                          )}
-                        </td>
-                        <td>
-                          {res.kyc ? (
-                            "Done"
-                          ) : (
-                            <Button
-                              tag={Link}
-                              onClick={(e) => {
-                                dispatch(GetId(res._id));
-                              }}
-                              to={"/kyc/"}
-                            >
-                              {"Missing"}
-                            </Button>
-                          )}
-                        </td>
-                        <td>
-                          {res.kyb ? (
-                            "Done"
-                          ) : (
-                            <Button
-                              tag={Link}
-                              onClick={(e) => {
-                                dispatch(GetId(res._id));
-                              }}
-                              to={"/kyb/"}
-                            >
-                              {"Missing"}
-                            </Button>
-                          )}
-                        </td>
-                        <td>
-                          {res.sd ? (
-                            "Done"
-                          ) : (
-                            <Button
-                              tag={Link}
-                              onClick={(e) => {
-                                dispatch(GetId(res._id));
-                              }}
-                              to={"/sdkyb"}
-                            >
-                              {"Missing"}
-                            </Button>
-                          )}
-                        </td>
-                        <td>
-                          {res.cl ? (
-                            "Done"
-                          ) : (
-                            <Button
-                              tag={Link}
-                              onClick={(e) => {
-                                dispatch(GetId(res._id));
-                              }}
-                              to={"/check-list"}
-                            >
-                              {"Missing"}
-                            </Button>
-                          )}
-                        </td>
-                      </tr>
-                    );
-                  }
-                }
-              })}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+  return ( <Dashboard data={data} isLoading={isLoading}/>)
 }
