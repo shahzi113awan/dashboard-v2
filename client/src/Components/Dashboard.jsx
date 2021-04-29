@@ -83,7 +83,7 @@ export default function Dashboard({ data, isLoading }) {
   ) : (
     <div className="container-fluid"  >
   <div  onClick={() => scroll(-2000)} className="scrollers"><HiArrowLeft  style={{marginTop:'700%',position:'sticky'}} size={50} color={'white'}></HiArrowLeft></div>
-        <div  onClick={() => scroll(2000)} style={{marginLeft:'96%'}}  className="scrollers"><HiArrowRight  style={{marginTop:'700%',position:'sticky'}} size={50} color={'white'}></HiArrowRight></div>
+        <div  onClick={() => scroll(2000)} style={{marginLeft:'97%'}}  className="scrollers"><HiArrowRight  style={{marginTop:'700%',position:'sticky'}} size={50} color={'white'}></HiArrowRight></div>
       {/* <table>
           <thead>
             <tr>

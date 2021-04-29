@@ -166,7 +166,7 @@ th{
    opacity: 0.3;
   }
   .scrollers:hover{
-   scroll-behavior:smooth; position:fixed;  display: block;   height: 2000px
+   scroll-behavior:smooth; position:fixed;  display: block;   height: 1000px
    ;border:'2px solid black' !important; color: black;
    background-color: black !important;
    
