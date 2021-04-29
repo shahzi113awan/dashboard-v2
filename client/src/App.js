@@ -16,6 +16,8 @@ import store from "./store";
 import MainDashboard from "./Components/MainDashboard";
 import LiveDashboard from "./Components/Dashboards/LiveDashboard";
 import TradingDashboard from "./Components/Dashboards/TradingDashboard";
+import IntegrationDashboard from "./Components/Dashboards/IntegrationDashboard";
+import Missing from "./Components/Dashboards/Missing";
 import ArchiveDashboard from "./Components/Dashboards/ArchiveDashboard";
 import { Header } from "./Components/Navbar/Navbar";
 import Applications from "./Components/Application/Application";
@@ -59,6 +61,8 @@ function App() {
                 <Route exact path="/LiveDb" component={LiveDashboard} />
                 <Route exact path="/TradingDb" component={TradingDashboard} />
                 <Route exact path="/ArchiveDb" component={ArchiveDashboard} />
+                <Route exact path="/integrationDb" component={IntegrationDashboard} />
+                <Route exact path="/drafts" component={Missing} />
                 <Route exact path="/Applications" component={Applications} />
                 <Route exact path="/App" component={ApprovalForm} />
                 <Route exact path="/App/:urlid" component={ApprovalForm} />

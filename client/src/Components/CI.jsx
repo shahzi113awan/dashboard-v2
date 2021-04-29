@@ -128,6 +128,7 @@ export default function CI(props) {
             <option> </option>
             <option> Live </option>
             <option>Trading</option>
+            <option>Archive</option>
           </select>
         </div>
 

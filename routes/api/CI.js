@@ -66,6 +66,16 @@ router.get("/ciLive", (req, res) => {
     }
   });
 });
+router.get("/ciArchive", (req, res) => {
+  CISchema.find({"ci.cistatus":"Archive"},(error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      console.log("xxxxxx");
+      res.json(data);
+    }
+  });
+});
 // READ CIs
 router.get("/ciTrading", (req, res) => {
   CISchema.find({ "ci.cistatus": "Trading" }, (error, data) => {
