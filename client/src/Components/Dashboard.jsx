@@ -93,7 +93,7 @@ export default function Dashboard({ data, isLoading }) {
           </thead>
         </table> */}
 
-      <table style={{ fontSize: 'smaller',position:'relative',tableLayout:'fixed ' }} onScroll={onScrolling} ref={ref} id="scrolling" className="table table-responsive">
+      <table style={{ fontSize: 'smaller'  }} onScroll={onScrolling} ref={ref} id="scrolling" className="table table-responsive">
 
       
 

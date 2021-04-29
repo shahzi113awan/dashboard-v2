@@ -173,9 +173,9 @@ th{
    
   }
  
-    table thead th:first-child {
+    /* table thead th:first-child {
         position: sticky;
         left: 0;
         z-index: 2;
       }
-  
+   */
