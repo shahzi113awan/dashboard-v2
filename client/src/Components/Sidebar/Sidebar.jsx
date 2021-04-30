@@ -26,25 +26,25 @@ export default function Sidebar({ id }) {
 
         <Nav className="navside" vertical expand="md">
             <NavItem tag={Link} to={`/ci/${id}`} className="itemside">
-                Company information
+                Company Information
             </NavItem>
             <NavItem tag={Link} to={`/cti/${id}`} className="itemside">
-                Company Trading information
+            Company Trading  Information
             </NavItem>
             <NavItem tag={Link} to={`/kyc/${id}`} className="itemside">
-                Know your customer(KYC)
+              Know Your Customer
             </NavItem>
             <NavItem tag={Link} to={`/kyb/${id}`} className="itemside">
-                Know your Business(KYB)
+              Know Your Business
             </NavItem>
             <NavItem tag={Link} to={`/sdkyb/${id}`} className="itemside">
-                Supporting Documents
+                Supporting Doc    
             </NavItem>
             <NavItem tag={Link} to={`/check-list/${id}`} className="itemside">
-                Documents Check List
+               Document-List
             </NavItem>
             <NavItem onClick={e => { dispatch(Get()) }} tag={Link} to={`/`} className="itemside">
-                Main Dashboard
+                Dashboard
             </NavItem>
         </Nav>
 

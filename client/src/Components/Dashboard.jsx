@@ -4,9 +4,9 @@ import '../assets/css/db.css'
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { Get, Delete } from "../actions/ciAction";
+import { Get, Delete, UpdateStatus } from "../actions/ciAction";
 import Loader from "react-loader-spinner";
-import { HiOutlineDocumentReport,HiArrowRight,HiArrowLeft } from 'react-icons/hi'
+import { HiOutlineDocumentReport, HiArrowRight, HiArrowLeft } from 'react-icons/hi'
 
 import moment from "moment";
 
@@ -33,6 +33,14 @@ export default function Dashboard({ data, isLoading }) {
   const del = async (id) => {
     await dispatch(Delete(id));
     window.location.reload();
+    // dispatch(Get());
+  };
+  const updateStatus = async (e, status, id) => {
+ 
+    e.preventDefault()
+    console.log(status);
+    await dispatch(UpdateStatus(status, id));
+
     // dispatch(Get());
   };
   const cal = (val) => {
@@ -81,9 +89,9 @@ export default function Dashboard({ data, isLoading }) {
       </div>
     </div>
   ) : (
-    <div className="container-fluid"  >
-  <div  onClick={() => scroll(-2000)} className="scrollers"><HiArrowLeft  style={{marginTop:'700%',position:'sticky'}} size={50} color={'white'}></HiArrowLeft></div>
-        <div  onClick={() => scroll(2000)} style={{marginLeft:'97%'}}  className="scrollers"><HiArrowRight  style={{marginTop:'700%',position:'sticky'}} size={50} color={'white'}></HiArrowRight></div>
+    <div  className="container-fluid"  >
+      <div onClick={() => scroll(-2000)} className="scrollers"><HiArrowLeft className="scrollersLogo" style={{ marginTop: '700%', position: 'sticky' }} size={50} color={'black'}></HiArrowLeft></div>
+      <div onClick={() => scroll(2000)} style={{ right:"0" }} className="scrollers"><HiArrowRight className="scrollersLogo" style={{ marginTop: '700%', position: 'sticky' }} size={50} color={'black'}></HiArrowRight></div>
       {/* <table>
           <thead>
             <tr>
@@ -93,9 +101,9 @@ export default function Dashboard({ data, isLoading }) {
           </thead>
         </table> */}
 
-      <table style={{ fontSize: 'smaller'  }} onScroll={onScrolling} ref={ref} id="scrolling" className="table table-responsive">
+      <table style={{ fontSize: 'smaller' }} onScroll={onScrolling} ref={ref} id="scrolling" className="table table-responsive">
 
-      
+
 
         <thead className="test" >
           <tr >
@@ -114,6 +122,7 @@ export default function Dashboard({ data, isLoading }) {
             <th className="shadowsd" style={{ backgroundColor: '#b19cd9' }} colSpan='9'>Supporting Documents</th>
             <th className="shadow1" colSpan='1'>Spare</th>
             <th className="shadow1" colSpan='1'>Delete</th>
+            {/* <th className="shadow1" colSpan='1'>Move to Archive</th> */}
           </tr>
         </thead>
         <thead className="thead">
@@ -201,6 +210,7 @@ export default function Dashboard({ data, isLoading }) {
             {/* <th className="th" scope="col">SPARE</th> */}
             <th className="th" scope="col "> SPARE</th>
             <th className="th" scope="col "> Delete</th>
+            {/* <th className="th" scope="col "> Move To Archive</th> */}
           </tr>
         </thead>
         <tbody >
@@ -219,9 +229,9 @@ export default function Dashboard({ data, isLoading }) {
                     <tr style={{ border: Index == index ? 'solid black 3px' : '' }} onClick={e => { toggle(e, index) }}>
                       <th scope="row">  <span className="badge badge-pill badge-success">{index + 1}</span></th>
 
-                      <td className="tdci" style={{ position: "relative" }}>
+                      <td className="tdci"  >
                         {" "}
-                        <Link  className="name" to={"/ci/" + res._id}>
+                        <Link className="name" to={"/ci/" + res._id}>
                           {res.ci.tpi_rcName != " "
                             ? res.ci.tpi_rcName
                             : "Default Name"}
@@ -357,6 +367,15 @@ export default function Dashboard({ data, isLoading }) {
                           Delete
                           </Button>
                       </td>
+                      {/* <td>
+                        <Link
+                          onClick={(e) => {
+                            updateStatus(e, "Archive", res._id);
+                          }}
+                        >
+                          Archive
+                          </Link>
+                      </td> */}
                     </tr>
                   );
                 }

@@ -126,11 +126,30 @@ export const UpdateOne = (obj, urlid) => async (dispatch) => {
     });
   }
 };
-export const GetId = (id)=>(dispatch)=>{
-dispatch({
-  type:'UPDATE_ID',
-  id:id
-})
+export const UpdateStatus = (status, urlid) => async (dispatch) => {
+  console.log("update one action should");
+
+  try {
+    let url = "/api/cistatus/";
+    await axios.put(url + urlid, { id: urlid, cistatus: status }).then(
+      (res) =>
+        // dispatch({
+        //   type: "Update_Status",
+        //   payload: res.data,
+        console.log(res.data)
+        // }),
+    );
+  } catch {
+    dispatch({
+      type: "Error",
+    });
+  }
+};
+export const GetId = (id) => (dispatch) => {
+  dispatch({
+    type: 'UPDATE_ID',
+    id: id
+  })
 }
 export const setLoading = () => (dispatch) => {
   dispatch({

@@ -113,9 +113,9 @@ export default function CI(props) {
   }
   return (
     <div>
-      { urlid ? (<SideNav id={urlid}></SideNav>) : (<div></div>)}
-      <div className="mt-4 mb-5 container">
-        <div style={{ margin: "2%" }}>
+      { urlid ? (<div><SideNav id={urlid}></SideNav></div>) : (<div></div>)}
+      <div className="container">
+      
           <Label>MOVE TO</Label>
           <select
             className={"custom-select"}
@@ -130,7 +130,7 @@ export default function CI(props) {
             <option>Trading</option>
             <option>Archive</option>
           </select>
-        </div>
+        
 
         <div>
           <h2>

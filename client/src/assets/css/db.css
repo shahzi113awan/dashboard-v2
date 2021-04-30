@@ -162,15 +162,30 @@ th{
     
   }
   .scrollers{
+      float: right !important;
    scroll-behavior:smooth; position:fixed;  display: block; background-color: transparent; height: 2000px;width: '200px';
    border: none;
-   opacity: 0.3;
+ 
   }
   .scrollers:hover{
+    float: right !important;
    scroll-behavior:smooth; position:fixed;  display: block;   height: 1000px
-   ;border:'2px solid black' !important; color: black;
-   background-color: black !important;
+   ;border:'2px solid black' !important;  
+    
    
+  }
+ 
+  .scrollersLogo{
+   scroll-behavior:smooth; position:fixed;  display: block; background-color: transparent;  ;
+   border: none;
+   opacity: 0.2;
+ 
+  }
+  .scrollersLogo:hover{
+   scroll-behavior:smooth; position:fixed;  display: block;   
+   ;border:'2px solid black' !important;  
+    
+   opacity: 1;
   }
  
     /* table thead th:first-child {
