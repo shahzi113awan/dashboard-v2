@@ -112,8 +112,8 @@ export default function CI(props) {
 
   }
   return (
-    <div>
-      { urlid ? (<div><SideNav id={urlid}></SideNav></div>) : (<div></div>)}
+    <div  className="container">
+      { urlid ? (<div classNa="col-md-3"><SideNav id={urlid}></SideNav></div>) : (<div></div>)}
       <div className="container">
       
           <Label>MOVE TO</Label>

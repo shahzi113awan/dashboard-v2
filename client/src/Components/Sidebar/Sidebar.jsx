@@ -24,7 +24,7 @@ export default function Sidebar({ id }) {
 
 
 
-        <Nav className="navside" vertical expand="md">
+        <Nav style={{position:"fixed" ,left:'0px'}} className="navside" vertical expand="md">
             <NavItem tag={Link} to={`/ci/${id}`} className="itemside">
                 Company Information
             </NavItem>
