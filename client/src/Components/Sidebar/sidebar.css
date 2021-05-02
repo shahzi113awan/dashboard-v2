@@ -1,24 +1,23 @@
 .sidebar{
-    margin-top: 3%;
+    
     background: rgb(113, 231, 113)!important;
 
 }
 .nav{
-    position:fixed;
-    float: 'left';
-    top: 50;
+    /* position:fixed; */
+    
+    
      
     /* position: fixed !important; */
     background-color:rgb(56, 51, 51) !important
 }
 .navside{
-    float: left;
-    top: -60;
- width: 8%;
+    
+   
     border-radius: 3%;
      
-    margin-right: 2%;
-    margin-left: 2%;
+    margin-right: 1%;
+    margin-left: 1%;
 }
 .itemside{
      
@@ -27,11 +26,11 @@
     color: white !important;
     text-decoration: none !important;
     text-align: center;
-    margin-top: 5%;
+    margin-top: 1%;
  
-    margin-bottom: 3%;
-    margin-right: 3%;
-    margin-left: 3%;
+    margin-bottom: 1%;
+    margin-right: 2%;
+    margin-left: 2%;
     
 }
 .itemside:hover{
@@ -54,4 +53,15 @@
 }
 .spanside:hover{
     color: rgb(113, 231, 113);
+}
+.side{
+    bottom: 0;
+     margin-bottom: 2%;
+      position: sticky;
+       margin-left: 3%;
+        margin-right: 10%;
+        border-radius:2%;
+        -webkit-box-shadow: 3px 3px 5px 6px #979794   ;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+ -moz-box-shadow:    3px 3px 5px 6px #979794   ;  /* Firefox 3.5 - 3.6 */
+ box-shadow:         3px 3px 5px 6px #979794     ;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }

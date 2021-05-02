@@ -43,8 +43,8 @@ export const Header = (props) => {
     history.push("/")
   };
   return (
-    <div style={{ marginBottom: 10,    }}>
-      <Navbar className="container-fluid headnav" light expand="md">
+    <div >
+      <Navbar className="container-fluid headnav" dark  expand="lg">
         <NavItem className="item" >
           <NavLink
             className="navlink"

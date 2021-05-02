@@ -69,8 +69,10 @@ export default function CTI() {
   };
   return (
     <div>
-    { urlid ? (<SideNav id={urlid}></SideNav>) : (<div></div>)}
-    <div className="container">
+    <div className="container-fluid">
+      <div className="row">
+    { urlid ? (<div className="col-md-2"><SideNav id={urlid}></SideNav></div>) : (<div></div>)}
+    <div className={urlid ? "col-md-8" : "col-md-12"}>
       <div>
         <h2>
           <span class="badge badge-success">Supporting Documents (KYB):</span>
@@ -295,5 +297,6 @@ export default function CTI() {
       </Form>
     </div>
     </div>
+    </div></div>
   );
 }

@@ -24,27 +24,35 @@ export default function Sidebar({ id }) {
 
 
 
-        <Nav style={{position:"fixed" ,left:'0px'}} className="navside" vertical expand="md">
-            <NavItem tag={Link} to={`/ci/${id}`} className="itemside">
-                Company Information
+        <Nav className="side" vertical style={{ }}    >
+            <NavItem>
+                <NavLink className="text-white text-center" tag={Link} to={`/ci/${id}`} >Company Information</NavLink>
+
             </NavItem>
-            <NavItem tag={Link} to={`/cti/${id}`} className="itemside">
-            Company Trading  Information
+        
+            <NavItem >
+                <NavLink className="text-white text-center" tag={Link} to={`/cti/${id}`}>Company Trading  Information</NavLink>
+
             </NavItem>
-            <NavItem tag={Link} to={`/kyc/${id}`} className="itemside">
-              Know Your Customer
+            <NavItem >
+                <NavLink className="text-white text-center" tag={Link} to={`/kyc/${id}`}> Know Your Customer</NavLink>
+
             </NavItem>
-            <NavItem tag={Link} to={`/kyb/${id}`} className="itemside">
-              Know Your Business
+            <NavItem >
+                <NavLink className="text-white text-center" tag={Link} to={`/kyb/${id}`} > Know Your Business</NavLink>
+
             </NavItem>
-            <NavItem tag={Link} to={`/sdkyb/${id}`} className="itemside">
-                Supporting Doc    
+            <NavItem>
+                <NavLink className="text-white text-center" tag={Link} to={`/sdkyb/${id}`} > Supporting Doc  </NavLink>
+
             </NavItem>
-            <NavItem tag={Link} to={`/check-list/${id}`} className="itemside">
-               Document-List
+            <NavItem  >
+                <NavLink className="text-white text-center" tag={Link} to={`/check-list/${id}`}> Document-List</NavLink>
+
             </NavItem>
-            <NavItem onClick={e => { dispatch(Get()) }} tag={Link} to={`/`} className="itemside">
-                Dashboard
+            <NavItem  >
+                <NavLink className="text-white text-center" onClick={e => { dispatch(Get()) }} tag={Link} to={`/`}> Dashboard</NavLink>
+
             </NavItem>
         </Nav>
 
