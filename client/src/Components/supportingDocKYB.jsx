@@ -69,7 +69,7 @@ export default function CTI() {
   };
   return (
     <div>
-    <div className="container-fluid">
+    <div  className={urlid?"container-fluid":"container"}>
       <div className="row">
     { urlid ? (<div className="col-md-2"><SideNav id={urlid}></SideNav></div>) : (<div></div>)}
     <div className={urlid ? "col-md-8" : "col-md-12"}>

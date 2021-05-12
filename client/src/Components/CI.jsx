@@ -113,7 +113,7 @@ export default function CI(props) {
   }
   return (
     <div style={{ position: "relative" }}  >
-      <div className="container-fluid">
+      <div  className={urlid?"container-fluid":"container"}>
         <div className="row">
           {urlid ? (<div className="col-md-2"> < SideNav id={urlid} /> </div>) : (<div   ></div>)}
           <div className={urlid ? "col-md-8" : "col-md-12"}>

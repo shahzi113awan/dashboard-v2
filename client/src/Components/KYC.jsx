@@ -147,7 +147,7 @@ const KYC = () => {
       </div>
     </div>
   ) : (
-    <div className="container-fluid">
+    <div className={urlid?"container-fluid":"container"}>
       <div className="row">
 
      

@@ -57,6 +57,7 @@ const CTI = () => {
     cti_bPlan: "Pending",
   });
   // console.log(CTI)
+  const [arr, setarr] = useState();
   function handleInput(evt) {
     setCTI({
       ...CTI,
@@ -68,6 +69,26 @@ const CTI = () => {
   useEffect(() => {
     setCTI(data);
   }, [data]);
+  useEffect(() => {
+    var value = document.getElementsByClassName("NotR");
+    console.log(value.onChange);
+    
+for (var i = 0, len = value.length; i < len; i++) {
+  console.log(value[i]);
+  
+  setCTI({
+    ...CTI,
+    [value[i].name]: "Not Required",
+  },handler(CTI) );
+  
+}
+   
+ 
+  },   );
+ const handler = async(name) => {
+   console.log(name);
+   
+ }
   useEffect(() => {
     setCL(dataCL);
   }, [dataCL]);
@@ -85,7 +106,7 @@ const CTI = () => {
   };
 
   return (
-    <div   className="container-fluid">
+    <div   className={urlid?"container-fluid":"container"}>
       <div className="row">
     { urlid ? (<div className="col-md-2"> <SideNav id={urlid}></SideNav> </div>) : (<div></div>)}
     <div className={urlid? "col-md-8":"col-md-12"}>
@@ -142,10 +163,10 @@ const CTI = () => {
                 // value={CTI.cti_otAgreement}
                 value={"Not Required"}
                 name="cti_otAgreement"
-                onLoad={handleInput}
+                onChange={handleInput}
                 required={false}
                 type="text"
-                id="Name"
+                className="NotR"
                 placeholder="OTA"
               ></Input>
             </FormGroup>
@@ -204,7 +225,7 @@ const CTI = () => {
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Ownership Structure Chart:</Label>
-              <Input readOnly value={"Not Required"}></Input>
+              <Input readOnly name="cti_osChart" className="NotR" value={"Not Required"}></Input>
               {/* <select
                 className={"custom-select"}
                 // value={CTI.cti_osChart}
@@ -223,7 +244,7 @@ const CTI = () => {
           <Col md={6}>
             <FormGroup>
               <Label for="CCR">Business Plan:</Label>
-              <Input readOnly value={"Not Required"}></Input>
+              <Input readOnly  name="cti_bPlan"  className="NotR" value={"Not Required"}></Input>
               {/* <select
                 className={"custom-select"}
                 // value={CTI.cti_bPlan}
