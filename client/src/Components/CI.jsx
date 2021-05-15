@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Col, Row, Button, Form, FormGroup, Label, Input,NavItem,NavLink,Nav, } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CreateCI, Update, GetOneCI, UpdateOne } from "../actions/ciAction";
-import { INITIATECTI } from "../actions/ctiAction";
+import { CreateCI, Update,Get, GetOneCI, UpdateOne } from "../actions/ciAction";
+import { INITIATECTI, } from "../actions/ctiAction";
 import SideNav from './Sidebar/Sidebar'
 
 export default function CI(props) {
+  const [tab, setTab] = useState('pi');
   const [copy, setCopy] = useState(false)
   const dispatch = useDispatch();
   const { urlid } = useParams();
@@ -112,8 +113,9 @@ export default function CI(props) {
 
   }
   return (
-    <div style={{ position: "relative" }}  >
+    <div style={{ position: "relative" }}    >
       <div  className={urlid?"container-fluid":"container"}>
+      
         <div className="row">
           {urlid ? (<div className="col-md-2"> < SideNav id={urlid} /> </div>) : (<div   ></div>)}
           <div className={urlid ? "col-md-8" : "col-md-12"}>
@@ -140,6 +142,7 @@ export default function CI(props) {
             </div>
             <hr className="border-primary " />
             <Form>
+              {tab==="pi"?(
               <div className="border p-3 shadow">
                 <div>
                   <h2>
@@ -329,9 +332,12 @@ export default function CI(props) {
                   </Col>
                 </Row>
               </div>
-
+              ): <div></div>}
               {/* **************************** */}
 
+            <div>
+            {tab==="tci"?(
+              <div  >
               <hr className="border-primary" />
               <div className="border p-3 shadow">
                 <div>
@@ -406,8 +412,14 @@ export default function CI(props) {
                     </FormGroup>
                   </Col>
                 </Row>
-                {/* **************************** */}
+                </div>
+                </div>
+               ): <div></div>}
+              {/* **************************** */}
+              {tab==="tcci"?(
+              <div>
                 <hr className="border-primary" />
+                
                 <div>
                   <h2>
                     <span class="badge badge-success">
@@ -525,15 +537,18 @@ export default function CI(props) {
                     </FormGroup>
                   </Col>
                 </Row>
-
+                 </div>
+                  ): <div></div>}
                 {/* **************************** */}
-
+                {tab==="mci"?(       
+  
+<div>
                 <hr className="border-primary" />
                 <div className="border p-3 shadow">
                   <div>
                     <h2>
                       <span class="badge badge-success">
-                        Management Company Contact Information:
+                        Management Company Information:
                 </span>
                     </h2>
                   </div>
@@ -617,12 +632,18 @@ export default function CI(props) {
                       </FormGroup>
                     </Col>
                   </Row>
+                  </div>
+                  </div>
+                  ): <div></div>}
                   {/* **************************** */}
                   {/* <hr className="border-primary"/> */}
+                  {tab==="mcci"?(
+                  <div>
+                    
                   <div>
                     <h2>
                       <span class="badge badge-success">
-                        Application/ Company Contact Information:
+                        Management/ Company Contact Information:
                 </span>
                     </h2>
                   </div>
@@ -720,7 +741,39 @@ export default function CI(props) {
                       </FormGroup>
                     </Col>
                   </Row>
-                </div>
+                  </div>
+                  ): <div></div>}
+                
+                
+                <div>
+          
+          <Nav className="side" vertical style={{width:'30%',margin:'2%' }}    >
+              <NavItem>
+                  <NavLink className="text-white text-center"style={{cursor:"pointer"}} onClick={e=>{setTab("pi")}}  >Trading / Processing Information</NavLink>
+  
+              </NavItem>
+          
+              <NavItem >
+                  <NavLink className="text-white text-center"  style={{cursor:"pointer"}} onClick={e=>{setTab("tci")}} >TRADING COMPANY INFORMATION</NavLink>
+  
+              </NavItem>
+              <NavItem >
+                  <NavLink className="text-white text-center"style={{cursor:"pointer"}} onClick={e=>{setTab("tcci")}}  >TRADING COMPANY CONTACT INFORMATION</NavLink>
+  
+              </NavItem>
+              <NavItem >
+                  <NavLink className="text-white text-center" style={{cursor:"pointer"}} onClick={e=>{setTab("mci")}}  >MANAGEMENT COMPANY INFORMATION</NavLink>
+  
+              </NavItem>
+              <NavItem>
+                  <NavLink className="text-white text-center" style={{cursor:"pointer"}} onClick={e=>{setTab("mcci")}}  > MANAGEMENT COMPANY CONTACT INFORMATION  </NavLink>
+  
+              </NavItem>
+             
+  
+              
+          </Nav>
+          </div>
 
                 {/* ================================================ */}
 

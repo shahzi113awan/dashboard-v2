@@ -1,17 +1,19 @@
 import { Button } from "reactstrap";
 import '../assets/css/db.css'
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Get, Delete, UpdateStatus } from "../actions/ciAction";
 import Loader from "react-loader-spinner";
+import { useTable } from 'react-table'
+import { COLUMNS } from './coulmns'
+
 import { HiOutlineDocumentReport, HiArrowRight, HiArrowLeft } from 'react-icons/hi'
 
 import moment from "moment";
 
 export default function Dashboard({ data, isLoading }) {
-
   const history = useHistory();
   const ref = useRef(null);
 
@@ -23,7 +25,12 @@ export default function Dashboard({ data, isLoading }) {
   const onScrolling = (e) => {
     // console.log(e.target, 'window')
   }
-
+  
+  // const tableinstance = useTable({
+  //   columns : COLUMNS,
+  //   data: data
+  // })
+  // const { prepareRow, getTableProps, getTableBodyProps, headerGroups, rows } = tableinstance
 
   useEffect(() => {
     setDb(data);
@@ -36,7 +43,7 @@ export default function Dashboard({ data, isLoading }) {
     // dispatch(Get());
   };
   const updateStatus = async (e, status, id) => {
- 
+
     e.preventDefault()
     console.log(status);
     await dispatch(UpdateStatus(status, id));
@@ -89,9 +96,9 @@ export default function Dashboard({ data, isLoading }) {
       </div>
     </div>
   ) : (
-    <div  className="container-fluid"  >
+    <div className="container-fluid"  >
       <div onClick={() => scroll(-500)} className="scrollers"><HiArrowLeft className="scrollersLogo" style={{ marginTop: '700%', position: 'sticky' }} size={50} color={'black'}></HiArrowLeft></div>
-      <div onClick={() => scroll(500)} style={{ right:"0" }} className="scrollers"><HiArrowRight className="scrollersLogo" style={{ marginTop: '700%', position: 'sticky' }} size={50} color={'black'}></HiArrowRight></div>
+      <div onClick={() => scroll(500)} style={{ right: "0" }} className="scrollers"><HiArrowRight className="scrollersLogo" style={{ marginTop: '700%', position: 'sticky' }} size={50} color={'black'}></HiArrowRight></div>
       {/* <table>
           <thead>
             <tr>
@@ -384,9 +391,51 @@ export default function Dashboard({ data, isLoading }) {
         </tbody>
 
       </table>
-
+     
     </div>
 
 
   );
 }
+  //  {/* <table {...getTableProps()}>
+  //    <thead>
+  //      {// Loop over the header rows
+  //      headerGroups.map(headerGroup => (
+  //        // Apply the header row props
+  //        <tr {...headerGroup.getHeaderGroupProps()}>
+  //          {// Loop over the headers in each row
+  //          headerGroup.headers.map(column => (
+  //            // Apply the header cell props
+  //            <th {...column.getHeaderProps()}>
+  //              {// Render the header
+  //              column.render('Header')}
+  //            </th>
+  //          ))}
+  //        </tr>
+  //      ))}
+  //    </thead>
+  //    {/* Apply the table body props */}
+  //    <tbody {...getTableBodyProps()}>
+  //      {// Loop over the table rows
+  //      rows.map(row => {
+  //        // Prepare the row for display
+  //        prepareRow(row)
+  //        return (
+  //          // Apply the row props
+  //          <tr {...row.getRowProps()}>
+  //            {// Loop over the rows cells
+  //            row.cells.map((cell,index) => {
+  //              // Apply the cell props
+  //              return (
+  //                <td {...cell.getCellProps()}>
+  //                  {// Render the cell contents
+  //                  cell.render('Cell')}
+  //                  {index}
+  //                </td>
+  //              )
+  //            })}
+  //          </tr>
+  //        )
+  //      })}
+  //    </tbody>
+  //  </table>
