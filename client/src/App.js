@@ -1,6 +1,9 @@
 import React, { Component, useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import $ from 'jquery';
+import Popper from 'popper.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import "./assets/css/Tcss.css";
 import KYC from "./Components/KYC";
 import KYCShowcase from "./Components/KYCShowcase";

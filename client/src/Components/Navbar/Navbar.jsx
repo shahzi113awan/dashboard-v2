@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './Navbar.css'
+ 
 import {
   Collapse,
   Navbar,
@@ -12,7 +12,7 @@ import {
   DropdownToggle,
   DropdownMenu
 } from "reactstrap";
-import { NavLink as NAV, useHistory } from "react-router-dom";
+import { NavLink as NAV, useHistory,Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CgMediaPodcast } from 'react-icons/cg'
 
@@ -22,7 +22,7 @@ import { BsGraphUp } from 'react-icons/bs'
 import { Get, GetLive, GetTrading,GetArchive } from "../../actions/ciAction";
 import { Get as GetDB, GetLost, GetApproved } from '../../actions/appActions'
 import { GetContacts } from '../../actions/contactAction'
-
+import './style.css'
 import { firebase } from "../../Config";
 
 export const Header = (props) => {
@@ -44,197 +44,109 @@ export const Header = (props) => {
   };
   return (
     <div >
-      <Navbar className="container-fluid headnav" dark  expand="lg">
-        <NavItem className="item" >
-          <NavLink
-            className="navlink"
-            activeClassName="activelink"
-            onClick={(e) => {
-              loadData(e);
-            }}
-            tag={NAV}
-            to="/"
-          >
-            Home
-        </NavLink>
-        </NavItem>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem className="item">
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle className="navlink" nav caret>
-                  <span className="span">Applications</span>
-                </DropdownToggle>
+     <div class="newappWrap">
+            <div class="container-fluid">
 
-                <DropdownMenu className="DropdownMenu1" right>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to='/ci'   >
-                    <span className="span1">Add New Application</span>
-                  </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to='/' onClick={e => { dispatch(Get()) }}>
-                    <span className="span1">Main  Dashboard</span>
-                  </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/LiveDb" onClick={e => { dispatch(GetLive()) }}>
-                    <span className="span1">Live Dashboard</span>
-                  </DropdownItem>
-                  {/* <DropdownItem divider /> */}
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/TradingDb" onClick={e => { dispatch(GetTrading()) }} >
-                    <span className="span1">Trading Dashboard</span>
-                  </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/ArchiveDb" onClick={e => { dispatch(GetArchive()); }} >
-                    <span className="span1">Archive Dashboard</span>
-                  </DropdownItem>
+                <div class="mainTabWrap">
+                  
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-app-tab" data-toggle="pill" href="#pills-app" role="tab" aria-controls="pills-app" aria-selected="true">NEW APPLICATION</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-dashboard-tab" data-toggle="pill" href="#pills-dashboard" role="tab" aria-controls="pills-dashboard" aria-selected="false">DASHBOARDS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-solution-tab" data-toggle="pill" href="#pills-solution" role="tab" aria-controls="pills-solution" aria-selected="false">SOLUTION PARTNERS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-iso-tab" data-toggle="pill" href="#pills-iso" role="tab" aria-controls="pills-iso" aria-selected="false">ISO PARTNERS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-adress-tab" data-toggle="pill" href="#pills-adress" role="tab" aria-controls="pills-adress" aria-selected="false">ADDRESS BOOK</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-report-tab" data-toggle="pill" href="#pills-report" role="tab" aria-controls="pills-report" aria-selected="false">REPORTS</button>
+                        </li>
+                    </ul>
+
+
+
                 
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/integrationDb"   >
-                    <span className="span1">Integration Dashboard</span>
-                  </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/drafts" onClick={e => { dispatch(Get()); }} >
-                    <span className="span1">Drafts</span>
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              {/* <NavLink activeClassName="activelink" className="navlink" tag={NAV} to="/Applications">
-                <span className="span"> Applications</span>
-              </NavLink> */}
-            </NavItem>
-            <NavItem className="item">
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle className="navlink" nav caret>
-                  <span className="span">Approvals</span>
-                </DropdownToggle>
-                <DropdownMenu className="DropdownMenu1" right>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/app"   >
-                    <span className="span1">Add New</span>
-                  </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to='/mainappdb' onClick={e => { dispatch(GetDB()) }}>
-                    <span className="span1">Main   Dashboard</span>
-                  </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/appdb" onClick={e => { dispatch(GetApproved()) }}>
-                    <span className="span1">Approval Dashboard</span>
-                  </DropdownItem>
-                  {/* <DropdownItem divider /> */}
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/lostappdb" onClick={e => { dispatch(GetLost()) }} >
-                    <span className="span1">Lost Dashboard</span>
-                  </DropdownItem>
-
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              {/* <NavLink activeClassName="activelink" className="navlink" tag={NAV} to="/mainApp"> */}
-              {/* <span className="span">Approvals</span> */}
-              {/* </NavLink> */}
-            </NavItem>
-            <NavItem className="item">
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle className="navlink" nav caret>
-                  <span className="span">Solutions</span>
-                </DropdownToggle>
-                <DropdownMenu className="DropdownMenu1" right>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/contact"   >
-                    <span className="span1">Add New Contact</span>
-                  </DropdownItem>
-                  {/* <DropdownItem divider /> */}
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/solution-nav"   >
-                    <span className="span1">Add New Solution</span>
-                  </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to='/contact-list' onClick={e => { dispatch(GetContacts()) }}>
-                    <span className="span1">Contact Dashboard</span>
-                  </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/solution-DB"   >
-                    <span className="span1"> Solution Dashboard</span>
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-
-              {/* <NavLink activeClassName="activelink" className="navlink" tag={NAV} to="/solution-app">
-                <span className="span">Solutions</span>
-              </NavLink> */}
-            </NavItem>
-            <NavItem className="item">
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle className="navlink" nav caret>
-                  <span className="span">ISO Partners</span>
-                </DropdownToggle>
-                <DropdownMenu className="DropdownMenu1" right>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/contact"   >
-                    <span className="span1">Add New Contact</span>
-                  </DropdownItem>
-                  {/* <DropdownItem divider /> */}
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/solution-nav"   >
-                    <span className="span1">Add New Solution</span>
-                  </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to='/contact-list' onClick={e => { dispatch(GetContacts()) }}>
-                    <span className="span1">Contact Dashboard</span>
-                  </DropdownItem>
-                  <DropdownItem activeClassName="activelink1" tag={NAV} to="/solution-DB"   >
-                    <span className="span1"> Solution Dashboard</span>
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-
-              {/* <NavLink activeClassName="activelink" className="navlink" tag={NAV} to="/solution-app">
-                <span className="span">Solutions</span>
-              </NavLink> */}
-            </NavItem>
-            {/* <NavItem className="item">
-              <NavLink activeClassName="activelink" className="navlink"> <span className="span">ISO Partners</span></NavLink>
-            </NavItem> */}
-            <NavItem className="item">
-              <NavLink activeClassName="activelink" className="navlink"> <span className="span">Merchant/IBAN</span></NavLink>
-            </NavItem>
-
-            <NavItem className="item">
-              <NavLink activeClassName="activelink" className="navlink"> <span className="span">Reports</span></NavLink>
-            </NavItem>
-            <NavItem className="itemLogo">
-              <NavLink activeClassName="activelink" className="navlink"
-                onClick={(e) => {
-                  dispatch(GetTrading());
-                }}
-                tag={NAV}
-                to="/TradingDb"
-              >
-                <BsGraphUp   ></BsGraphUp>
-                <span className="span"> Trading</span>
-              </NavLink>
-            </NavItem>
-
-            <NavItem className="itemLogo">
-              <NavLink activeClassName="activelink" className="navlink"
-                onClick={(e) => {
-                  dispatch(GetLive());
-                }}
-                tag={NAV}
-                to="/LiveDb"
-              >
-
-                <CgMediaPodcast size={30}></CgMediaPodcast>
-                <span className="span"> Live</span>
-              </NavLink>
-            </NavItem>
+                    <div class="tab-content" id="pills-tabContent">
 
 
-            <NavItem className="itemLogo">
-              <NavLink activeClassName="activelink" className="navlink"
-                onClick={(e) => {
-                  dispatch(GetArchive());
-                }}
-                tag={NAV}
-                to="/ArchiveDb"
-              >
-                <IoMdArchive size={30}></IoMdArchive>
-                <span className="span"> Archive</span>
-              </NavLink>
-            </NavItem>
 
-            <NavItem className="item">
-              <NavLink activeClassName="activelink" className="navlink"> <span className="span">Reports</span></NavLink>
-            </NavItem>
-            <NavItem style={{ cursor: "pointer", float: 'right' }} className="item">
-              <NavLink activeClassName="activelink" className="navlink" onClick={handleLogout}> <span className="span">Logout</span></NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
+                      
+                        <div class="tab-pane fade show active" id="pills-app" role="tabpanel" aria-labelledby="pills-app-tab">
+
+                        <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-app" role="tabpanel" aria-labelledby="pills-app-tab">
+                        <div class="inn-app-tabs">
+                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <Link class="nav-link active text-center" id="pills-pre-aproval-tab" data-toggle=" " to="/app"   role="tab"   aria-selected="true">PRE-APPOVAL APPLICATION</Link>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <Link class="nav-link" id="pills-card-processing-tab" data-toggle=" " to="/ci"     role="tab"    aria-selected="false">CARD PROCESSING COMPLIANCE APPLICATION</Link>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <Link class="nav-link" id="pills-iban-bank-tab" data-toggle="pill"  to="/ci"   role="tab"   aria-selected="false">IBAN BANK ACCOUNT COMPLIANCE APPLICATION</Link>
+                                </li>
+                            </ul>
+                            </div></div></div>
+                          
+                        </div>
+
+
+ 
+                        <div class="tab-pane fade" id="pills-dashboard" role="tabpanel" aria-labelledby="pills-dashboard-tab">  <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade active show" id="pills-pre-vet" role="tabpanel" aria-labelledby="pills-pre-vet-tab">PRE-VET DASHBOARD</div>
+                                    <div class="tab-pane fade" id="pills-complience-dash" role="tabpanel" aria-labelledby="pills-complience-dash-tab">COMPLIANCE DASHBOARD</div>
+                                    <div class="tab-pane fade" id="pills-bording-dash" role="tabpanel" aria-labelledby="pills-bording-dash-tab">BOARDING DASHBOARD</div>
+                                    <div class="tab-pane fade" id="pills-inte-dash" role="tabpanel" aria-labelledby="pills-inte-dash-tab">INTEGRATION DASHBOARD</div>
+                                    <div class="tab-pane fade" id="pills-iban-bank" role="tabpanel" aria-labelledby="pills-iban-bank-tab">BOARDING DASHBOARD</div>
+                                    <div class="tab-pane fade" id="pills-trading-dash" role="tabpanel" aria-labelledby="pills-trading-dash-tab">TRADING DASHBOARD</div>
+                                    <div class="tab-pane fade" id="pills-arch-dash" role="tabpanel" aria-labelledby="pills-arch-dash-tab">ARCHIVE DASHBOARD</div>
+
+
+
+
+
+                                </div></div>
+                        
+
+
+                      
+                        <div class="tab-pane fade" id="pills-solution" role="tabpanel" aria-labelledby="pills-solution-tab">SOLUTION PARTNERS</div>
+                        
+
+ 
+                        <div class="tab-pane fade" id="pills-iso" role="tabpanel" aria-labelledby="pills-iso-tab">ISO PARTNERS</div>
+                        
+
+
+
+                     
+                        <div class="tab-pane fade" id="pills-adress" role="tabpanel" aria-labelledby="pills-adress-tab">ADDRESS BOOK</div>
+                        
+
+
+
+                      
+                        <div class="tab-pane fade" id="pills-report" role="tabpanel" aria-labelledby="pills-report-tab">REPORTS</div>
+
+
+                        
+                    </div>
+                    
+                </div>
+                
+
+                 
+            </div>
+        </div>
+        
     </div>
   );
 };

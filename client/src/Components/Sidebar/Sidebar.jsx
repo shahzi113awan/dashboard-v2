@@ -24,38 +24,38 @@ export default function Sidebar({ id }) {
 
 
 
-        <Nav className="side" vertical style={{ }}    >
-            <NavItem>
-                <NavLink className="text-white text-center" tag={Link} to={`/ci/${id}`} >Company Information</NavLink>
+        // <Nav className="side" vertical style={{ }}    >
+        //     <NavItem>
+        //         <NavLink className="text-white text-center" tag={Link} to={`/ci/${id}`} >Company Information</NavLink>
 
-            </NavItem>
+        //     </NavItem>
         
-            <NavItem >
-                <NavLink className="text-white text-center" tag={Link} to={`/cti/${id}`}>Company Trading  Information</NavLink>
+        //     <NavItem >
+        //         <NavLink className="text-white text-center" tag={Link} to={`/cti/${id}`}>Company Trading  Information</NavLink>
 
-            </NavItem>
-            <NavItem >
-                <NavLink className="text-white text-center" tag={Link} to={`/kyc/${id}`}> Know Your Customer</NavLink>
+        //     </NavItem>
+        //     <NavItem >
+        //         <NavLink className="text-white text-center" tag={Link} to={`/kyc/${id}`}> Know Your Customer</NavLink>
 
-            </NavItem>
-            <NavItem >
-                <NavLink className="text-white text-center" tag={Link} to={`/kyb/${id}`} > Know Your Business</NavLink>
+        //     </NavItem>
+        //     <NavItem >
+        //         <NavLink className="text-white text-center" tag={Link} to={`/kyb/${id}`} > Know Your Business</NavLink>
 
-            </NavItem>
-            <NavItem>
-                <NavLink className="text-white text-center" tag={Link} to={`/sdkyb/${id}`} > Supporting Doc  </NavLink>
+        //     </NavItem>
+        //     <NavItem>
+        //         <NavLink className="text-white text-center" tag={Link} to={`/sdkyb/${id}`} > Supporting Doc  </NavLink>
 
-            </NavItem>
-            <NavItem  >
-                <NavLink className="text-white text-center" tag={Link} to={`/check-list/${id}`}> Document-List</NavLink>
+        //     </NavItem>
+        //     <NavItem  >
+        //         <NavLink className="text-white text-center" tag={Link} to={`/check-list/${id}`}> Document-List</NavLink>
 
-            </NavItem>
-            <NavItem  >
-                <NavLink className="text-white text-center" onClick={e => { dispatch(Get()) }} tag={Link} to={`/`}> Dashboard</NavLink>
+        //     </NavItem>
+        //     <NavItem  >
+        //         <NavLink className="text-white text-center" onClick={e => { dispatch(Get()) }} tag={Link} to={`/`}> Dashboard</NavLink>
 
-            </NavItem>
-        </Nav>
-
+        //     </NavItem>
+        // </Nav>
+<div></div>
 
 
 

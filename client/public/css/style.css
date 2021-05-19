@@ -1,0 +1,219 @@
+@charset "UTF-8";
+
+
+/**! 02. fonts **/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+
+/**! 02. Typography **/
+body {
+    font-size: 1em;
+    line-height: 1.85714286em;
+    font-family: 'Open Sans', sans-serif;
+    color: #333333;
+    font-weight: 400;
+    position: relative;
+    overflow-x: hidden;
+}
+
+*,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+a {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: #252525;
+    font-weight: 300;
+    margin: 0;
+}
+
+h1,
+.h1 {
+    font-size: 3.14285714em;
+    line-height: 1.31818182em;
+}
+
+h2,
+.h2 {
+    font-size: 2.35714286em;
+    line-height: 1.36363636em;
+}
+
+h3,
+.h3 {
+    font-size: 1.78571429em;
+    line-height: 1.5em;
+}
+
+h4,
+.h4 {
+    font-size: 1.35714286em;
+    line-height: 1.36842105em;
+}
+
+h5,
+.h5 {
+    font-size: 1em;
+    line-height: 1.85714286em;
+}
+
+h6,
+.h6 {
+    font-size: 0.85714286em;
+    line-height: 2.16666667em;
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.68421053em;
+}
+
+@media all and (max-width:767px) {
+
+    h1,
+    .h1 {
+        font-size: 2.35714286em;
+        line-height: 1.36363636em;
+    }
+
+    h2,
+    .h2 {
+        font-size: 1.78571429em;
+        line-height: 1.5em;
+    }
+
+    h3,
+    .h3 {
+        font-size: 1.35714286em;
+        line-height: 1.85714286em;
+    }
+
+    p {
+        font-size: 1em;
+        line-height: 1.36842105em;
+    }
+}
+    ul,
+    ol {
+        list-style: none;
+    }
+
+    ul.bullets {
+        list-style: inside;
+    }
+
+    ol {
+        list-style-type: upper-roman;
+        list-style-position: inside;
+    }
+
+    blockquote {
+        font-size: 1.78571429em;
+        line-height: 1.5em;
+        padding: 0;
+        margin: 0;
+        border-left: 0;
+    }
+
+    strong {
+        font-weight: 600;
+    }
+
+    hr {
+        margin: 1.85714286em 0;
+        border-color: #fafafa;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        text-decoration: none;
+        outline: none;
+    }
+
+    .btn {
+        background: #1a1918;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 50px;
+        padding: 15px 40px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    /*newappWrap*/
+    .newappWrap {
+        padding: 15px 0px;
+        position: relative;
+    }
+
+    .newappWrap h1 {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #eee;
+        padding: 10px;
+    }
+    .mainTabWrap{margin-top: 30px;  position: relative;}
+    .mainTabWrap .nav-pills .nav-item{margin-right: 2px;}
+    .mainTabWrap .nav-pills .nav-item .nav-link{background:#fce4d6; width: 180px; border:1px solid #808080; border-radius:0; font-size:14px; font-weight:600; color:#000;}
+    .inn-app-tabs .nav-pills .nav-item .nav-link{background:#f2f2f2;  border-radius:0; font-size:14px; width:240px; font-weight:600; line-height:21px; min-height:60px; color:#000;}
+    .mainTabWrap .tab-content{  padding: 5px 15px;}
+     .inn-app-tabs .nav{padding-bottom: 15px; margin-bottom: 30px; border-bottom:10px solid #4472c4;}
+.inn-app-tabs .tab-content {
+    border:none;
+    padding: 5px 15px;
+}
+    .mainTabWrap .nav-pills .nav-item .nav-link:hover, .mainTabWrap .nav-pills .nav-item .nav-link.active{background:#c65911; color:#fff;}
+.pre-aproval-forms{position: relative;}
+.pre-aproval-forms h3{    position: relative;
+    display: inline-block;
+    background: #28a745;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+.pre-aproval-forms .form-control{height:45px;}
+.pre-aproval-forms .form-control:focus { 
+    box-shadow:none;
+}
+.pre-aproval-boxx{
+	    background-color: #fff;
+    box-shadow: 0 20px 46px 0 rgb(0 18 88 / 5%);
+    padding: 20px 25px;
+    margin-top: 10px;
+    border-top: 3px solid #4472c4;
+}
+.accordionWrap{margin-top: 50px;}
+.accordionWrap .accordion-button { 
+    padding: 2px 20px;}
+.accordionWrap .accordion-button:not(.collapsed), .accordionWrap .accordion-button:hover{
+    color: #1a6ce5;
+    border-color: #808080;
+    background-color: #f2f2f2;
+}
