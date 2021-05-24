@@ -5,6 +5,9 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Get, Delete, UpdateStatus } from "../actions/ciAction";
+import {IoIosArrowDropdownCircle} from 'react-icons/io'
+import {GrDocumentTime} from 'react-icons/gr'
+import {FaFilter} from 'react-icons/fa'
 import Loader from "react-loader-spinner";
 import { useTable } from 'react-table'
 import { COLUMNS } from './coulmns'
@@ -25,7 +28,7 @@ export default function Dashboard({ data, isLoading }) {
   const onScrolling = (e) => {
     // console.log(e.target, 'window')
   }
-  
+
   // const tableinstance = useTable({
   //   columns : COLUMNS,
   //   data: data
@@ -96,346 +99,135 @@ export default function Dashboard({ data, isLoading }) {
       </div>
     </div>
   ) : (
-    <div className="container-fluid"  >
-      <div onClick={() => scroll(-500)} className="scrollers"><HiArrowLeft className="scrollersLogo" style={{ marginTop: '700%', position: 'sticky' }} size={50} color={'black'}></HiArrowLeft></div>
-      <div onClick={() => scroll(500)} style={{ right: "0" }} className="scrollers"><HiArrowRight className="scrollersLogo" style={{ marginTop: '700%', position: 'sticky' }} size={50} color={'black'}></HiArrowRight></div>
-      {/* <table>
-          <thead>
-            <tr>
-              <th  colspan="2">Pending Documents</th>
-              <th>Commercials</th>
-            </tr>
-          </thead>
-        </table> */}
 
-      <table style={{ fontSize: 'smaller' }} onScroll={onScrolling} ref={ref} id="scrolling" className="table table-responsive">
+    <div class="newappWrap">
+      <div class="container-fluid">
+        <div class="inn-app-tabs dash-navvbar">
 
 
 
-        <thead className="test" >
-          <tr >
-            <th colSpan='1'></th>
-            <th className="shadowci" colSpan='4'  >Company Information</th>
-
-            <th className="shadowci" colSpan='4'  >Pending Documents</th>
-            <th className="shadowci" colSpan='2'></th>
-
-
-            <th className="shadowci" colSpan='2'>Commercials</th>
-            <th className="shadowci" colSpan='7'  ></th>
-            <th className="shadowcti" colSpan='9'>Company Trading Information</th>
-            <th className="shadow1" style={{ backgroundColor: '#B0B0B0' }} colSpan='1'>KYC/Share Holds</th>
-            <th className="shadowkyb" colSpan='7'>KYB/Know Your Business</th>
-            <th className="shadowsd" style={{ backgroundColor: '#b19cd9' }} colSpan='9'>Supporting Documents</th>
-            <th className="shadow1" colSpan='1'>Spare</th>
-            <th className="shadow1" colSpan='1'>Delete</th>
-            {/* <th className="shadow1" colSpan='1'>Move to Archive</th> */}
-          </tr>
-        </thead>
-        <thead className="thead">
-          <tr className="tr ">
-            <th className="th" scope="col"> ID </th>
-            <th style={{ width: "100%" }} className="thci" scope="col" style={{ width: "200px" }}  >
-              Registered Company Name
-              </th>
-            <th className="thci" scope="col">Business / Referral Partner</th>
-            <th className="thci" scope="col" >Assigned BDM /Owner</th>
-            <th className="thci" scope="col"> Introductory  Person </th>
-            <th className="thci" scope="col">Total Pending</th>
-            <th className="thci" scope="col ">Total Collected</th>
-            <th className="thci" scope="col">Total Outstanding</th>
-            <th className="thci" scope="col">10 Day Report</th>
-            <th className="thci" scope="col ">Allocated Acquirer / Solution</th>
-            <th className="thci" scope="col">Company Info & Checkout Page</th>
-            <th className="thci" scope="col">Pre Approval ems Buy Rate</th>
-            <th className="thci" scope="col ">Pre Approval ems Sel Rate</th>
-
-
-            <th className="thci" scope="col ">Application Boarded Date</th>
-            <th className="thci" scope="col">Aged Days</th>
-            <th className="thci" scope="col">Trading / New to Cards (NTC)</th>
-            <th className="thci" scope="col ">Vertical / Trading Sector</th>
-            {/* <th className="thci" scope="col ">Business / Referral Partner</th>
-              <th className="thci" scope="col ">Assigned BDM / Owner</th> */}
-            <th className="thci" scope="col">Compliance Country Location</th>
-            <th className="thci" scope="col">EEA Documents</th>
-            <th className="thci" scope="col "> Trading License or Agreements Required</th>
-
-            <th className="thcti" scope="col ">Fully Completed Application Form</th>
-            <th className="thcti" scope="col ">Bank Information (Welcome Letter)</th>
-            <th className="thcti" scope="col">Office Tenancy Agreement</th>
-            <th className="thcti" scope="col">Acquiring Processing Statements</th>
-            <th className="thcti" scope="col "> Headline Website URL Address</th>
-            <th className="thcti" scope="col">Website Compliance</th>
-            <th className="thcti" scope="col "> Website URL - Proof of Domain</th>
-            <th className="thcti" scope="col ">Ownership Structure Chart</th>
-            <th className="thcti" scope="col ">Business Plan</th>
-            <th className="th" scope="col ">Shareholds</th>
-
-            {/* <th className="th" scope='col'>Shareholder / Director Name</th>
-              <th className="th" scope='col'>Shareholding Percentage</th>
-              <th className="th" scope='col '> Lead Director Passport</th>
-              <th className="th" scope='col'>Country / Nationality</th>
-              <th className="th" scope='col'>Notarised</th>
-              <th className="th" scope='col '> Expiry Date</th>
-              <th className="th" scope='col'>Proof of Address (POA)</th>
-              <th className="th" scope='col '> Type of POA</th>
-              <th className="th" scope='col '>Notarised</th>
-              <th className="th" scope='col '>POA Start Date</th>
-              <th className="th" scope='col'>POA Expiry Date (+90 days)</th>
-              <th className="th" scope='col'>Expiry Days</th>
-              <th className="th" scope='col '> Power of Attorney Document</th> */}
-            {/* <th className="th" scope="col">Shareholder / Director Name</th>
-              <th className="th" scope="col">Shareholding Percentage</th>
-              <th className="th" scope="col "> Client Passport</th>
-              <th className="th" scope="col">Country / Nationality</th>
-              <th className="th" scope="col "> Notarised</th>
-              <th className="th" scope="col ">Expiry Date</th>
-              <th className="th" scope="col ">Proof of Address (POA)</th>
-              <th className="th" scope="col">Type of POA</th>
-              <th className="th" scope="col">Notarised</th>
-              <th className="th" scope="col "> POA Start Date</th>
-              <th className="th" scope="col">POA Expiry Date (+90 days)</th>
-              <th className="th" scope="col">Expiry Days</th>
-              */}
-            <th className="thkyb" scope="col "> Certificate of Incorporation</th>
-            <th className="thkyb" scope="col">Memorandum of Association</th>
-            <th className="thkyb" scope="col ">Articles of Association</th>
-            <th className="thkyb" scope="col ">Share Register</th>
-            <th className="thkyb" scope="col ">Share Certificate(s) - Signed</th>
-            <th className="thkyb" scope="col">Current Commercial Register Extract</th>
-            <th className="thkyb" scope="col">Notarised</th>
-            <th className="thsd" scope="col "> Corporate Bank Statements</th>
-            <th className="thsd" scope="col">Personal Bank Statements</th>
-            <th className="thsd" scope="col">Proof of Wealth</th>
-            <th className="thsd" scope="col "> Company AML Policy</th>
-            <th className="thsd" scope="col">Gambling or Forex License</th>
-            <th className="thsd" scope="col ">Copywrite or Re-seller Agreement</th>
-            <th className="thsd" scope="col ">Fulfilment or Drop shipping Agreement</th>
-            <th className="thsd" scope="col ">FBO Company Registration (Nutra Merchants)</th>
-            <th className="thsd" scope="col">Sales Handoff Sheet (CCBill Only)</th>
-            {/* <th className="th" scope="col">SPARE</th> */}
-            <th className="th" scope="col "> SPARE</th>
-            <th className="th" scope="col "> Delete</th>
-            {/* <th className="th" scope="col "> Move To Archive</th> */}
-          </tr>
-        </thead>
-        <tbody >
-          {data &&
-            data.map((res, index) => {
-              {
-                if (
-                  res.ci &&
-                  res.cl &&
-                  res.cti &&
-                  res.kyc &&
-                  res.kyb &&
-                  res.sd
-                ) {
-                  return (
-                    <tr style={{ border: Index == index ? 'solid black 3px' : '' }} onClick={e => { toggle(e, index) }}>
-                      <th scope="row">  <span className="badge badge-pill badge-success">{index + 1}</span></th>
-
-                      <td className="tdci"  >
-                        {" "}
-                        <Link className="name" to={"/ci/" + res._id}>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade active show" id="pills-pre-vet" role="tabpanel" aria-labelledby="pills-pre-vet-tab">
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td width="33%"><table border="0" cellpadding="0" cellSpacing="0" width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center" bgcolor="#4472c4" height="58" className="tdstyle" valign="middle">CARD PROCESSING - PRE-APPROVAL APPLICATION</td>
+                        </tr>
+                        <tr>
+                          <td align="center" bgcolor="#fff" height="20" className="tdstylec" valign="middle"><a href="#">1234</a> / <a href="#">A</a> <a href="#">B</a> <a href="#">C</a> <a href="#">D</a> <a href="#">E</a> <a href="#">F</a> <a href="#">G</a> <a href="#">H</a> <a href="#">I</a> <a href="#">J</a> <a href="#">K</a> <a href="#">L</a> <a href="#">M</a> <a href="#">N</a> <a href="#">O</a> <a href="#">P</a> <a href="#">Q</a> <a href="#">R</a> <a href="#">S</a> <a href="#">T</a> <a href="#">U</a> <a href="#">V</a> <a href="#">W</a> <a href="#">X</a> <a href="#">Y</a> <a href="#">Z</a> - <a href="#">Reset</a></td>
+                        </tr>
+                      </tbody>
+                    </table></td>
+                    <td width="5%" valign="top"><div class="td-fonts"><GrDocumentTime size={50}></GrDocumentTime></div></td>
+                    <td width="16%">&nbsp;</td>
+                    <td valign="middle" width="20%"><table border="0" cellpadding="0" cellSpacing="0" width="100%">
+                      <tbody>
+                        <tr>
+                          <td width="60%" height="50" align="center" valign="middle" bgcolor="#ffffff"><div class="td-fonts text-center blueborder">COMMERCIALS</div></td>
+                          <th width="4%" bgcolor="#ffffff">&nbsp;</th>
+                          <td width="22%" height="50" align="center" valign="middle" bgcolor="#ffffff"><div class="td-fonts text-center redborder">TOTAL AGED DAYS</div></td>
+                          <th width="4%" bgcolor="#ffffff">&nbsp;</th>
+                        </tr>
+                      </tbody>
+                    </table></td>
+                    <td width="26%">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th width="5%"><div class="td-fonts td-font-icon">Ref:<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                    <th bgcolor="#ffffff">&nbsp;</th>
+                    <th width="20%"><div class="td-fonts td-font-icon text-center">COMPANY NAME<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                    <th width="9%"><div class="td-fonts td-font-icon">SOLUTION<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                    <th width="9%"><div class="td-fonts blueborder td-fonts td-font-icon">APPLICATION DATE<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                    <th width="13%"><div class="td-fonts blueborder">TRADING WEBSITE ADDRESS</div></th>
+                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                    <th width="4%"><div class="td-fonts blueborder text-center">Buy Rate</div></th>
+                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                    <th width="4%"><div class="td-fonts blueborder text-center">Sell Rate</div></th>
+                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                    <th width="4%"><div class="td-fonts blueborder text-center">GP %</div></th>
+                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                    <th width="5%"><div class="td-fonts td-font-icon redborder">DAYS<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                    <th width="9%"><div class="td-fonts text-center">Business / Referral Partner</div></th>
+                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                    <th width="9%"><div class="td-fonts text-center">Assigned BDM / Owner </div></th>
+                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                    <th width="9%"><div class="td-fonts blueborder text-center">WON / LOST / ARCHICE</div></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data &&
+                    data.map((res, index) => {
+                      {
+                        if (
+                          res.ci &&
+                          res.cl &&
+                          res.cti &&
+                          res.kyc &&
+                          res.kyb &&
+                          res.sd
+                        ) {
+                          return (
+                            <tr>
+                              <td><div class="small-fonts">{index}</div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td><div class="small-fonts">{ <Link className="name" to={"/ci/" + res._id}>
                           {res.ci.tpi_rcName != " "
                             ? res.ci.tpi_rcName
                             : "Default Name"}
-                        </Link>
-                      </td>
-                      <td className="tdci">{res.ci.tpi_brPartner}</td>
-                      <td className="tdci">{res.ci.tpi_aBdmOwner}</td>
+                        </Link>}</div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td><div class="small-fonts">{res.ci.tpi_aaSolution}</div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td><div class="small-fonts">{res.ci.tpi_date }</div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td ><div    onClick={() => {
+                          window.open(`https://${res.ci.tci_wUrl}`, "_blank")}} class="small-fonts"> {res.ci.tci_wUrl?res.ci.tci_wUrl:"Default"}</div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td><div class="small-fonts">3.5%</div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td><div class="small-fonts">5.5%</div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td><div class="small-fonts blueborder">2.0%</div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td><div class={cal(res.ci.tpi_date) > 90 ? "small-fonts redborder":"small-fonts greenborder"}>{res.ci.tpi_date ? cal(res.ci.tpi_date) : ""}</div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td><div class="small-fonts">{res.ci.tpi_brPartner}</div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td><div class="small-fonts">{res.ci.tpi_aBdmOwner} </div></td>
+                              <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                              <td><div class="small-fonts yellobg">Won <div class="filter-icon-2"><a href="#"><IoIosArrowDropdownCircle size={20}></IoIosArrowDropdownCircle></a></div></div></td>
+                            </tr>
+                          );
+                        }
+                      }
+                    })}
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="pills-complience-dash" role="tabpanel" aria-labelledby="pills-complience-dash-tab">COMPLIANCE DASHBOARD</div>
+            <div class="tab-pane fade" id="pills-bording-dash" role="tabpanel" aria-labelledby="pills-bording-dash-tab">BOARDING DASHBOARD</div>
+            <div class="tab-pane fade" id="pills-inte-dash" role="tabpanel" aria-labelledby="pills-inte-dash-tab">INTEGRATION DASHBOARD</div>
+            <div class="tab-pane fade" id="pills-iban-bank" role="tabpanel" aria-labelledby="pills-iban-bank-tab">BOARDING DASHBOARD</div>
+            <div class="tab-pane fade" id="pills-trading-dash" role="tabpanel" aria-labelledby="pills-trading-dash-tab">TRADING DASHBOARD</div>
+            <div class="tab-pane fade" id="pills-arch-dash" role="tabpanel" aria-labelledby="pills-arch-dash-tab">ARCHIVE DASHBOARD</div>
+          </div>
 
-                      <td className="tdci">{res.ci.tpi_iP}</td>
-
-                      <td className="tdci">22</td>
-                      <td className="tdci" >{res.cl.pendingCount.length}</td>
-                      <td className="tdci">{22 - res.cl.pendingCount.length}</td>
-                      <td className="tdci">
-                        <Link><HiOutlineDocumentReport size={30}></HiOutlineDocumentReport>  </Link>
-
-                        {/* <button type="submit">0</button> */}
-                      </td>
-                      <td className="tdci">
-                        {res.ci.tpi_aaSolution ? res.ci.tpi_aaSolution : ""}
-                      </td>
-                      <td className="tdci"
-                        style={{
-                          textDecoration: "underline black",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => {
-                          window.open(`https://${res.ci.tci_wUrl}`, "_blank");
-                        }}
-                      >
-                        {/* <a href="https://www.google.com" type="submit">
-                        url
-                      </a> */}
-
-                        {res.ci.tci_wUrl}
-                      </td>
-                      <td className="tdci">4.95%</td>
-                      <td className="tdci">6.95%</td>
-
-
-                      <td className="tdci">{res.ci.tpi_date}</td>
-                      <td className="tdci" className={cal(res.ci.tpi_date) > 90 ? "date" : "okdate"}>{res.ci.tpi_date ? cal(res.ci.tpi_date) : ""}</td>
-                      <td className="tdci">{res.ci.tpi_ntc ? res.ci.tpi_ntc : ""}</td>
-                      <td className="tdci">
-                        {res.ci.tpi_vtSector ? res.ci.tpi_vtSector : ""}
-                      </td>
-                      {/* <td className="tdci">
-                          {res.ci.tpi_brPartner ? res.ci.tpi_brPartner : ""}
-                        </td>
-                        <td className="tdci">
-                          {res.ci.tpi_aBdmOwner ? res.ci.tpi_aBdmOwner : ""}
-                        </td> */}
-                      <td className="tdci">
-                        {res.ci.tpi_ccLocation ? res.ci.tpi_ccLocation : ""}
-                      </td>
-                      <td className="tdci">
-                        {res.ci.tpi_EEADocuments
-                          ? res.ci.tpi_EEADocuments
-                          : ""}
-                      </td>
-                      <td className="tdci">{res.ci.tpi_TLoAR ? res.ci.tpi_TLoAR : ""}</td>
-                      <td className="tdcti">{res.cl.fcaf_status ? res.cl.fcaf_status : ""}</td>
-                      <td className="tdcti">{res.cl.bi_status ? res.cl.bi_status : ""}</td>
-                      <td className="tdcti">
-                        {res.cti.cti_otAgreement
-                          ? res.cti.cti_otAgreement
-                          : ""}
-                      </td>
-                      <td className="tdcti"  > {res.cl.aps_status}</td>
-                      <td className="tdcti">{res.cl.hwua_status}</td>
-                      <td className="tdcti">{res.cl.wc_status}</td>
-                      <td className="tdcti">{res.cl.wuod_status}</td>
-                      <td className="tdcti">{res.cl.owsc_status}</td>
-                      <td className="tdcti">{res.cti.cti_bPlan ? res.cti.cti_bPlan : ""}</td>
-                      <td>
-                        <Button tag={Link} to={"/kycshowcase/" + res._id}>
-                          Go To shareholds
-                          </Button>
-                      </td>
-                      {/* <td>{res.kyc.kyc_name ? res.kyc.kyc_name : ""}</td>
-                    <td>{res.kyc.kyc_sHolds ? res.kyc.kyc_sHolds : ""}</td>
-                    <td>{res.kyc.kyc_notarized}</td>
-                    <td>
-                      {res.kyc.kyc_nationality ? res.kyc.kyc_nationality : ""}
-                    </td>
-                    <td>
-                      {res.kyc.kyc_notarized ? res.kyc.kyc_notarized : ""}
-                    </td>
-                    <td>
-                      {res.kyc.kyc_ExpiryDate ? res.kyc.kyc_ExpiryDate : ""}
-                    </td>
-                    <td>{res.kyc.kyc_Address ? res.kyc.kyc_Address : ""}</td>
-                    <td>{res.kyc.kyc_toProof ? res.kyc.kyc_toProof : ""}</td>
-                    <td>
-                      {res.kyc.kyc_notarized ? res.kyc.kyc_notarized : ""}
-                    </td>
-                    <td>01 January, 2021</td>
-                    <td>1 April, 2021</td>
-                    <td>3</td>
-                    <td>
-                      {res.kyc.kyc_paDocument ? res.kyc.kyc_paDocument : ""}
-                    </td> */}
-                      <td className="tdkyb">{res.cl.coi_status}</td>
-                      <td className="tdkyb">{res.cl.moa_status}</td>
-                      <td className="tdkyb">{res.cl.aoa_status}</td>
-                      <td className="tdkyb">{res.cl.sr_status}</td>
-                      <td className="tdkyb">{res.cl.scs_status}</td>
-                      <td className="tdkyb">{res.cl.ccre_status}</td>
-                      <td className="tdkyb">{res.cl.coi_note}</td>
-                      <td className="tdsd">{res.sd.fsd_cbs ? res.sd.fsd_cbs : ""}</td>
-                      <td className="tdsd">{res.sd.fsd_pbs ? res.sd.fsd_pbs : ""}</td>
-                      <td className="tdsd">{res.sd.fsd_pow ? res.sd.fsd_pow : ""}</td>
-                      <td className="tdsd">{res.sd.fsd_cap ? res.sd.fsd_cap : ""}</td>
-                      <td className="tdsd">{res.sd.lta_gfl ? res.sd.lta_gfl : ""}</td>
-                      <td className="tdsd">{res.cl.cora_status}</td>
-                      <td className="tdsd">{res.sd.lta_fdsa ? res.sd.lta_fdsa : ""}</td>
-                      <td className="tdsd"> </td>
-                      <td className="tdsd">{res.cl.shs_status}</td>
-
-                      <td>
-                        {" "}
-                        <Button tag={Link} to={"/spareshowcase/" + res._id}>
-                          Check Spare docs
-                          </Button>
-                      </td>
-                      {/* <td></td> */}
-                      <td>
-                        <Button
-                          onClick={(e) => {
-                            del(res._id);
-                          }}
-                        >
-                          Delete
-                          </Button>
-                      </td>
-                      {/* <td>
-                        <Link
-                          onClick={(e) => {
-                            updateStatus(e, "Archive", res._id);
-                          }}
-                        >
-                          Archive
-                          </Link>
-                      </td> */}
-                    </tr>
-                  );
-                }
-              }
-            })}
-        </tbody>
-
-      </table>
-     
+        </div>
+      </div>
     </div>
+    //  </div>
 
 
   );
 }
-  //  {/* <table {...getTableProps()}>
-  //    <thead>
-  //      {// Loop over the header rows
-  //      headerGroups.map(headerGroup => (
-  //        // Apply the header row props
-  //        <tr {...headerGroup.getHeaderGroupProps()}>
-  //          {// Loop over the headers in each row
-  //          headerGroup.headers.map(column => (
-  //            // Apply the header cell props
-  //            <th {...column.getHeaderProps()}>
-  //              {// Render the header
-  //              column.render('Header')}
-  //            </th>
-  //          ))}
-  //        </tr>
-  //      ))}
-  //    </thead>
-  //    {/* Apply the table body props */}
-  //    <tbody {...getTableBodyProps()}>
-  //      {// Loop over the table rows
-  //      rows.map(row => {
-  //        // Prepare the row for display
-  //        prepareRow(row)
-  //        return (
-  //          // Apply the row props
-  //          <tr {...row.getRowProps()}>
-  //            {// Loop over the rows cells
-  //            row.cells.map((cell,index) => {
-  //              // Apply the cell props
-  //              return (
-  //                <td {...cell.getCellProps()}>
-  //                  {// Render the cell contents
-  //                  cell.render('Cell')}
-  //                  {index}
-  //                </td>
-  //              )
-  //            })}
-  //          </tr>
-  //        )
-  //      })}
-  //    </tbody>
-  //  </table>

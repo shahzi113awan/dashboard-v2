@@ -57,7 +57,7 @@ export default function ApprovalForm() {
     e.preventDefault();
     await dispatch(UpdateOne(App, urlid));
     dispatch(Get());
-    history.push("/mainappdb");
+    history.push("/appdb");
 
     // history.push("/sdkyb/" + urlid);
   };
@@ -67,7 +67,7 @@ export default function ApprovalForm() {
     console.log(App);
     await dispatch(CreateApp(App));
     dispatch(Get());
-    history.push("/mainappdb");
+    history.push("/appdb");
   };
   return (
     <div className="container">

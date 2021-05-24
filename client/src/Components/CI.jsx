@@ -140,7 +140,7 @@ export default function CI(props) {
 
             <div>
               <h2>
-                <span class="badge badge-success">COMPANY INFORMATION </span>
+                <span   class="badge badge-success">COMPANY INFORMATION </span>
               </h2>
             </div>
 

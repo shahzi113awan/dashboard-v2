@@ -1,192 +1,4 @@
-th{
-    text-align: center;
-    
-    /* color: blanchedalmond; */
-}
- .th{ 
- 
-
-       
-       white-space: normal;
-    font-size: 0.8rem !important;
-     text-align: center;
-    width: auto;
-     border: white solid 2px !important;
-     background-color: rgb(185, 179, 179);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
-    transform:
-      perspective(75em)
-      rotateX(18deg);
-    box-shadow:
-      rgba(22, 31, 39, 0.42) 0px 60px 123px -25px,
-      rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
-    border-radius: 10px;
-    border: 1px solid;
-    border-color:
-      rgb(213, 220, 226)
-      rgb(213, 220, 226)
-      rgb(184, 194, 204);
-   
- 
- 
- }
- .thci{
-     padding: 3px!important;
-      width: 100% !important;
-       white-space: normal;
-    font-size: 0.6rem !important;
-     text-align: center;
-    width: auto;
-     border: white solid 2px !important;
-     background-color:#c8e6ca;;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-     
- }
- .thcti{
-     padding: 3px!important;
-      width: 100% !important;
-       white-space: normal;
-    font-size: 0.6rem !important;
-     text-align: center;
-    width: auto;
-     border: white solid 2px !important;
-     background-color: #a2bcd6;;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-     
- }
- .thkyb{
-     padding: 3px!important;
-      width: 100% !important;
-       white-space: normal;
-    font-size: 0.6rem !important;
-     text-align: center;
-    width: auto;
-     border: white solid 2px !important;
-     background-color: #f3d6b7;;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-     
- }
- .thsd{
-     position: sticky !important;
-     padding: 3px!important;
-      width: 100% !important;
-       white-space: normal;
-    font-size: 0.6rem !important;
-     text-align: center;
-    width: auto;
-     border: white solid 2px !important;
-     background-color: #FFFACD;;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- 
-     
- }
- .tdci{
-     background-color: #c8e6ca ;
- }
- .tdcti{
-     background-color:  #a2bcd6 ;
- }
- .tdkyb{
-     background-color:  #f3d6b7 ;
- }
- .tdsd{
-     background-color:  #FFFACD ;
- }
- .date{
-     border-radius: 3px;
-     background-color: pink;
- }
- .okdate{
-    border-radius: 3px;
-
-     background-color: greenyellow;
- }
- .name{
-     color:blue;
-     font-style: italic;
- }
- td{
-     background-color: rgb(197, 195, 195);
-     text-align: center;
-     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
- }
- 
- 
- .shadowci {
-      background-color: #c8e6ca !important;
-     text-align: center;
- border-radius: 4px !important;
- -webkit-box-shadow: 3px 3px 5px 6px   #536654;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
- -moz-box-shadow:    3px 3px 5px 6px  #749176;  /* Firefox 3.5 - 3.6 */
- box-shadow:         3px 3px 5px 6px   #677e68;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-  }
- .shadowcti {
-      background-color: #a2bcd6 !important;
-     text-align: center;
- border-radius: 4px !important;
- -webkit-box-shadow: 3px 3px 5px 6px   #6083a7;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
- -moz-box-shadow:    3px 3px 5px 6px  #6083a7;  /* Firefox 3.5 - 3.6 */
- box-shadow:         3px 3px 5px 6px   #6083a7;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-  }
- .shadowkyb {
-      background-color: #f3d6b7 !important;
-     text-align: center;
- border-radius: 4px !important;
- -webkit-box-shadow: 3px 3px 5px 6px #c7b29c   ;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
- -moz-box-shadow:    3px 3px 5px 6px #c7b29c  ;  /* Firefox 3.5 - 3.6 */
- box-shadow:         3px 3px 5px 6px #c7b29c    ;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-  }
- .shadowsd {
-      background-color: #FFFACD !important;
-     text-align: center;
- border-radius: 4px !important;
- -webkit-box-shadow: 3px 3px 5px 6px #dbd7ad   ;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
- -moz-box-shadow:    3px 3px 5px 6px #dbd7ad  ;  /* Firefox 3.5 - 3.6 */
- box-shadow:         3px 3px 5px 6px #dbd7ad    ;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-  }
- .shadow1 {
-      background-color: #b9b9b8 !important;
-     text-align: center;
- border-radius: 4px !important;
- -webkit-box-shadow: 3px 3px 5px 6px #979794   ;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
- -moz-box-shadow:    3px 3px 5px 6px #979794   ;  /* Firefox 3.5 - 3.6 */
- box-shadow:         3px 3px 5px 6px #979794     ;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-  }
-  .rowtr{
-      background-color: #536654 !important;
-      border: black solid 1px !important;
-    
-  }
-  .scrollers{
-      float: right !important;
-   scroll-behavior:smooth; position:fixed;  display: block; background-color: transparent; height: 2000px;width: '200px';
-   border: none;
- 
-  }
-  .scrollers:hover{
-    float: right !important;
-   scroll-behavior:smooth; position:fixed;  display: block;   height: 1000px
-   ;border:'2px solid black' !important;  
-    
-   
-  }
- 
-  .scrollersLogo{
-   scroll-behavior:smooth; position:fixed;  display: block; background-color: transparent;  ;
-   border: none;
-   opacity: 0.2;
- 
-  }
-  .scrollersLogo:hover{
-   scroll-behavior:smooth; position:fixed;  display: block;   
-   ;border:'2px solid black' !important;  
-    
-   opacity: 1;
-  }
+/*   */
  
     /* table thead th:first-child {
         position: sticky;
@@ -200,3 +12,71 @@ th{
         z-index: 2;
       }
    */
+   @charset "UTF-8"; /**! 02. fonts **/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap'); /**! 02. Typography **/
+body{font-size:1em; line-height:1.85714286em; font-family:'Open Sans', sans-serif; color:#333333; font-weight:400; position:relative; overflow-x:hidden; }
+ 
+/*newappWrap*/
+.newappWrap{padding:15px 0px; position:relative; }
+.newappWrap h1{font-size:24px; font-weight:bold; text-align:center; border:1px solid #eee; padding:10px; }
+
+/*first Navbar start*/
+.mainTabWrap .nav-pills .nav-item{margin-right:2px; }
+.mainTabWrap .nav-pills .nav-item .nav-link{background:#fce4d6; width:180px; border:1px solid #808080; border-radius:0; font-size:14px; font-weight:600; color:#000; }
+.mainTabWrap .nav-pills .nav-item .nav-link:hover, .mainTabWrap .nav-pills .nav-item .nav-link.active{background:#c65911; color:#fff; }
+.mainTabWrap .tab-content{  padding:5px; }
+
+/*second Navbar start*/
+.inn-app-tabs .nav{padding-bottom:15px; margin-bottom:30px; border-bottom:10px solid #4472c4; }
+.inn-app-tabs .nav-pills .nav-item{margin-right:2px; }
+.inn-app-tabs .nav-pills .nav-item .nav-link{background:#f2f2f2; border:1px solid #000000; border-radius:0; font-size:14px; width:240px; font-weight:600; line-height:21px; min-height:60px; color:#000; }
+.inn-app-tabs .nav-pills .nav-item .nav-link:hover, .inn-app-tabs .nav-pills .nav-item .nav-link.active{background:#c65911; color:#fff; }
+.inn-app-tabs .tab-content{border:none; padding:5px; }
+
+.dash-navvbar .nav-pills .nav-item .nav-link{width:175px; }
+/*form start*/
+.pre-aproval-forms{position:relative; }
+.pre-aproval-forms h3{position:relative; display:inline-block; background:#28a745; color:#fff; font-size:20px; font-weight:600; padding:8px 15px; border-radius:15px; margin-bottom:20px; }
+.pre-aproval-forms .form-control{height:45px; }
+.pre-aproval-forms .form-control:focus{box-shadow:none; }
+
+/*aproval-boxx start*/
+.pre-aproval-boxx{background-color:#fff; box-shadow:0 20px 46px 0 rgb(0 18 88 / 5%); padding:20px 25px; margin-top:10px; border-top:3px solid #4472c4; }
+
+/*accordionWrap start*/
+.accordionWrap{margin-top:50px; }
+.accordionWrap .accordion .card{margin-bottom:10px; border-bottom:1px solid rgba(0, 0, 0, .125); }
+.accordionWrap .accordion .card-header{padding:0; margin-bottom:0; background-color:transparent; border:none; }
+.accordionWrap .accordion .card-header .btn{background:#fce4d6; color:#000; font-weight:600; padding:15px 40px; font-family:'Open Sans', sans-serif; font-size:15px; border-radius:0; }
+.accordionWrap .accordion .card-header .btn.active, .accordionWrap .accordion .card-header .btn:hover{background:#c65911; color:#fff; }
+.accordionWrap .accordion .card-header .btn:focus{box-shadow:none; }
+
+
+
+
+
+
+
+
+
+
+/*table*/
+.dash-navvbar table{border-collapse:inherit;}
+.td-fonts{margin-bottom:5px; transition:all 0.2s ease-in-out; overflow:hidden; text-overflow:ellipsis; background-color:#fff; border:2px solid #000; font-weight:600; padding:0.35625rem 0.4375rem; font-size:11px; line-height:15px; min-height:65px; display:flex; flex-wrap:nowrap; flex-direction:column; align-content:flex-start; justify-content:center; position:relative;}
+.td-font-icon{position:relative; padding-top:0; padding-right:0; padding-bottom:0; padding-left:4px;}
+.filter-icon{position:absolute; z-index:1; right:0px; background:#ffffcc; height:61px; color:#000; line-height:60px; width:20px; text-align:center; font-size:11px;}
+.filter-icon-2{position:absolute; z-index:1; top:0px; right:0px; background:#f2f2f2; height:28px; color:#000061; border-left:1px solid #000000; line-height:30px; width:25px; text-align:center; font-size:11px;}
+.filter-icon-2 a{color:#000061;}
+.filter-icon a{color:#000;}
+.redborder{border-color:#ff0000 !important; color:#ff0000 !important;}
+.greenborder{border-color:#0e9943 !important; color:#129423 !important;}
+.blueborder{border-color:#4472c4 !important;}
+.yellobg{background:#ffffcc !important; position:relative;}
+.small-fonts{margin-bottom:5px; line-height:15px; text-align:left; transition:all 0.2s ease-in-out; overflow:hidden; text-overflow:ellipsis; background-color:#f2f2f2; border:1px solid #d9d9d9; font-weight:400; padding:0.35625rem 0.4375rem; font-size:10px;}
+ 
+   .tdstyle{
+    font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#fff; text-transform:uppercase;
+   }
+   .tdstylec{
+    font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#4472c4; text-transform:uppercase;
+   }
