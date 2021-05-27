@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import { Row, Button, Form, Col, FormGroup } from "reactstrap";
+import { Row, Button, Form, Col, FormGroup , Modal,
+  ModalBody,
+  ModalHeader, } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import ChecklistR from "./CheckList/checklistR";
 import SpChecklistR from "./CheckList/spchecklistR";
@@ -12,9 +14,11 @@ import Loader from "react-loader-spinner";
 import { firebase } from "../Config";
 import { CreateSpare } from "../actions/spareAction";
 import SideNav from './Sidebar/Sidebar'
+import CI from './CI'
 
 export const CheckList = () => {
   const dispatch = useDispatch();
+  const [view, setView] = useState(false);
 
   const history = useHistory();
   const data = useSelector((state) => state.clReducer.state);
@@ -157,7 +161,9 @@ export const CheckList = () => {
       },
     ]);
   };
-
+  const toggler = () => {
+    setView(!view);
+  };
   //handle add and remove
   const handleRemoveClick = (e, index) => {
     const list = [...Spare];
@@ -333,10 +339,19 @@ export const CheckList = () => {
 
         <div>
           <h2>
-            <span class="badge badge-success">COMPANY INFORMATION </span>
+            <span onClick={e=>{setView(true)}} class="badge badge-success">COMPANY INFORMATION </span>
           </h2>
         </div>
-
+        <Modal isOpen={view} toggle={toggler} >
+        <ModalHeader toggle={toggler}>Note</ModalHeader>
+        <ModalBody style={{width:"100%"}} >
+      
+            
+<CI ide={urlid}/>
+       
+         
+        </ModalBody>
+      </Modal>
         <Form>
           <Row form>
             <React.Fragment style={{ backgroundColor: 'pink' }}>

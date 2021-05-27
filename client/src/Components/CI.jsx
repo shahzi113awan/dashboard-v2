@@ -6,15 +6,18 @@ import { CreateCI, Update, Get, GetOneCI, UpdateOne } from "../actions/ciAction"
 import { INITIATECTI, } from "../actions/ctiAction";
 import SideNav from './Sidebar/Sidebar'
 
-export default function CI(props) {
+export default function CI({ide}) {
  
   const [copy, setCopy] = useState(false)
   const dispatch = useDispatch();
   const { urlid } = useParams();
-
+console.log(ide)
   useEffect(() => {
-    urlid ? dispatch(GetOneCI(urlid)) : console.log("creating");
+    urlid  ? dispatch(GetOneCI(urlid)) : console.log("creating");
   }, [urlid]);
+  // useEffect(() => {
+  //   props.id ? dispatch(GetOneCI(props.id)) : console.log("creating");
+  // }, [props.id]);
   const data1 = useSelector((state) => state.ciReducer.state);
   const isLoading = useSelector((state) => state.ciReducer.isLoading);
   const id = useSelector((state) => state.ciReducer._id);
