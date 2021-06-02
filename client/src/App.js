@@ -37,6 +37,7 @@ import SOLDB from "./Components/Solutions/SolutionDB";
 import SolApp from "./Components/Solutions/Application";
 import NewContact from "./Components/Solutions/Newcontact";
 import ContactDB from "./Components/Solutions/contactDB";
+import PREApp from './Components/Workbooks/PRE-APPWorkBook'
 import { firebase } from "./Config";
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
                 <Route exact path="/appdb" component={AppDb} />
                 <Route exact path="/mainappdb" component={MainAppDb} />
                 <Route exact path="/lostappdb" component={LostDB} />
+                <Route exact path="/preappworkbook" component={PREApp} />
 
                 <Route exact path="/ci" component={CI} />
                 <Route exact path="/ci/:urlid" component={CI} />
