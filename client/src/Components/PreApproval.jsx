@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import $ from 'jquery'
 import '../assets/css/pre-approval.css'
 import refreshImg from '../assets/images/refresh.png'
@@ -9,6 +9,16 @@ export default function PreApproval() {
   //       $('.js-example-basic-single').select2()
   //     })
   //   }, [])
+  const [ref, setRef] = useState('helo');
+  const [companyName, setCompanyName] = useState('helo')
+const [solution, setSolution] = useState('helo');
+const [appDate, setAppDate] = useState('helo');
+const [tradeSector, setTradeSector] = useState('helo');
+const [newToCards, setNewToCards] = useState('helo');
+const [verticalTradingSector, setVerticalTradingSector] = useState('helo');
+const [complianceCountryLocation, setComplianceCountryLocation] = useState('helo')
+const [licence, setLicence] = useState('helo');
+
   return (
     <div class='newappWrap'>
       <div class='container-fluid'>
@@ -64,39 +74,39 @@ export default function PreApproval() {
           <tbody>
             <tr>
               <td width='6%'>
-                <div class='td-preaproval-lt'>AP-003</div>
+                <div class='td-preaproval-lt'> {ref} </div>
               </td>
               <td>&nbsp;</td>
               <td width='20%'>
-                <div class='td-preaproval-lt blueborder'>4xcube Limited </div>
+                <div class='td-preaproval-lt blueborder'>{companyName}</div>
               </td>
               <td>&nbsp;</td>
               <td width='10%'>
-                <div class='td-preaproval-lt blueborder'>SOLUTION </div>
+                <div class='td-preaproval-lt blueborder'>{solution} </div>
               </td>
               <td>&nbsp;</td>
               <td width='10%'>
-                <div class='td-preaproval-lt blueborder'>1/1/2020</div>
+                <div class='td-preaproval-lt blueborder'>{appDate}</div>
               </td>
               <td>&nbsp;</td>
               <td width='12%'>
-                <div class='td-preaproval-lt'>Adult / Dating</div>
+                <div class='td-preaproval-lt'>{tradeSector} </div>
               </td>
               <td>&nbsp;</td>
               <td width='12%'>
-                <div class='td-preaproval-lt'> NTC </div>
+                <div class='td-preaproval-lt'> {newToCards} </div>
               </td>
               <td>&nbsp;</td>
               <td width='12%'>
-                <div class='td-preaproval-lt'>Trading </div>
+                <div class='td-preaproval-lt'>{verticalTradingSector} </div>
               </td>
               <td>&nbsp;</td>
               <td width='9%'>
-                <div class='td-preaproval-lt'> UK </div>
+                <div class='td-preaproval-lt'> {complianceCountryLocation} </div>
               </td>
               <td>&nbsp;</td>
               <td width='9%'>
-                <div class='td-preaproval-lt'> No</div>
+                <div class='td-preaproval-lt'> {licence}</div>
               </td>
             </tr>
           </tbody>
@@ -276,6 +286,7 @@ export default function PreApproval() {
                   </tbody>
                 </table>
               </td>
+              <td className="td-width-fix">&nbsp;</td>
               <td width='33%' valign='top'>
                 <table class='mb-3' width='100%'>
                   <tbody>
@@ -595,6 +606,7 @@ export default function PreApproval() {
                   </tbody>
                 </table>
               </td>
+              <td className="td-width-fix">&nbsp;</td>
               <td width='33%' valign='top'>
                 <table
                   width='100%'
