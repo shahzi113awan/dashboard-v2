@@ -37,6 +37,77 @@ export default function PreApproval() {
   const [verticalTradingSector, setVerticalTradingSector] = useState('helo');
   const [complianceCountryLocation, setComplianceCountryLocation] = useState('helo')
   const [licence, setLicence] = useState('helo');
+  
+  const [Wb, setWb] = useState({
+    proposedSol:"",
+    proposedSol1:"",
+    proposedSol2:"",
+    proposedSol3:"",
+    proposedSol4:"",
+    
+    webAddress:"",
+    webAddress1:"",
+    webAddress2:"",
+    webAddress3:"",
+    webAddress4:"",
+    
+    ApprovalBuyRate:"",
+    ApprovalBuyRate1:"",
+    ApprovalBuyRate2:"",
+    ApprovalBuyRate3:"",
+    ApprovalBuyRate4:"",
+    ApprovalBuyRate5:"",
+    INTERMEDIARYCOST:"",
+    INTERMEDIARYCOST1:"",
+    INTERMEDIARYCOST2:"",
+    INTERMEDIARYCOST3:"",
+    INTERMEDIARYCOST4:"",
+    INTERMEDIARYCOST5:"",
+    PARTNERCOST:"",
+    PARTNERCOST1:"",
+    PARTNERCOST2:"",
+    PARTNERCOST3:"",
+    PARTNERCOST4:"",
+    PARTNERCOST5:"",
+    EMSSELLRATE:"",
+    EMSSELLRATE1:"",
+    EMSSELLRATE2:"",
+    EMSSELLRATE3:"",
+    EMSSELLRATE4:"",
+    EMSSELLRATE5:"",
+    MERCHANTACCEPTED:"",
+    MERCHANTACCEPTED1:"",
+    MERCHANTACCEPTED2:"",
+    MERCHANTACCEPTED3:"",
+    MERCHANTACCEPTED4:"",
+    MERCHANTACCEPTED5:"",
+    Date:"",
+    Date1:"",
+    Date2:"",
+    Date3:"",
+    Date4:"",
+    Date5:"",
+    Date6:"",
+    Date7:"",
+    Date8:"",
+    Date9:"",
+    Notes:"",
+    Notes1:"",
+    Notes2:"",
+    Notes3:"",
+    Notes4:"",
+    Notes5:"",
+    Notes6:"",
+    Notes7:"",
+    Notes8:"",
+    Notes9:"",
+  });
+  function handleInput(evt) {
+    setWb({
+      ...Wb,
+      [evt.target.name]: evt.target.value,
+    });
+  }
 
   return (
     <div class='newappWrap'>
@@ -188,8 +259,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='http://www.abc12345.com/'
-                          name='website'
+                          onChange={handleInput}
+                          value={Wb.webAddress}
+                          name="webAddress"
                           class='acri-sec text-center blueclrr'
                         />
                       </td>
@@ -215,8 +287,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='http://www.abc12345.com/'
-                          name='website'
+                          onChange={handleInput}
+                          value={Wb.webAddress1}
+                          name="webAddress1"
                           class='acri-sec text-center blueclrr'
                         />
                       </td>
@@ -242,8 +315,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='http://www.abc12345.com/'
-                          name='website'
+                          onChange={handleInput}
+                          value={Wb.webAddress2}
+                          name="webAddress2"
                           class='acri-sec text-center blueclrr'
                         />
                       </td>
@@ -269,8 +343,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='http://www.abc12345.com/'
-                          name='website'
+                          onChange={handleInput}
+                          value={Wb.webAddress3}
+                          name="webAddress3"
                           class='acri-sec text-center blueclrr'
                         />
                       </td>
@@ -296,8 +371,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='http://www.abc12345.com/'
-                          name='website'
+                          onChange={handleInput}
+                          value={Wb.webAddress4}
+                          name="webAddress4"
                           class='acri-sec text-center blueclrr'
                         />
                       </td>
@@ -371,8 +447,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='4.95%'
-                          name='approval-rate'
+                          onChange={handleInput}
+                          value={Wb.APPROVALBUYRATE}
+                          name="APPROVALBUYRATE"
                           class='acri-sec blueborder text-center'
                         />
                       </td>
@@ -380,8 +457,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='5.25%'
-                          name='intermediary-rate'
+                          onChange={handleInput}
+                          value={Wb.INTERMEDIARYCOST1}
+                          name="INTERMEDIARYCOST1"
                           class='acri-sec text-center'
                         />
                       </td>
@@ -389,8 +467,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='6.25%'
-                          name='partner-rate'
+                          onChange={handleInput}
+                          value={Wb.PARTNERCOST5 }
+                          name="PARTNERCOST5"
                           class='acri-sec text-center'
                         />
                       </td>
@@ -398,8 +477,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='7.25%'
-                          name='ems-rate'
+                          onChange={handleInput}
+                          value={Wb.EMSSELLRATE }
+                          name="EMSSELLRATE"
                           class='acri-sec blueborder text-center'
                         />
                       </td>
@@ -422,8 +502,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='4.95%'
-                          name='approval-rate'
+                          onChange={handleInput}
+                          value={Wb.APPROVALBUYRATE1}
+                          name="APPROVALBUYRATE1"
                           class='acri-sec blueborder text-center'
                         />
                       </td>
@@ -431,8 +512,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='5.25%'
-                          name='intermediary-rate'
+                          onChange={handleInput}
+                          value={Wb.INTERMEDIARYCOST2}
+                          name="INTERMEDIARYCOST2"
                           class='acri-sec text-center'
                         />
                       </td>
@@ -440,8 +522,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='6.25%'
-                          name='partner-rate'
+                          onChange={handleInput}
+                          value={Wb.PARTNERCOST1 }
+                          name="PARTNERCOST1"
                           class='acri-sec text-center'
                         />
                       </td>
@@ -449,8 +532,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='7.25%'
-                          name='ems-rate'
+                          onChange={handleInput}
+                          value={Wb.EMSSELLRATE1 }
+                          name="EMSSELLRATE1"
                           class='acri-sec blueborder text-center'
                         />
                       </td>
@@ -473,8 +557,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='4.95%'
-                          name='approval-rate'
+                          onChange={handleInput}
+                          value={Wb.APPROVALBUYRATE2}
+                          name="APPROVALBUYRATE2"
                           class='acri-sec blueborder text-center'
                         />
                       </td>
@@ -482,8 +567,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='5.25%'
-                          name='intermediary-rate'
+                          onChange={handleInput}
+                          value={Wb.INTERMEDIARYCOST3}
+                          name="INTERMEDIARYCOST3"
                           class='acri-sec text-center'
                         />
                       </td>
@@ -491,8 +577,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='6.25%'
-                          name='partner-rate'
+                          onChange={handleInput}
+                          value={Wb.PARTNERCOST }
+                          name="PARTNERCOST"
                           class='acri-sec text-center'
                         />
                       </td>
@@ -500,8 +587,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='7.25%'
-                          name='ems-rate'
+                          onChange={handleInput}
+                          value={Wb.EMSSELLRATE2 }
+                          name="EMSSELLRATE2"
                           class='acri-sec blueborder text-center'
                         />
                       </td>
@@ -524,8 +612,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='4.95%'
-                          name='approval-rate'
+                          onChange={handleInput}
+                          value={Wb.APPROVALBUYRATE3}
+                          name="APPROVALBUYRATE3"
                           class='acri-sec blueborder text-center'
                         />
                       </td>
@@ -533,8 +622,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='5.25%'
-                          name='intermediary-rate'
+                          onChange={handleInput}
+                          value={Wb.INTERMEDIARYCOST4}
+                          name="INTERMEDIARYCOST4"
                           class='acri-sec text-center'
                         />
                       </td>
@@ -542,8 +632,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='6.25%'
-                          name='partner-rate'
+                          onChange={handleInput}
+                          value={Wb.PARTNERCOST3 }
+                          name="PARTNERCOST3"
                           class='acri-sec text-center'
                         />
                       </td>
@@ -551,8 +642,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='7.25%'
-                          name='ems-rate'
+                          onChange={handleInput}
+                          value={Wb.EMSSELLRATE4 }
+                          name="EMSSELLRATE4"
                           class='acri-sec blueborder text-center'
                         />
                       </td>
@@ -575,8 +667,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='4.95%'
-                          name='approval-rate'
+                          onChange={handleInput}
+                          value={Wb.APPROVALBUYRATE4}
+                          name="APPROVALBUYRATE4"
                           class='acri-sec blueborder text-center'
                         />
                       </td>
@@ -584,8 +677,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='5.25%'
-                          name='intermediary-rate'
+                          onChange={handleInput}
+                          value={Wb.INTERMEDIARYCOST}
+                          name="INTERMEDIARYCOST"
                           class='acri-sec text-center'
                         />
                       </td>
@@ -593,8 +687,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='6.25%'
-                          name='partner-rate'
+                          onChange={handleInput}
+                          value={Wb.PARTNERCOST4 }
+                          name="PARTNERCOST4"
                           class='acri-sec text-center'
                         />
                       </td>
@@ -602,8 +697,9 @@ export default function PreApproval() {
                       <td>
                         <input
                           type='text'
-                          value='7.25%'
-                          name='ems-rate'
+                          onChange={handleInput}
+                          value={Wb.EMSSELLRATE3 }
+                          name="EMSSELLRATE3"
                           class='acri-sec blueborder text-center'
                         />
                       </td>
@@ -613,7 +709,7 @@ export default function PreApproval() {
                           <div class='checkbox'>
                             <input
                               type='checkbox'
-                              value='yes'
+                              value={true}
                               id='check6'
                               name='merchant-checkbox'
                             />
@@ -657,16 +753,18 @@ export default function PreApproval() {
                     <td>
                       <input
                         type='date'
-                        name='note-date'
-                        value=''
+                        onChange={handleInput}
+                        value={Wb.Date }
+                        name="Date"
                         class='acri-sec no_bordr'
                       />
                     </td>
                     <td>
                       <input
                         type='text'
-                        name='note-box'
-                        value='Sent to IFX'
+                        onChange={handleInput}
+                        value={Wb.Notes }
+                        name="Notes"
                         class='acri-sec no_bordr'
                       />
                     </td>
@@ -675,16 +773,18 @@ export default function PreApproval() {
                     <td>
                       <input
                         type='date'
-                        name='note-date'
-                        value=''
+                        onChange={handleInput}
+                        value={Wb.Date1 }
+                        name="Date1"
                         class='acri-sec no_bordr'
                       />
                     </td>
                     <td>
                       <input
                         type='text'
-                        name='note-box'
-                        value='Sent to IFX'
+                        onChange={handleInput}
+                        value={Wb.Notes1 }
+                        name="Notes1"
                         class='acri-sec no_bordr'
                       />
                     </td>
@@ -693,16 +793,18 @@ export default function PreApproval() {
                     <td>
                       <input
                         type='date'
-                        name='note-date'
-                        value=''
+                        onChange={handleInput}
+                        value={Wb.Date2 }
+                        name="Date2"
                         class='acri-sec no_bordr'
                       />
                     </td>
                     <td>
                       <input
                         type='text'
-                        name='note-box'
-                        value='Sent to IFX'
+                        onChange={handleInput}
+                        value={Wb.Notes2 }
+                        name="Notes2"
                         class='acri-sec no_bordr'
                       />
                     </td>
@@ -711,16 +813,18 @@ export default function PreApproval() {
                     <td>
                       <input
                         type='date'
-                        name='note-date'
-                        value=''
+                        onChange={handleInput}
+                        value={Wb.Date3 }
+                        name="Date3"
                         class='acri-sec no_bordr'
                       />
                     </td>
                     <td>
                       <input
                         type='text'
-                        name='note-box'
-                        value='Sent to IFX'
+                        onChange={handleInput}
+                        value={Wb.Notes3 }
+                        name="Notes3"
                         class='acri-sec no_bordr'
                       />
                     </td>
@@ -729,16 +833,18 @@ export default function PreApproval() {
                     <td>
                       <input
                         type='date'
-                        name='note-date'
-                        value=''
+                        onChange={handleInput}
+                        value={Wb.Date4 }
+                        name="Date4"
                         class='acri-sec no_bordr'
                       />
                     </td>
                     <td>
                       <input
                         type='text'
-                        name='note-box'
-                        value='Sent to IFX'
+                        onChange={handleInput}
+                        value={Wb.Notes4 }
+                        name="Notes4"
                         class='acri-sec no_bordr'
                       />
                     </td>
@@ -747,16 +853,19 @@ export default function PreApproval() {
                     <td>
                       <input
                         type='date'
-                        name='note-date'
-                        value=''
+                        onChange={handleInput}
+                        value={Wb.Date5 }
+                        name="Date5"
                         class='acri-sec no_bordr'
                       />
                     </td>
                     <td>
                       <input
                         type='text'
-                        name='note-box'
-                        value='Sent to IFX'
+                        onChange={handleInput}
+                        onChange={handleInput}
+                        value={Wb.Date6 }
+                        name="Date6"
                         class='acri-sec no_bordr'
                       />
                     </td>
@@ -765,16 +874,18 @@ export default function PreApproval() {
                     <td>
                       <input
                         type='date'
-                        name='note-date'
-                        value=''
+                        onChange={handleInput}
+                        value={Wb.Date7 }
+                        name="Date7"
                         class='acri-sec no_bordr'
                       />
                     </td>
                     <td>
                       <input
                         type='text'
-                        name='note-box'
-                        value='Sent to IFX'
+                        onChange={handleInput}
+                        value={Wb.Notes6 }
+                        name="Notes6"
                         class='acri-sec no_bordr'
                       />
                     </td>
@@ -783,16 +894,18 @@ export default function PreApproval() {
                     <td>
                       <input
                         type='date'
-                        name='note-date'
-                        value=''
+                        onChange={handleInput}
+                        value={Wb.Date8 }
+                        name="Date8"
                         class='acri-sec no_bordr'
                       />
                     </td>
                     <td>
                       <input
                         type='text'
-                        name='note-box'
-                        value='Sent to IFX'
+                        onChange={handleInput}
+                        value={Wb.Notes7 }
+                        name="Notes7"
                         class='acri-sec no_bordr'
                       />
                     </td>
@@ -801,16 +914,18 @@ export default function PreApproval() {
                     <td>
                       <input
                         type='date'
-                        name='note-date'
-                        value=''
+                        onChange={handleInput}
+                        value={Wb.Date9 }
+                        name="Date9"
                         class='acri-sec no_bordr'
                       />
                     </td>
                     <td>
                       <input
                         type='text'
-                        name='note-box'
-                        value='Sent to IFX'
+                        onChange={handleInput}
+                        value={Wb.Notes8 }
+                        name="Notes8"
                         class='acri-sec no_bordr'
                       />
                     </td>
