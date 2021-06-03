@@ -157,7 +157,7 @@ const [search, setsearch] = useState('');
                           <tr>
                             <td><div class="small-fonts">{index}</div></td>
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                            <td><div class="small-fonts">{  <Link to='/preappw'>
+                            <td><div class="small-fonts">{  <Link to={"/preappw/" + res._id}>
                         {res.App.af_rcn ? res.App.af_rcn : "Default Name"}
                       </Link>}</div></td>
                             {/* <td><div class="small-fonts">{  <Link to={"/app/" + res._id}>

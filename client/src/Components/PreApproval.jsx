@@ -1,9 +1,28 @@
-import React, { useEffect } from 'react'
+ 
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import $ from 'jquery'
 import '../assets/css/pre-approval.css'
 import refreshImg from '../assets/images/refresh.png'
+import { Link, useHistory, useParams } from "react-router-dom";
+
+import {
+ 
+  GetOneApp,
+  UpdateOne,
+  
+} from "../actions/appActions";
+import { FaDraft2Digital } from "react-icons/fa";
 
 export default function PreApproval() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { urlid } = useParams();
+  useEffect(() => {
+    urlid ? dispatch(GetOneApp(urlid)) : console.log("creating");
+  }, [urlid]);
+  const data1 = useSelector((state) => state.appReducer.state);
+  console.log(data1);
   //   useEffect(() => {
   //     $(document).ready(function () {
   //       $('.js-example-basic-single').select2()
@@ -68,15 +87,15 @@ export default function PreApproval() {
               </td>
               <td>&nbsp;</td>
               <td width='20%'>
-                <div class='td-preaproval-lt blueborder'>4xcube Limited </div>
+                <div class='td-preaproval-lt blueborder'>{data1.af_rcn} </div>
               </td>
               <td>&nbsp;</td>
               <td width='10%'>
-                <div class='td-preaproval-lt blueborder'>SOLUTION </div>
+                <div class='td-preaproval-lt blueborder'>{data1.af_sol} </div>
               </td>
               <td>&nbsp;</td>
               <td width='10%'>
-                <div class='td-preaproval-lt blueborder'>1/1/2020</div>
+                <div class='td-preaproval-lt blueborder'>{data1.af_ad}</div>
               </td>
               <td>&nbsp;</td>
               <td width='12%'>
@@ -84,15 +103,15 @@ export default function PreApproval() {
               </td>
               <td>&nbsp;</td>
               <td width='12%'>
-                <div class='td-preaproval-lt'> NTC </div>
+                <div class='td-preaproval-lt'>{data1.af_ntc} </div>
               </td>
               <td>&nbsp;</td>
               <td width='12%'>
-                <div class='td-preaproval-lt'>Trading </div>
+                <div class='td-preaproval-lt'>{data1.af_vts} </div>
               </td>
               <td>&nbsp;</td>
               <td width='9%'>
-                <div class='td-preaproval-lt'> UK </div>
+                <div class='td-preaproval-lt'> {data1.af_ccl}</div>
               </td>
               <td>&nbsp;</td>
               <td width='9%'>

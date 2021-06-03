@@ -64,6 +64,7 @@ function App() {
               <div>
                 <Header />
                 <Route exact path='/preappw' component={PreApproval} />
+                <Route exact path='/preappw/:urlid' component={PreApproval} />
 
                 <Route exact path="/" component={MainDashboard} />
                 <Route exact path='/LiveDb' component={LiveDashboard} />
