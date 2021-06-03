@@ -63,9 +63,9 @@ function App() {
             ) : (
               <div>
                 <Header />
-                <Route exact path='/' component={PreApproval} />
+                <Route exact path='/preappw' component={PreApproval} />
 
-                {/* <Route exact path="/" component={MainDashboard} /> */}
+                <Route exact path="/" component={MainDashboard} />
                 <Route exact path='/LiveDb' component={LiveDashboard} />
                 <Route exact path='/TradingDb' component={TradingDashboard} />
                 <Route exact path='/ArchiveDb' component={ArchiveDashboard} />
