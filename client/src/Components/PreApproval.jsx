@@ -287,7 +287,7 @@ const [licence, setLicence] = useState('helo');
                 </table>
               </td>
               <td className="td-width-fix">&nbsp;</td>
-              <td width='33%' valign='top'>
+              <td width='34%' valign='top'>
                 <table class='mb-3' width='100%'>
                   <tbody>
                     <tr>
@@ -607,7 +607,7 @@ const [licence, setLicence] = useState('helo');
                 </table>
               </td>
               <td className="td-width-fix">&nbsp;</td>
-              <td width='33%' valign='top'>
+              <td width='34%' valign='top'>
                 <table
                   width='100%'
                   border='1'
