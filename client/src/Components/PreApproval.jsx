@@ -1,4 +1,4 @@
- 
+
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import $ from 'jquery'
@@ -7,10 +7,10 @@ import refreshImg from '../assets/images/refresh.png'
 import { Link, useHistory, useParams } from "react-router-dom";
 
 import {
- 
+
   GetOneApp,
   UpdateOne,
-  
+
 } from "../actions/appActions";
 import { FaDraft2Digital } from "react-icons/fa";
 
@@ -28,6 +28,16 @@ export default function PreApproval() {
   //       $('.js-example-basic-single').select2()
   //     })
   //   }, [])
+  const [ref, setRef] = useState('helo');
+  const [companyName, setCompanyName] = useState('helo')
+  const [solution, setSolution] = useState('helo');
+  const [appDate, setAppDate] = useState('helo');
+  const [tradeSector, setTradeSector] = useState('helo');
+  const [newToCards, setNewToCards] = useState('helo');
+  const [verticalTradingSector, setVerticalTradingSector] = useState('helo');
+  const [complianceCountryLocation, setComplianceCountryLocation] = useState('helo')
+  const [licence, setLicence] = useState('helo');
+
   return (
     <div class='newappWrap'>
       <div class='container-fluid'>
@@ -83,7 +93,7 @@ export default function PreApproval() {
           <tbody>
             <tr>
               <td width='6%'>
-                <div class='td-preaproval-lt'>AP-003</div>
+                <div class='td-preaproval-lt'> {ref} </div>
               </td>
               <td>&nbsp;</td>
               <td width='20%'>
@@ -99,7 +109,7 @@ export default function PreApproval() {
               </td>
               <td>&nbsp;</td>
               <td width='12%'>
-                <div class='td-preaproval-lt'>Adult / Dating</div>
+                <div class='td-preaproval-lt'>{tradeSector} </div>
               </td>
               <td>&nbsp;</td>
               <td width='12%'>
@@ -115,7 +125,7 @@ export default function PreApproval() {
               </td>
               <td>&nbsp;</td>
               <td width='9%'>
-                <div class='td-preaproval-lt'> No</div>
+                <div class='td-preaproval-lt'> {licence}</div>
               </td>
             </tr>
           </tbody>
