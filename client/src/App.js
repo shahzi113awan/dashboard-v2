@@ -40,6 +40,7 @@ import NewContact from './Components/Solutions/Newcontact'
 import ContactDB from './Components/Solutions/contactDB'
 import PREApp from './Components/Workbooks/PRE-APPWorkBook'
 import PreApproval from './Components/PreApproval'
+import Dashboard from './Components/Dashboard'
 import { firebase } from './Config'
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
             ) : (
               <div>
                 <Header />
+                {/* <Route exact path='/' component={Dashboard} /> */}
                 <Route exact path='/preappw' component={PreApproval} />
               <Route exact path='/preappw/:urlid' component={PreApproval} />
 
