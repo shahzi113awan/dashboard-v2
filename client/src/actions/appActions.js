@@ -57,30 +57,45 @@ export const GetOneApp = (id) => async (dispatch) => {
   await axios.get("/api/App/" + id, { id: id }).then((res) => {
     console.log("from action");
     console.log(res.data);
+     if(!res.data.AppW){
+       
+       
+         dispatch({
+           type: "GET_App",
+           payload: res.data.App,
+           id:res.data._id
 
-    dispatch({
-      type: "GET_App",
-      payload: res.data.App,
-    });
+         });
+           }
+           else{
+            dispatch({
+              type: "GET_App",
+              payload: res.data.App,
+             
+   
+            });
+           }
+     
+     
   });
 };
-export const Update = (obj, id) => async (dispatch) => {
-  try {
-    let url = "/api/cti";
-    await axios.put(url, { cti: obj, id: id }).then(
-      (res) =>
-        dispatch({
-          type: "CREATE_CTI",
-          payload: res.data,
-        }),
-      console.log("XXXXXX" + id)
-    );
-  } catch {
-    dispatch({
-      type: "Error",
-    });
-  }
-};
+// export const Update = (obj, id) => async (dispatch) => {
+//   try {
+//     let url = "/api/cti";
+//     await axios.put(url, { App: obj, id: id }).then(
+//       (res) =>
+//         dispatch({
+//           type: "CREATE_CTI",
+//           payload: res.data,
+//         }),
+//       console.log("XXXXXX" + id)
+//     );
+//   } catch {
+//     dispatch({
+//       type: "Error",
+//     });
+//   }
+// };
 export const Delete = (id) => async (dispatch) => {
   try {
     let url = "/api/App/";

@@ -15,7 +15,7 @@ export default function MainDashboard() {
 const [search, setsearch] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(GetApproved());
+    dispatch(Get());
   }, [dispatch]);
   const [db, setDb] = useState([]);
   const data = useSelector((state) => state.appReducer.state);

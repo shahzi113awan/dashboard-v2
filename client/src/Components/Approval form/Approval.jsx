@@ -20,7 +20,9 @@ export default function ApprovalForm() {
   }, [urlid]);
   const data1 = useSelector((state) => state.appReducer.state);
   console.log(data1);
-  const [App, setApp] = useState({
+  
+  const [App, setApp] = useState(
+{
     status: " ",
     af_rcn: "",
     af_ad: "",
@@ -38,7 +40,9 @@ export default function ApprovalForm() {
     af_ccl: "",
     af_eea: "",
     af_tla: "",
-  });
+  },
+   
+  );
 
   useEffect(() => {
     setApp(data1);

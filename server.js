@@ -16,6 +16,8 @@ const SolutionNav = require("./routes/api/solutioNavParams");
 const solutionNavParam = require("./routes/api/solutioNav");
 const sd = require("./routes/api/supportingDoc");
 const uploadRoute = require("./routes/api/uploadRoutes");
+const PreAppWork = require("./routes/api/PreAppWork");
+ 
 
 const app = express();
 
@@ -44,6 +46,8 @@ app.use("/api", contact);
 app.use("/api", uploadRoute);
 app.use("/api", SolutionNav);
 app.use("/api", solutionNavParam);
+app.use("/api", PreAppWork);
+ 
 
 // const __dirname = path.resolve();
 app.use("/get", express.static(path.join(__dirname, "/uploads")));
