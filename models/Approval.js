@@ -55,6 +55,7 @@ let ApprovalSchema = new Schema(
         type: String,
       },
     },
+    
   },
   {
     collection: "Approvals",

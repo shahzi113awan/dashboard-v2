@@ -69,7 +69,7 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         state: action.payload,
-        // id: action.id,
+        id: action.id,
         isLoading: false,
       };
     case "Update_App":

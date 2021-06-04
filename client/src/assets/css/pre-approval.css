@@ -87,4 +87,18 @@
 .blueclrr input{color: #4971b7 !important;}
 .checkbox input[type=checkbox]{display:none;}
 .checkbox input[type=checkbox] + label{width:72px; height:38px; line-height:41px; border:none; background:#ffffcc; cursor:pointer; position:absolute;    left:0; top:0;}
-.checkbox input[type=checkbox]:checked + label:before{content:'\f00c'; font-family:'Font Awesome 5 Free'; font-weight:900; color:#000000; font-size:18px;    padding-left:0; position:relative; top:0;}
+.checkbox input[type=checkbox]:checked + label:before{content:'\f00c'; font-family:'Font Awesome 5 Free'; font-weight:900; color:#000000; font-size:18px;
+        padding-left:0; position:relative; top:0;}
+        .rightt_linkk {
+            
+            padding: 0px 8px 0;
+            position: relative;
+            border-radius: 0px;
+        }   
+        .rightt_linkk:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #666666;
+            outline: 0;
+            box-shadow: none;
+        }

@@ -11,6 +11,7 @@ import { appReducer } from "./appReducer";
 import { contactReducer } from "./contactReducer";
 import { solReducer } from "./solutionNavReducer";
 import { solParamsReducer } from "./solutionNavparamsReducer";
+import { APPWReducer} from "./PreAppWork";
 export default combineReducers({
   completedReducer,
   kybReducer,
@@ -23,5 +24,6 @@ export default combineReducers({
   contactReducer,
   solReducer,
   solParamsReducer,
-  SpareReducer
+  SpareReducer,
+  APPWReducer
 });
