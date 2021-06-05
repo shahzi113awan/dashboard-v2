@@ -18,7 +18,7 @@ body{font-size:1em; line-height:1.85714286em; font-family:'Open Sans', sans-seri
 .td-font-icon{position:relative; padding-top:0; padding-right:0; padding-bottom:0; padding-left:4px;}
 .compliance-td-fonts{margin-bottom:5px; transition:all 0.2s ease-in-out; overflow:hidden; text-overflow:ellipsis; background-color:#fff; border:2px solid #000; font-weight:600; padding:0.35625rem 0.2275rem; font-size:10px; line-height:15px; min-height:65px; display:flex; flex-wrap:nowrap; flex-direction:column; align-content:flex-start; justify-content:center; position:relative;}
 .compliance-td-fonts img{width:34px; margin:0 auto}
-.compliance-small-fonts{line-height:15px; text-align:left; transition:all 0.2s ease-in-out; text-overflow:ellipsis; background-color:#f2f2f2; border:1px solid #d9d9d9; font-weight:400; padding:0.35625rem 0.4375rem; font-size:10px; position:relative;}
+.compliance-small-fonts{line-height:18px; height: 30px; text-align:left; transition:all 0.2s ease-in-out; text-overflow:ellipsis; background-color:#f2f2f2; border:1px solid #d9d9d9; font-weight:400; padding:0.35625rem 0.4375rem; font-size:10px; position:relative;}
 .compliance-select{
     padding-left:0.4375rem !important;
     width: 100%;
