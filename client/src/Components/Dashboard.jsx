@@ -268,6 +268,14 @@ function Dashboard({ data }) {
             <tbody>
               {db &&
                 db.map((res, index) => {
+                  if (
+                    res.ci &&
+                    res.cl &&
+                    res.cti &&
+                    res.kyc &&
+                    res.kyb &&
+                    res.sd
+                  ) {
                   return (
                     <tr>
                       <td>
@@ -288,16 +296,16 @@ function Dashboard({ data }) {
                         </div>
                       </td>
                       <td>
-                        <div class='compliance-small-fonts text-center'>10</div>
+                        <div class='compliance-small-fonts text-center'>22</div>
                       </td>
                       <td>
                         <div class='compliance-small-fonts text-center'>
-                          3.5%
+                        {res.cl.pendingCount.length}
                         </div>
                       </td>
                       <td>
                         <div class='compliance-small-fonts text-center redcolor blueborder'>
-                          3.5%
+                        {22 - res.cl.pendingCount.length}
                         </div>
                       </td>
                       <td>
@@ -317,7 +325,7 @@ function Dashboard({ data }) {
                       </td>
                       <td>
                         <div class='compliance-small-fonts redborder text-center'>
-                          100
+                       { cal(res.ci.tpi_date)}
                         </div>
                       </td>
                       <td>
@@ -331,25 +339,19 @@ function Dashboard({ data }) {
                         </div>
                       </td>
                       <td>
-                        <div class='compliance-select'>
-                          <select
-                            class='js-example-basic-single'
-                            name='compliance'
-                          >
-                            <option class='compliance-select-drp' value='AL'>
-                              Won
-                            </option>
-                            <option class='compliance-select-drp' value='AL'>
-                              Won
-                            </option>
-                            <option class='compliance-select-drp' value='AL'>
-                              Won
-                            </option>
-                          </select>
-                        </div>
+                        
+                        <td>
+            <select class="compliance-select compliance-small-fonts">
+              <option value="0">Select</option>
+              <option value="1">won</option>
+              <option value="2">won</option>
+              <option value="3">won</option>
+            </select>
+          </td> 
                       </td>
                     </tr>
                   )
+                  }
                 })}
             </tbody>
           </table>
