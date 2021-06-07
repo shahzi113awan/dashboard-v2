@@ -14,6 +14,9 @@ let CISchema = new Schema(
       tpi_rcName: {
         type: String,
       },
+      iban: {
+        type: String,
+      },
       tpi_iP: {
         type: String,
       },

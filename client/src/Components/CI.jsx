@@ -4,6 +4,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateCI, Update, Get, GetOneCI, UpdateOne } from "../actions/ciAction";
 import { INITIATECTI, } from "../actions/ctiAction";
+ 
 import SideNav from './Sidebar/Sidebar'
 
 export default function CI({ide}) {
@@ -21,6 +22,8 @@ console.log(ide)
   const data1 = useSelector((state) => state.ciReducer.state);
   const isLoading = useSelector((state) => state.ciReducer.isLoading);
   const id = useSelector((state) => state.ciReducer._id);
+  const IBAN= useSelector((state) => state.IbanReducer.iban);
+  console.log(IBAN);
   console.log(id);
   console.log(data1.ci);
   console.log(urlid);
@@ -31,6 +34,7 @@ console.log(ide)
   // console.log(isLoading)
 
   const [CI, setCI] = React.useState({
+    iban:IBAN,
     tpi_rcName: " ",
     tpi_aaSolution: "CCBILL",
     tpi_ntc: "",
@@ -118,6 +122,7 @@ console.log(ide)
   }
   return (
     <div style={{ position: "relative" }}    >
+      
       <div className={urlid ? "container-fluid" : "container"}>
 
         <div className="row">

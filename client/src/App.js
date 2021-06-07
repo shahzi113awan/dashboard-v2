@@ -18,6 +18,7 @@ import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 import MainDashboard from './Components/MainDashboard'
+import IBANDashboard from './Components/IBANDashboard'
 import LiveDashboard from './Components/Dashboards/LiveDashboard'
 import TradingDashboard from './Components/Dashboards/TradingDashboard'
 import IntegrationDashboard from './Components/Dashboards/IntegrationDashboard'
@@ -69,6 +70,7 @@ function App() {
               <Route exact path='/preappw/:urlid' component={PreApproval} />
 
                 <Route exact path="/" component={MainDashboard} />
+                <Route exact path="/ibandb" component={IBANDashboard} />
                 <Route exact path='/LiveDb' component={LiveDashboard} />
                 <Route exact path='/TradingDb' component={TradingDashboard} />
                 <Route exact path='/ArchiveDb' component={ArchiveDashboard} />

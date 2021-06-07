@@ -141,7 +141,16 @@ router.route("/cistatus/:id").put((req, res, next) => {
     }
   );
 });
-
+router.get("/IBAN", (req, res) => {
+  CISchema.find({ "ci.iban": "true" }, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      console.log("xxxxxx");
+      res.json(data);
+    }
+  });
+});
 // Delete CI
 router.route("/CI/:id").delete((req, res, next) => {
   CISchema.findByIdAndRemove(req.params.id, (error, data) => {
