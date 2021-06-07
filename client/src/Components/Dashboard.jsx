@@ -23,6 +23,7 @@ function Dashboard({ data }) {
   const dispatch = useDispatch()
   const [db, setDb] = useState([])
   const [search, setSearch] = useState('')
+  const [search2, setSearch2] = useState('')
 
   const [highlight, sethighlight] = useState(false)
   const [Index, setIndex] = useState()
@@ -76,6 +77,11 @@ function Dashboard({ data }) {
   }
   console.log(Index)
   console.log(db)
+
+  
+  let extractedData = []
+  let extractedData2 = []
+
   const filterForEveryOne = (item) => {
     return item.filter((object) => {
       const checkField =
@@ -85,12 +91,24 @@ function Dashboard({ data }) {
       return checkField.includes(filteredField)
     })
   }
+  const filterForEveryOne2 = (item) => {
+    return item.filter((object) => {
+      const checkField =
+        typeof object.ci.tpi_aaSolution === 'string' ? object.ci.tpi_aaSolution.toLowerCase() : ''
+      const filteredField = search2.toLowerCase()
 
-  let extractedData = []
+      return checkField.includes(filteredField)
+    })
+  }
+
   if (db && db.length > 0) {
     extractedData = filterForEveryOne(db)
   }
-  console.log(extractedData)
+  if (db && db.length > 0) {
+    extractedData2 = filterForEveryOne2(extractedData)
+  }
+  console.log(extractedData2)
+  console.log(search2)
   return (
     <>
       <div class='compliance-dashboard-card'>
@@ -98,6 +116,7 @@ function Dashboard({ data }) {
           <table>
             <thead>
               <tr>
+             
                 <th width='33%' valign='top'>
                   <table width='100%'>
                     <thead>
@@ -497,6 +516,9 @@ function Dashboard({ data }) {
               </tr>
             </thead>
           </table>
+
+          <input type='text' onChange={(e)=> setSearch2(e.target.value)} placeholder='Search By Solution' style={{ borderRadius:0, padding:5, margin:10}} />
+
           <table>
             <thead>
               <tr>
@@ -613,8 +635,8 @@ function Dashboard({ data }) {
               </tr>
             </thead>
             <tbody>
-              {extractedData &&
-                extractedData.map((res, index) => {
+              {extractedData2 &&
+                extractedData2.map((res, index) => {
                   if (
                     res.ci &&
                     res.cl &&
