@@ -99,6 +99,13 @@ export const ciReducer = (state = [], action) => {
         // id: action.id,
         isLoading: false,
       };
+    case "GET_IBAN":
+      return {
+        ...state,
+        state: action.payload,
+        // id: action.id,
+        isLoading: false,
+      };
     case "GETONE_CI":
       return {
         ...state,
@@ -117,6 +124,11 @@ export const ciReducer = (state = [], action) => {
       return {
         ...state,
         isLoading: true,
+      };
+    case "IBAN":
+      return {
+        ...state,
+        isIBAN: true,
       };
     default:
       return state;

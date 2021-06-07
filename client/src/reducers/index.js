@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { completedReducer } from "./completedReducer";
+import { IbanReducer } from "./ibanReducer";
 import { kybReducer } from "./kybReducer";
 import { ciReducer } from "./ciReducer";
 import { ctiReducer } from "./ctiReducer";
@@ -13,7 +13,7 @@ import { solReducer } from "./solutionNavReducer";
 import { solParamsReducer } from "./solutionNavparamsReducer";
 import { APPWReducer} from "./PreAppWork";
 export default combineReducers({
-  completedReducer,
+ IbanReducer,
   kybReducer,
   ciReducer,
   ctiReducer,

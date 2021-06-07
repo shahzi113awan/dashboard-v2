@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { Get, Delete, UpdateStatus } from '../actions/ciAction'
+import { Get, Delete, UpdateStatus} from '../actions/ciAction'
+ 
 import Loader from 'react-loader-spinner'
 import moment from 'moment'
 
@@ -110,6 +111,7 @@ function Dashboard({ data }) {
   console.log(extractedData2)
   console.log(search2)
   return (
+
     <>
       <div class='compliance-dashboard-card'>
         <div class='container-fluid'>
@@ -648,7 +650,7 @@ function Dashboard({ data }) {
                   return (
                     <tr>
                       <td>
-                        <div class='compliance-small-fonts'>VET-003</div>
+                        <div class='compliance-small-fonts'>{index+1}</div>
                       </td>
                       <td>
                         <div class='compliance-small-fonts'>{res.name}</div>
@@ -709,14 +711,14 @@ function Dashboard({ data }) {
                       </td>
                       <td>
                         
-                        <td>
+                         
             <select class="compliance-select compliance-small-fonts">
-              <option value="0">Select</option>
-              <option value="1">won</option>
-              <option value="2">won</option>
-              <option value="3">won</option>
+              <option value="0">Won</option>
+              <option value="1">Lost</option>
+              <option value="2">Archive</option>
+    
             </select>
-          </td> 
+         
                       </td>
                     </tr>
                   )
@@ -766,7 +768,8 @@ function Dashboard({ data }) {
         </div>
       </div>
     </>
-  )
+ 
+ )
 }
 
 export default Dashboard

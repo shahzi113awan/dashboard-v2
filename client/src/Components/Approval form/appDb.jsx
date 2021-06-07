@@ -177,13 +177,23 @@ const [search, setsearch] = useState('');
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
                             <td><div class="small-fonts blueborder">2.0%</div></td>
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                            <td><div class={cal(res.App.af_ad) > 90 ? "small-fonts redborder":"small-fonts greenborder"}>{res.App.af_ad ? cal(res.App.af_ad) : ""}</div></td>
+                            <td><div class={cal(res.App.af_ad) < 90 ? "small-fonts redborder":"small-fonts greenborder"}>{res.App.af_ad ? cal(res.App.af_ad) : ""}</div></td>
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
                             <td><div class="small-fonts">{res.App.af_brp}</div></td>
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
                             <td><div class="small-fonts">{res.App.af_abo} </div></td>
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                            <td><div class="small-fonts yellobg">Won <div class="filter-icon-2"><a href="#"><IoIosArrowDropdownCircle size={20}></IoIosArrowDropdownCircle></a></div></div></td>
+                            <td>
+                        
+                         
+            <select class="compliance-select compliance-small-fonts">
+              <option value="0">Won</option>
+              <option value="1">Lost</option>
+              <option value="2">Archive</option>
+    
+            </select>
+         
+                      </td>
                           </tr>
                         );
                      

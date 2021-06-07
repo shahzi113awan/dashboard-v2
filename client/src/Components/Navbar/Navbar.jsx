@@ -19,9 +19,10 @@ import { CgMediaPodcast } from 'react-icons/cg'
 import { IoMdArchive } from 'react-icons/io'
 import { BsGraphUp } from 'react-icons/bs'
 // import { load } from "dotenv/types";
-import { Get, GetLive, GetTrading, GetArchive } from "../../actions/ciAction";
+import { Get, GetLive, GetTrading, GetArchive,setIBAN } from "../../actions/ciAction";
 import { Get as GetDB, GetLost, GetApproved } from '../../actions/appActions'
 import { GetContacts } from '../../actions/contactAction'
+import { IBAN,CARD } from '../../actions/ibanAction'
 import './style.css'
 import { firebase } from "../../Config";
 
@@ -31,7 +32,7 @@ export const Header = (props) => {
     const dispatch = useDispatch();
 
     const [isOpen, setIsOpen] = useState(false);
-
+ 
     const toggle = () => setIsOpen(!isOpen);
     const loadData = (e) => {
         console.log("loading daata");
@@ -85,13 +86,13 @@ export const Header = (props) => {
                                         <div class="inn-app-tabs">
                                             <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                                 <li class="nav-item" role="presentation">
-                                                    <Link class="nav-link active text-center" id="pills-pre-aproval-tab" data-toggle=" " to="/app" role="tab" aria-selected="true">PRE-APPOVAL APPLICATION</Link>
+                                                    <Link class="nav-link active text-center" id="pills-pre-aproval-tab" data-toggle="pill" to="/app" role="tab" aria-selected="true">PRE-APPOVAL APPLICATION</Link>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <Link class="nav-link" id="pills-card-processing-tab" data-toggle=" " to="/ci" role="tab" aria-selected="false">CARD PROCESSING COMPLIANCE APPLICATION</Link>
+                                                    <Link class="nav-link" id="pills-card-processing-tab" data-toggle="pill" to="/ci" role="tab" aria-selected="false">CARD PROCESSING COMPLIANCE APPLICATION</Link>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <Link class="nav-link" id="pills-iban-bank-tab" data-toggle="pill" to="/ci" role="tab" aria-selected="false">IBAN BANK ACCOUNT COMPLIANCE APPLICATION</Link>
+                                                    <Link  onClick={e=>{dispatch(IBAN())}} class="nav-link" id="pills-iban-bank-tab" data-toggle="pill" to="/ci" role="tab" aria-selected="false">IBAN BANK ACCOUNT COMPLIANCE APPLICATION</Link>
                                                 </li>
                                             </ul>
                                         </div></div></div>
@@ -114,7 +115,10 @@ export const Header = (props) => {
                                                     <Link class="nav-link" id="pills-pre-vet-tab" data-toggle="pill" to="/appdb" aria-controls="pills-pre-vet" role="tab" aria-selected="true">PRE-VET DASHBOARD</Link>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <Link class="nav-link" id="pills-complience-dash-tab" data-toggle="pill" href="#pills-complience-dash" role="tab" aria-controls="pills-ccomplience-dash" aria-selected="false">COMPLIANCE DASHBOARD</Link>
+                                                    <Link to="/" class="nav-link" id="pills-complience-dash-tab" data-toggle="pill"   role="tab" aria-controls="pills-ccomplience-dash" aria-selected="false">COMPLIANCE DASHBOARD</Link>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <Link to="/ibandb"  class="nav-link" id="pills-complience-dash-tab" data-toggle="pill"   role="tab" aria-controls="pills-IBAN-dash" aria-selected="false">IBAN DASHBOARD</Link>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
                                                     <button class="nav-link" id="pills-bording-dash-tab" data-toggle="pill" href="#pills-bording-dash" role="tab" aria-controls="pills-bording-dash" aria-selected="false">BOARDING DASHBOARD</button>

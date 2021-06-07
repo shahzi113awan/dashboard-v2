@@ -28,6 +28,16 @@ export const Get = (obj) => async (dispatch) => {
     payload: data,
   });
 };
+export const GetIBAN = (obj) => async (dispatch) => {
+  console.log("this action should");
+  dispatch(setLoading());
+
+  const { data } = await axios.get("/api/IBAN");
+  dispatch({
+    type: "GET_IBAN",
+    payload: data,
+  });
+};
 //Live Getter
 export const GetLive = (obj) => async (dispatch) => {
   dispatch(setLoading());
@@ -154,5 +164,11 @@ export const GetId = (id) => (dispatch) => {
 export const setLoading = () => (dispatch) => {
   dispatch({
     type: "LOADING",
+  });
+};
+export const setIBAN = () => (dispatch) => {
+  dispatch({
+    type: "IBAN",
+    isIBAN:false
   });
 };
