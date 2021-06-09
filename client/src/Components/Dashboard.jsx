@@ -582,7 +582,7 @@ function Dashboard({ data }) {
             </thead>
           </table>
 
-          <input type='text' onChange={(e)=> setSolutionSearch(e.target.value)} placeholder='Search By Solution' style={{ borderRadius:0, padding:5, margin:10}} />
+          {/* <input type='text' onChange={(e)=> setSolutionSearch(e.target.value)} placeholder='Search By Solution' style={{ borderRadius:0, padding:5, margin:10}} /> */}
 
           <table>
             <thead>
