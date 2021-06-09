@@ -23,8 +23,17 @@ function Dashboard({ data }) {
 
   const dispatch = useDispatch()
   const [db, setDb] = useState([])
+  const [showSolutionFilter, setShowSolutionFilter] = useState(true)
+  const [showRefFilter, setShowRefFilter] = useState(true)
+  const [showNameFilter, setShowNameFilter] = useState(true)
+  const [showDateFilter, setShowDateFilter] = useState(true)
+  const [showDaysFilter, setShowDaysFilter] = useState(true)
   const [search, setSearch] = useState('')
-  const [search2, setSearch2] = useState('')
+  const [solutionSearch, setSolutionSearch] = useState('')
+  const [nameSearch, setNameSearch] = useState('')
+  const [refSearch, setRefSearch] = useState('')
+  const [dateSearch, setDateSearch] = useState('')
+  const [daysSearch, setDaysSearch] = useState('')
 
   const [highlight, sethighlight] = useState(false)
   const [Index, setIndex] = useState()
@@ -82,6 +91,10 @@ function Dashboard({ data }) {
   
   let extractedData = []
   let extractedData2 = []
+  let extractedData3 = []
+  let extractedData4 = []
+  let extractedData5 = []
+  let extractedData6 = []
 
   const filterForEveryOne = (item) => {
     return item.filter((object) => {
@@ -96,7 +109,43 @@ function Dashboard({ data }) {
     return item.filter((object) => {
       const checkField =
         typeof object.ci.tpi_aaSolution === 'string' ? object.ci.tpi_aaSolution.toLowerCase() : ''
-      const filteredField = search2.toLowerCase()
+      const filteredField = solutionSearch.toLowerCase()
+
+      return checkField.includes(filteredField)
+    })
+  }
+  const filterForEveryOne3 = (item) => {
+    return item.filter((object) => {
+      const checkField =
+        typeof object.name === 'string' ? object.name.toLowerCase() : ''
+      const filteredField = nameSearch.toLowerCase()
+
+      return checkField.includes(filteredField)
+    })
+  }
+  const filterForEveryOne4 = (item) => {
+    return item.filter((object) => {
+      const checkField =
+        typeof object.ci.name === 'string' ? object.ci.name.toLowerCase() : ''
+      const filteredField = refSearch.toLowerCase()
+
+      return checkField.includes(filteredField)
+    })
+  }
+  const filterForEveryOne5 = (item) => {
+    return item.filter((object) => {
+      const checkField =
+        typeof object.ci.tpi_date === 'string' ? object.ci.tpi_date.toLowerCase() : ''
+      const filteredField = dateSearch.toLowerCase()
+
+      return checkField.includes(filteredField)
+    })
+  }
+  const filterForEveryOne6 = (item) => {
+    return item.filter((object) => {
+      const checkField =
+        typeof object.ci.tpi_date === 'string' ? object.ci.tpi_date.toLowerCase() : ''
+      const filteredField = daysSearch.toLowerCase()
 
       return checkField.includes(filteredField)
     })
@@ -108,11 +157,25 @@ function Dashboard({ data }) {
   if (db && db.length > 0) {
     extractedData2 = filterForEveryOne2(extractedData)
   }
-  console.log(extractedData2)
-  console.log(search2)
+  if (db && db.length > 0) {
+    extractedData3 = filterForEveryOne3(extractedData2)
+  }
+  if (db && db.length > 0) {
+    extractedData4 = filterForEveryOne4(extractedData3)
+  }
+  if (db && db.length > 0) {
+    extractedData5 = filterForEveryOne5(extractedData4)
+  }
+  if (db && db.length > 0) {
+    extractedData6 = filterForEveryOne6(extractedData5)
+  }
+  console.log(extractedData6)
+  console.log(showSolutionFilter)
+  
   return (
 
     <>
+    {/* <h1>{search3}</h1> */}
       <div class='compliance-dashboard-card'>
         <div class='container-fluid'>
           <table>
@@ -519,49 +582,79 @@ function Dashboard({ data }) {
             </thead>
           </table>
 
-          <input type='text' onChange={(e)=> setSearch2(e.target.value)} placeholder='Search By Solution' style={{ borderRadius:0, padding:5, margin:10}} />
+          <input type='text' onChange={(e)=> setSolutionSearch(e.target.value)} placeholder='Search By Solution' style={{ borderRadius:0, padding:5, margin:10}} />
 
           <table>
             <thead>
               <tr>
                 <td width='5%'>
                   <div class='compliance-td-fonts td-font-icon'>
+                    {showRefFilter? 
+                    <dev>
                     Ref:
+                    </dev>
+                    :
+                    <input type='text' style={{width:40}} onChange={(e)=>setRefSearch(e.target.value)} />
+                    
+                    }
                     <div class='filter-icon'>
-                      <a href='#'>
+                    <button onClick={()=>setShowRefFilter(!showRefFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+
                         <i class='fas fa-filter'></i>
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </td>
                 <td width='19%'>
                   <div class='compliance-td-fonts td-font-icon text-center'>
+                    {showNameFilter ? 
+                    <div>
+
                     COMPANY NAME
+                    </div>
+                  :  <input type='text' style={{width:200}} onChange={(e)=>setNameSearch(e.target.value)} />
+                  }
+
                     <div class='filter-icon'>
-                      <a href='#'>
+                    <button onClick={()=>setShowNameFilter(!showNameFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+
                         <i class='fas fa-filter'></i>
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </td>
                 <td width='10%'>
                   <div class='compliance-td-fonts td-font-icon'>
+                    {showSolutionFilter? 
+                    <div>
                     SOLUTION
+                    </div>
+                    :
+                    <input type='text' style={{width:100}} onChange={(e)=>setSolutionSearch(e.target.value)} />
+                  }
                     <div class='filter-icon'>
-                      <a href='#'>
+                      <button onClick={()=>setShowSolutionFilter(!showSolutionFilter)} style={{border:'none', backgroundColor:'transparent'}}>
                         <i class='fas fa-filter'></i>
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </td>
                 <td width='10%'>
                   <div class='compliance-td-fonts blueborder compliance-td-fonts td-font-icon'>
-                    APPLICATION DATE
-                    <div class='filter-icon'>
-                      <a href='#'>
-                        <i class='fas fa-filter'></i>
-                      </a>
+                  {showDateFilter ? 
+                    <div>
+
+                   APPLICATION DATE
                     </div>
+                  :  <input type='text' style={{width:100}} onChange={(e)=>setDateSearch(e.target.value)} />
+                  }
+
+                    <div class='filter-icon'>
+                    <button onClick={()=>setShowDateFilter(!showDateFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+
+                        <i class='fas fa-filter'></i>
+                      </button>
+                      </div>
                   </div>
                 </td>
                 <td width='5%'>
@@ -611,11 +704,19 @@ function Dashboard({ data }) {
                 </td>
                 <td width='5%'>
                   <div class='compliance-td-fonts td-font-icon redborder'>
+                  {showDaysFilter ? 
+                    <div>
+
                     DAYS
+                    </div>
+                  :  <input type='text' style={{width:35}} onChange={(e)=>setDaysSearch(e.target.value)} />
+                  }
+
                     <div class='filter-icon'>
-                      <a href='#'>
+                    <button onClick={()=>setShowDaysFilter(!showDaysFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+
                         <i class='fas fa-filter'></i>
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </td>
@@ -637,8 +738,8 @@ function Dashboard({ data }) {
               </tr>
             </thead>
             <tbody>
-              {extractedData2 &&
-                extractedData2.map((res, index) => {
+              {extractedData6 &&
+                extractedData6.map((res, index) => {
                   if (
                     res.ci &&
                     res.cl &&
