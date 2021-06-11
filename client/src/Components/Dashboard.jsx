@@ -590,9 +590,9 @@ function Dashboard({ data }) {
                 <td width='5%'>
                   <div class='compliance-td-fonts td-font-icon'>
                     {showRefFilter? 
-                    <dev>
+                    <div>
                     Ref:
-                    </dev>
+                    </div>
                     :
                     <input type='text' style={{width:40}} onChange={(e)=>setRefSearch(e.target.value)} />
                     
