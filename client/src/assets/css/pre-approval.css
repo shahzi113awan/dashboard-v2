@@ -102,3 +102,58 @@
             outline: 0;
             box-shadow: none;
         }
+        .seachFlter{
+            margin-bottom: 5px;
+            transition: all 0.2s ease-in-out;
+            text-overflow: ellipsis;
+            background-color: #fff;
+            border: 2px solid #000;
+            font-weight: 600;
+            padding: 0.35625rem 0.2275rem;
+            font-size: 10px;
+            line-height: 15px;
+            min-height: 65px;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            align-content: flex-start;
+            justify-content: center;
+            position: relative;
+        }
+        .seachFlter .dropdown{
+            position: absolute;
+            right: 0px;
+            top: 0;
+        }
+        .seachFlter .dropdown .dropdown-toggle{
+            position: absolute;
+            z-index: 1;
+            right: 0px;
+            background: #ffffcc;
+            height: 61px;
+            color: #000;
+            line-height: 60px;
+            width: 20px;
+            text-align: center;
+            border: navajowhite;
+            font-size: 10px;
+        }
+        .seachFlter .dropdown .dropdown-toggle::after{
+            display: none;
+        }
+        .seachFlter .dropdown .dropdown-menu {
+            left: -90px !important;
+            width: 100%;
+            min-width: 13rem;
+            padding: 0px;
+        }
+        .seachFlter .dropdown .dropdown-menu2{
+            left:-40px !important;
+        }
+        .seachFlter .dropdown .dropdown-menu3{
+            left:-187px !important;
+        }
+        .seachFlter .dropdown .dropdown-menu .form-control { 
+            width: 100% !important; 
+            font-size: 12px;
+        }

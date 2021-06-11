@@ -124,7 +124,16 @@ const [search, setsearch] = useState('');
             <table>
               <thead>
                 <tr>
-                  <th width="5%"><div class="td-fonts td-font-icon">Ref:<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                  <th width="5%"> <div class="seachFlter">REF:
+            <div class="dropdown">
+              <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fas fa-filter"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <form class="form-inline">
+                  <input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
+                </form>
+              </div>
+            </div></div></th>
                   <th bgcolor="#ffffff">&nbsp;</th>
                   <th width="20%"><div class="td-fonts td-font-icon text-center">COMPANY NAME<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
                   <th bgcolor="#ffffff" height="60">&nbsp;</th>
