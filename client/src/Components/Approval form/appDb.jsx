@@ -12,12 +12,23 @@ import moment from "moment";
 
 export default function MainDashboard() {
   const history = useHistory();
-const [search, setsearch] = useState('');
+// const [search, setsearch] = useState('');
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Get());
   }, [dispatch]);
   const [db, setDb] = useState([]);
+  const [showSolutionFilter, setShowSolutionFilter] = useState(true)
+  const [showRefFilter, setShowRefFilter] = useState(true)
+  const [showNameFilter, setShowNameFilter] = useState(true)
+  const [showDateFilter, setShowDateFilter] = useState(true)
+  const [showDaysFilter, setShowDaysFilter] = useState(true)
+  const [search, setSearch] = useState('')
+  const [solutionSearch, setSolutionSearch] = useState('')
+  const [nameSearch, setNameSearch] = useState('')
+  const [refSearch, setRefSearch] = useState('')
+  const [dateSearch, setDateSearch] = useState('')
+  const [daysSearch, setDaysSearch] = useState('')
   const data = useSelector((state) => state.appReducer.state);
   // const isLoading = 'useSelector((state) => state.ciReducer.isLoading)'
   console.log(data);
@@ -46,15 +57,89 @@ const [search, setsearch] = useState('');
     // console.log(days);
     return days;
   };
+   
+  let extractedData = []
+  let extractedData2 = []
+  let extractedData3 = []
+  let extractedData4 = []
+  let extractedData5 = []
+  let extractedData6 = []
+
   const filterForEveryOne = (item) => {
     return item.filter((object) => {
       const checkField =
-        typeof object.title === 'string' ? object.title.toLowerCase() : ''
+        typeof object.App.af_rcn === 'string' ? object.App.af_rcn.toLowerCase() : ''
       const filteredField = search.toLowerCase()
 
       return checkField.includes(filteredField)
     })
   }
+  const filterForEveryOne2 = (item) => {
+    return item.filter((object) => {
+      const checkField =
+        typeof object.App.af_sol === 'string' ? object.App.af_sol.toLowerCase() : ''
+      const filteredField = solutionSearch.toLowerCase()
+
+      return checkField.includes(filteredField)
+    })
+  }
+  const filterForEveryOne3 = (item) => {
+    return item.filter((object) => {
+      const checkField =
+        typeof object.App.af_rcn === 'string' ? object.App.af_rcn.toLowerCase() : ''
+      const filteredField = nameSearch.toLowerCase()
+
+      return checkField.includes(filteredField)
+    })
+  }
+  // const filterForEveryOne4 = (item) => {
+  //   return item.filter((object) => {
+  //     const checkField =
+  //       typeof object.ci.name === 'string' ? object.ci.name.toLowerCase() : ''
+  //     const filteredField = refSearch.toLowerCase()
+
+  //     return checkField.includes(filteredField)
+  //   })
+  // }
+  const filterForEveryOne5 = (item) => {
+    return item.filter((object) => {
+      const checkField =
+        typeof object.App.af_ad === 'string' ? object.App.af_ad.toLowerCase() : ''
+      const filteredField = dateSearch.toLowerCase()
+
+      return checkField.includes(filteredField)
+    })
+  }
+  // const filterForEveryOne6 = (item) => {
+  //   return item.filter((object) => {
+  //     const checkField =
+  //       typeof object.ci.tpi_date === 'string' ? object.ci.tpi_date.toLowerCase() : ''
+  //     const filteredField = daysSearch.toLowerCase()
+
+  //     return checkField.includes(filteredField)
+  //   })
+  // }
+
+  if (db && db.length > 0) {
+    extractedData = filterForEveryOne(db)
+  }
+  if (db && db.length > 0) {
+    extractedData2 = filterForEveryOne2(extractedData)
+  }
+  if (db && db.length > 0) {
+    extractedData3 = filterForEveryOne3(extractedData2)
+  }
+  // if (db && db.length > 0) {
+  //   extractedData4 = filterForEveryOne4(extractedData3)
+  // }
+  if (db && db.length > 0) {
+    extractedData5 = filterForEveryOne5(extractedData3)
+  }
+  // if (db && db.length > 0) {
+  //   extractedData6 = filterForEveryOne6(extractedData5)
+  // }
+  console.log(extractedData5)
+  console.log(showSolutionFilter)
   //   console.log(data[0].App.af_rcn);
   console.log(isLoading);
   //   console.log(db);
@@ -101,8 +186,354 @@ const [search, setsearch] = useState('');
                         <td align="center" bgcolor="#4472c4" height="58" className="tdstyle" valign="middle">CARD PROCESSING - PRE-APPROVAL APPLICATION</td>
                       </tr>
                       <tr>
-                        <td align="center" bgcolor="#fff" height="20" className="tdstylec" valign="middle"><a href="#">1234</a> / <a href="#">A</a> <a href="#">B</a> <a href="#">C</a> <a href="#">D</a> <a href="#">E</a> <a href="#">F</a> <a href="#">G</a> <a href="#">H</a> <a href="#">I</a> <a href="#">J</a> <a href="#">K</a> <a href="#">L</a> <a href="#">M</a> <a href="#">N</a> <a href="#">O</a> <a href="#">P</a> <a href="#">Q</a> <a href="#">R</a> <a href="#">S</a> <a href="#">T</a> <a href="#">U</a> <a href="#">V</a> <a href="#">W</a> <a href="#">X</a> <a href="#">Y</a> <a href="#">Z</a> - <a href="#">Reset</a></td>
-                      </tr>
+                      <th>
+                          <div class='td-font-link'>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('1')}
+                            >
+                              1
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('2')}
+                            >
+                              2
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('3')}
+                            >
+                              3
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('4')}
+                            >
+                              4
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('a')}
+                            >
+                              A
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('B')}
+                            >
+                              B
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('C')}
+                            >
+                              C
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('D')}
+                            >
+                              D
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('E')}
+                            >
+                              E
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('F')}
+                            >
+                              F
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('G')}
+                            >
+                              G
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('H')}
+                            >
+                              H
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('I')}
+                            >
+                              I
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('J')}
+                            >
+                              J
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('K')}
+                            >
+                              K
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('L')}
+                            >
+                              L
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('M')}
+                            >
+                              M
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('N')}
+                            >
+                              N
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('O')}
+                            >
+                              O
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('P')}
+                            >
+                              P
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('Q')}
+                            >
+                              Q
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('R')}
+                            >
+                              R
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('S')}
+                            >
+                              S
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('T')}
+                            >
+                              T
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('U')}
+                            >
+                              U
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('V')}
+                            >
+                              V
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('W')}
+                            >
+                              W
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('X')}
+                            >
+                              X
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('Y')}
+                            >
+                              Y
+                            </button>
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('Z')}
+                            >
+                              Z
+                            </button>
+                            - 
+                            <button
+                              style={{
+                                backgroundColor: 'white',
+                                border: '0px',
+                                color: '#007bff',
+                                fontWeight: 'bold',
+                             marginRight:4 }}
+                              onClick={() => setSearch('')}
+                            >
+                              Reset
+                            </button>
+                            
+                            {/* <a href='#'>Z</a> - <a href='#'>Reset</a> */}
+                          </div>
+                        </th> </tr>
                     </tbody>
                   </table></td>
                   <td width="5%" valign="top"><div class="td-fonts"><GrDocumentTime size={50}></GrDocumentTime></div></td>
@@ -124,13 +555,63 @@ const [search, setsearch] = useState('');
             <table>
               <thead>
                 <tr>
-                  <th width="5%"><div class="td-fonts td-font-icon">Ref:<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                  <th width="5%"><div class="td-fonts td-font-icon">{showRefFilter? 
+                    <dev>
+                    Ref:
+                    </dev>
+                    :
+                    <input type='text' style={{width:30}} onChange={(e)=>setRefSearch(e.target.value)} />
+                    
+                    }
+                    <div class='filter-icon'>
+                    <button onClick={()=>setShowRefFilter(!showRefFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+
+                        <i class='fas fa-filter'></i>
+                      </button>
+                    </div></div></th>
                   <th bgcolor="#ffffff">&nbsp;</th>
-                  <th width="20%"><div class="td-fonts td-font-icon text-center">COMPANY NAME<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                  <th width="20%"><div class="td-fonts td-font-icon text-center"> {showNameFilter ? 
+                    <div>
+
+                    COMPANY NAME
+                    </div>
+                  :  <input type='text' style={{width:200}} onChange={(e)=>setNameSearch(e.target.value)} />
+                  }
+
+                    <div class='filter-icon'>
+                    <button onClick={()=>setShowNameFilter(!showNameFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+
+                        <i class='fas fa-filter'></i>
+                      </button>
+                    </div></div></th>
                   <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                  <th width="9%"><div class="td-fonts td-font-icon">SOLUTION<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                  <th width="9%"><div class="td-fonts td-font-icon">   {showSolutionFilter? 
+                    <div>
+                    SOLUTION
+                    </div>
+                    :
+                    <input type='text' style={{width:80}} onChange={(e)=>setSolutionSearch(e.target.value)} />
+                  }
+                    <div class='filter-icon'>
+                      <button onClick={()=>setShowSolutionFilter(!showSolutionFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+                        <i class='fas fa-filter'></i>
+                      </button>
+                    </div></div></th>
                   <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                  <th width="9%"><div class="td-fonts blueborder td-fonts td-font-icon">APPLICATION DATE<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                  <th width="9%"><div class="td-fonts blueborder td-fonts td-font-icon">{showDateFilter ? 
+                    <div>
+
+                   APPLICATION DATE
+                    </div>
+                  :  <input type='text' style={{width:80}} onChange={(e)=>setDateSearch(e.target.value)} />
+                  }
+
+                    <div class='filter-icon'>
+                    <button onClick={()=>setShowDateFilter(!showDateFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+
+                        <i class='fas fa-filter'></i>
+                      </button>
+                      </div></div></th>
                   <th bgcolor="#ffffff" height="60">&nbsp;</th>
                   <th width="13%"><div class="td-fonts blueborder">TRADING WEBSITE ADDRESS</div></th>
                   <th bgcolor="#ffffff" height="60">&nbsp;</th>
@@ -140,7 +621,20 @@ const [search, setsearch] = useState('');
                   <th bgcolor="#ffffff" height="60">&nbsp;</th>
                   <th width="4%"><div class="td-fonts blueborder text-center">GP %</div></th>
                   <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                  <th width="5%"><div class="td-fonts td-font-icon redborder">DAYS<div class="filter-icon"><a href="#"><FaFilter></FaFilter></a></div></div></th>
+                  <th width="5%"><div class="td-fonts td-font-icon redborder"> {showDaysFilter ? 
+                    <div>
+
+                    DAYS
+                    </div>
+                  :  <input type='text' style={{width:30}} onChange={(e)=>setDaysSearch(e.target.value)} />
+                  }
+
+                    <div class='filter-icon'>
+                    <button onClick={()=>setShowDaysFilter(!showDaysFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+
+                        <i class='fas fa-filter'></i>
+                      </button>
+                    </div></div></th>
                   <th bgcolor="#ffffff" height="60">&nbsp;</th>
                   <th width="9%"><div class="td-fonts text-center">Business / Referral Partner</div></th>
                   <th bgcolor="#ffffff" height="60">&nbsp;</th>
@@ -150,8 +644,8 @@ const [search, setsearch] = useState('');
                 </tr>
               </thead>
               <tbody>
-                {data &&
-                  data.map((res, index) => {
+                {extractedData5 &&
+                  extractedData5.map((res, index) => {
                      
                         return (
                           <tr>
@@ -212,7 +706,7 @@ const [search, setsearch] = useState('');
       </div>
     </div>
   </div>
-  //  </div>
+    </div>
 
  );
 }
