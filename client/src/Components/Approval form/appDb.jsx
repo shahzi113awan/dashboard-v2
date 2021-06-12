@@ -29,6 +29,7 @@ export default function MainDashboard() {
   const [refSearch, setRefSearch] = useState('')
   const [dateSearch, setDateSearch] = useState('')
   const [daysSearch, setDaysSearch] = useState('')
+  const [isReady, setIsReady] = useState(false)
   const data = useSelector((state) => state.appReducer.state);
   // const isLoading = 'useSelector((state) => state.ciReducer.isLoading)'
   console.log(data);
@@ -46,17 +47,36 @@ export default function MainDashboard() {
     window.location.reload();
     // dispatch(Get());
   };
-  const cal = (val) => {
-    // console.log(val);
-    const Start = moment(new Date());
-    // console.log(Start);
-    const End = moment(val).add(90, "d").format("YYYY-MM-DD");
-    const Ending = moment(End);
-    // console.log(Ending);
-    const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays());
-    // console.log(days);
-    return days;
-  };
+
+  useEffect(() => {
+    console.log(db);
+  if (db.length > 0 ){
+    db.map((el, Index) => {
+      console.log(Index);
+      const Start = moment(new Date());
+      // console.log(Start);
+      const End = moment(el.App.af_ad).add(90, "d").format("YYYY-MM-DD");
+      const Ending = moment(End);
+      // console.log(Ending);
+      const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays());
+      el.App.days = days.toString()
+      el.App.ref = Index.toString()
+    })
+    setIsReady(!isReady)
+  }
+  }, [db, isLoading]);
+console.log(db);
+  // const cal = (val) => {
+  //   // console.log(val);
+  //   const Start = moment(new Date());
+  //   // console.log(Start);
+  //   const End = moment(val).add(90, "d").format("YYYY-MM-DD");
+  //   const Ending = moment(End);
+  //   // console.log(Ending);
+  //   const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays());
+  //   // console.log(days);
+  //   return days;
+  // };
    
   let extractedData = []
   let extractedData2 = []
@@ -92,15 +112,15 @@ export default function MainDashboard() {
       return checkField.includes(filteredField)
     })
   }
-  // const filterForEveryOne4 = (item) => {
-  //   return item.filter((object) => {
-  //     const checkField =
-  //       typeof object.ci.name === 'string' ? object.ci.name.toLowerCase() : ''
-  //     const filteredField = refSearch.toLowerCase()
+  const filterForEveryOne4 = (item) => {
+    return item.filter((object) => {
+      console.log(object.App.days);
+      const checkField =       object.App.days ? object.App.days:'';
+      const filteredField = daysSearch.toLowerCase()
 
-  //     return checkField.includes(filteredField)
-  //   })
-  // }
+      return checkField.includes(filteredField)
+    })
+  }
   const filterForEveryOne5 = (item) => {
     return item.filter((object) => {
       const checkField =
@@ -110,35 +130,36 @@ export default function MainDashboard() {
       return checkField.includes(filteredField)
     })
   }
-  // const filterForEveryOne6 = (item) => {
-  //   return item.filter((object) => {
-  //     const checkField =
-  //       typeof object.ci.tpi_date === 'string' ? object.ci.tpi_date.toLowerCase() : ''
-  //     const filteredField = daysSearch.toLowerCase()
+  const filterForEveryOne6 = (item) => {
+    return item.filter((object) => {
+      const checkField = object.App.ref  ? object.App.ref : '';
+      const filteredField = refSearch.toLowerCase()
 
-  //     return checkField.includes(filteredField)
-  //   })
-  // }
+      return checkField.includes(filteredField)
+    })
+  }
+// useEffect(()=>{
 
-  if (db && db.length > 0) {
+  if ( db && db.length > 0) {
     extractedData = filterForEveryOne(db)
   }
-  if (db && db.length > 0) {
+  if ( db && db.length > 0) {
     extractedData2 = filterForEveryOne2(extractedData)
   }
-  if (db && db.length > 0) {
+  if ( db && db.length > 0) {
     extractedData3 = filterForEveryOne3(extractedData2)
   }
-  // if (db && db.length > 0) {
-  //   extractedData4 = filterForEveryOne4(extractedData3)
-  // }
-  if (db && db.length > 0) {
-    extractedData5 = filterForEveryOne5(extractedData3)
+  if ( db && db.length > 0) {
+    extractedData4 = filterForEveryOne4(extractedData3)
   }
-  // if (db && db.length > 0) {
-  //   extractedData6 = filterForEveryOne6(extractedData5)
-  // }
-  console.log(extractedData5)
+  if ( db && db.length > 0) {
+    extractedData5 = filterForEveryOne5(extractedData4)
+  }
+  if ( db && db.length > 0) {
+    extractedData6 = filterForEveryOne6(extractedData5)
+  }
+// },[isReady])
+  console.log(extractedData6)
   console.log(showSolutionFilter)
   //   console.log(data[0].App.af_rcn);
   console.log(isLoading);
@@ -644,12 +665,12 @@ export default function MainDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {extractedData5 &&
-                  extractedData5.map((res, index) => {
+                {extractedData6 &&
+                  extractedData6.map((res, index) => {
                      
                         return (
                           <tr>
-                            <td><div class="small-fonts">{index}</div></td>
+                            <td><div class="small-fonts">{res.App.ref}</div></td>
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
                             <td><div class="small-fonts">{  <Link to={"/preappw/" + res._id}>
                         {res.App.af_rcn ? res.App.af_rcn : "Default Name"}
@@ -671,7 +692,7 @@ export default function MainDashboard() {
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
                             <td><div class="small-fonts blueborder">2.0%</div></td>
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                            <td><div class={cal(res.App.af_ad) < 90 ? "small-fonts redborder":"small-fonts greenborder"}>{res.App.af_ad ? cal(res.App.af_ad) : ""}</div></td>
+                            <td><div class={res.App.days < 90 ? "small-fonts redborder":"small-fonts greenborder"}>{res.App.days ? res.App.days : ""}</div></td>
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
                             <td><div class="small-fonts">{res.App.af_brp}</div></td>
                             <td bgcolor="#ffffff" width="1">&nbsp;</td>
