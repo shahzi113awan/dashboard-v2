@@ -29,6 +29,7 @@ export default function MainDashboard() {
   const [refSearch, setRefSearch] = useState('')
   const [dateSearch, setDateSearch] = useState('')
   const [daysSearch, setDaysSearch] = useState('')
+  const [isReady, setIsReady] = useState(false)
   const data = useSelector((state) => state.appReducer.state);
   // const isLoading = 'useSelector((state) => state.ciReducer.isLoading)'
   console.log(data);
@@ -46,22 +47,37 @@ export default function MainDashboard() {
     window.location.reload();
     // dispatch(Get());
   };
-  db.map((el) => {
-    let date = new Date(el.timestamp)
-    el.date_printabble = date.toLocaleDateString()
-  })
-  const cal = (val) => {
-    // console.log(val);
-    const Start = moment(new Date());
-    // console.log(Start);
-    const End = moment(val).add(90, "d").format("YYYY-MM-DD");
-    const Ending = moment(End);
-    // console.log(Ending);
-    const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays());
-    // console.log(days);
-    return days;
-  };
 
+  useEffect(() => {
+    console.log(db);
+  if (db.length > 0 ){
+    db.map((el, Index) => {
+      console.log(Index);
+      const Start = moment(new Date());
+      // console.log(Start);
+      const End = moment(el.App.af_ad).add(90, "d").format("YYYY-MM-DD");
+      const Ending = moment(End);
+      // console.log(Ending);
+      const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays());
+      el.App.days = days.toString()
+      el.App.ref = Index.toString()
+    })
+    setIsReady(!isReady)
+  }
+  }, [db, isLoading]);
+console.log(db);
+  // const cal = (val) => {
+  //   // console.log(val);
+  //   const Start = moment(new Date());
+  //   // console.log(Start);
+  //   const End = moment(val).add(90, "d").format("YYYY-MM-DD");
+  //   const Ending = moment(End);
+  //   // console.log(Ending);
+  //   const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays());
+  //   // console.log(days);
+  //   return days;
+  // };
+   
   let extractedData = []
   let extractedData2 = []
   let extractedData3 = []
@@ -96,15 +112,15 @@ export default function MainDashboard() {
       return checkField.includes(filteredField)
     })
   }
-  // const filterForEveryOne4 = (item) => {
-  //   return item.filter((object) => {
-  //     const checkField =
-  //       typeof object.ci.name === 'string' ? object.ci.name.toLowerCase() : ''
-  //     const filteredField = refSearch.toLowerCase()
+  const filterForEveryOne4 = (item) => {
+    return item.filter((object) => {
+      console.log(object.App.days);
+      const checkField =       object.App.days ? object.App.days:'';
+      const filteredField = daysSearch.toLowerCase()
 
-  //     return checkField.includes(filteredField)
-  //   })
-  // }
+      return checkField.includes(filteredField)
+    })
+  }
   const filterForEveryOne5 = (item) => {
     return item.filter((object) => {
       const checkField =
@@ -114,35 +130,36 @@ export default function MainDashboard() {
       return checkField.includes(filteredField)
     })
   }
-  // const filterForEveryOne6 = (item) => {
-  //   return item.filter((object) => {
-  //     const checkField =
-  //       typeof object.ci.tpi_date === 'string' ? object.ci.tpi_date.toLowerCase() : ''
-  //     const filteredField = daysSearch.toLowerCase()
+  const filterForEveryOne6 = (item) => {
+    return item.filter((object) => {
+      const checkField = object.App.ref  ? object.App.ref : '';
+      const filteredField = refSearch.toLowerCase()
 
-  //     return checkField.includes(filteredField)
-  //   })
-  // }
+      return checkField.includes(filteredField)
+    })
+  }
+// useEffect(()=>{
 
-  if (db && db.length > 0) {
+  if ( db && db.length > 0) {
     extractedData = filterForEveryOne(db)
   }
-  if (db && db.length > 0) {
+  if ( db && db.length > 0) {
     extractedData2 = filterForEveryOne2(extractedData)
   }
-  if (db && db.length > 0) {
+  if ( db && db.length > 0) {
     extractedData3 = filterForEveryOne3(extractedData2)
   }
-  // if (db && db.length > 0) {
-  //   extractedData4 = filterForEveryOne4(extractedData3)
-  // }
-  if (db && db.length > 0) {
-    extractedData5 = filterForEveryOne5(extractedData3)
+  if ( db && db.length > 0) {
+    extractedData4 = filterForEveryOne4(extractedData3)
   }
-  // if (db && db.length > 0) {
-  //   extractedData6 = filterForEveryOne6(extractedData5)
-  // }
-  console.log(extractedData5)
+  if ( db && db.length > 0) {
+    extractedData5 = filterForEveryOne5(extractedData4)
+  }
+  if ( db && db.length > 0) {
+    extractedData6 = filterForEveryOne6(extractedData5)
+  }
+// },[isReady])
+  console.log(extractedData6)
   console.log(showSolutionFilter)
   //   console.log(data[0].App.af_rcn);
   console.log(isLoading);
@@ -604,134 +621,90 @@ export default function MainDashboard() {
                           <i class='fas fa-filter'></i>
                         </button>
                       </div></div></th>
-                    <th bgcolor="#ffffff">&nbsp;</th>
-                    <th width="20%"><div class="td-fonts td-font-icon text-center"> {showNameFilter ?
-                      <div>
+                  <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                  <th width="13%"><div class="td-fonts blueborder">TRADING WEBSITE ADDRESS</div></th>
+                  <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                  <th width="4%"><div class="td-fonts blueborder text-center">Buy Rate</div></th>
+                  <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                  <th width="4%"><div class="td-fonts blueborder text-center">Sell Rate</div></th>
+                  <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                  <th width="4%"><div class="td-fonts blueborder text-center">GP %</div></th>
+                  <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                  <th width="5%"><div class="td-fonts td-font-icon redborder"> {showDaysFilter ? 
+                    <div>
 
-                        COMPANY NAME
-                      </div>
-                      : <input type='text' style={{ width: 200 }} onChange={(e) => setNameSearch(e.target.value)} />
-                    }
+                    DAYS
+                    </div>
+                  :  <input type='text' style={{width:30}} onChange={(e)=>setDaysSearch(e.target.value)} />
+                  }
 
-                      <div class='filter-icon'>
-                        <button onClick={() => setShowNameFilter(!showNameFilter)} style={{ border: 'none', backgroundColor: 'transparent' }}>
+                    <div class='filter-icon'>
+                    <button onClick={()=>setShowDaysFilter(!showDaysFilter)} style={{border:'none', backgroundColor:'transparent'}}>
 
-                          <i class='fas fa-filter'></i>
-                        </button>
-                      </div></div></th>
-                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                    <th width="9%"><div class="td-fonts td-font-icon">   {showSolutionFilter ?
-                      <div>
-                        SOLUTION
-                      </div>
-                      :
-                      <input type='text' style={{ width: 80 }} onChange={(e) => setSolutionSearch(e.target.value)} />
-                    }
-                      <div class='filter-icon'>
-                        <button onClick={() => setShowSolutionFilter(!showSolutionFilter)} style={{ border: 'none', backgroundColor: 'transparent' }}>
-                          <i class='fas fa-filter'></i>
-                        </button>
-                      </div></div></th>
-                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                    <th width="9%"><div class="td-fonts blueborder td-fonts td-font-icon">{showDateFilter ?
-                      <div>
-
-                        APPLICATION DATE
-                      </div>
-                      : <input type='text' style={{ width: 80 }} onChange={(e) => setDateSearch(e.target.value)} />
-                    }
-
-                      <div class='filter-icon'>
-                        <button onClick={() => setShowDateFilter(!showDateFilter)} style={{ border: 'none', backgroundColor: 'transparent' }}>
-
-                          <i class='fas fa-filter'></i>
-                        </button>
-                      </div></div></th>
-                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                    <th width="13%"><div class="td-fonts blueborder">TRADING WEBSITE ADDRESS</div></th>
-                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                    <th width="4%"><div class="td-fonts blueborder text-center">Buy Rate</div></th>
-                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                    <th width="4%"><div class="td-fonts blueborder text-center">Sell Rate</div></th>
-                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                    <th width="4%"><div class="td-fonts blueborder text-center">GP %</div></th>
-                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                    <th width="5%"><div class="td-fonts td-font-icon redborder"> {showDaysFilter ?
-                      <div>
-
-                        DAYS
-                      </div>
-                      : <input type='text' style={{ width: 30 }} onChange={(e) => setDaysSearch(e.target.value)} />
-                    }
-
-                      <div class='filter-icon'>
-                        <button onClick={() => setShowDaysFilter(!showDaysFilter)} style={{ border: 'none', backgroundColor: 'transparent' }}>
-
-                          <i class='fas fa-filter'></i>
-                        </button>
-                      </div></div></th>
-                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                    <th width="9%"><div class="td-fonts text-center">Business / Referral Partner</div></th>
-                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                    <th width="9%"><div class="td-fonts text-center">Assigned BDM / Owner </div></th>
-                    <th bgcolor="#ffffff" height="60">&nbsp;</th>
-                    <th width="9%"><div class="td-fonts blueborder text-center">WON / LOST / ARCHICE</div></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {extractedData5 &&
-                    extractedData5.map((res, index) => {
-
-                      return (
-                        <tr>
-                          <td><div class="small-fonts">{index}</div></td>
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td><div class="small-fonts">{<Link to={"/preappw/" + res._id}>
-                            {res.App.af_rcn ? res.App.af_rcn : "Default Name"}
-                          </Link>}</div></td>
-                          {/* <td><div class="small-fonts">{  <Link to={"/app/" + res._id}>
+                        <i class='fas fa-filter'></i>
+                      </button>
+                    </div></div></th>
+                  <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                  <th width="9%"><div class="td-fonts text-center">Business / Referral Partner</div></th>
+                  <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                  <th width="9%"><div class="td-fonts text-center">Assigned BDM / Owner </div></th>
+                  <th bgcolor="#ffffff" height="60">&nbsp;</th>
+                  <th width="9%"><div class="td-fonts blueborder text-center">WON / LOST / ARCHICE</div></th>
+                </tr>
+              </thead>
+              <tbody>
+                {extractedData6 &&
+                  extractedData6.map((res, index) => {
+                     
+                        return (
+                          <tr>
+                            <td><div class="small-fonts">{res.App.ref}</div></td>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td><div class="small-fonts">{  <Link to={"/preappw/" + res._id}>
+                        {res.App.af_rcn ? res.App.af_rcn : "Default Name"}
+                      </Link>}</div></td>
+                            {/* <td><div class="small-fonts">{  <Link to={"/app/" + res._id}>
                         {res.App.af_rcn ? res.App.af_rcn : "Default Name"}
                       </Link>}</div></td> */}
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td><div class="small-fonts">{res.App.af_sol}</div></td>
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td><div class="small-fonts">{res.App.af_ad}</div></td>
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td ><div onClick={() => {
-                            window.open(`https://${res.App.af_twa}`, "_blank")
-                          }} class="small-fonts"> {res.App.af_twa ? res.App.af_twa : "Default"}</div></td>
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td><div class="small-fonts">{res.App.af_appB}</div></td>
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td><div class="small-fonts">{res.App.af_appS}</div></td>
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td><div class="small-fonts blueborder">2.0%</div></td>
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td><div class={cal(res.App.af_ad) < 90 ? "small-fonts redborder" : "small-fonts greenborder"}>{res.App.af_ad ? cal(res.App.af_ad) : ""}</div></td>
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td><div class="small-fonts">{res.App.af_brp}</div></td>
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td><div class="small-fonts">{res.App.af_abo} </div></td>
-                          <td bgcolor="#ffffff" width="1">&nbsp;</td>
-                          <td>
-
-
-                            <select class="compliance-select compliance-small-fonts">
-                              <option value="0">Won</option>
-                              <option value="1">Lost</option>
-                              <option value="2">Archive</option>
-
-                            </select>
-
-                          </td>
-                        </tr>
-                      );
-
-                    })}
-                </tbody>
-              </table>
-            </div>
-            {/* <div class="tab-pane fade" id="pills-complience-dash" role="tabpanel" aria-labelledby="pills-complience-dash-tab">COMPLIANCE DASHBOARD</div>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td><div class="small-fonts">{res.App.af_sol}</div></td>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td><div class="small-fonts">{res.App.af_ad}</div></td>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td ><div    onClick={() => {
+                        window.open(`https://${res.App.af_twa}`, "_blank")}} class="small-fonts"> {res.App.af_twa?res.App.af_twa:"Default"}</div></td>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td><div class="small-fonts">{res.App.af_appB}</div></td>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td><div class="small-fonts">{res.App.af_appS}</div></td>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td><div class="small-fonts blueborder">2.0%</div></td>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td><div class={res.App.days < 90 ? "small-fonts redborder":"small-fonts greenborder"}>{res.App.days ? res.App.days : ""}</div></td>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td><div class="small-fonts">{res.App.af_brp}</div></td>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td><div class="small-fonts">{res.App.af_abo} </div></td>
+                            <td bgcolor="#ffffff" width="1">&nbsp;</td>
+                            <td>
+                        
+                         
+            <select class="compliance-select compliance-small-fonts">
+              <option value="0">Won</option>
+              <option value="1">Lost</option>
+              <option value="2">Archive</option>
+    
+            </select>
+         
+                      </td>
+                          </tr>
+                        );
+                     
+                  })}
+              </tbody>
+            </table>
+          </div>
+          {/* <div class="tab-pane fade" id="pills-complience-dash" role="tabpanel" aria-labelledby="pills-complience-dash-tab">COMPLIANCE DASHBOARD</div>
           <div class="tab-pane fade" id="pills-bording-dash" role="tabpanel" aria-labelledby="pills-bording-dash-tab">BOARDING DASHBOARD</div>
           <div class="tab-pane fade" id="pills-inte-dash" role="tabpanel" aria-labelledby="pills-inte-dash-tab">INTEGRATION DASHBOARD</div>
           <div class="tab-pane fade" id="pills-iban-bank" role="tabpanel" aria-labelledby="pills-iban-bank-tab">BOARDING DASHBOARD</div>
