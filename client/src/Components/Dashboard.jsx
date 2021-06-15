@@ -35,6 +35,7 @@ function Dashboard({ data }) {
   const [refSearch, setRefSearch] = useState('')
   const [dateSearch, setDateSearch] = useState('')
   const [daysSearch, setDaysSearch] = useState('')
+  const [isReady, setIsReady] = useState(true)
 
   const [highlight, sethighlight] = useState(false)
   const [Index, setIndex] = useState()
@@ -47,12 +48,13 @@ function Dashboard({ data }) {
   //   data: data
   // })
   // const { prepareRow, getTableProps, getTableBodyProps, headerGroups, rows } = tableinstance
+  const isLoading = useSelector((state) => state.appReducer.isLoading);
 
   useEffect(() => {
     setDb(data)
   }, [data])
 
-  // console.log(isLoading);
+  // console.lo);
   const del = async (id) => {
     await dispatch(Delete(id))
     window.location.reload()
@@ -65,24 +67,44 @@ function Dashboard({ data }) {
 
     // dispatch(Get());
   }
-  const cal = (val) => {
-    // console.log(val);
-    const Start = moment(new Date())
-    // console.log(Start);
-    const End = moment(val).add(90, 'd').format('YYYY-MM-DD')
-    const Ending = moment(End)
-    // console.log(Ending);
-    const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays())
-    // console.log(days);
-    if (days >=0) {
 
-      return days
-    }
-    else{
-      return "default"
-    }
+  useEffect(() => {
+    console.log(db);
+  if (db && db.length > 0 ){
+    db.map((el, Index) => {
+      console.log(Index);
+      const Start = moment(new Date());
+      // console.log(Start);
+      const End = moment(el.ci.tpi_date).add(90, "d").format("YYYY-MM-DD");
+      const Ending = moment(End);
+      // console.log(Ending);
+      const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays());
+      el.ci.days = days > 0 ? days.toString() : 'default'
+      el.ci.ref = Index.toString()
+    })
+    setIsReady(!isReady)
   }
-  // console.log(isLoading);
+  }, [db, isLoading]);
+console.log(db);
+
+  // const cal = (val) => {
+  //   // console.log(val);
+  //   const Start = moment(new Date())
+  //   // console.log(Start);
+  //   const End = moment(val).add(90, 'd').format('YYYY-MM-DD')
+  //   const Ending = moment(End)
+  //   // console.log(Ending);
+  //   const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays())
+  //   // console.log(days);
+  //   if (days >=0) {
+
+  //     return days
+  //   }
+  //   else{
+  //     return "default"
+  //   }
+  // }
+  // console.lo);
   // const scroll = (scrollOffset) => {
   //   ref.current.scrollLeft += scrollOffset;
   // };
@@ -133,7 +155,7 @@ function Dashboard({ data }) {
   const filterForEveryOne4 = (item) => {
     return item.filter((object) => {
       const checkField =
-        typeof object.ci.name === 'string' ? object.ci.name.toLowerCase() : ''
+         object.ci.ref ? object.ci.ref : ''
       const filteredField = refSearch.toLowerCase()
 
       return checkField.includes(filteredField)
@@ -151,7 +173,7 @@ function Dashboard({ data }) {
   const filterForEveryOne6 = (item) => {
     return item.filter((object) => {
       const checkField =
-        typeof object.ci.tpi_date === 'string' ? object.ci.tpi_date.toLowerCase() : ''
+         object.ci.days ? object.ci.days : ''
       const filteredField = daysSearch.toLowerCase()
 
       return checkField.includes(filteredField)
@@ -758,7 +780,7 @@ function Dashboard({ data }) {
                   return (
                     <tr>
                       <td>
-                        <div class='compliance-small-fonts'>{index+1}</div>
+                        <div class='compliance-small-fonts'>{res.ci.ref}</div>
                       </td>
                       <td>
                         <div class='compliance-small-fonts'>{res.name}</div>
@@ -804,7 +826,8 @@ function Dashboard({ data }) {
                       </td>
                       <td>
                         <div class='compliance-small-fonts redborder text-center'>
-                       { cal(res.ci.tpi_date)}
+                       {/* { cal(res.ci.tpi_date)} */}
+                       {res.ci.days}
                         </div>
                       </td>
                       <td>
