@@ -86,7 +86,7 @@ const SolutionNavParam = () => {
     <div className="container">
       <div>
         <h2>
-          <span class="badge badge-success">
+          <span class="badge badge-success colspan">
             SOLUTION PARAMETERS & COMMERCIALS
           </span>
         </h2>

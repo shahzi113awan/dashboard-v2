@@ -95,7 +95,7 @@ const SolutionNav = () => {
     <div className="container">
       <div>
         <h2>
-          <span class="badge badge-success">
+          <span class="badge badge-success colspan">
             SOLUTION DOCUMENT & COMPLIANCE REQUIREMENT
           </span>
         </h2>

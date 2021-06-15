@@ -72,23 +72,23 @@ const CTI = () => {
   useEffect(() => {
     var value = document.getElementsByClassName("NotR");
     console.log(value.onChange);
-    
-for (var i = 0, len = value.length; i < len; i++) {
-  console.log(value[i]);
-  
-  setCTI({
-    ...CTI,
-    [value[i].name]: "Not Required",
-  },handler(CTI) );
-  
-}
-   
- 
-  },   );
- const handler = async(name) => {
-   console.log(name);
-   
- }
+
+    for (var i = 0, len = value.length; i < len; i++) {
+      console.log(value[i]);
+
+      setCTI({
+        ...CTI,
+        [value[i].name]: "Not Required",
+      }, handler(CTI));
+
+    }
+
+
+  });
+  const handler = async (name) => {
+    console.log(name);
+
+  }
   useEffect(() => {
     setCL(dataCL);
   }, [dataCL]);
@@ -106,127 +106,127 @@ for (var i = 0, len = value.length; i < len; i++) {
   };
 
   return (
-    <div   className={urlid?"container-fluid":"container"}>
+    <div className={urlid ? "container-fluid" : "container"}>
       <div className="row">
-    { urlid ? (<div className="col-md-2"> <SideNav id={urlid}></SideNav> </div>) : (<div></div>)}
-    <div className={urlid? "col-md-8":"col-md-12"}>
-      <div>
-        <h2>
-          <span class="badge badge-success">COMPANY TRADING INFORMATION</span>
-        </h2>
-      </div>
-      <Form>
-        <Row form>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="certificate">Fully Completed Application Form:</Label>
-              <select
-                className={"custom-select"}
-                value={CL.fcaf_status ? CL.fcaf_status : CTI.cti_fcaForm}
-                // value={'Not Required'}
-                id="1"
-                name="cti_fcaForm"
-                onChange={handleInput}
-              >
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </select>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="memo">Bank Information (Welcome Letter):</Label>
-              <select
-                className={"custom-select"}
-                value={CL.bi_status ? CL.bi_status : CTI.cti_bInformation}
-                // value={"Not Required"}
-                id="1"
-                name="cti_bInformation"
-                onChange={handleInput}
-              >
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </select>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="OTA">Office Tenancy Agreement:</Label>
+        {urlid ? (<div className="col-md-2"> <SideNav id={urlid}></SideNav> </div>) : (<div></div>)}
+        <div className={urlid ? "col-md-8" : "col-md-12"}>
+          <div>
+            <h2>
+              <span class="badge badge-success colspan">COMPANY TRADING INFORMATION</span>
+            </h2>
+          </div>
+          <Form>
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="certificate">Fully Completed Application Form:</Label>
+                  <select
+                    className={"custom-select"}
+                    value={CL.fcaf_status ? CL.fcaf_status : CTI.cti_fcaForm}
+                    // value={'Not Required'}
+                    id="1"
+                    name="cti_fcaForm"
+                    onChange={handleInput}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Received">Received</option>
+                  </select>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="memo">Bank Information (Welcome Letter):</Label>
+                  <select
+                    className={"custom-select"}
+                    value={CL.bi_status ? CL.bi_status : CTI.cti_bInformation}
+                    // value={"Not Required"}
+                    id="1"
+                    name="cti_bInformation"
+                    onChange={handleInput}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Received">Received</option>
+                  </select>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="OTA">Office Tenancy Agreement:</Label>
 
-              <Input
-                readOnly
-                // className={
-                //   CTI.cti_otAgreement === ""
-                //     ? "border-red custom-select"
-                //     : "custom-select"
-                // }
-                // value={CTI.cti_otAgreement}
-                value={"Not Required"}
-                name="cti_otAgreement"
-                onChange={handleInput}
-                required={false}
-                type="text"
-                className="NotR"
-                placeholder="OTA"
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="shareRegister">Headline Website URL Address:</Label>
-              <select
-                className={"custom-select"}
-                value={CL.hwua_status ? CL.hwua_status : CTI.cti_hwUrl}
-                id="1"
-                name="cti_hwUrl"
-                onChange={handleInput}
-              >
-                <option selected value="Pending">
-                  Pending
-                </option>
-                <option value="Received">Received</option>
-              </select>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="shareCertificate">Website Compliance:</Label>
-              <Input
-                className={"custom-select"}
-                value={CL.wc_status ? CL.wc_status : CTI.cti_wCompliance}
-                name="cti_wCompliance"
-                onChange={handleInput}
-                type="url"
-                id="Url"
-                placeholder="Company URL"
-              ></Input>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="CCR">Website URL - Proof of Domain:</Label>
-              <select
-                className={"custom-select"}
-                value={
-                  CL.wuod_status ? CL.wuod_status : CTI.cti_wUrl_proofDomain
-                }
-                value={"Not Required"}
-                id="1"
-                name="cti_wUrl_proofDomain"
-                onChange={handleInput}
-              >
-                <option selected value="Pending">
-                  Pending
-                </option>
-                <option value="Received">Received</option>
-              </select>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="CCR">Ownership Structure Chart:</Label>
-              <Input readOnly name="cti_osChart" className="NotR" value={"Not Required"}></Input>
-              {/* <select
+                  <Input
+                    readOnly
+                    // className={
+                    //   CTI.cti_otAgreement === ""
+                    //     ? "border-red custom-select"
+                    //     : "custom-select"
+                    // }
+                    // value={CTI.cti_otAgreement}
+                    value={"Not Required"}
+                    name="cti_otAgreement"
+                    onChange={handleInput}
+                    required={false}
+                    type="text"
+                    className="NotR"
+                    placeholder="OTA"
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="shareRegister">Headline Website URL Address:</Label>
+                  <select
+                    className={"custom-select"}
+                    value={CL.hwua_status ? CL.hwua_status : CTI.cti_hwUrl}
+                    id="1"
+                    name="cti_hwUrl"
+                    onChange={handleInput}
+                  >
+                    <option selected value="Pending">
+                      Pending
+                    </option>
+                    <option value="Received">Received</option>
+                  </select>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="shareCertificate">Website Compliance:</Label>
+                  <Input
+                    className={"custom-select"}
+                    value={CL.wc_status ? CL.wc_status : CTI.cti_wCompliance}
+                    name="cti_wCompliance"
+                    onChange={handleInput}
+                    type="url"
+                    id="Url"
+                    placeholder="Company URL"
+                  ></Input>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="CCR">Website URL - Proof of Domain:</Label>
+                  <select
+                    className={"custom-select"}
+                    value={
+                      CL.wuod_status ? CL.wuod_status : CTI.cti_wUrl_proofDomain
+                    }
+                    value={"Not Required"}
+                    id="1"
+                    name="cti_wUrl_proofDomain"
+                    onChange={handleInput}
+                  >
+                    <option selected value="Pending">
+                      Pending
+                    </option>
+                    <option value="Received">Received</option>
+                  </select>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="CCR">Ownership Structure Chart:</Label>
+                  <Input readOnly name="cti_osChart" className="NotR" value={"Not Required"}></Input>
+                  {/* <select
                 className={"custom-select"}
                 // value={CTI.cti_osChart}
                 value={"Not Required"}
@@ -239,13 +239,13 @@ for (var i = 0, len = value.length; i < len; i++) {
                 </option>
                 <option value="Received">Received</option>
               </select> */}
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="CCR">Business Plan:</Label>
-              <Input readOnly  name="cti_bPlan"  className="NotR" value={"Not Required"}></Input>
-              {/* <select
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="CCR">Business Plan:</Label>
+                  <Input readOnly name="cti_bPlan" className="NotR" value={"Not Required"}></Input>
+                  {/* <select
                 className={"custom-select"}
                 // value={CTI.cti_bPlan}
                 value={"Not Required"}
@@ -256,29 +256,29 @@ for (var i = 0, len = value.length; i < len; i++) {
                 <option value="Pending"> Pending </option>
                 <option value="Received">Received</option>
               </select> */}
-            </FormGroup>
-          </Col>
-        </Row>
-        {/* <Button tag={Link} to={link}>
+                </FormGroup>
+              </Col>
+            </Row>
+            {/* <Button tag={Link} to={link}>
           Previous
         </Button> */}
-        {urlid ? (
-          <div>
-            <Button tag={Link} to={link}>
-              Previous
-            </Button>
-            <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-              Update and Next
-            </Button>
-          </div>
-        ) : (
-          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
-            Save and Next{" "}
-          </Button>
-        )}
-      </Form>
-    </div>
-    </div>
+            {urlid ? (
+              <div>
+                <Button tag={Link} to={link}>
+                  Previous
+                </Button>
+                <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+                  Update and Next
+                </Button>
+              </div>
+            ) : (
+              <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
+                Save and Next{" "}
+              </Button>
+            )}
+          </Form>
+        </div>
+      </div>
     </div>
   );
 };

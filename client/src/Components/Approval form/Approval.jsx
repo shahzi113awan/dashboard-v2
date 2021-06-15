@@ -7,9 +7,9 @@ import {
   Update,
   GetOneApp,
   UpdateOne,
-  
+
 } from "../../actions/appActions";
-import {Get} from '../../actions/appActions'
+import { Get } from '../../actions/appActions'
 export default function ApprovalForm() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -20,28 +20,28 @@ export default function ApprovalForm() {
   }, [urlid]);
   const data1 = useSelector((state) => state.appReducer.state);
   console.log(data1);
-  
+
   const [App, setApp] = useState(
-{
-    status: " ",
-    af_rcn: "",
-    af_ad: "",
-    af_sol: "",
-    af_brp: "",
-    af_abo: "",
-    af_iP: "",
-    af_appB: "",
-    af_appS: "",
-    af_ntc: "",
-    af_vts: "",
-    af_twa: "",
-    af_wbaN: "",
-    af_wbaP: "",
-    af_ccl: "",
-    af_eea: "",
-    af_tla: "",
-  },
-   
+    {
+      status: " ",
+      af_rcn: "",
+      af_ad: "",
+      af_sol: "",
+      af_brp: "",
+      af_abo: "",
+      af_iP: "",
+      af_appB: "",
+      af_appS: "",
+      af_ntc: "",
+      af_vts: "",
+      af_twa: "",
+      af_wbaN: "",
+      af_wbaP: "",
+      af_ccl: "",
+      af_eea: "",
+      af_tla: "",
+    },
+
   );
 
   useEffect(() => {
@@ -77,7 +77,7 @@ export default function ApprovalForm() {
     <div className="container">
       <div>
         <h2>
-          <span class="badge badge-success">Application Information</span>
+          <span class="badge badge-success colspan">Application Information</span>
         </h2>
       </div>
       <Form>
@@ -134,7 +134,7 @@ export default function ApprovalForm() {
           <Col md={12}>
             <div>
               <h2>
-                <span class="badge badge-success">
+                <span class="badge badge-success colspan">
                   EMS / PayWyz Information:
                 </span>
               </h2>
@@ -188,7 +188,7 @@ export default function ApprovalForm() {
           <Col md={12}>
             <div>
               <h2>
-                <span class="badge badge-success">
+                <span class="badge badge-success colspan">
                   Expected / Offered Commercials:
                 </span>
               </h2>
@@ -227,7 +227,7 @@ export default function ApprovalForm() {
           <Col md={12}>
             <div>
               <h2>
-                <span class="badge badge-success">
+                <span class="badge badge-success colspan">
                   Company Trading Information:
                 </span>
               </h2>
@@ -346,7 +346,7 @@ export default function ApprovalForm() {
                 className="custom-select"
                 value={App.af_tla}
                 id="1"
-                name="App.af_tla"
+                name="af_tla"
                 onChange={handleInput}
               >
                 <option>Licenced </option>

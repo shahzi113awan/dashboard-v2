@@ -6,7 +6,7 @@ import { CreateKYB, GetOneKYB, INITIATEKYB } from "../actions/kybAction";
 import { GetOneCL } from "../actions/clAction";
 import SideNav from './Sidebar/Sidebar'
 
-import {   INITIATESD } from "../actions/sdAction";
+import { INITIATESD } from "../actions/sdAction";
 
 
 export default function KYB() {
@@ -37,9 +37,9 @@ export default function KYB() {
     lta_fdsa: "Pending",
     lta_fbo_cr: "Pending",
   });
-    useEffect(() => {
-      dispatch(INITIATESD(KYB_SD));
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(INITIATESD(KYB_SD));
+  }, [dispatch]);
   useEffect(() => {
     urlid ? dispatch(GetOneKYB(urlid)) : console.log("creating");
     urlid ? dispatch(GetOneCL(urlid)) : console.log("No Check List");
@@ -60,9 +60,9 @@ export default function KYB() {
   useEffect(() => {
     setKYB(data);
   }, [data]);
-    useEffect(() => {
-      setCL(dataCL);
-    }, [dataCL]);
+  useEffect(() => {
+    setCL(dataCL);
+  }, [dataCL]);
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(KYB);
@@ -78,60 +78,60 @@ export default function KYB() {
   };
 
   return (
-    <div  className={urlid?"container-fluid":"container"}>
+    <div className={urlid ? "container-fluid" : "container"}>
       <div className="row">
-    { urlid ? ( <div className="col-md-2"> <SideNav id={urlid} /></div>) : (<div></div>)}
-    <div className={urlid ? "col-md-8" : "col-md-12"}>
-      <div>
-        <h2>
-          <span class="badge badge-success">Know Your Business (KYB):</span>
-        </h2>
-      </div>
-      <Form>
-        <Row form>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="certificate">Certificate of Incorporation:</Label>
-              <select
-                className={"custom-select"}
-                value={CL.coi_status ? CL.coi_status : KYB.kyb_coi}
-                // value={"Not Required"}
-                id="1"
-                name="kyb_coi"
-                onChange={handleInput}
-              >
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </select>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="memo">Memorandum of Association:</Label>
-              <select
-                className={"custom-select"}
-                value={CL.moa_status ? CL.moa_status : KYB.kyb_moa}
-                // value={"Not Required"}
-                id="1"
-                name="kyb_moa"
-                onChange={handleInput}
-              >
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </select>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="articles">Articles of Association:</Label>
-              <Input
-                readOnly
-                value={"Not Required"}
-                name="kyb_aoa"
-                onLoad={handleInput}
-              ></Input>
+        {urlid ? (<div className="col-md-2"> <SideNav id={urlid} /></div>) : (<div></div>)}
+        <div className={urlid ? "col-md-8" : "col-md-12"}>
+          <div>
+            <h2>
+              <span class="badge badge-success colspan">Know Your Business (KYB):</span>
+            </h2>
+          </div>
+          <Form>
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="certificate">Certificate of Incorporation:</Label>
+                  <select
+                    className={"custom-select"}
+                    value={CL.coi_status ? CL.coi_status : KYB.kyb_coi}
+                    // value={"Not Required"}
+                    id="1"
+                    name="kyb_coi"
+                    onChange={handleInput}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Received">Received</option>
+                  </select>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="memo">Memorandum of Association:</Label>
+                  <select
+                    className={"custom-select"}
+                    value={CL.moa_status ? CL.moa_status : KYB.kyb_moa}
+                    // value={"Not Required"}
+                    id="1"
+                    name="kyb_moa"
+                    onChange={handleInput}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Received">Received</option>
+                  </select>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="articles">Articles of Association:</Label>
+                  <Input
+                    readOnly
+                    value={"Not Required"}
+                    name="kyb_aoa"
+                    onLoad={handleInput}
+                  ></Input>
 
-              {/* <select
+                  {/* <select
               
                 className={"custom-select"}
                 // value={KYB.kyb_aoa}
@@ -143,47 +143,47 @@ export default function KYB() {
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
               </select> */}
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="shareRegister">Share Register:</Label>
-              <select
-                className={"custom-select"}
-                value={CL.sr_status ? CL.sr_status : KYB.kyb_sRegister}
-                // value={"Not Required"}
-                id="1"
-                name="kyb_sRegister"
-                onChange={handleInput}
-              >
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </select>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="shareCertificate">
-                Share Certificate(s) - Signed:
-              </Label>
-              <select
-                className={"custom-select"}
-                value={CL.scs_status ? CL.scs_status : KYB.kyb_scs}
-                // value={"Not Required"}
-                id="1"
-                name="kyb_scs"
-                onChange={handleInput}
-              >
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </select>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="CCR">Current Commercial Register Extract:</Label>
-              <Input readOnly value={"Not Required"}></Input>
-              {/* <select
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="shareRegister">Share Register:</Label>
+                  <select
+                    className={"custom-select"}
+                    value={CL.sr_status ? CL.sr_status : KYB.kyb_sRegister}
+                    // value={"Not Required"}
+                    id="1"
+                    name="kyb_sRegister"
+                    onChange={handleInput}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Received">Received</option>
+                  </select>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="shareCertificate">
+                    Share Certificate(s) - Signed:
+                  </Label>
+                  <select
+                    className={"custom-select"}
+                    value={CL.scs_status ? CL.scs_status : KYB.kyb_scs}
+                    // value={"Not Required"}
+                    id="1"
+                    name="kyb_scs"
+                    onChange={handleInput}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Received">Received</option>
+                  </select>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="CCR">Current Commercial Register Extract:</Label>
+                  <Input readOnly value={"Not Required"}></Input>
+                  {/* <select
                 className={
                   KYB.kyb_ccre === "Pending"
                     ? "border-red custom-select"
@@ -198,31 +198,31 @@ export default function KYB() {
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
               </select> */}
-            </FormGroup>
-          </Col>
-        </Row>
-        {/* <Button tag={Link} to={link}>
+                </FormGroup>
+              </Col>
+            </Row>
+            {/* <Button tag={Link} to={link}>
           Previous
         </Button> */}
-        {/* <Link to='/supporting-doc-kyb'> */}
-        {urlid ? (
-          <div>
-            <Button tag={Link} to={link}>
-              Previous
-            </Button>
-            <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-              Update and Next
-            </Button>
-          </div>
-        ) : (
-          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
-            Save and Next
-          </Button>
-        )}
-        {/* </Link> */}
-      </Form>
-    </div>
-    </div>
+            {/* <Link to='/supporting-doc-kyb'> */}
+            {urlid ? (
+              <div>
+                <Button tag={Link} to={link}>
+                  Previous
+                </Button>
+                <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+                  Update and Next
+                </Button>
+              </div>
+            ) : (
+              <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
+                Save and Next
+              </Button>
+            )}
+            {/* </Link> */}
+          </Form>
+        </div>
+      </div>
     </div>
   );
 }

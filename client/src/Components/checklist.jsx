@@ -339,7 +339,7 @@ export const CheckList = () => {
 
         <div>
           <h2>
-            <span onClick={e=>{setView(true)}} class="badge badge-success">COMPANY INFORMATION </span>
+            <span onClick={e=>{setView(true)}} class="badge badge-success colspan">COMPANY INFORMATION </span>
           </h2>
         </div>
         <Modal isOpen={view} toggle={toggler} >

@@ -4,7 +4,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateSD, GetOneSD, INITIATESD } from "../actions/sdAction";
 import { GetOneCL } from "../actions/clAction";
-import {INITIATESpare} from '../actions/spareAction'
+import { INITIATESpare } from '../actions/spareAction'
 import SideNav from './Sidebar/Sidebar'
 
 export default function CTI() {
@@ -69,35 +69,35 @@ export default function CTI() {
   };
   return (
     <div>
-    <div  className={urlid?"container-fluid":"container"}>
-      <div className="row">
-    { urlid ? (<div className="col-md-2"><SideNav id={urlid}></SideNav></div>) : (<div></div>)}
-    <div className={urlid ? "col-md-8" : "col-md-12"}>
-      <div>
-        <h2>
-          <span class="badge badge-success">Supporting Documents (KYB):</span>
-        </h2>
-      </div>
-      <Form>
-        <Row form>
-          <Col md={10}>
-            <FormGroup>
-              <h4>
-                <span>Financial Support Documents:</span>
-              </h4>
-            </FormGroup>
-          </Col>
+      <div className={urlid ? "container-fluid" : "container"}>
+        <div className="row">
+          {urlid ? (<div className="col-md-2"><SideNav id={urlid}></SideNav></div>) : (<div></div>)}
+          <div className={urlid ? "col-md-8" : "col-md-12"}>
+            <div>
+              <h2>
+                <span class="badge badge-success colspan">Supporting Documents (KYB):</span>
+              </h2>
+            </div>
+            <Form>
+              <Row form>
+                <Col md={10}>
+                  <FormGroup>
+                    <h4>
+                      <span>Financial Support Documents:</span>
+                    </h4>
+                  </FormGroup>
+                </Col>
 
-          <Col md={6}>
-            <FormGroup>
-              <Label for="certificate">Corporate Bank Statements:</Label>
-              <Input
-                readOnly
-                value={"Not Required"}
-                name="kyb_aoa"
-                onLoad={handleInput}
-              ></Input>
-              {/* <select
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="certificate">Corporate Bank Statements:</Label>
+                    <Input
+                      readOnly
+                      value={"Not Required"}
+                      name="kyb_aoa"
+                      onLoad={handleInput}
+                    ></Input>
+                    {/* <select
                 className={
                   KYB_SD.fsd_cbs === "Pending"
                     ? "border-red custom-select"
@@ -111,18 +111,18 @@ export default function CTI() {
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
               </select> */}
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="memo">Personal Bank Statements:</Label>
-              <Input
-                readOnly
-                value={"Not Required"}
-                name="kyb_aoa"
-                onLoad={handleInput}
-              ></Input>
-              {/* <select
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="memo">Personal Bank Statements:</Label>
+                    <Input
+                      readOnly
+                      value={"Not Required"}
+                      name="kyb_aoa"
+                      onLoad={handleInput}
+                    ></Input>
+                    {/* <select
                 className={
                   KYB_SD.fsd_pbs === "Pending"
                     ? "border-red custom-select"
@@ -136,18 +136,18 @@ export default function CTI() {
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
               </select> */}
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="articles">Proof of Wealth:</Label>
-              <Input
-                readOnly
-                value={"Not Required"}
-                name="kyb_aoa"
-                onLoad={handleInput}
-              ></Input>
-              {/* <select
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="articles">Proof of Wealth:</Label>
+                    <Input
+                      readOnly
+                      value={"Not Required"}
+                      name="kyb_aoa"
+                      onLoad={handleInput}
+                    ></Input>
+                    {/* <select
                 className={
                   KYB_SD.fsd_pow === "Pending"
                     ? "border-red custom-select"
@@ -161,18 +161,18 @@ export default function CTI() {
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
               </select> */}
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="shareRegister">Company AML Policy:</Label>
-              <Input
-                readOnly
-                value={"Not Required"}
-                name="kyb_aoa"
-                onLoad={handleInput}
-              ></Input>
-              {/* <select
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="shareRegister">Company AML Policy:</Label>
+                    <Input
+                      readOnly
+                      value={"Not Required"}
+                      name="kyb_aoa"
+                      onLoad={handleInput}
+                    ></Input>
+                    {/* <select
                 className={
                   KYB_SD.fsd_cap === "Pending"
                     ? "border-red custom-select"
@@ -186,25 +186,25 @@ export default function CTI() {
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
               </select> */}
-            </FormGroup>
-          </Col>
-          <Col md={10}>
-            <FormGroup>
-              <h4>
-                <span>Licence & Trading Agreements</span>
-              </h4>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="shareCertificate">Gambling or Forex License:</Label>
-              <Input
-                readOnly
-                value={"Not Required"}
-                name="kyb_aoa"
-                onLoad={handleInput}
-              ></Input>
-              {/* <select
+                  </FormGroup>
+                </Col>
+                <Col md={10}>
+                  <FormGroup>
+                    <h4>
+                      <span>Licence & Trading Agreements</span>
+                    </h4>
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="shareCertificate">Gambling or Forex License:</Label>
+                    <Input
+                      readOnly
+                      value={"Not Required"}
+                      name="kyb_aoa"
+                      onLoad={handleInput}
+                    ></Input>
+                    {/* <select
                 className={
                   KYB_SD.lta_gfl === "Pending"
                     ? "border-red custom-select"
@@ -218,51 +218,51 @@ export default function CTI() {
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
               </select> */}
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="CCR">Copywrite or Re-seller Agreement:</Label>
-              <select
-                className={"custom-select"}
-                value={CL.cora_status ? CL.cora_status : KYB_SD.lta_cra}
-                id="1"
-                name="lta_cra"
-                onChange={handleInput}
-              >
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </select>
-            </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="CCR">Fulfilment or Drop Shipping Agreement:</Label>
-              <select
-                className={"custom-select"}
-                value={CL.fodsa_status ? CL.fodsa_status : KYB_SD.lta_fdsa}
-                id="1"
-                name="lta_fdsa"
-                onChange={handleInput}
-              >
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </select>
-            </FormGroup>
-          </Col>
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="CCR">Copywrite or Re-seller Agreement:</Label>
+                    <select
+                      className={"custom-select"}
+                      value={CL.cora_status ? CL.cora_status : KYB_SD.lta_cra}
+                      id="1"
+                      name="lta_cra"
+                      onChange={handleInput}
+                    >
+                      <option value="Pending">Pending</option>
+                      <option value="Received">Received</option>
+                    </select>
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="CCR">Fulfilment or Drop Shipping Agreement:</Label>
+                    <select
+                      className={"custom-select"}
+                      value={CL.fodsa_status ? CL.fodsa_status : KYB_SD.lta_fdsa}
+                      id="1"
+                      name="lta_fdsa"
+                      onChange={handleInput}
+                    >
+                      <option value="Pending">Pending</option>
+                      <option value="Received">Received</option>
+                    </select>
+                  </FormGroup>
+                </Col>
 
-          <Col md={6}>
-            <FormGroup>
-              <Label for="CCR">
-                FBO Company Registration (Nutra Merchants):
-              </Label>
-              <Input
-                readOnly
-                value={"Not Required"}
-                name="kyb_aoa"
-                onLoad={handleInput}
-              ></Input>
-              {/* <select
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="CCR">
+                      FBO Company Registration (Nutra Merchants):
+                    </Label>
+                    <Input
+                      readOnly
+                      value={"Not Required"}
+                      name="kyb_aoa"
+                      onLoad={handleInput}
+                    ></Input>
+                    {/* <select
                 className={
                   KYB_SD.lta_fbo_cr === "Pending"
                     ? "border-red custom-select"
@@ -276,27 +276,27 @@ export default function CTI() {
                 <option value="Pending">Pending</option>
                 <option value="Received">Received</option>
               </select> */}
-            </FormGroup>
-          </Col>
-        </Row>
+                  </FormGroup>
+                </Col>
+              </Row>
 
-        {urlid ? (
-          <div>
-            <Button tag={Link} to={link}>
-              Previous
-            </Button>
-            <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-              Update and Next
-            </Button>
+              {urlid ? (
+                <div>
+                  <Button tag={Link} to={link}>
+                    Previous
+                  </Button>
+                  <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
+                    Update and Next
+                  </Button>
+                </div>
+              ) : (
+                <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
+                  Save and Next
+                </Button>
+              )}
+            </Form>
           </div>
-        ) : (
-          <Button style={{ marginLeft: "10%" }} onClick={onSubmit}>
-            Save and Next
-          </Button>
-        )}
-      </Form>
-    </div>
-    </div>
-    </div></div>
+        </div>
+      </div></div>
   );
 }

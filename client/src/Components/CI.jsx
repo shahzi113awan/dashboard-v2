@@ -4,17 +4,17 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateCI, Update, Get, GetOneCI, UpdateOne } from "../actions/ciAction";
 import { INITIATECTI, } from "../actions/ctiAction";
- 
+
 import SideNav from './Sidebar/Sidebar'
 
-export default function CI({ide}) {
- 
+export default function CI({ ide }) {
+
   const [copy, setCopy] = useState(false)
   const dispatch = useDispatch();
   const { urlid } = useParams();
-console.log(ide)
+  console.log(ide)
   useEffect(() => {
-    urlid  ? dispatch(GetOneCI(urlid)) : console.log("creating");
+    urlid ? dispatch(GetOneCI(urlid)) : console.log("creating");
   }, [urlid]);
   // useEffect(() => {
   //   props.id ? dispatch(GetOneCI(props.id)) : console.log("creating");
@@ -22,7 +22,7 @@ console.log(ide)
   const data1 = useSelector((state) => state.ciReducer.state);
   const isLoading = useSelector((state) => state.ciReducer.isLoading);
   const id = useSelector((state) => state.ciReducer._id);
-  const IBAN= useSelector((state) => state.IbanReducer.iban);
+  const IBAN = useSelector((state) => state.IbanReducer.iban);
   console.log(IBAN);
   console.log(id);
   console.log(data1.ci);
@@ -34,7 +34,7 @@ console.log(ide)
   // console.log(isLoading)
 
   const [CI, setCI] = React.useState({
-    iban:IBAN,
+    iban: IBAN,
     tpi_rcName: " ",
     tpi_aaSolution: "CCBILL",
     tpi_ntc: "",
@@ -105,7 +105,7 @@ console.log(ide)
 
     history.push("/CTI");
   };
-  
+
   const onUpdateSubmit = (e) => {
     e.preventDefault();
     dispatch(UpdateOne(CI, urlid));
@@ -122,7 +122,7 @@ console.log(ide)
   }
   return (
     <div style={{ position: "relative" }}    >
-      
+
       <div className={urlid ? "container-fluid" : "container"}>
 
         <div className="row">
@@ -148,7 +148,7 @@ console.log(ide)
 
             <div>
               <h2>
-                <span   class="badge badge-success">COMPANY INFORMATION </span>
+                <span class="badge badge-success colspan">COMPANY INFORMATION </span>
               </h2>
             </div>
 
@@ -158,9 +158,9 @@ console.log(ide)
             <div className="border p-3 shadow">
               <div>
                 <h2>
-                  <span class="badge badge-success">
+                  <span class="badge badge-success colspan">
                     Trading / Processing Information:
-              </span>
+                  </span>
                 </h2>
               </div>
               <Row form>
@@ -352,22 +352,22 @@ console.log(ide)
               <div class="card">
                 <div class="card-header" id="headingOne">
                   <h2 class="mb-0">
-                    <button   class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                       TRADING COMPANY INFORMATION
-        </button>
+                    </button>
                   </h2>
                 </div>
                 {/* Trading company info */}
-                <div id="collapseOne"class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 
                   <div  >
                     <hr className="border-primary" />
                     <div className="border p-3 shadow">
                       <div>
                         <h2>
-                          <span class="badge badge-success">
+                          <span class="badge badge-success colspan">
                             Application/ Company Trading  Information:
-              </span>
+                          </span>
                         </h2>
                       </div>
 
@@ -406,7 +406,7 @@ console.log(ide)
                           <FormGroup>
                             <Label for="address">
                               Company Trading Address (If Applicable):
-                </Label>
+                            </Label>
                             <Input
                               className="cusrom"
                               value={CI.tci_ctAddress}
@@ -446,9 +446,9 @@ console.log(ide)
               <div class="card">
                 <div class="card-header" id="headingTwo">
                   <h2 class="mb-0">
-                    <button class="btn btn text-primary btn-block text-left collapsed"  data-toggle="collapse" type="button" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <button class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                       TRADING COMPANY CONTACT INFORMATION
-        </button>
+                    </button>
                   </h2>
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
@@ -458,7 +458,7 @@ console.log(ide)
 
                     <div>
                       <h2>
-                        <span class="badge badge-success">
+                        <span class="badge badge-success colspan">
                           Application/ Company Contact Information:{" "}
                         </span>
                       </h2>
@@ -584,9 +584,9 @@ console.log(ide)
               <div class="card">
                 <div class="card-header" id="headingThree">
                   <h2 class="mb-0">
-                    <button   class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <button class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                       MANAGEMENT COMPANY INFORMATION
-        </button>
+                    </button>
                   </h2>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
@@ -596,9 +596,9 @@ console.log(ide)
                     <div className="border p-3 shadow">
                       <div>
                         <h2>
-                          <span class="badge badge-success">
+                          <span class="badge badge-success colspan">
                             Management Company Information:
-                </span>
+                          </span>
                         </h2>
                       </div>
 
@@ -652,7 +652,7 @@ console.log(ide)
                           <FormGroup>
                             <Label for="address">
                               Company Trading Address (If Applicable):
-                  </Label>
+                            </Label>
                             <Input
                               className="cusrom"
                               value={CI.mci_ctAddress}
@@ -690,9 +690,9 @@ console.log(ide)
               <div class="card">
                 <div class="card-header" id="headingFour">
                   <h2 class="mb-0">
-                    <button   class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <button class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                       MANAGEMENT COMPANY CONTACT INFORMATION
-        </button>
+                    </button>
                   </h2>
                 </div>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
@@ -701,9 +701,9 @@ console.log(ide)
 
                     <div>
                       <h2>
-                        <span class="badge badge-success">
+                        <span class="badge badge-success colspan">
                           Management/ Company Contact Information:
-                  </span>
+                        </span>
                       </h2>
                     </div>
 

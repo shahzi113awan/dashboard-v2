@@ -68,7 +68,7 @@ const SolutionNavParam = () => {
       <div style={{ display: "flex" }}>
         <div style={{ alignContent: "flex-start" }}>
           <h2>
-            <span class="badge badge-success">SOLUTION CONTACTS</span>
+            <span class="badge badge-success colspan">SOLUTION CONTACTS</span>
           </h2>
         </div>
         <div style={{ alignContent: "flex-end" }}>

@@ -16,6 +16,7 @@ import '../assets/css/style.css'
 import '../assets/css/all.css'
 import '../assets/css/select2.min.css'
 import { Button } from 'bootstrap'
+import { GetApproved } from '../actions/appActions'
 
 function Dashboard({ data }) {
   const history = useHistory()
@@ -73,7 +74,13 @@ function Dashboard({ data }) {
     // console.log(Ending);
     const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays())
     // console.log(days);
-    return days
+    if (days >=0) {
+
+      return days
+    }
+    else{
+      return "default"
+    }
   }
   // console.log(isLoading);
   // const scroll = (scrollOffset) => {
@@ -550,12 +557,12 @@ function Dashboard({ data }) {
                       <tr>
                         <th width='10%'>
                           <div class='compliance-td-fonts text-center blueborder'>
-                            <img src={img1} />
+                           <Link   to="/ibandb"> <img src={img1} /></Link>
                           </div>
                         </th>
                         <th width='10%'>
                           <div class='compliance-td-fonts text-center blueborder'>
-                            <img src={img2} />
+                          <Link   to="/"> <img src={img2} /></Link>
                           </div>
                         </th>
                         <th width='37%'>
