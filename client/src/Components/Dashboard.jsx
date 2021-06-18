@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { Get, Delete, UpdateStatus} from '../actions/ciAction'
- 
+import { Get, Delete, UpdateStatus } from '../actions/ciAction'
+
 import Loader from 'react-loader-spinner'
 import moment from 'moment'
 
@@ -74,11 +74,11 @@ function Dashboard({ data }) {
     // console.log(Ending);
     const days = Math.ceil(moment.duration(Ending.diff(Start)).asDays())
     // console.log(days);
-    if (days >=0) {
+    if (days >= 0) {
 
       return days
     }
-    else{
+    else {
       return "default"
     }
   }
@@ -95,7 +95,7 @@ function Dashboard({ data }) {
   console.log(Index)
   console.log(db)
 
-  
+
   let extractedData = []
   let extractedData2 = []
   let extractedData3 = []
@@ -178,17 +178,17 @@ function Dashboard({ data }) {
   }
   console.log(extractedData6)
   console.log(showSolutionFilter)
-  
+
   return (
 
     <>
-    {/* <h1>{search3}</h1> */}
+      {/* <h1>{search3}</h1> */}
       <div class='compliance-dashboard-card'>
         <div class='container-fluid'>
           <table>
             <thead>
               <tr>
-             
+
                 <th width='33%' valign='top'>
                   <table width='100%'>
                     <thead>
@@ -206,7 +206,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('1')}
                             >
                               1
@@ -217,7 +218,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('2')}
                             >
                               2
@@ -228,7 +230,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('3')}
                             >
                               3
@@ -239,7 +242,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('4')}
                             >
                               4
@@ -250,7 +254,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('a')}
                             >
                               A
@@ -261,7 +266,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('B')}
                             >
                               B
@@ -272,7 +278,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('C')}
                             >
                               C
@@ -283,7 +290,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('D')}
                             >
                               D
@@ -294,7 +302,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('E')}
                             >
                               E
@@ -305,7 +314,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('F')}
                             >
                               F
@@ -316,7 +326,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('G')}
                             >
                               G
@@ -327,7 +338,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('H')}
                             >
                               H
@@ -338,7 +350,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('I')}
                             >
                               I
@@ -349,7 +362,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('J')}
                             >
                               J
@@ -360,7 +374,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('K')}
                             >
                               K
@@ -371,7 +386,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('L')}
                             >
                               L
@@ -382,7 +398,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('M')}
                             >
                               M
@@ -393,7 +410,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('N')}
                             >
                               N
@@ -404,7 +422,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('O')}
                             >
                               O
@@ -415,7 +434,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('P')}
                             >
                               P
@@ -426,7 +446,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('Q')}
                             >
                               Q
@@ -437,7 +458,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('R')}
                             >
                               R
@@ -448,7 +470,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('S')}
                             >
                               S
@@ -459,7 +482,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('T')}
                             >
                               T
@@ -470,7 +494,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('U')}
                             >
                               U
@@ -481,7 +506,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('V')}
                             >
                               V
@@ -492,7 +518,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('W')}
                             >
                               W
@@ -503,7 +530,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('X')}
                             >
                               X
@@ -514,7 +542,8 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('Y')}
                             >
                               Y
@@ -525,24 +554,26 @@ function Dashboard({ data }) {
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('Z')}
                             >
                               Z
                             </button>
-                            - 
+                            -
                             <button
                               style={{
                                 backgroundColor: 'white',
                                 border: '0px',
                                 color: '#007bff',
                                 fontWeight: 'bold',
-                             marginRight:4 }}
+                                marginRight: 4
+                              }}
                               onClick={() => setSearch('')}
                             >
                               Reset
                             </button>
-                            
+
                             {/* <a href='#'>Z</a> - <a href='#'>Reset</a> */}
                           </div>
                         </th>
@@ -550,27 +581,27 @@ function Dashboard({ data }) {
                     </thead>
                   </table>
                 </th>
-                <th width='41%' valign='middle'>
+                <th width='41%' valign='top'>
                   {' '}
                   <table width='100%'>
                     <thead>
                       <tr>
                         <th width='10%'>
                           <div class='compliance-td-fonts text-center blueborder'>
-                           <Link   to="/ibandb"> <img src={img1} /></Link>
+                            <Link to="/"> <img src={img1} /></Link>
                           </div>
                         </th>
-                        <th width='10%'>
+                        <th width='11%'>
                           <div class='compliance-td-fonts text-center blueborder'>
-                          <Link   to="/"> <img src={img2} /></Link>
+                            <Link to="/ibandb"> <img src={img2} /></Link>
                           </div>
                         </th>
-                        <th width='37%'>
+                        <th width='33%'>
                           <div class='compliance-td-fonts text-center blueborder'>
                             PENDING DOCUMENTS
                           </div>
                         </th>
-                        <th width='28%'>
+                        <th width='27%'>
                           <div class='compliance-td-fonts text-center blueborder'>
                             COMMERCIALS
                           </div>
@@ -584,7 +615,7 @@ function Dashboard({ data }) {
                     </thead>
                   </table>
                 </th>
-                <th width='26%'>&nbsp;</th>
+                <th width='23%'>&nbsp;</th>
               </tr>
             </thead>
           </table>
@@ -596,16 +627,16 @@ function Dashboard({ data }) {
               <tr>
                 <td width='5%'>
                   <div class='compliance-td-fonts td-font-icon'>
-                    {showRefFilter? 
-                    <div>
-                    Ref:
-                    </div>
-                    :
-                    <input type='text' style={{width:40}} onChange={(e)=>setRefSearch(e.target.value)} />
-                    
+                    {showRefFilter ?
+                      <div>
+                        Ref:
+                      </div>
+                      :
+                      <input type='text' style={{ width: 40 }} onChange={(e) => setRefSearch(e.target.value)} />
+
                     }
                     <div class='filter-icon'>
-                    <button onClick={()=>setShowRefFilter(!showRefFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+                      <button onClick={() => setShowRefFilter(!showRefFilter)} style={{ border: 'none', backgroundColor: 'transparent' }}>
 
                         <i class='fas fa-filter'></i>
                       </button>
@@ -614,16 +645,16 @@ function Dashboard({ data }) {
                 </td>
                 <td width='19%'>
                   <div class='compliance-td-fonts td-font-icon text-center'>
-                    {showNameFilter ? 
-                    <div>
+                    {showNameFilter ?
+                      <div>
 
-                    COMPANY NAME
-                    </div>
-                  :  <input type='text' style={{width:200}} onChange={(e)=>setNameSearch(e.target.value)} />
-                  }
+                        COMPANY NAME
+                      </div>
+                      : <input type='text' style={{ width: 200 }} onChange={(e) => setNameSearch(e.target.value)} />
+                    }
 
                     <div class='filter-icon'>
-                    <button onClick={()=>setShowNameFilter(!showNameFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+                      <button onClick={() => setShowNameFilter(!showNameFilter)} style={{ border: 'none', backgroundColor: 'transparent' }}>
 
                         <i class='fas fa-filter'></i>
                       </button>
@@ -632,15 +663,15 @@ function Dashboard({ data }) {
                 </td>
                 <td width='10%'>
                   <div class='compliance-td-fonts td-font-icon'>
-                    {showSolutionFilter? 
-                    <div>
-                    SOLUTION
-                    </div>
-                    :
-                    <input type='text' style={{width:100}} onChange={(e)=>setSolutionSearch(e.target.value)} />
-                  }
+                    {showSolutionFilter ?
+                      <div>
+                        SOLUTION
+                      </div>
+                      :
+                      <input type='text' style={{ width: 100 }} onChange={(e) => setSolutionSearch(e.target.value)} />
+                    }
                     <div class='filter-icon'>
-                      <button onClick={()=>setShowSolutionFilter(!showSolutionFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+                      <button onClick={() => setShowSolutionFilter(!showSolutionFilter)} style={{ border: 'none', backgroundColor: 'transparent' }}>
                         <i class='fas fa-filter'></i>
                       </button>
                     </div>
@@ -648,20 +679,20 @@ function Dashboard({ data }) {
                 </td>
                 <td width='10%'>
                   <div class='compliance-td-fonts blueborder compliance-td-fonts td-font-icon'>
-                  {showDateFilter ? 
-                    <div>
+                    {showDateFilter ?
+                      <div>
 
-                   APPLICATION DATE
-                    </div>
-                  :  <input type='text' style={{width:100}} onChange={(e)=>setDateSearch(e.target.value)} />
-                  }
+                        APPLICATION DATE
+                      </div>
+                      : <input type='text' style={{ width: 100 }} onChange={(e) => setDateSearch(e.target.value)} />
+                    }
 
                     <div class='filter-icon'>
-                    <button onClick={()=>setShowDateFilter(!showDateFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+                      <button onClick={() => setShowDateFilter(!showDateFilter)} style={{ border: 'none', backgroundColor: 'transparent' }}>
 
                         <i class='fas fa-filter'></i>
                       </button>
-                      </div>
+                    </div>
                   </div>
                 </td>
                 <td width='5%'>
@@ -711,16 +742,16 @@ function Dashboard({ data }) {
                 </td>
                 <td width='5%'>
                   <div class='compliance-td-fonts td-font-icon redborder'>
-                  {showDaysFilter ? 
-                    <div>
+                    {showDaysFilter ?
+                      <div>
 
-                    DAYS
-                    </div>
-                  :  <input type='text' style={{width:35}} onChange={(e)=>setDaysSearch(e.target.value)} />
-                  }
+                        DAYS
+                      </div>
+                      : <input type='text' style={{ width: 35 }} onChange={(e) => setDaysSearch(e.target.value)} />
+                    }
 
                     <div class='filter-icon'>
-                    <button onClick={()=>setShowDaysFilter(!showDaysFilter)} style={{border:'none', backgroundColor:'transparent'}}>
+                      <button onClick={() => setShowDaysFilter(!showDaysFilter)} style={{ border: 'none', backgroundColor: 'transparent' }}>
 
                         <i class='fas fa-filter'></i>
                       </button>
@@ -755,81 +786,81 @@ function Dashboard({ data }) {
                     res.kyb &&
                     res.sd
                   ) {
-                  return (
-                    <tr>
-                      <td>
-                        <div class='compliance-small-fonts'>{index+1}</div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts'>{res.name}</div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts'>
-                          {res.ci.tpi_aaSolution}
-                        </div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts text-center'>
-                          {res.ci.tpi_date}
-                          {/* 12 December 2020 */}
-                        </div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts text-center'>22</div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts text-center'>
-                        {res.cl.pendingCount.length}
-                        </div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts text-center redcolor blueborder'>
-                        {22 - res.cl.pendingCount.length}
-                        </div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts text-center'>
-                          3.5%
-                        </div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts text-center'>
-                          5.5%
-                        </div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts blueborder text-center'>
-                          2.0%
-                        </div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts redborder text-center'>
-                       { cal(res.ci.tpi_date)}
-                        </div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts'>
-                          {res.ci.tpi_brPartner}
-                        </div>
-                      </td>
-                      <td>
-                        <div class='compliance-small-fonts text-center'>
-                          {res.ci.tpi_aBdmOwner}
-                        </div>
-                      </td>
-                      <td>
-                        
-                         
-            <select class="compliance-select compliance-small-fonts">
-              <option value="0">Won</option>
-              <option value="1">Lost</option>
-              <option value="2">Archive</option>
-    
-            </select>
-         
-                      </td>
-                    </tr>
-                  )
+                    return (
+                      <tr>
+                        <td>
+                          <div class='compliance-small-fonts'>{index + 1}</div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts'>{res.name}</div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts'>
+                            {res.ci.tpi_aaSolution}
+                          </div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts text-center'>
+                            {res.ci.tpi_date}
+                            {/* 12 December 2020 */}
+                          </div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts text-center'>22</div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts text-center'>
+                            {res.cl.pendingCount.length}
+                          </div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts text-center redcolor blueborder'>
+                            {22 - res.cl.pendingCount.length}
+                          </div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts text-center'>
+                            3.5%
+                          </div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts text-center'>
+                            5.5%
+                          </div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts blueborder text-center'>
+                            2.0%
+                          </div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts redborder text-center'>
+                            {cal(res.ci.tpi_date)}
+                          </div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts'>
+                            {res.ci.tpi_brPartner}
+                          </div>
+                        </td>
+                        <td>
+                          <div class='compliance-small-fonts text-center'>
+                            {res.ci.tpi_aBdmOwner}
+                          </div>
+                        </td>
+                        <td>
+
+
+                          <select class="compliance-select compliance-small-fonts">
+                            <option value="0">Won</option>
+                            <option value="1">Lost</option>
+                            <option value="2">Archive</option>
+
+                          </select>
+
+                        </td>
+                      </tr>
+                    )
                   }
                 })}
             </tbody>
@@ -876,8 +907,8 @@ function Dashboard({ data }) {
         </div>
       </div>
     </>
- 
- )
+
+  )
 }
 
 export default Dashboard

@@ -40,6 +40,7 @@ import SolApp from './Components/Solutions/Application'
 import NewContact from './Components/Solutions/Newcontact'
 import ContactDB from './Components/Solutions/contactDB'
 import PREApp from './Components/Workbooks/PRE-APPWorkBook'
+import ComplianceWB from './Components/ComplianceWB'
 import PreApproval from './Components/PreApproval'
 import Dashboard from './Components/Dashboard'
 import { firebase } from './Config'
@@ -88,6 +89,7 @@ function App() {
                 <Route exact path='/mainappdb' component={MainAppDb} />
                 <Route exact path='/lostappdb' component={LostDB} />
                 <Route exact path='/preappworkbook' component={PREApp} />
+                <Route exact path='/complianceworkbook' component={ComplianceWB} />
 
                 <Route exact path='/ci' component={CI} />
                 <Route exact path='/ci/:urlid' component={CI} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import './pre-app.css'
-const PREApproval = () => {
+const Compliance = () => {
   return (
     <div class="newappWrap">
       <div class="container-fluid">
@@ -353,4 +353,4 @@ const PREApproval = () => {
   );
 }
 
-export default PREApproval
+export default Compliance
