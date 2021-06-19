@@ -47,7 +47,7 @@ export default function MainDashboard() {
   console.log(isLoading);
 
   console.log(db);
-  return ( <Dashboard data={data} isLoading={isLoading}/>)
+  return ( <Dashboard dashboard={"Compliance Dashboard"} data={data} isLoading={isLoading}/>)
 
 
   

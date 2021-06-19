@@ -18,7 +18,7 @@ import '../assets/css/select2.min.css'
 import { Button } from 'bootstrap'
 import { GetApproved } from '../actions/appActions'
 
-function Dashboard({ data }) {
+function Dashboard({ data,dashboard }) {
   const history = useHistory()
   const ref = useRef(null)
 
@@ -216,7 +216,7 @@ function Dashboard({ data }) {
                     <thead>
                       <tr>
                         <th class='compliance-dashboard-title'>
-                          CARD PROCESSING - PRE-APPROVAL APPLICATION
+                          {dashboard}
                         </th>
                       </tr>
                       <tr>
@@ -814,7 +814,9 @@ function Dashboard({ data }) {
                           <div class='compliance-small-fonts'>{res.ci.ref}</div>
                         </td>
                         <td>
-                          <div class='compliance-small-fonts'>{res.name}</div>
+                          <div class='compliance-small-fonts'>{<Link to={"/complianceworkbook/" + res._id}>
+                        {res.name ? res.name: "Default Name"}
+                      </Link>}</div>
                         </td>
                         <td>
                           <div class='compliance-small-fonts'>

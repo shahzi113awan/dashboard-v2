@@ -90,6 +90,7 @@ function App() {
                 <Route exact path='/lostappdb' component={LostDB} />
                 <Route exact path='/preappworkbook' component={PREApp} />
                 <Route exact path='/complianceworkbook' component={ComplianceWB} />
+                <Route exact path='/complianceworkbook/:urlid' component={ComplianceWB} />
 
                 <Route exact path='/ci' component={CI} />
                 <Route exact path='/ci/:urlid' component={CI} />

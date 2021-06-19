@@ -4,7 +4,7 @@ import '../assets/css/trading-book.css'
 
 const ComplianceR = (props) => {
     return (
-      
+        
             
         <tr>
         <td width="58%"><div class="compliance-td-fonts min_heightt marign_bt3">{props.name}</div></td>
