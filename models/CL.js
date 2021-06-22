@@ -124,7 +124,7 @@ let CLSchema = new Schema(
       pad_note: {
         type: String,
       },
-      sdp_tatus: {
+      sdp_status: {
         type: String,
       },
       sdp_fileName: {
@@ -322,6 +322,12 @@ let CLSchema = new Schema(
       df_note: {
         type: String,
       },
+      clg_status:{
+        type:String
+      },
+      clg_fileName:{
+        type:String
+      },
       spare: {
         type: String,
       },
@@ -392,6 +398,121 @@ let CLSchema = new Schema(
         type: String,
       },
       spare5_note: {
+        type: String,
+      },
+      TIC1: {
+        type: String,
+      },
+      TIC2: {
+        type: String,
+      },
+      TIC3: {
+        type: String,
+      },
+      TIC4: {
+        type: String,
+      },
+      TIC5: {
+        type: String,
+      },
+      TIC6: {
+        type: String,
+      },
+      TIC7: {
+        type: String,
+      },
+      TIC8: {
+        type: String,
+      },
+      TIC9: {
+        type: String,
+      },
+      TIC21: {
+        type: String,
+      },
+      TIC22: {
+        type: String,
+      },
+      TIC23: {
+        type: String,
+      },
+      TIC24: {
+        type: String,
+      },
+      TIC25: {
+        type: String,
+      },
+      TIC26: {
+        type: String,
+      },
+      TIC27: {
+        type: String,
+      },
+      TIC28: {
+        type: String,
+      },
+      TIC29: {
+        type: String,
+      },
+    
+     KYCC1: {
+        type: String,
+      },
+     KYCC2: {
+        type: String,
+      },
+     KYCC3: {
+        type: String,
+      },
+     KYCC4: {
+        type: String,
+      },
+     KYCC5: {
+        type: String,
+      },
+     KYCC6: {
+        type: String,
+      },
+     KYCC7: {
+        type: String,
+      },
+     KYCC8: {
+        type: String,
+      },
+     KYCC9: {
+        type: String,
+      },
+     KYCC10: {
+        type: String,
+      },
+     KYCC21: {
+        type: String,
+      },
+     KYCC22: {
+        type: String,
+      },
+     KYCC23: {
+        type: String,
+      },
+     KYCC24: {
+        type: String,
+      },
+     KYCC25: {
+        type: String,
+      },
+     KYCC26: {
+        type: String,
+      },
+     KYCC27: {
+        type: String,
+      },
+     KYCC28: {
+        type: String,
+      },
+     KYCC29: {
+        type: String,
+      },
+     KYCC29: {
         type: String,
       },
     },
