@@ -13,6 +13,7 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 import { firebase } from "../Config";
 import { CreateSpare } from "../actions/spareAction";
+import { CreateNotes,GetOneNotes } from "../actions/notesActions";
 import SideNav from './Sidebar/Sidebar'
 import CI from './CI'
 
@@ -49,6 +50,12 @@ export const CheckList = () => {
       path: ""
     },
   ])
+  const [Notes, setNotes] = useState([
+    {
+      text: "",
+     date:""
+    },
+  ]);
 
 
   const [CL, setCL] = React.useState({
@@ -301,6 +308,9 @@ export const CheckList = () => {
     urlid
       ? (await dispatch(CreateSpare(Spare, urlid)))
       : dispatch(CreateSpare(Spare, id));
+    urlid
+      ? (await dispatch(CreateNotes(Notes, urlid)))
+      : dispatch(CreateNotes(Notes, id));
     history.push("/");
     console.log(Spare)
   };

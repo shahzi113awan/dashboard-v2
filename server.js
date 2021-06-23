@@ -8,6 +8,7 @@ const ci = require("./routes/api/CI");
 const cti = require("./routes/api/CTI");
 const cl = require("./routes/api/CL");
 const Spare = require("./routes/api/Spare");
+const Notes = require("./routes/api/Notes")
 const kyc = require("./routes/api/KYC");
 const kyb = require("./routes/api/KYB");
 const appr = require("./routes/api/Approval");
@@ -38,6 +39,7 @@ app.use("/api", ci);
 app.use("/api", cti);
 app.use("/api", cl);
 app.use("/api", Spare);
+app.use("/api", Notes);
 app.use("/api", kyc);
 app.use("/api", kyb);
 app.use("/api", sd);

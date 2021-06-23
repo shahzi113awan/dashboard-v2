@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { Get, Delete, UpdateStatus } from '../actions/ciAction'
+import { INITIATENotes } from '../actions/notesActions'
 
 import Loader from 'react-loader-spinner'
 import moment from 'moment'
@@ -49,9 +50,17 @@ function Dashboard({ data,dashboard }) {
   // })
   // const { prepareRow, getTableProps, getTableBodyProps, headerGroups, rows } = tableinstance
   const isLoading = useSelector((state) => state.appReducer.isLoading);
-
+  const [Notes1, setNotes1] = useState([
+    {
+      text: "",
+      date: "",
+    },
+  ]);
   useEffect(() => {
     setDb(data)
+  }, [data])
+  useEffect(() => {
+    dispatch(INITIATENotes(Notes1))
   }, [data])
 
   // console.lo);

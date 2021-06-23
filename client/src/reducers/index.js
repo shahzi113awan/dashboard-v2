@@ -5,6 +5,7 @@ import { ciReducer } from "./ciReducer";
 import { ctiReducer } from "./ctiReducer";
 import { clReducer } from "./clReducer";
 import { SpareReducer } from "./spareReducer";
+import { NotesReducer } from "./notesReducer";
 import { kycReducer } from "./kycReducer";
 import { sdReducer } from "./sdReducer";
 import { appReducer } from "./appReducer";
@@ -25,5 +26,6 @@ export default combineReducers({
   solReducer,
   solParamsReducer,
   SpareReducer,
+  NotesReducer,
   APPWReducer
 });

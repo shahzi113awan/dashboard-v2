@@ -328,193 +328,284 @@ let CLSchema = new Schema(
       clg_fileName:{
         type:String
       },
-      spare: {
-        type: String,
-      },
-      spare1: {
-        type: String,
-      },
-      spare2: {
-        type: String,
-      },
-      spare3: {
-        type: String,
-      },
-      spare4: {
-        type: String,
-      },
-      spare5: {
-        type: String,
-      },
-      spare_Text: {
-        type: String,
-      },
-      spare1_Text: {
-        type: String,
-      },
-      spare2_Text: {
-        type: String,
-      },
-      spare3_Text: {
-        type: String,
-      },
-      spare4_Text: {
-        type: String,
-      },
-      spare5_Text: {
-        type: String,
-      },
-      spare_fileName: {
-        type: String,
-      },
-      spare1_fileName: {
-        type: String,
-      },
-      spare2_fileName: {
-        type: String,
-      },
-      spare3_fileName: {
-        type: String,
-      },
-      spare4_fileName: {
-        type: String,
-      },
-      spare5_fileName: {
-        type: String,
-      },
-      spare_note: {
-        type: String,
-      },
-      spare1_note: {
-        type: String,
-      },
-      spare2_note: {
-        type: String,
-      },
-      spare3_note: {
-        type: String,
-      },
-      spare4_note: {
-        type: String,
-      },
-      spare5_note: {
-        type: String,
-      },
+      
       TIC1: {
-        type: String,
+        type: Boolean,
       },
       TIC2: {
-        type: String,
+        type: Boolean,
       },
       TIC3: {
-        type: String,
+        type: Boolean,
       },
       TIC4: {
-        type: String,
+        type: Boolean,
       },
       TIC5: {
-        type: String,
+        type: Boolean,
       },
       TIC6: {
-        type: String,
+        type: Boolean,
       },
       TIC7: {
-        type: String,
+        type: Boolean,
       },
       TIC8: {
-        type: String,
+        type: Boolean,
       },
       TIC9: {
-        type: String,
+        type: Boolean,
       },
       TIC21: {
-        type: String,
+        type: Boolean,
       },
       TIC22: {
-        type: String,
+        type: Boolean,
       },
       TIC23: {
-        type: String,
+        type: Boolean,
       },
       TIC24: {
-        type: String,
+        type: Boolean,
       },
       TIC25: {
-        type: String,
+        type: Boolean,
       },
       TIC26: {
-        type: String,
+        type: Boolean,
       },
       TIC27: {
-        type: String,
+        type: Boolean,
       },
       TIC28: {
-        type: String,
+        type: Boolean,
       },
       TIC29: {
-        type: String,
+        type: Boolean,
       },
     
      KYCC1: {
-        type: String,
+        type: Boolean,
       },
      KYCC2: {
-        type: String,
+        type: Boolean,
       },
      KYCC3: {
-        type: String,
+        type: Boolean,
       },
      KYCC4: {
-        type: String,
+        type: Boolean,
       },
      KYCC5: {
-        type: String,
+        type: Boolean,
       },
      KYCC6: {
-        type: String,
+        type: Boolean,
       },
      KYCC7: {
-        type: String,
+        type: Boolean,
       },
      KYCC8: {
-        type: String,
+        type: Boolean,
       },
      KYCC9: {
-        type: String,
+        type: Boolean,
       },
      KYCC10: {
-        type: String,
+        type: Boolean,
       },
      KYCC21: {
-        type: String,
+        type: Boolean,
       },
      KYCC22: {
-        type: String,
+        type: Boolean,
       },
      KYCC23: {
-        type: String,
+        type: Boolean,
       },
      KYCC24: {
-        type: String,
+        type: Boolean,
       },
      KYCC25: {
-        type: String,
+        type: Boolean,
       },
      KYCC26: {
-        type: String,
+        type: Boolean,
       },
      KYCC27: {
-        type: String,
+        type: Boolean,
       },
      KYCC28: {
-        type: String,
+        type: Boolean,
       },
+
      KYCC29: {
-        type: String,
+        type: Boolean,
       },
-     KYCC29: {
-        type: String,
+
+
+
+    KYBC1: {
+        type: Boolean,
       },
+    KYBC2: {
+        type: Boolean,
+      },
+    KYBC3: {
+        type: Boolean,
+      },
+    KYBC4: {
+        type: Boolean,
+      },
+    KYBC5: {
+        type: Boolean,
+      },
+    KYBC6: {
+        type: Boolean,
+      },
+    KYBC7: {
+        type: Boolean,
+      },
+    KYBC8: {
+        type: Boolean,
+      },
+    KYBC9: {
+        type: Boolean,
+      },
+    KYBC10: {
+        type: Boolean,
+      },
+    KYBC21: {
+        type: Boolean,
+      },
+    KYBC22: {
+        type: Boolean,
+      },
+    KYBC23: {
+        type: Boolean,
+      },
+    KYBC24: {
+        type: Boolean,
+      },
+    KYBC25: {
+        type: Boolean,
+      },
+    KYBC26: {
+        type: Boolean,
+      },
+    KYBC27: {
+        type: Boolean,
+      },
+    KYBC28: {
+        type: Boolean,
+      },
+    KYBC29: {
+        type: Boolean,
+      },
+
+
+
+    SDC1: {
+        type: Boolean,
+      },
+    SDC2: {
+        type: Boolean,
+      },
+    SDC3: {
+        type: Boolean,
+      },
+    SDC4: {
+        type: Boolean,
+      },
+    SDC5: {
+        type: Boolean,
+      },
+    SDC6: {
+        type: Boolean,
+      },
+    SDC7: {
+        type: Boolean,
+      },
+    SDC8: {
+        type: Boolean,
+      },
+    SDC9: {
+        type: Boolean,
+      },
+    SDC10: {
+        type: Boolean,
+      },
+    SDC21: {
+        type: Boolean,
+      },
+    SDC22: {
+        type: Boolean,
+      },
+    SDC23: {
+        type: Boolean,
+      },
+    SDC24: {
+        type: Boolean,
+      },
+    SDC25: {
+        type: Boolean,
+      },
+    SDC26: {
+        type: Boolean,
+      },
+    SDC27: {
+        type: Boolean,
+      },
+    SDC28: {
+        type: Boolean,
+      },
+    SDC29: {
+        type: Boolean,
+      },
+      ti:{
+         type:Boolean
+       },
+      kyc:{
+         type:Boolean
+       },
+      kyb:{
+         type:Boolean
+       },
+      sd:{
+         type:Boolean
+       },
+      ti_status:{
+         type:String
+       },
+      kyc_status:{
+         type:String
+       },
+      kyb_status:{
+         type:String
+       },
+      sd_status:{
+         type:String
+       },
+      md_status:{
+         type:String
+       },
+      checkby:{
+         type:String
+       },
+      senttosolby:{
+         type:String
+       },
+      sentDate:{
+         type:String
+       },
+     notes:[{
+       date:{
+         type:String
+       },
+       text:{
+         type:String
+       }
+     }]
     },
   },
   {

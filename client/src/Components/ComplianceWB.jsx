@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import $ from "jquery";
 import "../assets/css/trading-book.css";
-import TR from "./ComplianceR";
-import TR1 from "./ComplianceR1";
-import TR2 from "./ComplianceR2";
+import TR from "./WBReusable/ComplianceR";
+import SpareTR from "./WBReusable/ComplianceSpareR";
+import TR1 from "./WBReusable/ComplianceR1";
+import TRN from "./WBReusable/ComplianceRNotes";
+import TRNR from "./WBReusable/ComplianceRNotesR";
+import TR2 from "./WBReusable/ComplianceR2";
 import moment from "moment";
 import { Link, useHistory, useParams } from "react-router-dom";
 import ChecklistR from "./CheckList/checklistR";
@@ -15,6 +18,11 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 import { firebase } from "../Config";
 import { CreateSpare } from "../actions/spareAction";
+import {
+  CreateNotes,
+  GetOneNotes,
+  INITIATENotes,
+} from "../actions/notesActions";
 
 import { FaDraft2Digital } from "react-icons/fa";
 
@@ -28,12 +36,14 @@ export default function PreApproval() {
 
   console.log(data1);
   const SpareData = useSelector((state) => state.SpareReducer.state);
-  console.log(SpareData);
+  const NotesData = useSelector((state) => state.NotesReducer.state);
+  console.log(NotesData);
   const id = useSelector((state) => state.ciReducer.id);
   //States
 
   const [image, setImage] = useState("");
   const [countArr, setcountArr] = useState([]);
+
   const [url, setURL] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,7 +54,12 @@ export default function PreApproval() {
     urlid
       ? dispatch(GetOneCL(urlid)) &&
         setcountArr(data.pendingCount) &&
-        dispatch(GetOneCI())
+        dispatch(GetOneCI(urlid))
+      : console.log("creating");
+  }, [urlid]);
+  useEffect(() => {
+    urlid
+      ? dispatch(GetOneCI(urlid)) && dispatch(GetOneNotes(urlid))
       : console.log("creating");
   }, [urlid]);
   const [Spare, setSpare] = useState([
@@ -55,91 +70,239 @@ export default function PreApproval() {
       path: "",
     },
   ]);
-  const handleCheck = (e) => {
-    console.log("hahah");
-    console.log(e.target.checked);
-    setCL({
-      ...CL,
-      [e.target.name]: e.target.checked,
-    });
-  };
+  const [Notes, setNotes] = useState([
+    {
+      text: "",
+      date: "",
+    },
+  ]);
 
   const [CL, setCL] = React.useState({
-    // fcaf_status: "",
-    // fcaf_fileName: "Pending",
-    // cdf_status: "pending",
-    // cdf_fileName: "fileName",
-    // bi_status: "pending",
-    // bi_fileName: "fileName",
-    // ota_status: "pending",
-    // ota_fileName: "fileName",
-    // aps_status: "pending",
-    // aps_fileName: "fileName",
-    // hwua_status: "pending",
-    // hwua_fileName: "fileName",
-    // wc_status: "pending",
-    // wc_fileName: "fileName",
-    // wuod_status: "pending",
-    // wuod_fileName: "fileName",
-    // owsc_status: "pending",
-    // owsc_fileName: "fileName",
-    // bp_status: "pending",
-    // bp_fileName: "fileName",
-    // ldp_status: "pending",
-    // ldp_fileName: "fileName",
-    // ldpa_status: "pending",
-    // ldpa_fileName: "fileName",
-    // pad_status: "pending",
-    // pad_fileName: "fileName",
-    // sdp_tatus: "pending",
-    // sdp_fileName: "fileName",
-    // sdpa_status: "pending",
-    // sdpa_fileName: "fileName",
-    // tdp_status: "pending",
-    // tdp_fileName: "fileName",
-    // tdpa_status: "pending",
-    // tdpa_fileName: "fileName",
-    // fdp_status: "pending",
-    // fdp_fileName: "fileName",
-    // fdpa_status: "pending",
-    // fdpa_fileName: "fileName",
-    // coi_status: "pending",
-    // coi_fileName: "fileName",
-    // moa_status: "pending",
-    // moa_fileName: "fileName",
-    // aoa_status: "pending",
-    // aoa_fileName: "fileName",
-    // sr_status: "pending",
-    // sr_fileName: "fileName",
-    // scs_status: "pending",
-    // scs_fileName: "fileName",
-    // ccre_status: "pending",
-    // ccre_fileName: "fileName",
-    // cbs_status: "pending",
-    // cbs_fileName: "fileName",
-    // pbs_status: "pending",
-    // pbs_fileName: "fileName",
-    // pow_status: "pending",
-    // pow_fileName: "fileName",
-    // cap_status: "pending",
-    // cap_fileName: "fileName",
-    // gofl_status: "pending",
-    // gofl_fileName: "fileName",
-    // cora_status: "pending",
-    // cora_fileName: "fileName",
-    // fodsa_status: "pending",
-    // fodsa_fileName: "fileName",
-    // status: "pending",
-    // fcr_fileName: "fileName",
-    // shs_status: "pending",
-    // shs_fileName: "fileName",
-    // df_status: "pending",
-    // df_fileName: "fileName",
+    pendingCount: [],
+    fcaf_status: "pending",
+    fcaf_fileName: "fileName",
+    fcaf_note: " ",
+    cdf_status: "pending",
+    cdf_fileName: "fileName",
+    cdf_note: " ",
+    bi_status: "pending",
+    bi_fileName: "fileName",
+    bi_note: " ",
+    ota_status: "pending",
+    ota_fileName: "fileName",
+    ota_note: " ",
+    aps_status: "pending",
+    aps_fileName: "fileName",
+    aps_note: " ",
+    hwua_status: "pending",
+    hwua_fileName: "fileName",
+    hwua_note: " ",
+    wc_status: "pending",
+    wc_fileName: "fileName",
+    wc_note: " ",
+    wuod_status: "pending",
+    wuod_fileName: "fileName",
+    wuod_note: " ",
+    owsc_status: "pending",
+    owsc_fileName: "fileName",
+    owsc_note: " ",
+    bp_status: "pending",
+    bp_fileName: "fileName",
+    bp_note: " ",
+    ldp_status: "pending",
+    ldp_fileName: "fileName",
+    ldp_note: " ",
+    ldpa_status: "pending",
+    ldpa_fileName: "fileName",
+    ldpa_note: " ",
+    pad_status: "pending",
+    pad_fileName: "fileName",
+    pad_note: " ",
+    sdp_status: "pending",
+    sdp_fileName: "fileName",
+    sdp_note: " ",
+    sdpa_status: "pending",
+    sdpa_fileName: "fileName",
+    sdpa_note: " ",
+    tdp_status: "pending",
+    tdp_fileName: "fileName",
+    tdp_note: " ",
+    tdpa_status: "pending",
+    tdpa_fileName: "fileName",
+    tdpa_note: " ",
+    fdp_status: "pending",
+    fdp_fileName: "fileName",
+    fdp_note: " ",
+    fdpa_status: "pending",
+    fdpa_fileName: "fileName",
+    fdpa_note: " ",
+    coi_status: "pending",
+    coi_fileName: "fileName",
+    coi_note: " ",
+    moa_status: "pending",
+    moa_fileName: "fileName",
+    moa_note: " ",
+    aoa_status: "pending",
+    aoa_fileName: "fileName",
+    aoa_note: " ",
+    sr_status: "pending",
+    sr_fileName: "fileName",
+    sr_note: " ",
+    scs_status: "pending",
+    scs_fileName: "fileName",
+    scs_note: " ",
+    ccre_status: "pending",
+    ccre_fileName: "fileName",
+    ccre_note: " ",
+    cbs_status: "pending",
+    cbs_fileName: "fileName",
+    cbs_note: " ",
+    pbs_status: "pending",
+    pbs_fileName: "fileName",
+    pbs_note: " ",
+    pow_status: "pending",
+    pow_fileName: "fileName",
+    pow_note: " ",
+    cap_status: "pending",
+    cap_fileName: "fileName",
+    cap_note: " ",
+    gofl_status: "pending",
+    gofl_fileName: "fileName",
+    gofl_note: " ",
+    cora_status: "pending",
+    cora_fileName: "fileName",
+    cora_note: " ",
+    fodsa_status: "pending",
+    fodsa_fileName: "fileName",
+    fodsa_note: " ",
+    status: "pending",
+    fcr_fileName: "fileName",
+    fcr_note: " ",
+    shs_status: "pending",
+    shs_fileName: "fileName",
+    shs_note: " ",
+    df_status: "pending",
+    df_fileName: "fileName",
+    df_note: " ",
+    clg_status: "",
+    clg_fileName: "fileName",
+    TIC1: "",
+    TIC2: "",
+    TIC3: "",
+    TIC4: "",
+    TIC5: "",
+    TIC6: "",
+    TIC7: "",
+    TIC8: "",
+    TIC9: "",
+    TIC21: "",
+    TIC22: "",
+    TIC23: "",
+    TIC24: "",
+    TIC25: "",
+    TIC26: "",
+    TIC27: "",
+    TIC28: "",
+    TIC29: "",
+
+    KYCC1: "",
+    KYCC2: "",
+    KYCC3: "",
+    KYCC4: "",
+    KYCC5: "",
+    KYCC6: "",
+    KYCC7: "",
+    KYCC8: "",
+    KYCC9: "",
+    KYCC10: "",
+    KYCC21: "",
+    KYCC22: "",
+    KYCC23: "",
+    KYCC24: "",
+    KYCC25: "",
+    KYCC26: "",
+    KYCC27: "",
+    KYCC28: "",
+    KYCC29: "",
+
+    KYBC1: "",
+    KYBC2: "",
+    KYBC3: "",
+    KYBC4: "",
+    KYBC5: "",
+    KYBC6: "",
+    KYBC7: "",
+    KYBC8: "",
+    KYBC9: "",
+    KYBC10: "",
+    KYBC21: "",
+    KYBC22: "",
+    KYBC23: "",
+    KYBC24: "",
+    KYBC25: "",
+    KYBC26: "",
+    KYBC27: "",
+    KYBC28: "",
+    KYBC29: "",
+
+    SDC1: "",
+    SDC2: "",
+    SDC3: "",
+    SDC4: "",
+    SDC5: "",
+    SDC6: "",
+    SDC7: "",
+    SDC8: "",
+    SDC9: "",
+    SDC10: "",
+    SDC21: "",
+    SDC22: "",
+    SDC23: "",
+    SDC24: "",
+    SDC25: "",
+    SDC26: "",
+    SDC27: "",
+    SDC28: "",
+    SDC29: "",
+
+    ti: "",
+    kyc: "",
+    kyb: "",
+    kyb: "",
+    md: "",
+    ti_status: "pending",
+    kyc_status: "pending",
+    kyb_status: "pending",
+    kyb_status: "pending",
+    checkby: "",
+    senttosolby: "",
+    sentDate: "",
+    spare: "",
+    spare1: "",
+    spare2: "",
+    spare3: "",
+    spare4: "",
+    spare5: "",
+    spare_Text: "",
+    spare1_Text: "",
+    spare2_Text: "",
+    spare3_Text: "",
+    spare4_Text: "",
+    spare5_Text: "",
+    spare_fileName: "",
+    spare1_fileName: "",
+    spare2_fileName: "",
+    spare3_fileName: "",
+    spare4_fileName: "",
+    spare5_fileName: "",
   });
   //Spare Section -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=--
   useEffect(() => {
     setSpare(SpareData);
   }, [SpareData]);
+  useEffect(() => {
+    setNotes(NotesData);
+  }, [NotesData]);
   const handletextSpare = async (e, index) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -147,6 +310,7 @@ export default function PreApproval() {
     list[index][name] = value;
     setSpare(list);
   };
+
   const handleChangeSpare = async (e, index) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -167,10 +331,9 @@ export default function PreApproval() {
     setSpare([
       ...Spare,
       {
-        text: "",
-        note: "",
-        status: "",
-        path: "",
+        sparetext: "",
+        spare_status: "",
+        spare_fileName: "",
       },
     ]);
   };
@@ -223,10 +386,46 @@ export default function PreApproval() {
     } catch (error) {
       console.log(error);
     }
-    console.log(url);
+    console.log(NotesData);
   };
 
   //Spare section End-=-=-=-=====-=-=-=-==============-=---=-=-=-===============-
+  //HAndlers..............................................................
+  const notesTextHandler = async (e, index) => {
+    console.log("hell");
+    e.preventDefault();
+    const { name, value } = e.target;
+    console.log(name);
+    const list = [...Notes];
+    list[index][name] = value;
+    setNotes(list);
+  };
+  const handleDateChange = async (e, index) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    const list = [...Notes];
+    list[index][name] = value;
+    setNotes(list);
+  };
+
+  const handleAddNotes = (e) => {
+    e.preventDefault();
+    setNotes([
+      ...Notes,
+      {
+        text: "",
+        date: "",
+      },
+    ]);
+  };
+  const handleCheck = (e) => {
+    console.log("hahah");
+    console.log(e.target.checked);
+    setCL({
+      ...CL,
+      [e.target.name]: e.target.checked,
+    });
+  };
   useEffect(() => {
     setcountArr(data.pendingCount);
     setCL(data);
@@ -247,6 +446,7 @@ export default function PreApproval() {
       [e.target.name]: e.target.value,
     });
   };
+
   // const handleChangeSpare = (e) => {
   //   setCL({
   //     ...CL,
@@ -304,7 +504,7 @@ export default function PreApproval() {
     console.log(url);
   };
 
-  console.log(CL);
+  console.log(Notes);
   const onSubmit = async (e) => {
     e.preventDefault();
     urlid
@@ -313,9 +513,13 @@ export default function PreApproval() {
     urlid
       ? await dispatch(CreateSpare(Spare, urlid))
       : dispatch(CreateSpare(Spare, id));
+    urlid
+      ? await dispatch(CreateNotes(Notes, urlid))
+      : dispatch(CreateNotes(Notes, id));
+
     history.push("/");
-    console.log(Spare);
   };
+  console.log(CL);
 
   return (
     <div class="compliance-dashboard-card">
@@ -374,29 +578,37 @@ export default function PreApproval() {
               </td>
               <td width="19%">
                 <div class="compliance-small-fonts blueborder">
-                  4xcube Limited{" "}
+                  {data1.tpi_rcName}
                 </div>
               </td>
               <td width="10%">
-                <div class="compliance-small-fonts blueborder">CCBill </div>
+                <div class="compliance-small-fonts blueborder">
+                  {data1.tpi_aaSolution}
+                </div>
               </td>
               <td width="10%">
-                <div class="compliance-small-fonts blueborder">1/1/2020</div>
+                <div class="compliance-small-fonts blueborder">
+                  {data1.tpi_date ? data1.tpi_date : "defalut"}
+                </div>
               </td>
               <td width="10%">
                 <div class="compliance-small-fonts">Adult / Dating</div>
               </td>
               <td width="10%">
-                <div class="compliance-small-fonts text-center">NTC</div>
+                <div class="compliance-small-fonts text-center">
+                  {data1.tpi_ntc}
+                </div>
               </td>
               <td width="8%">
-                <div class="compliance-small-fonts text-center">Trading</div>
+                <div class="compliance-small-fonts text-center">
+                  {data1.tpi_vtSector}
+                </div>
               </td>
               <td width="8%">
-                <div class="compliance-small-fonts">UK</div>
+                <div class="compliance-small-fonts">{data1.tpi_ccLocation}</div>
               </td>
               <td width="8%">
-                <div class="compliance-small-fonts">No</div>
+                <div class="compliance-small-fonts">{data1.tpi_TLoAR}</div>
               </td>
               <td width="12%">&nbsp;</td>
             </tr>
@@ -411,12 +623,12 @@ export default function PreApproval() {
                   <tbody>
                     <tr>
                       <td width="12%">
-                        <a
-                          href="#"
+                      <Link
+                         to=  {`/ci/${urlid}`}
                           class="compliance-td-fonts blueborder text-center"
                         >
                           <img src="/images/card-img10.png" />
-                        </a>
+                        </Link>
                       </td>
                       <td width="76%">&nbsp;</td>
                       <td width="12%">
@@ -446,7 +658,7 @@ export default function PreApproval() {
                       </td>
                     </tr>
                     <tr>
-                      <td width="7%" rowspan="10">
+                      <td width="7%" class="border_2" rowspan="10">
                         <div class="compliance-td-fonts text-rotate-div">
                           <span class="text-rotate">
                             COMPANY DOCUMENTS / WEBSITE REVIEW
@@ -457,7 +669,7 @@ export default function PreApproval() {
 
                     <TR
                       name1={"Fully Completed Application Form"}
-                      value={CL.fcaf_status}
+                      status={CL.fcaf_status}
                       name={"fcaf_status"}
                       Change={(e) => {
                         handleChange(e);
@@ -466,7 +678,7 @@ export default function PreApproval() {
                     <TR
                       name1={"Bank Information (Welcome Letter)"}
                       name={"bi_status"}
-                      value={CL.bi_status}
+                      status={CL.bi_status}
                       Change={(e) => {
                         handleChange(e);
                       }}
@@ -474,7 +686,7 @@ export default function PreApproval() {
                     <TR
                       name1={"Office Tenancy Agreement"}
                       name={"ota_status"}
-                      value={CL.ota_status}
+                      status={CL.ota_status}
                       Change={(e) => {
                         handleChange(e);
                       }}
@@ -482,7 +694,7 @@ export default function PreApproval() {
                     <TR
                       name1={"Acquiring Processing Statements"}
                       name={"aps_status"}
-                      value={CL.aps_status}
+                      status={CL.aps_status}
                       Change={(e) => {
                         handleChange(e);
                       }}
@@ -490,7 +702,7 @@ export default function PreApproval() {
                     <TR
                       name1={"Headline Website URL Address"}
                       name={"hwua_status"}
-                      value={CL.hwua_status}
+                      status={CL.hwua_status}
                       Change={(e) => {
                         handleChange(e);
                       }}
@@ -498,7 +710,7 @@ export default function PreApproval() {
                     <TR
                       name1={"Website Compliance"}
                       name={"wc_status"}
-                      value={CL.wc_status}
+                      status={CL.wc_status}
                       Change={(e) => {
                         handleChange(e);
                       }}
@@ -506,7 +718,7 @@ export default function PreApproval() {
                     <TR
                       name1={"Website URL - Proof of Domain"}
                       name={"wuod_status"}
-                      value={CL.wuod_status}
+                      status={CL.wuod_status}
                       Change={(e) => {
                         handleChange(e);
                       }}
@@ -514,7 +726,7 @@ export default function PreApproval() {
                     <TR
                       name1={"Ownership Structure Chart"}
                       name={"owsc_status"}
-                      value={CL.owsc_status}
+                      status={CL.owsc_status}
                       Change={(e) => {
                         handleChange(e);
                       }}
@@ -522,7 +734,7 @@ export default function PreApproval() {
                     <TR
                       name1={"Business Plan"}
                       name={"bp_status"}
-                      value={CL.bp_status}
+                      status={CL.bp_status}
                       Change={(e) => {
                         handleChange(e);
                       }}
@@ -767,231 +979,27 @@ export default function PreApproval() {
                 </table>
               </td>
               <td width="35%" valign="top">
-                <table
-                  width="100%"
-                  border="1"
-                  cellpadding="0"
-                  cellspacing="0"
-                  class="mb-2 bordercllr"
-                >
-                  <tr>
-                    <td colspan="2">
-                      <div class="td-preaproval solu-notess">
-                        SOLUTION NOTES & ACTIVITY
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="33%">
-                      <div class="td-preaproval solu-dates no_bordr min_heightt">
-                        &nbsp;&nbsp; DATE &nbsp;&nbsp;
-                      </div>
-                    </td>
-                    <td width="67%">
-                      <div class="td-preaproval solu-dates no_bordr min_heightt">
-                        E-mail | Skype | WhatsApp | Telegram
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input
-                        type="date"
-                        name="note-date"
-                        value=""
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="note-box"
-                        value="Sent to IFX"
-                        class="acri-sec no_bordr"
-                      />
-                    </td>
-                  </tr>
-                </table>
+                <TRN />
+                {Notes.map((res, id) => {
+                  return (
+                    <TRNR
+                      length={res.length}
+                      name={"text"}
+                      nameD={"date"}
+                      valueD={res.date}
+                      value={res.text}
+                      dateChange={(e) => {
+                        handleDateChange(e, id);
+                      }}
+                      textChangeHandle={(e) => {
+                        notesTextHandler(e, id);
+                      }}
+                    />
+                  );
+                })}
+                <button className="btn btn-primary" onClick={handleAddNotes}>
+                  Add Note
+                </button>
               </td>
             </tr>
           </thead>
@@ -1081,7 +1089,7 @@ export default function PreApproval() {
                         <tbody>
                           <tr>
                             <td colspan="2" width="65%" valign="top">
-                              <div class="tradding-title min_heightt marign_bt3">
+                              <div class="tradding-title min_heightt58 marign_bt4">
                                 KYC
                               </div>
                             </td>
@@ -1093,7 +1101,7 @@ export default function PreApproval() {
                             </td>
                           </tr>
                           <tr>
-                            <td width="7%" rowspan="10">
+                            <td width="7%" class="border_2" rowspan="10">
                               <div class="compliance-td-fonts text-rotate-div">
                                 <span class="text-rotate">
                                   COMPANY DOCUMENTS / WEBSITE REVIEW
@@ -1410,231 +1418,30 @@ export default function PreApproval() {
                       </table>
                     </td>
                     <td width="35%" valign="top">
-                      <table
-                        width="100%"
-                        border="1"
-                        cellpadding="0"
-                        cellspacing="0"
-                        class="mb-2 bordercllr"
+                      <TRN />
+                      {Notes.map((res, id) => {
+                        return (
+                          <TRNR
+                            length={res.length}
+                            name={"text"}
+                            nameD={"date"}
+                            valueD={res.date}
+                            value={res.text}
+                            dateChange={(e) => {
+                              handleDateChange(e, id);
+                            }}
+                            textChangeHandle={(e) => {
+                              notesTextHandler(e, id);
+                            }}
+                          />
+                        );
+                      })}
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleAddNotes}
                       >
-                        <tr>
-                          <td colspan="2">
-                            <div class="td-preaproval solu-notess">
-                              SOLUTION NOTES & ACTIVITY
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td width="33%">
-                            <div class="td-preaproval solu-dates no_bordr min_heightt">
-                              &nbsp;&nbsp; DATE &nbsp;&nbsp;
-                            </div>
-                          </td>
-                          <td width="67%">
-                            <div class="td-preaproval solu-dates no_bordr min_heightt">
-                              E-mail | Skype | WhatsApp | Telegram
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                      </table>
+                        Add Note
+                      </button>
                     </td>
                   </tr>
                 </thead>
@@ -1705,7 +1512,7 @@ export default function PreApproval() {
                             </td>
                           </tr>
                           <tr>
-                            <td width="7%" rowspan="10">
+                            <td width="7%" class="border_2" rowspan="10">
                               <div class="compliance-td-fonts text-rotate-div">
                                 <span class="text-rotate">
                                   COMPANY DOCUMENTS / WEBSITE REVIEW
@@ -1765,22 +1572,6 @@ export default function PreApproval() {
                           <TR
                             name1={"Current Letter of Good Standing"}
                             value={CL.clg_status}
-                            name={"clg_status"}
-                            Change={(e) => {
-                              handleChange(e);
-                            }}
-                          />
-                          <TR
-                            name1={""}
-                            value={""}
-                            name={"clg_status"}
-                            Change={(e) => {
-                              handleChange(e);
-                            }}
-                          />
-                          <TR
-                            name1={""}
-                            value={""}
                             name={"clg_status"}
                             Change={(e) => {
                               handleChange(e);
@@ -1975,34 +1766,7 @@ export default function PreApproval() {
                               ImageHandler(e);
                             }}
                           />
-                          <TR1
-                            checkName={"KYBC7"}
-                            checkName2={"KYBC27"}
-                            fc="clg_fileName"
-                            checked={CL.KYBC7}
-                            checked2={CL.KYBC27}
-                            path={CL.clg_fileName}
-                            check1={(e) => {
-                              handleCheck(e);
-                            }}
-                            FileUpload={(e) => {
-                              ImageHandler(e);
-                            }}
-                          />
-                          <TR1
-                            checkName={"KYBC7"}
-                            checkName2={"KYBC27"}
-                            fc="clg_fileName"
-                            checked={CL.KYBC7}
-                            checked2={CL.KYBC27}
-                            path={CL.clg_fileName}
-                            check1={(e) => {
-                              handleCheck(e);
-                            }}
-                            FileUpload={(e) => {
-                              ImageHandler(e);
-                            }}
-                          />
+
                           {/* <TR1
                            checkName={"KYBC8"}
                       checkName2={"KYBC28"}
@@ -2052,231 +1816,30 @@ export default function PreApproval() {
                       </table>
                     </td>
                     <td width="35%" valign="top">
-                      <table
-                        width="100%"
-                        border="1"
-                        cellpadding="0"
-                        cellspacing="0"
-                        class="mb-2 bordercllr"
+                      <TRN />
+                      {Notes.map((res, id) => {
+                        return (
+                          <TRNR
+                            length={res.length}
+                            name={"text"}
+                            nameD={"date"}
+                            valueD={res.date}
+                            value={res.text}
+                            dateChange={(e) => {
+                              handleDateChange(e, id);
+                            }}
+                            textChangeHandle={(e) => {
+                              notesTextHandler(e, id);
+                            }}
+                          />
+                        );
+                      })}
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleAddNotes}
                       >
-                        <tr>
-                          <td colspan="2">
-                            <div class="td-preaproval solu-notess">
-                              SOLUTION NOTES & ACTIVITY
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td width="33%">
-                            <div class="td-preaproval solu-dates no_bordr min_heightt">
-                              &nbsp;&nbsp; DATE &nbsp;&nbsp;
-                            </div>
-                          </td>
-                          <td width="67%">
-                            <div class="td-preaproval solu-dates no_bordr min_heightt">
-                              E-mail | Skype | WhatsApp | Telegram
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                      </table>
+                        Add Note
+                      </button>
                     </td>
                   </tr>
                 </thead>
@@ -2336,7 +1899,7 @@ export default function PreApproval() {
                           <tr>
                             <td colspan="2" width="65%" valign="top">
                               <div class="tradding-title min_heightt marign_bt3">
-                                TRADING INFORMATION
+                                Supporting Documents
                               </div>
                             </td>
                             <td width="35%">
@@ -2347,77 +1910,70 @@ export default function PreApproval() {
                             </td>
                           </tr>
                           <tr>
-                            <td width="7%" rowspan="10">
+                            <td width="7%" class="border_2" rowspan="10">
                               <div class="compliance-td-fonts text-rotate-div">
                                 <span class="text-rotate">
                                   COMPANY DOCUMENTS / WEBSITE REVIEW
                                 </span>
                               </div>
                             </td>
-                            <td width="58%">
-                              <div class="compliance-td-fonts min_heightt marign_bt3">
-                                Fulfilment or Drop Shipping Agreement
-                              </div>
-                            </td>
-                            <td width="35%">
-                              <select
-                                value={""}
-                                class="compliance-td-fonts yellobg text-center min_heightt marign_bt3 width_100"
-                              >
-                                <option>Complete</option>
-                                <option>Pending</option>
-                              </select>
-                            </td>
                           </tr>
 
                           <TR
-                            id={"check9"}
-                            id1={"check10"}
-                            id3={"check11"}
+                            name={"cora_status"}
                             name1={"Copywrite or Re-seller Agreement"}
-                            status={"COMPLETE"}
+                            value={CL.cora_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
                           <TR
-                            id={"check12"}
-                            id1={"check13"}
-                            id3={"check14"}
+                            name={"cbs_status"}
                             name1={"Corporate Bank Statements"}
-                            status={"COMPLETE"}
+                            value={CL.cbs_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
                           <TR
-                            id={"check15"}
-                            id1={"check16"}
-                            id3={"check17"}
+                            name={"pbs_status"}
                             name1={"Personal Bank Statements"}
-                            status={"COMPLETE"}
+                            value={CL.pbs_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
                           <TR
-                            id={"check18"}
-                            id1={"check19"}
-                            id3={"check20"}
+                            name={"pow_status"}
                             name1={"Proof of Wealth"}
-                            status={"COMPLETE"}
+                            value={CL.pow_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
                           <TR
-                            id={"check21"}
-                            id1={"check22"}
-                            id3={"check23"}
+                            name={"cap_status"}
                             name1={"Company AML Policy"}
-                            status={"COMPLETE"}
+                            value={CL.cap_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
                           <TR
-                            id={"check24"}
-                            id1={"check25"}
-                            id3={"check26"}
+                            name={"gofl_status"}
                             name1={"Gambling or Forex License"}
-                            status={"COMPLETE"}
+                            value={CL.gofl_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
                           <TR
-                            id={"check27"}
-                            id1={"check28"}
-                            id3={"check29"}
+                            name={"fcR_status"}
                             name1={"FBO (Food) Company Registration"}
-                            status={"COMPLETE"}
+                            value={CL.fcR_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
                         </tbody>
                       </table>
@@ -2510,281 +2066,132 @@ export default function PreApproval() {
                             </td>
                             <td width="5%">&nbsp;</td>
                           </tr>
-                          <TR1 id2={"check9"} id1={"check10"} id3={"check11"} />
                           <TR1
-                            id2={"check12"}
-                            id1={"check13"}
-                            id3={"check14"}
+                            checkName={"SDC1"}
+                            checkName2={"SDC21"}
+                            fc="cora_fileName"
+                            checked={CL.SDC1}
+                            checked2={CL.SDC21}
+                            path={CL.cora_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
                           />
                           <TR1
-                            id2={"check15"}
-                            id1={"check16"}
-                            id3={"check17"}
+                            checkName={"SDC2"}
+                            checkName2={"SDC22"}
+                            fc="cbs_fileName"
+                            checked={CL.SDC2}
+                            checked2={CL.SDC22}
+                            path={CL.cbs_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
                           />
                           <TR1
-                            id2={"check18"}
-                            id1={"check19"}
-                            id3={"check20"}
+                            checkName={"SDC3"}
+                            checkName2={"SDC23"}
+                            fc="pbs_fileName"
+                            checked={CL.SDC3}
+                            checked2={CL.SDC23}
+                            path={CL.pbs_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
                           />
                           <TR1
-                            id2={"check21"}
-                            id1={"check22"}
-                            id3={"check23"}
+                            checkName={"SDC4"}
+                            checkName2={"SDC24"}
+                            fc="pow_fileName"
+                            checked={CL.SDC4}
+                            checked2={CL.SDC24}
+                            path={CL.pow_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
                           />
                           <TR1
-                            id2={"check24"}
-                            id1={"check25"}
-                            id3={"check26"}
+                            checkName={"SDC5"}
+                            checkName2={"SDC25"}
+                            fc="cap_fileName"
+                            checked={CL.SDC5}
+                            checked2={CL.SDC25}
+                            path={CL.cap_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
                           />
                           <TR1
-                            id2={"check29"}
-                            id1={"check28"}
-                            id3={"check27"}
+                            checkName={"SDC6"}
+                            checkName2={"SDC26"}
+                            fc="gofl_fileName"
+                            checked={CL.SDC6}
+                            checked2={CL.SDC26}
+                            path={CL.gofl_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
                           />
                           <TR1
-                            id2={"check30"}
-                            id1={"check31"}
-                            id3={"check32"}
-                          />
-                          <TR1
-                            id2={"check35"}
-                            id1={"check34"}
-                            id3={"check33"}
-                          />
-                          <TR1
-                            id2={"check38"}
-                            id1={"check37"}
-                            id3={"check36"}
+                            checkName={"SDC7"}
+                            checkName2={"SDC27"}
+                            fc="fcr_fileName"
+                            checked={CL.SDC7}
+                            checked2={CL.SDC27}
+                            path={CL.fcr_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
                           />
                         </tbody>
                       </table>
                     </td>
                     <td width="35%" valign="top">
-                      <table
-                        width="100%"
-                        border="1"
-                        cellpadding="0"
-                        cellspacing="0"
-                        class="mb-2 bordercllr"
+                      <TRN />
+                      {Notes.map((res, id) => {
+                        return (
+                          <TRNR
+                            length={res.length}
+                            name={"text"}
+                            nameD={"date"}
+                            valueD={res.date}
+                            value={res.text}
+                            dateChange={(e) => {
+                              handleDateChange(e, id);
+                            }}
+                            textChangeHandle={(e) => {
+                              notesTextHandler(e, id);
+                            }}
+                          />
+                        );
+                      })}
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleAddNotes}
                       >
-                        <tr>
-                          <td colspan="2">
-                            <div class="td-preaproval solu-notess">
-                              SOLUTION NOTES & ACTIVITY
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td width="33%">
-                            <div class="td-preaproval solu-dates no_bordr min_heightt">
-                              &nbsp;&nbsp; DATE &nbsp;&nbsp;
-                            </div>
-                          </td>
-                          <td width="67%">
-                            <div class="td-preaproval solu-dates no_bordr min_heightt">
-                              E-mail | Skype | WhatsApp | Telegram
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                      </table>
+                        Add Note
+                      </button>
                     </td>
                   </tr>
                 </thead>
@@ -2855,26 +2262,12 @@ export default function PreApproval() {
                             </td>
                           </tr>
                           <tr>
-                            <td width="7%" rowspan="10">
+                            <td width="7%" class="border_2" rowspan="10">
                               <div class="compliance-td-fonts text-rotate-div">
                                 <span class="text-rotate">
                                   COMPANY DOCUMENTS / WEBSITE REVIEW
                                 </span>
                               </div>
-                            </td>
-                            <td width="58%">
-                              <div class="compliance-td-fonts min_heightt marign_bt3">
-                                Sales Handoff Sheet (CCBill Only)
-                              </div>
-                            </td>
-                            <td width="35%">
-                              <select
-                                value={""}
-                                class="compliance-td-fonts yellobg text-center min_heightt marign_bt3 width_100"
-                              >
-                                <option>Complete</option>
-                                <option>Pending</option>
-                              </select>
                             </td>
                           </tr>
 
@@ -2883,64 +2276,66 @@ export default function PreApproval() {
                             id1={"check10"}
                             id3={"check11"}
                             name1={"Confirmation & Declaration Form (GGS Only)"}
-                            status={"COMPLETE"}
-                          />
-                          <TR
-                            id={"check12"}
-                            id1={"check13"}
-                            id3={"check14"}
-                            name1={"spare"}
-                            status={"COMPLETE"}
-                          />
-                          <TR
-                            id={"check15"}
-                            id1={"check16"}
-                            id3={"check17"}
-                            name1={"spare"}
-                            status={"COMPLETE"}
-                          />
-                          <TR
-                            id={"check18"}
-                            id1={"check19"}
-                            id3={"check20"}
-                            name1={"spare"}
-                            status={"COMPLETE"}
-                          />
-                          <TR
-                            id={"check21"}
-                            id1={"check22"}
-                            id3={"check23"}
-                            name1={"spare"}
-                            status={"COMPLETE"}
-                          />
-                          <TR
-                            id={"check24"}
-                            id1={"check25"}
-                            id3={"check26"}
-                            name1={"spare"}
-                            status={"COMPLETE"}
-                          />
-                          <TR
-                            id={"check27"}
-                            id1={"check28"}
-                            id3={"check29"}
-                            name1={"spare"}
-                            status={"COMPLETE"}
-                          />
-                          <TR
-                            id={"check30"}
-                            id1={"check31"}
-                            id3={"check32"}
-                            name1={"spare"}
-                            status={"COMPLETE"}
                           />
                           <TR
                             id={"check9"}
-                            id1={"check"}
-                            id3={"check35"}
-                            name1={"spare  "}
-                            status={"COMPLETE"}
+                            id1={"check10"}
+                            id3={"check11"}
+                            name1={" Sales Handoff Sheet (CCBill Only)"}
                           />
+                          {/* {
+              Spare.map((res, id) => {
+                return (
+                  <SpareTR
+                            name={"sparetext"}
+                            status={"spare_status"}
+
+
+                            name1={res.sparetext}
+                           value={res.spare_status}
+                           onChangetext={(e) => {
+                                handletextSpare(e, id);
+                              }}
+                             Change={(e) => {
+                               handleChangeSpare(e, id);
+                             }}
+                             notesHandle={(e) => {
+                               handleNotesSpare(e, id);
+                             }}
+                             FileUpload={(e) => {
+                               ImageHandlerSpare(e, id);
+                             }}
+                             add={(e) => { handleAddClick(e); }}
+                             delete={(e) => { handleRemoveClick(e, id); }}
+                          />
+                  // <SpChecklistR
+                  //   placeholder={"spare"}
+                  //   name={"status"}
+                  //   nameT="text"
+                  //   fc="path"
+                  //   note="note"
+                  //   notesVal={res.note}
+                  //   value={res.status}
+                  //   valueT={res.text}
+                  //   path={res.path}
+                  //   onChangetext={(e) => {
+                  //     handletextSpare(e, id);
+                  //   }}
+                  //   Change={(e) => {
+                  //     handleChangeSpare(e, id);
+                  //   }}
+                  //   notesHandle={(e) => {
+                  //     handleNotesSpare(e, id);
+                  //   }}
+                  //   FileUpload={(e) => {
+                  //     ImageHandlerSpare(e, id);
+                  //   }}
+                  //   add={(e) => { handleAddClick(e); }}
+                  //   delete={(e) => { handleRemoveClick(e, id); }}
+                  // />
+                )
+              })
+            } */}
                         </tbody>
                       </table>
                     </td>
@@ -3032,281 +2427,34 @@ export default function PreApproval() {
                             </td>
                             <td width="5%">&nbsp;</td>
                           </tr>
-                          <TR1 id2={"check9"} id1={"check10"} id3={"check11"} />
-                          <TR1
-                            id2={"check12"}
-                            id1={"check13"}
-                            id3={"check14"}
-                          />
-                          <TR1
-                            id2={"check15"}
-                            id1={"check16"}
-                            id3={"check17"}
-                          />
-                          <TR1
-                            id2={"check18"}
-                            id1={"check19"}
-                            id3={"check20"}
-                          />
-                          <TR1
-                            id2={"check21"}
-                            id1={"check22"}
-                            id3={"check23"}
-                          />
-                          <TR1
-                            id2={"check24"}
-                            id1={"check25"}
-                            id3={"check26"}
-                          />
-                          <TR1
-                            id2={"check29"}
-                            id1={"check28"}
-                            id3={"check27"}
-                          />
-                          <TR1
-                            id2={"check30"}
-                            id1={"check31"}
-                            id3={"check32"}
-                          />
-                          <TR1
-                            id2={"check35"}
-                            id1={"check34"}
-                            id3={"check33"}
-                          />
-                          <TR1
-                            id2={"check38"}
-                            id1={"check37"}
-                            id3={"check36"}
-                          />
                         </tbody>
                       </table>
                     </td>
                     <td width="35%" valign="top">
-                      <table
-                        width="100%"
-                        border="1"
-                        cellpadding="0"
-                        cellspacing="0"
-                        class="mb-2 bordercllr"
+                      <TRN />
+                      {Notes.map((res, id) => {
+                        return (
+                          <TRNR
+                            length={res.length}
+                            name={"text"}
+                            nameD={"date"}
+                            valueD={res.date}
+                            value={res.text}
+                            dateChange={(e) => {
+                              handleDateChange(e, id);
+                            }}
+                            textChangeHandle={(e) => {
+                              notesTextHandler(e, id);
+                            }}
+                          />
+                        );
+                      })}
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleAddNotes}
                       >
-                        <tr>
-                          <td colspan="2">
-                            <div class="td-preaproval solu-notess">
-                              SOLUTION NOTES & ACTIVITY
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td width="33%">
-                            <div class="td-preaproval solu-dates no_bordr min_heightt">
-                              &nbsp;&nbsp; DATE &nbsp;&nbsp;
-                            </div>
-                          </td>
-                          <td width="67%">
-                            <div class="td-preaproval solu-dates no_bordr min_heightt">
-                              E-mail | Skype | WhatsApp | Telegram
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                      </table>
+                        Add Note
+                      </button>
                     </td>
                   </tr>
                 </thead>
@@ -3377,63 +2525,55 @@ export default function PreApproval() {
                             </td>
                           </tr>
                           <tr>
-                            <td width="7%" rowspan="10">
+                            <td width="7%" class="border_2" rowspan="10">
                               <div class="compliance-td-fonts text-rotate-div">
                                 <span class="text-rotate">
                                   COMPANY DOCUMENTS / WEBSITE REVIEW
                                 </span>
                               </div>
                             </td>
-                            <td width="58%">
-                              <div class="compliance-td-fonts min_heightt marign_bt3">
-                                TRADING INFORMATION
-                              </div>
-                            </td>
-                            <td width="35%">
-                              <select
-                                value={""}
-                                class="compliance-td-fonts yellobg text-center min_heightt marign_bt3 width_100"
-                              >
-                                <option>Complete</option>
-                                <option>Pending</option>
-                              </select>
-                            </td>
+                            <td width="58%"></td>
                           </tr>
 
                           <TR
-                            id={"check9"}
-                            id1={"check10"}
-                            id3={"check11"}
+                            name={"ti_status"}
+                            name1={"Trading information"}
+                            status={CL.ti_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
+                          />
+                          <TR
+                            name={"kyc_status"}
                             name1={"KNOW YOUR CUSTOMER (KYC)"}
-                            status={"COMPLETE"}
+                            status={CL.kyc_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
                           <TR
-                            id={"check12"}
-                            id1={"check13"}
-                            id3={"check14"}
+                            name={"kyb_status"}
                             name1={"KNOW YOUR BUSINESS (KYB)"}
-                            status={"COMPLETE"}
+                            status={CL.kyb_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
                           <TR
-                            id={"check15"}
-                            id1={"check16"}
-                            id3={"check17"}
+                            name={"sd_status"}
                             name1={"SUPPORTING DOCUMENTS"}
-                            status={"COMPLETE"}
+                            status={CL.sd_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
                           <TR
-                            id={"check18"}
-                            id1={"check19"}
-                            id3={"check20"}
+                            name={"md_status"}
                             name1={"MISCELLANEOUS DOCUMENTS"}
-                            status={"COMPLETE"}
-                          />
-                          <TR
-                            id={"check21"}
-                            id1={"check22"}
-                            id3={"check23"}
-                            name1={"CHECKED BY:"}
-                            status={"COMPLETE"}
+                            status={CL.md_status}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
                           />
 
                           <tr>
@@ -3529,11 +2669,11 @@ export default function PreApproval() {
                             <td width="5%">&nbsp;</td>
                             <td width="5%">&nbsp;</td>
                           </tr>
-                          <TR2 id={"check9"} id1={"check10"} id3={"check11"} />
-                          <TR2 id={"check12"} id1={"check13"} id3={"check14"} />
-                          <TR2 id={"check15"} id1={"check16"} id3={"check17"} />
-                          <TR2 id={"check18"} id1={"check19"} id3={"check20"} />
-                          <TR2 id={"check21"} id1={"check22"} id3={"check23"} />
+                          <TR2  />
+                          <TR2 />
+                          <TR2 />
+                          <TR2 />
+                          <TR2 />
                           <TR2 />
                           <TR2 />
                         </tbody>
@@ -3547,231 +2687,30 @@ export default function PreApproval() {
                       </button>
                     </td>
                     <td width="35%" valign="top">
-                      <table
-                        width="100%"
-                        border="1"
-                        cellpadding="0"
-                        cellspacing="0"
-                        class="mb-2 bordercllr"
+                      <TRN />
+                      {Notes.map((res, id) => {
+                        return (
+                          <TRNR
+                            length={res.length}
+                            name={"text"}
+                            nameD={"date"}
+                            valueD={res.date}
+                            value={res.text}
+                            dateChange={(e) => {
+                              handleDateChange(e, id);
+                            }}
+                            textChangeHandle={(e) => {
+                              notesTextHandler(e, id);
+                            }}
+                          />
+                        );
+                      })}
+                      <button
+                        className="btn btn-primary"
+                        onClick={handleAddNotes}
                       >
-                        <tr>
-                          <td colspan="2">
-                            <div class="td-preaproval solu-notess">
-                              SOLUTION NOTES & ACTIVITY
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td width="33%">
-                            <div class="td-preaproval solu-dates no_bordr min_heightt">
-                              &nbsp;&nbsp; DATE &nbsp;&nbsp;
-                            </div>
-                          </td>
-                          <td width="67%">
-                            <div class="td-preaproval solu-dates no_bordr min_heightt">
-                              E-mail | Skype | WhatsApp | Telegram
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <input
-                              type="date"
-                              name="note-date"
-                              value=""
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="text"
-                              name="note-box"
-                              value="Sent to IFX"
-                              class="acri-sec no_bordr"
-                            />
-                          </td>
-                        </tr>
-                      </table>
+                        Add Note
+                      </button>
                     </td>
                   </tr>
                 </thead>

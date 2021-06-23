@@ -1,0 +1,38 @@
+import React from 'react';
+import {GiCheckMark} from 'react-icons/gi'
+
+import '../../assets/css/trading-book.css'
+
+
+
+const ComplianceR = (props) => {
+  const handleClickRead = (e) => {
+    // console.log(props.path.slice("./"));
+    console.log(props.notesVal);
+    if (props.path != "fileName") window.open(props.path);
+    else alert("No file");
+    console.log(props.path);
+  }
+  return (
+
+
+    <tr>
+      <td width="58%"><input onChange={props.spareChange} name={props.name} onChange={props.onChangetext}  width="100%" type= "text" class="compliance-td-fonts min_heightt marign_bt3 padInput"/></td>
+      <td width="35%">
+        <select  value={props.status}
+            // id="1"
+            name={props.status}
+            onChange={props.Change} class="compliance-td-fonts yellobg text-center min_heightt marign_bt3 width_100">
+          <option>complete</option>
+          <option>pending</option>
+        </select>
+      </td>
+      <button onClick={props.add}>ADD</button>
+      <button onClick={props.delete }>Delete</button>
+   
+    </tr>
+
+  );
+}
+
+export default ComplianceR;

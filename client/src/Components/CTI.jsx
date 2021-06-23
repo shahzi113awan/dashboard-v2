@@ -69,22 +69,7 @@ const CTI = () => {
   useEffect(() => {
     setCTI(data);
   }, [data]);
-  useEffect(() => {
-    var value = document.getElementsByClassName("NotR");
-    console.log(value.onChange);
-
-    for (var i = 0, len = value.length; i < len; i++) {
-      console.log(value[i]);
-
-      setCTI({
-        ...CTI,
-        [value[i].name]: "Not Required",
-      }, handler(CTI));
-
-    }
-
-
-  });
+  
   const handler = async (name) => {
     console.log(name);
 
