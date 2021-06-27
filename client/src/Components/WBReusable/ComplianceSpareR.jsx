@@ -27,8 +27,7 @@ const ComplianceR = (props) => {
           <option>pending</option>
         </select>
       </td>
-      <button onClick={props.add}>ADD</button>
-      <button onClick={props.delete }>Delete</button>
+       
    
     </tr>
 

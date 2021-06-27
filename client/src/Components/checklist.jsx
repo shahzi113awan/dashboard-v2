@@ -351,17 +351,10 @@ export const CheckList = () => {
           <h2>
             <span onClick={e=>{setView(true)}} class="badge badge-success colspan">COMPANY INFORMATION </span>
           </h2>
+          
         </div>
-        <Modal isOpen={view} toggle={toggler} >
-        <ModalHeader toggle={toggler}>Note</ModalHeader>
-        <ModalBody style={{width:"100%"}} >
-      
-            
-<CI ide={urlid}/>
-       
-         
-        </ModalBody>
-      </Modal>
+ 
+ 
         <Form>
           <Row form>
             <React.Fragment style={{ backgroundColor: 'pink' }}>

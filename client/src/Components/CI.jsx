@@ -1,18 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Button, Form, FormGroup, Label, Input, NavItem, NavLink, Nav, } from "reactstrap";
+import {
+  Col,
+  Row,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  NavItem,
+  NavLink,
+  Nav,
+} from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CreateCI, Update, Get, GetOneCI, UpdateOne } from "../actions/ciAction";
-import { INITIATECTI, } from "../actions/ctiAction";
+import {
+  CreateCI,
+  Update,
+  Get,
+  GetOneCI,
+  UpdateOne,
+} from "../actions/ciAction";
+import { INITIATECTI } from "../actions/ctiAction";
 
-import SideNav from './Sidebar/Sidebar'
+import SideNav from "./Sidebar/Sidebar";
 
 export default function CI({ ide }) {
-
-  const [copy, setCopy] = useState(false)
+  const [copy, setCopy] = useState(false);
   const dispatch = useDispatch();
   const { urlid } = useParams();
-  console.log(ide)
+  console.log(ide);
   useEffect(() => {
     urlid ? dispatch(GetOneCI(urlid)) : console.log("creating");
   }, [urlid]);
@@ -86,9 +102,9 @@ export default function CI({ ide }) {
 
   function handleInput(evt) {
     if (copy === true) {
-      evt.target.value = ""
+      evt.target.value = "";
     }
-    setCopy(false)
+    setCopy(false);
     setCI({
       ...CI,
       [evt.target.name]: evt.target.value,
@@ -108,25 +124,33 @@ export default function CI({ ide }) {
 
   const onUpdateSubmit = (e) => {
     e.preventDefault();
-    dispatch(UpdateOne(CI, urlid));
-    history.push("/CTI/" + urlid);
+    urlid && !ide
+      ? dispatch(UpdateOne(CI, urlid))
+      : dispatch(UpdateOne(CI, ide));
+    urlid && !ide
+      ? history.push("/CTI/" + urlid)
+      : history.push("/complianceworkbook/" + ide);
   };
   // return isLoading && urlid ? (
   //   <h1>Loading</h1>
   // ) :
   const paste = (e) => {
-    setCopy(true)
-    console.log(e.target.value)
-    alert("please  don'paste in this field")
-
-  }
+    setCopy(true);
+    console.log(e.target.value);
+    alert("please  don'paste in this field");
+  };
   return (
-    <div style={{ position: "relative" }}    >
-
+    <div style={{ position: "relative" }}>
       <div className={urlid ? "container-fluid" : "container"}>
-
         <div className="row">
-          {urlid ? (<div className="col-md-2"> < SideNav id={urlid} /> </div>) : (<div   ></div>)}
+          {urlid ? (
+            <div className="col-md-2">
+              {" "}
+              <SideNav id={urlid} />{" "}
+            </div>
+          ) : (
+            <div></div>
+          )}
           <div className={urlid ? "col-md-8" : "col-md-12"}>
             <Label>MOVE TO</Label>
             <select
@@ -143,15 +167,13 @@ export default function CI({ ide }) {
               <option>Archive</option>
             </select>
 
-
-
-
             <div>
               <h2>
-                <span class="badge badge-success colspan">COMPANY INFORMATION </span>
+                <span class="badge badge-success colspan">
+                  COMPANY INFORMATION{" "}
+                </span>
               </h2>
             </div>
-
 
             {/* Processing form */}
 
@@ -217,7 +239,9 @@ export default function CI({ ide }) {
                 </Col>
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="shareRegister">Vertical / Trading Sector: :</Label>
+                    <Label for="shareRegister">
+                      Vertical / Trading Sector: :
+                    </Label>
                     <Input
                       className="cusrom"
                       onChange={handleInput}
@@ -232,7 +256,9 @@ export default function CI({ ide }) {
                 </Col>
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="shareCertificate">Application Boarded Date:</Label>
+                    <Label for="shareCertificate">
+                      Application Boarded Date:
+                    </Label>
                     <Input
                       className="cusrom"
                       value={CI.tpi_date}
@@ -240,7 +266,7 @@ export default function CI({ ide }) {
                       type="date"
                       name="tpi_date"
                       id="date"
-                    // placeholder="Company URL"
+                      // placeholder="Company URL"
                     ></Input>
                   </FormGroup>
                 </Col>
@@ -322,7 +348,9 @@ export default function CI({ ide }) {
                 </Col>
                 <Col md={6}>
                   <FormGroup>
-                    <Label for="CCR">Trading License or Agreements Required:</Label>
+                    <Label for="CCR">
+                      Trading License or Agreements Required:
+                    </Label>
                     <select
                       className="custom-select"
                       value={CI.tpi_TLoAR}
@@ -352,21 +380,32 @@ export default function CI({ ide }) {
               <div class="card">
                 <div class="card-header" id="headingOne">
                   <h2 class="mb-0">
-                    <button class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button
+                      class="btn btn text-primary  text-left collapsed"
+                      data-toggle="collapse"
+                      type="button"
+                      data-target="#collapseOne"
+                      aria-expanded="false"
+                      aria-controls="collapseOne"
+                    >
                       TRADING COMPANY INFORMATION
                     </button>
                   </h2>
                 </div>
                 {/* Trading company info */}
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-
-                  <div  >
+                <div
+                  id="collapseOne"
+                  class="collapse"
+                  aria-labelledby="headingOne"
+                  data-parent="#accordionExample"
+                >
+                  <div>
                     <hr className="border-primary" />
                     <div className="border p-3 shadow">
                       <div>
                         <h2>
                           <span class="badge badge-success colspan">
-                            Application/ Company Trading  Information:
+                            Application/ Company Trading Information:
                           </span>
                         </h2>
                       </div>
@@ -374,7 +413,9 @@ export default function CI({ ide }) {
                       <Row form>
                         <Col md={6}>
                           <FormGroup>
-                            <Label for="address">Company Registered Address:</Label>
+                            <Label for="address">
+                              Company Registered Address:
+                            </Label>
                             <Input
                               className="cusrom"
                               value={CI.tci_crAddress}
@@ -389,7 +430,9 @@ export default function CI({ ide }) {
                         </Col>
                         <Col md={6}>
                           <FormGroup>
-                            <Label for="address">Company Registered Number: </Label>
+                            <Label for="address">
+                              Company Registered Number:{" "}
+                            </Label>
                             <Input
                               className="cusrom"
                               value={CI.tci_crNumber}
@@ -437,7 +480,6 @@ export default function CI({ ide }) {
                       </Row>
                     </div>
                   </div>
-
                 </div>
               </div>
               {/* end company info */}
@@ -446,13 +488,24 @@ export default function CI({ ide }) {
               <div class="card">
                 <div class="card-header" id="headingTwo">
                   <h2 class="mb-0">
-                    <button class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <button
+                      class="btn btn text-primary  text-left collapsed"
+                      data-toggle="collapse"
+                      type="button"
+                      data-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
                       TRADING COMPANY CONTACT INFORMATION
                     </button>
                   </h2>
                 </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-
+                <div
+                  id="collapseTwo"
+                  class="collapse"
+                  aria-labelledby="headingTwo"
+                  data-parent="#accordionExample"
+                >
                   <div>
                     <hr className="border-primary" />
 
@@ -561,7 +614,9 @@ export default function CI({ ide }) {
                           <Label for="address"> Retype Email: </Label>
                           <Input
                             className="cusrom"
-                            onPaste={e => { paste(e) }}
+                            onPaste={(e) => {
+                              paste(e);
+                            }}
                             value={CI.cci_2_otpMNumber1}
                             name="cci_2_otpMNumber1"
                             onChange={handleInput}
@@ -574,9 +629,7 @@ export default function CI({ ide }) {
                       </Col>
                     </Row>
                   </div>
-
                 </div>
-
               </div>
               {/* end companty contact information */}
 
@@ -584,13 +637,24 @@ export default function CI({ ide }) {
               <div class="card">
                 <div class="card-header" id="headingThree">
                   <h2 class="mb-0">
-                    <button class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <button
+                      class="btn btn text-primary  text-left collapsed"
+                      data-toggle="collapse"
+                      type="button"
+                      data-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
                       MANAGEMENT COMPANY INFORMATION
                     </button>
                   </h2>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-
+                <div
+                  id="collapseThree"
+                  class="collapse"
+                  aria-labelledby="headingThree"
+                  data-parent="#accordionExample"
+                >
                   <div>
                     <hr className="border-primary" />
                     <div className="border p-3 shadow">
@@ -605,7 +669,9 @@ export default function CI({ ide }) {
                       <Row form>
                         <Col md={6}>
                           <FormGroup>
-                            <Label for="mci_crAddress">Management Company Address:</Label>
+                            <Label for="mci_crAddress">
+                              Management Company Address:
+                            </Label>
                             <Input
                               className="cusrom"
                               value={CI.mci_mcrAddress}
@@ -620,7 +686,9 @@ export default function CI({ ide }) {
                         </Col>
                         <Col md={6}>
                           <FormGroup>
-                            <Label for="mci_crAddress">Company Registered Address:</Label>
+                            <Label for="mci_crAddress">
+                              Company Registered Address:
+                            </Label>
                             <Input
                               className="cusrom"
                               value={CI.mci_crAddress}
@@ -635,7 +703,9 @@ export default function CI({ ide }) {
                         </Col>
                         <Col md={6}>
                           <FormGroup>
-                            <Label for="address">Company Registered Number: </Label>
+                            <Label for="address">
+                              Company Registered Number:{" "}
+                            </Label>
                             <Input
                               className="cusrom"
                               value={CI.mci_crNumber}
@@ -667,7 +737,9 @@ export default function CI({ ide }) {
                         </Col>
                         <Col md={6}>
                           <FormGroup>
-                            <Label for="address">Vertical / Trading Sector: </Label>
+                            <Label for="address">
+                              Vertical / Trading Sector:{" "}
+                            </Label>
                             <Input
                               className="cusrom"
                               value={CI.mci_vtSector}
@@ -683,22 +755,31 @@ export default function CI({ ide }) {
                       </Row>
                     </div>
                   </div>
-
                 </div>
               </div>
               {/* MANAGEMENT COMPANY INFORMATION eNd */}
               <div class="card">
                 <div class="card-header" id="headingFour">
                   <h2 class="mb-0">
-                    <button class="btn btn text-primary btn-block text-left collapsed" data-toggle="collapse" type="button" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <button
+                      class="btn btn text-primary  text-left collapsed"
+                      data-toggle="collapse"
+                      type="button"
+                      data-target="#collapseFour"
+                      aria-expanded="false"
+                      aria-controls="collapseFour"
+                    >
                       MANAGEMENT COMPANY CONTACT INFORMATION
                     </button>
                   </h2>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-
+                <div
+                  id="collapseFour"
+                  class="collapse"
+                  aria-labelledby="headingFour"
+                  data-parent="#accordionExample"
+                >
                   <div>
-
                     <div>
                       <h2>
                         <span class="badge badge-success colspan">
@@ -786,7 +867,9 @@ export default function CI({ ide }) {
                       </Col>
                       <Col md={6}>
                         <FormGroup>
-                          <Label for="address">OTP Mobile Number (IBAN Only): </Label>
+                          <Label for="address">
+                            OTP Mobile Number (IBAN Only):{" "}
+                          </Label>
                           <Input
                             className="cusrom"
                             value={CI.cci_otpMNumber}
@@ -801,28 +884,21 @@ export default function CI({ ide }) {
                       </Col>
                     </Row>
                   </div>
-
                 </div>
               </div>
             </div>
 
-
-
-
-
-
-
             {/* ================================================ */}
 
             {urlid ? (
-              <div style={{ margin: '2%' }}>
-                <Button onClick={onUpdateSubmit}>Update and Next</Button>
+              <div style={{ margin: "2%" }}>
+                <Button onClick={onUpdateSubmit}>Update</Button>
               </div>
             ) : (
-              <div style={{ margin: '2%' }}>
-                <Button onClick={onSubmit}>Save and Next</Button></div>
+              <div style={{ margin: "2%" }}>
+                <Button onClick={onSubmit}>Save and Next</Button>
+              </div>
             )}
-
           </div>
         </div>
       </div>

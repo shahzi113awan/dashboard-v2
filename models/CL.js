@@ -574,6 +574,12 @@ let CLSchema = new Schema(
       sd:{
          type:Boolean
        },
+      md:{
+         type:Boolean
+       },
+       cb: {type:Boolean},
+       sent: {type:Boolean},
+       sentdate: {type:Boolean},
       ti_status:{
          type:String
        },

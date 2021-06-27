@@ -1,18 +1,27 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Col, Row, Form, FormGroup, Label, Input, Button, CarouselIndicators } from "reactstrap";
+import {
+  Col,
+  Row,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+  CarouselIndicators,
+} from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
 import moment from "moment";
-import Rdays from './ReusableComp/RemainingDays'
+import Rdays from "./ReusableComp/RemainingDays";
 import countryList from "react-select-country-list";
 import Select from "react-select";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { CreateKYC, GetOneKYC, INITIATEKYC } from "../actions/kycAction";
 import { INITIATEKYB } from "../actions/kybAction";
-import SideNav from './Sidebar/Sidebar'
+import SideNav from "./Sidebar/Sidebar";
 
 import Loader from "react-loader-spinner";
 
-const KYC = () => {
+const KYC = ({ ide }) => {
   //initializing functions
   const dispatch = useDispatch();
   const history = useHistory();
@@ -98,7 +107,9 @@ const KYC = () => {
       },
     ]);
   };
-
+  // useEffect(() => {
+  //   ide ? dispatch(GetOneKYC(ide)) : console.log("creating");
+  // }, [ide]);
   useEffect(() => {
     setKYC(data);
   }, [data]);
@@ -110,10 +121,16 @@ const KYC = () => {
 
     history.push("/KYB");
   };
-  const onUpdateSubmit = (e) => {
+  const onUpdateSubmit = async(e) => {
+    console.log("UPDATED");
     e.preventDefault();
-    dispatch(CreateKYC(KYC, urlid));
-    history.push("/KYB/" + urlid);
+    urlid && !ide
+      ? dispatch(CreateKYC(KYC, urlid))
+      : dispatch(CreateKYC(KYC, ide));
+    urlid && !ide
+      ? history.push("/kyb/" + urlid)
+      : history.push("/complianceworkbook/" + ide);
+    
   };
 
   const validator = (e, id) => {
@@ -122,7 +139,7 @@ const KYC = () => {
       e.target.value = 0;
     }
   };
-  console.log(moment(KYC[0].kyc_startDate))
+  console.log(moment(KYC[0].kyc_startDate));
   return urlid && isLoading ? (
     <div
       style={{
@@ -149,13 +166,17 @@ const KYC = () => {
   ) : (
     <div className={urlid ? "container-fluid" : "container"}>
       <div className="row">
-
-
-        {urlid ? (<div className="col-md-2"> <SideNav id={urlid}></SideNav></div>) : (<div></div>)}
+        {urlid ? (
+          <div className="col-md-2">
+            {" "}
+            <SideNav id={urlid}></SideNav>
+          </div>
+        ) : (
+          <div></div>
+        )}
         <div className={urlid ? "col-md-8" : "col-md-12"}>
           {KYC.map((kyc, id) => {
             return (
-
               <div style={{ display: "flex" }}>
                 <Col md={3}>
                   {/* <Rdays datevalue={kyc.kyc_ExpiryDate} stdate={kyc.kyc_startDate} expdate={kyc.kyc_adExpiryDate}/> */}
@@ -166,7 +187,6 @@ const KYC = () => {
                       value={kyc.kyc_name}
                       name="kyc_name"
                       onChange={(e) => handleInput(e, id)}
-
                       type="text"
                       id="Name"
                       placeholder="Share Holder Name"
@@ -211,13 +231,15 @@ const KYC = () => {
                       disabled={true}
                       value={
                         kyc.kyc_ExpiryDate
-                          ? Math.ceil(moment
-                            .duration(
-                              moment(kyc.kyc_ExpiryDate).diff(
-                                moment(new Date())
-                              )
+                          ? Math.ceil(
+                              moment
+                                .duration(
+                                  moment(kyc.kyc_ExpiryDate).diff(
+                                    moment(new Date())
+                                  )
+                                )
+                                .asDays()
                             )
-                            .asDays())
                           : ""
                       }
                     ></Input>
@@ -229,13 +251,15 @@ const KYC = () => {
                     <Input
                       style={{
                         backgroundColor:
-                          Math.ceil(moment
-                            .duration(
-                              moment(kyc.kyc_adExpiryDate).diff(
-                                moment(new Date())
+                          Math.ceil(
+                            moment
+                              .duration(
+                                moment(kyc.kyc_adExpiryDate).diff(
+                                  moment(new Date())
+                                )
                               )
-                            )
-                            .asDays()) < 45
+                              .asDays()
+                          ) < 45
                             ? "pink"
                             : "#32CD32",
                       }}
@@ -243,25 +267,28 @@ const KYC = () => {
                       disabled={true}
                       value={
                         kyc.kyc_adExpiryDate
-                          ? Math.ceil(moment
-                            .duration(
-                              moment(kyc.kyc_adExpiryDate).diff(
-                                moment(new Date())
-                              )
+                          ? Math.ceil(
+                              moment
+                                .duration(
+                                  moment(kyc.kyc_adExpiryDate).diff(
+                                    moment(new Date())
+                                  )
+                                )
+                                .asDays()
                             )
-                            .asDays())
                           : ""
                       }
                     ></Input>
                   </FormGroup>
                 </Col>
               </div>
-
-            )
+            );
           })}
           <div>
             <h2>
-              <span class="badge badge-success colspan">KNOW YOUR CUSTOMER (KYC)</span>
+              <span class="badge badge-success colspan">
+                KNOW YOUR CUSTOMER (KYC)
+              </span>
             </h2>
           </div>
 
@@ -279,7 +306,6 @@ const KYC = () => {
                           value={kyc.kyc_name}
                           name="kyc_name"
                           onChange={(e) => handleInput(e, id)}
-
                           type="text"
                           id="Name"
                           placeholder="Share Holder Name"
@@ -397,13 +423,15 @@ const KYC = () => {
                           disabled={true}
                           value={
                             kyc.kyc_ExpiryDate
-                              ? Math.ceil(moment
-                                .duration(
-                                  moment(kyc.kyc_ExpiryDate).diff(
-                                    moment(new Date())
-                                  )
+                              ? Math.ceil(
+                                  moment
+                                    .duration(
+                                      moment(kyc.kyc_ExpiryDate).diff(
+                                        moment(new Date())
+                                      )
+                                    )
+                                    .asDays()
                                 )
-                                .asDays())
                               : ""
                           }
                         ></Input>
@@ -504,13 +532,15 @@ const KYC = () => {
                         <Input
                           style={{
                             backgroundColor:
-                              Math.ceil(moment
-                                .duration(
-                                  moment(kyc.kyc_adExpiryDate).diff(
-                                    moment(new Date())
+                              Math.ceil(
+                                moment
+                                  .duration(
+                                    moment(kyc.kyc_adExpiryDate).diff(
+                                      moment(new Date())
+                                    )
                                   )
-                                )
-                                .asDays()) < 45
+                                  .asDays()
+                              ) < 45
                                 ? "pink"
                                 : "#32CD32",
                           }}
@@ -518,13 +548,15 @@ const KYC = () => {
                           disabled={true}
                           value={
                             kyc.kyc_adExpiryDate
-                              ? Math.ceil(moment
-                                .duration(
-                                  moment(kyc.kyc_adExpiryDate).diff(
-                                    moment(new Date())
-                                  )
+                              ? Math.ceil(
+                                  moment
+                                    .duration(
+                                      moment(kyc.kyc_adExpiryDate).diff(
+                                        moment(new Date())
+                                      )
+                                    )
+                                    .asDays()
                                 )
-                                .asDays())
                               : ""
                           }
                         ></Input>
@@ -600,13 +632,13 @@ const KYC = () => {
             {/* <Button tag={Link} to={link}>
           Previous
         </Button> */}
-            {urlid ? (
+            {urlid || ide ? (
               <div>
-                <Button tag={Link} to={link}>
+                {/* <Button tag={Link} to={link}>
                   Previous
-                </Button>
+                </Button> */}
                 <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-                  Update and Next
+                  Update
                 </Button>
               </div>
             ) : (
@@ -620,7 +652,6 @@ const KYC = () => {
     </div>
   );
 };
-
 
 export default KYC;
 

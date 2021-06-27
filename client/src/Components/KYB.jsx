@@ -9,12 +9,12 @@ import SideNav from './Sidebar/Sidebar'
 import { INITIATESD } from "../actions/sdAction";
 
 
-export default function KYB() {
+export default function KYB({ide}) {
   const dispatch = useDispatch();
   const { urlid } = useParams();
   const history = useHistory();
   const data = useSelector((state) => state.kybReducer.state);
-  const dataCL = useSelector((state) => state.clReducer.state);
+  // const dataCL = useSelector((state) => state.clReducer.state);
 
   const id = useSelector((state) => state.ciReducer.id);
   console.log(id);
@@ -42,10 +42,10 @@ export default function KYB() {
   }, [dispatch]);
   useEffect(() => {
     urlid ? dispatch(GetOneKYB(urlid)) : console.log("creating");
-    urlid ? dispatch(GetOneCL(urlid)) : console.log("No Check List");
+    ide ? dispatch(GetOneKYB(ide)) : console.log("NO ID");
 
   }, [urlid]);
-  const [CL, setCL] = useState({});
+  // const [CL, setCL] = useState({});
 
 
   console.log(KYB);
@@ -60,9 +60,11 @@ export default function KYB() {
   useEffect(() => {
     setKYB(data);
   }, [data]);
-  useEffect(() => {
-    setCL(dataCL);
-  }, [dataCL]);
+  // useEffect(() => {
+  //   if(urlid || ide){
+  //   setCL(dataCL);
+  //   }
+  // }, [dataCL]);
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(KYB);
@@ -73,8 +75,13 @@ export default function KYB() {
   };
   const onUpdateSubmit = (e) => {
     e.preventDefault();
-    dispatch(CreateKYB(KYB, urlid));
-    history.push("/sdkyb/" + urlid);
+    urlid && !ide
+    ? dispatch(CreateKYB(KYB, urlid))
+    : dispatch(CreateKYB(KYB, ide));
+  urlid && !ide
+    ? history.push("/sdkyb/" + urlid)
+    : history.push("/complianceworkbook/" + ide);
+    
   };
 
   return (
@@ -94,7 +101,7 @@ export default function KYB() {
                   <Label for="certificate">Certificate of Incorporation:</Label>
                   <select
                     className={"custom-select"}
-                    value={CL.coi_status ? CL.coi_status : KYB.kyb_coi}
+                    value={  KYB.kyb_coi}
                     // value={"Not Required"}
                     id="1"
                     name="kyb_coi"
@@ -110,7 +117,7 @@ export default function KYB() {
                   <Label for="memo">Memorandum of Association:</Label>
                   <select
                     className={"custom-select"}
-                    value={CL.moa_status ? CL.moa_status : KYB.kyb_moa}
+                    value={  KYB.kyb_moa}
                     // value={"Not Required"}
                     id="1"
                     name="kyb_moa"
@@ -150,7 +157,7 @@ export default function KYB() {
                   <Label for="shareRegister">Share Register:</Label>
                   <select
                     className={"custom-select"}
-                    value={CL.sr_status ? CL.sr_status : KYB.kyb_sRegister}
+                    value={  KYB.kyb_sRegister}
                     // value={"Not Required"}
                     id="1"
                     name="kyb_sRegister"
@@ -168,7 +175,7 @@ export default function KYB() {
                   </Label>
                   <select
                     className={"custom-select"}
-                    value={CL.scs_status ? CL.scs_status : KYB.kyb_scs}
+                    value={ KYB.kyb_scs}
                     // value={"Not Required"}
                     id="1"
                     name="kyb_scs"
@@ -207,11 +214,9 @@ export default function KYB() {
             {/* <Link to='/supporting-doc-kyb'> */}
             {urlid ? (
               <div>
-                <Button tag={Link} to={link}>
-                  Previous
-                </Button>
+               
                 <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-                  Update and Next
+                  Update  
                 </Button>
               </div>
             ) : (

@@ -17,6 +17,10 @@ import { Get, setLoading, GetOneCI } from "../actions/ciAction";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import { firebase } from "../Config";
+import CI from "./CI";
+import KYC from "./KYC";
+import KYB from "./KYB";
+import SDC from "./supportingDocKYB";
 import { CreateSpare } from "../actions/spareAction";
 import {
   CreateNotes,
@@ -25,6 +29,8 @@ import {
 } from "../actions/notesActions";
 
 import { FaDraft2Digital } from "react-icons/fa";
+import { GetOneKYB } from "../actions/kybAction";
+import { GetOneKYC } from "../actions/kycAction";
 
 export default function PreApproval() {
   const dispatch = useDispatch();
@@ -268,8 +274,11 @@ export default function PreApproval() {
     ti: "",
     kyc: "",
     kyb: "",
-    kyb: "",
+    sd: "",
     md: "",
+    cb: "",
+    sent: "",
+    sentdate: "",
     ti_status: "pending",
     kyc_status: "pending",
     kyb_status: "pending",
@@ -419,8 +428,6 @@ export default function PreApproval() {
     ]);
   };
   const handleCheck = (e) => {
-    console.log("hahah");
-    console.log(e.target.checked);
     setCL({
       ...CL,
       [e.target.name]: e.target.checked,
@@ -507,6 +514,7 @@ export default function PreApproval() {
   console.log(Notes);
   const onSubmit = async (e) => {
     e.preventDefault();
+
     urlid
       ? (await dispatch(CreateCL(CL, urlid))) && dispatch(Get())
       : dispatch(CreateCL(CL, id)) && dispatch(Get());
@@ -519,8 +527,16 @@ export default function PreApproval() {
 
     history.push("/");
   };
+  const handleReset = (check1, check2, file, status) => {
+    setCL({
+      ...CL,
+      [check1]: false,
+      [check2]: false,
+      [file]: "fileName",
+      [status]: "pending",
+    });
+  };
   console.log(CL);
-
   return (
     <div class="compliance-dashboard-card">
       <div class="container-fluid">
@@ -623,12 +639,14 @@ export default function PreApproval() {
                   <tbody>
                     <tr>
                       <td width="12%">
-                      <Link
-                         to=  {`/ci/${urlid}`}
+                        <div
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                          // to={`/ci/${urlid}`}
                           class="compliance-td-fonts blueborder text-center"
                         >
                           <img src="/images/card-img10.png" />
-                        </Link>
+                        </div>
                       </td>
                       <td width="76%">&nbsp;</td>
                       <td width="12%">
@@ -638,6 +656,39 @@ export default function PreApproval() {
                         >
                           <img src="/images/card-img7.png" />
                         </a>
+                        {/* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> */}
+
+                        <div
+                          class="modal fade"
+                          id="exampleModal"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                              <div class="modal-body">
+                                <CI ide={urlid} />
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    dispatch(GetOneCI(urlid));
+                                  }}
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  data-dismiss="modal"
+                                >
+                                  Close
+                                </button>
+                                {/* <button type="button" class="btn btn-primary">Save changes</button> */}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
@@ -848,6 +899,14 @@ export default function PreApproval() {
                       FileUpload={(e) => {
                         ImageHandler(e);
                       }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC2",
+                          "TIC21",
+                          "fcaf_fileName",
+                          "fcaf_status"
+                        );
+                      }}
                     /> */}
                     <TR1
                       checkName={"TIC2"}
@@ -861,6 +920,14 @@ export default function PreApproval() {
                       }}
                       FileUpload={(e) => {
                         ImageHandler(e);
+                      }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC2",
+                          "TIC21",
+                          "fcaf_fileName",
+                          "fcaf_status"
+                        );
                       }}
                     />
                     <TR1
@@ -876,6 +943,14 @@ export default function PreApproval() {
                       FileUpload={(e) => {
                         ImageHandler(e);
                       }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC3",
+                          "TIC22",
+                          "bi_fileName",
+                          "bi_status"
+                        );
+                      }}
                     />
                     <TR1
                       checkName={"TIC4"}
@@ -889,6 +964,14 @@ export default function PreApproval() {
                       }}
                       FileUpload={(e) => {
                         ImageHandler(e);
+                      }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC4",
+                          "TIC23",
+                          "ota_fileName",
+                          "ota_status"
+                        );
                       }}
                     />
                     <TR1
@@ -904,6 +987,14 @@ export default function PreApproval() {
                       FileUpload={(e) => {
                         ImageHandler(e);
                       }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC5",
+                          "TIC24",
+                          "aps_fileName",
+                          "aps_status"
+                        );
+                      }}
                     />
                     <TR1
                       checkName={"TIC6"}
@@ -917,6 +1008,14 @@ export default function PreApproval() {
                       }}
                       FileUpload={(e) => {
                         ImageHandler(e);
+                      }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC6",
+                          "TIC25",
+                          "hwua_fileName",
+                          "hwua_status"
+                        );
                       }}
                     />
                     <TR1
@@ -932,6 +1031,14 @@ export default function PreApproval() {
                       FileUpload={(e) => {
                         ImageHandler(e);
                       }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC7",
+                          "TIC26",
+                          "wc_fileName",
+                          "wc_status"
+                        );
+                      }}
                     />
                     <TR1
                       checkName={"TIC8"}
@@ -945,6 +1052,14 @@ export default function PreApproval() {
                       }}
                       FileUpload={(e) => {
                         ImageHandler(e);
+                      }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC8",
+                          "TIC27",
+                          "wuod_fileName",
+                          "wuod_status"
+                        );
                       }}
                     />
                     <TR1
@@ -960,6 +1075,14 @@ export default function PreApproval() {
                       FileUpload={(e) => {
                         ImageHandler(e);
                       }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC9",
+                          "TIC28",
+                          "owsc_fileName",
+                          "owsc_status"
+                        );
+                      }}
                     />
                     <TR1
                       checkName={"TIC10"}
@@ -973,6 +1096,14 @@ export default function PreApproval() {
                       }}
                       FileUpload={(e) => {
                         ImageHandler(e);
+                      }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC10",
+                          "TIC29",
+                          "bp_fileName",
+                          "bp_status"
+                        );
                       }}
                     />
                   </tbody>
@@ -1010,7 +1141,7 @@ export default function PreApproval() {
             <div class="card-header" id="headingOne">
               <h2 class="mb-0">
                 <button
-                  class="btn  btn-block text-left"
+                  class="btn  btn-block collapsed text-left"
                   type="button"
                   data-toggle="collapse"
                   data-target="#collapseOne"
@@ -1024,7 +1155,7 @@ export default function PreApproval() {
 
             <div
               id="collapseOne"
-              class="collapse "
+              class="collapse"
               aria-labelledby="headingOne"
               data-parent="#accordionExample"
             >
@@ -1036,51 +1167,91 @@ export default function PreApproval() {
                         <tbody>
                           <tr>
                             <td width="10%">
-                              <a
+                              <div
+                                data-toggle="modal"
+                                data-target="#exampleModal1"
                                 href="#"
                                 class="compliance-td-fonts blueborder text-center"
                               >
                                 <img src="/images/card-img10.png" />
-                              </a>
+                              </div>
                             </td>
                             <td width="3%">&nbsp;</td>
 
                             <td width="10%">
-                              <a
+                              <div
+                                data-toggle="modal"
+                                data-target="#exampleModal1"
                                 href="#"
                                 class="compliance-td-fonts blueborder text-center"
                               >
                                 <img src="/images/card-img10.png" />
-                              </a>
+                              </div>
                             </td>
                             <td width="3%">&nbsp;</td>
 
                             <td width="10%">
-                              <a
+                              <div
+                                data-toggle="modal"
+                                data-target="#exampleModal1"
                                 href="#"
                                 class="compliance-td-fonts blueborder text-center"
                               >
                                 <img src="/images/card-img10.png" />
-                              </a>
+                              </div>
                             </td>
                             <td width="3%">&nbsp;</td>
 
                             <td width="10%">
-                              <a
+                              <div
+                                data-toggle="modal"
+                                data-target="#exampleModal1"
                                 href="#"
                                 class="compliance-td-fonts blueborder text-center"
                               >
                                 <img src="/images/card-img10.png" />
-                              </a>
+                              </div>
                             </td>
                             <td width="30%">&nbsp;</td>
                             <td width="12%">
-                              <a
+                              <div
+                                data-toggle="modal"
+                                data-target="#exampleModal1"
                                 href="#"
                                 class="compliance-td-fonts blueborder text-center"
                               >
-                                <img src="/images/card-img7.png" />
-                              </a>
+                                <img src="/images/card-img10.png" />
+                              </div>
+
+                              <div
+                                class="modal fade"
+                                id="exampleModal1"
+                                tabindex="-1"
+                                aria-labelledby="exampleModalLabel"
+                                aria-hidden="true"
+                              >
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                  <div class="modal-content">
+                                    <div class="modal-body">
+                                      <KYC ide={urlid} />
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          dispatch(GetOneKYC(urlid));
+                                        }}
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-dismiss="modal"
+                                      >
+                                        Save and Close
+                                      </button>
+                                      {/* <button type="button" class="btn btn-primary">Save changes</button> */}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </td>
                           </tr>
                         </tbody>
@@ -1286,6 +1457,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYCC1",
+                                "KYCC21",
+                                "ldp_fileName",
+                                "ldp_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"KYCC2"}
@@ -1299,6 +1478,14 @@ export default function PreApproval() {
                             }}
                             FileUpload={(e) => {
                               ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYCC2",
+                                "KYCC22",
+                                "ldpa_fileName",
+                                "ldpa_status"
+                              );
                             }}
                           />
                           <TR1
@@ -1314,6 +1501,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYCC3",
+                                "KYCC23",
+                                "sdp_fileName",
+                                "sdp_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"KYCC4"}
@@ -1327,6 +1522,14 @@ export default function PreApproval() {
                             }}
                             FileUpload={(e) => {
                               ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYCC4",
+                                "KYCC24",
+                                "sdpa_fileName",
+                                "sdpa_status"
+                              );
                             }}
                           />
                           <TR1
@@ -1342,6 +1545,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYCC5",
+                                "KYCC25",
+                                "tdp_fileName",
+                                "tdp_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"KYCC6"}
@@ -1355,6 +1566,14 @@ export default function PreApproval() {
                             }}
                             FileUpload={(e) => {
                               ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYCC6",
+                                "KYCC26",
+                                "tdpa_fileName",
+                                "tdpa_status"
+                              );
                             }}
                           />
                           <TR1
@@ -1370,6 +1589,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYCC7",
+                                "KYCC27",
+                                "fdp_fileName",
+                                "fdp_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"KYCC8"}
@@ -1383,6 +1610,14 @@ export default function PreApproval() {
                             }}
                             FileUpload={(e) => {
                               ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYCC8",
+                                "KYCC28",
+                                "fdpa_fileName",
+                                "fdpa_status"
+                              );
                             }}
                           />
                           <TR1
@@ -1398,6 +1633,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYCC9",
+                                "KYCC29",
+                                "pad_fileName",
+                                "pad_status"
+                              );
+                            }}
                           />
                           {/* <TR1
                            checkName={"KYCC10"}
@@ -1411,6 +1654,14 @@ export default function PreApproval() {
                       }}
                       FileUpload={(e) => {
                         ImageHandler(e);
+                      }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "KYCC2",
+                          "KYCC21",
+                          "fcaf_fileName",
+                          "fcaf_status"
+                        );
                       }}
                            
                           /> */}
@@ -1452,7 +1703,7 @@ export default function PreApproval() {
             <div class="card-header" id="headingTwo">
               <h2 class="mb-0">
                 <button
-                  class="btn  btn-block text-left collapsed "
+                  class="btn  btn-block collapsed text-left collapsed "
                   type="button"
                   data-toggle="collapse"
                   data-target="#collapseTwo"
@@ -1477,12 +1728,14 @@ export default function PreApproval() {
                         <tbody>
                           <tr>
                             <td width="12%">
-                              <a
-                                href="#"
+                              <div
+                                data-toggle="modal"
+                                data-target="#exampleModal2"
+                                // to={`/ci/${urlid}`}
                                 class="compliance-td-fonts blueborder text-center"
                               >
                                 <img src="/images/card-img10.png" />
-                              </a>
+                              </div>
                             </td>
                             <td width="76%">&nbsp;</td>
                             <td width="12%">
@@ -1492,10 +1745,40 @@ export default function PreApproval() {
                               >
                                 <img src="/images/card-img7.png" />
                               </a>
+                              <div
+                                class="modal fade"
+                                id="exampleModal2"
+                                tabindex="-1"
+                                aria-labelledby="exampleModalLabel"
+                                aria-hidden="true"
+                              >
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                  <div class="modal-content">
+                                    <div class="modal-body">
+                                      <KYB ide={urlid} />
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          dispatch(GetOneKYB(urlid));
+                                        }}
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-dismiss="modal"
+                                      >
+                                        Close
+                                      </button>
+                                      {/* <button type="button" class="btn btn-primary">Save changes</button> */}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </td>
                           </tr>
                         </tbody>
                       </table>
+
                       <table width="100%">
                         <tbody>
                           <tr>
@@ -1523,7 +1806,7 @@ export default function PreApproval() {
 
                           <TR
                             name1={"Certificate of Incorporation"}
-                            value={CL.coi_status}
+                            status={CL.coi_status}
                             name={"coi_status"}
                             Change={(e) => {
                               handleChange(e);
@@ -1531,7 +1814,7 @@ export default function PreApproval() {
                           />
                           <TR
                             name1={"Memorandum of Association"}
-                            value={CL.moa_status}
+                            status={CL.moa_status}
                             name={"moa_status"}
                             Change={(e) => {
                               handleChange(e);
@@ -1539,7 +1822,7 @@ export default function PreApproval() {
                           />
                           <TR
                             name1={"Articles of Association"}
-                            value={CL.aoa_status}
+                            status={CL.aoa_status}
                             name={"aoa_status"}
                             Change={(e) => {
                               handleChange(e);
@@ -1547,7 +1830,7 @@ export default function PreApproval() {
                           />
                           <TR
                             name1={"Share Register"}
-                            value={CL.sr_status}
+                            status={CL.sr_status}
                             name={"sr_status"}
                             Change={(e) => {
                               handleChange(e);
@@ -1555,7 +1838,7 @@ export default function PreApproval() {
                           />
                           <TR
                             name1={"Share Certificate(s) - Signed"}
-                            value={CL.scs_status}
+                            status={CL.scs_status}
                             name={"scs_status"}
                             Change={(e) => {
                               handleChange(e);
@@ -1563,7 +1846,7 @@ export default function PreApproval() {
                           />
                           <TR
                             name1={"Current Commercial Register Extract"}
-                            value={CL.ccre_status}
+                            status={CL.ccre_status}
                             name={"ccre_status"}
                             Change={(e) => {
                               handleChange(e);
@@ -1571,7 +1854,7 @@ export default function PreApproval() {
                           />
                           <TR
                             name1={"Current Letter of Good Standing"}
-                            value={CL.clg_status}
+                            status={CL.clg_status}
                             name={"clg_status"}
                             Change={(e) => {
                               handleChange(e);
@@ -1681,6 +1964,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYBC1",
+                                "KYBC21",
+                                "coi_fileName",
+                                "coi_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"KYBC2"}
@@ -1694,6 +1985,14 @@ export default function PreApproval() {
                             }}
                             FileUpload={(e) => {
                               ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYBC2",
+                                "KYBC22",
+                                "moa_fileName",
+                                "moa_status"
+                              );
                             }}
                           />
                           <TR1
@@ -1709,6 +2008,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYBC3",
+                                "KYBC23",
+                                "aoa_fileName",
+                                "aoa_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"KYBC4"}
@@ -1722,6 +2029,14 @@ export default function PreApproval() {
                             }}
                             FileUpload={(e) => {
                               ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYBC4",
+                                "KYBC24",
+                                "sr_fileName",
+                                "sr_status"
+                              );
                             }}
                           />
                           <TR1
@@ -1737,6 +2052,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYBC5",
+                                "KYBC25",
+                                "scs_fileName",
+                                "scs_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"KYBC6"}
@@ -1750,6 +2073,14 @@ export default function PreApproval() {
                             }}
                             FileUpload={(e) => {
                               ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYBC6",
+                                "KYBC26",
+                                "ccre_fileName",
+                                "ccre_status"
+                              );
                             }}
                           />
                           <TR1
@@ -1765,8 +2096,15 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "KYBC7",
+                                "KYBC27",
+                                "clg_fileName",
+                                "clg_status"
+                              );
+                            }}
                           />
-
                           {/* <TR1
                            checkName={"KYBC8"}
                       checkName2={"KYBC28"}
@@ -1779,6 +2117,14 @@ export default function PreApproval() {
                       }}
                       FileUpload={(e) => {
                         ImageHandler(e);
+                      }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "KYBC2",
+                          "KYBC21",
+                          "fcaf_fileName",
+                          "fcaf_status"
+                        );
                       }}
                            
                           />
@@ -1795,7 +2141,15 @@ export default function PreApproval() {
                       FileUpload={(e) => {
                         ImageHandler(e);
                       }} */}
-
+                          {/* resetHandler=
+                          {(e) => {
+                            handleReset(
+                              "KYBC2",
+                              "KYBC21",
+                              "fcaf_fileName",
+                              "fcaf_status"
+                            );
+                          }} */}
                           {/* /> */}
                           {/* <TR1
                            checkName={"KYBC10"}
@@ -1809,6 +2163,14 @@ export default function PreApproval() {
                       }}
                       FileUpload={(e) => {
                         ImageHandler(e);
+                      }}
+                      resetHandler={(e) => {
+                        handleReset(
+                          "TIC2",
+                          "TIC21",
+                          "fcaf_fileName",
+                          "fcaf_status"
+                        );
                       }}
                            
                           /> */}
@@ -1846,11 +2208,12 @@ export default function PreApproval() {
               </table>
             </div>
           </div>
+          
           <div class="card">
             <div class="card-header" id="headingThree">
               <h2 class="mb-0">
                 <button
-                  class="btn  btn-block text-left collapsed"
+                  class="btn  btn-block collapsed text-left collapsed"
                   type="button"
                   data-toggle="collapse"
                   data-target="#collapseThree"
@@ -1875,12 +2238,14 @@ export default function PreApproval() {
                         <tbody>
                           <tr>
                             <td width="12%">
-                              <a
-                                href="#"
+                              <div
+                                data-toggle="modal"
+                                data-target="#exampleModal4"
+                                // to={`/ci/${urlid}`}
                                 class="compliance-td-fonts blueborder text-center"
                               >
                                 <img src="/images/card-img10.png" />
-                              </a>
+                              </div>
                             </td>
                             <td width="76%">&nbsp;</td>
                             <td width="12%">
@@ -1890,6 +2255,36 @@ export default function PreApproval() {
                               >
                                 <img src="/images/card-img7.png" />
                               </a>
+
+                              <div
+                                class="modal fade"
+                                id="exampleModal4"
+                                tabindex="-1"
+                                aria-labelledby="exampleModalLabel"
+                                aria-hidden="true"
+                              >
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                  <div class="modal-content">
+                                    <div class="modal-body">
+                                      <SDC ide={urlid} />
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          dispatch(GetOneCI(urlid));
+                                        }}
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-dismiss="modal"
+                                      >
+                                        Close
+                                      </button>
+                                      {/* <button type="button" class="btn btn-primary">Save changes</button> */}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </td>
                           </tr>
                         </tbody>
@@ -1922,7 +2317,7 @@ export default function PreApproval() {
                           <TR
                             name={"cora_status"}
                             name1={"Copywrite or Re-seller Agreement"}
-                            value={CL.cora_status}
+                            status={CL.cora_status}
                             Change={(e) => {
                               handleChange(e);
                             }}
@@ -1930,7 +2325,7 @@ export default function PreApproval() {
                           <TR
                             name={"cbs_status"}
                             name1={"Corporate Bank Statements"}
-                            value={CL.cbs_status}
+                            status={CL.cbs_status}
                             Change={(e) => {
                               handleChange(e);
                             }}
@@ -1938,7 +2333,7 @@ export default function PreApproval() {
                           <TR
                             name={"pbs_status"}
                             name1={"Personal Bank Statements"}
-                            value={CL.pbs_status}
+                            status={CL.pbs_status}
                             Change={(e) => {
                               handleChange(e);
                             }}
@@ -1946,7 +2341,7 @@ export default function PreApproval() {
                           <TR
                             name={"pow_status"}
                             name1={"Proof of Wealth"}
-                            value={CL.pow_status}
+                            status={CL.pow_status}
                             Change={(e) => {
                               handleChange(e);
                             }}
@@ -1954,7 +2349,7 @@ export default function PreApproval() {
                           <TR
                             name={"cap_status"}
                             name1={"Company AML Policy"}
-                            value={CL.cap_status}
+                            status={CL.cap_status}
                             Change={(e) => {
                               handleChange(e);
                             }}
@@ -1962,7 +2357,7 @@ export default function PreApproval() {
                           <TR
                             name={"gofl_status"}
                             name1={"Gambling or Forex License"}
-                            value={CL.gofl_status}
+                            status={CL.gofl_status}
                             Change={(e) => {
                               handleChange(e);
                             }}
@@ -1970,7 +2365,7 @@ export default function PreApproval() {
                           <TR
                             name={"fcR_status"}
                             name1={"FBO (Food) Company Registration"}
-                            value={CL.fcR_status}
+                            status={CL.fcR_status}
                             Change={(e) => {
                               handleChange(e);
                             }}
@@ -2079,6 +2474,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "SDC1",
+                                "SDC21",
+                                "cora_fileName",
+                                "cora_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"SDC2"}
@@ -2092,6 +2495,14 @@ export default function PreApproval() {
                             }}
                             FileUpload={(e) => {
                               ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "SDC2",
+                                "SDC22",
+                                "cbs_fileName",
+                                "cbs_status"
+                              );
                             }}
                           />
                           <TR1
@@ -2107,6 +2518,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "SDC3",
+                                "SDC23",
+                                "pbs_fileName",
+                                "pbs_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"SDC4"}
@@ -2120,6 +2539,14 @@ export default function PreApproval() {
                             }}
                             FileUpload={(e) => {
                               ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "SDC4",
+                                "SDC24",
+                                "pow_fileName",
+                                "pow_status"
+                              );
                             }}
                           />
                           <TR1
@@ -2135,6 +2562,14 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "SDC5",
+                                "SDC25",
+                                "cap_fileName",
+                                "cap_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"SDC6"}
@@ -2149,11 +2584,19 @@ export default function PreApproval() {
                             FileUpload={(e) => {
                               ImageHandler(e);
                             }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "SDC6",
+                                "SDC26",
+                                "gofl_fileName",
+                                "gofl_status"
+                              );
+                            }}
                           />
                           <TR1
                             checkName={"SDC7"}
                             checkName2={"SDC27"}
-                            fc="fcr_fileName"
+                            fc="fcR_fileName"
                             checked={CL.SDC7}
                             checked2={CL.SDC27}
                             path={CL.fcr_fileName}
@@ -2162,6 +2605,14 @@ export default function PreApproval() {
                             }}
                             FileUpload={(e) => {
                               ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "SDC7",
+                                "SDC27",
+                                "fcr_fileName",
+                                "fcR_status"
+                              );
                             }}
                           />
                         </tbody>
@@ -2198,23 +2649,25 @@ export default function PreApproval() {
               </table>
             </div>
           </div>
+         
+
           <div class="card">
             <div class="card-header" id="headingThree">
               <h2 class="mb-0">
                 <button
-                  class="btn  btn-block text-left collapsed"
+                  class="btn  btn-block collapsed text-left collapsed"
                   type="button"
                   data-toggle="collapse"
-                  data-target="#collapsefour"
+                  data-target="#collapseFour"
                   aria-expanded="false"
                   aria-controls="collapseThree"
                 >
-                  MISCELLANEOUS DOCUMENTS
+               MISCELLANEOUS DOCUMENTS
                 </button>
               </h2>
             </div>
             <div
-              id="collapsefour"
+              id="collapseThree"
               class="collapse"
               aria-labelledby="headingThree"
               data-parent="#accordionExample"
@@ -2227,12 +2680,14 @@ export default function PreApproval() {
                         <tbody>
                           <tr>
                             <td width="12%">
-                              <a
-                                href="#"
+                              <div
+                                data-toggle="modal"
+                                data-target="#exampleModal4"
+                                // to={`/ci/${urlid}`}
                                 class="compliance-td-fonts blueborder text-center"
                               >
                                 <img src="/images/card-img10.png" />
-                              </a>
+                              </div>
                             </td>
                             <td width="76%">&nbsp;</td>
                             <td width="12%">
@@ -2242,6 +2697,36 @@ export default function PreApproval() {
                               >
                                 <img src="/images/card-img7.png" />
                               </a>
+
+                              <div
+                                class="modal fade"
+                                id="exampleModal4"
+                                tabindex="-1"
+                                aria-labelledby="exampleModalLabel"
+                                aria-hidden="true"
+                              >
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                  <div class="modal-content">
+                                    <div class="modal-body">
+                                      <SDC ide={urlid} />
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          dispatch(GetOneCI(urlid));
+                                        }}
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-dismiss="modal"
+                                      >
+                                        Close
+                                      </button>
+                                      {/* <button type="button" class="btn btn-primary">Save changes</button> */}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </td>
                           </tr>
                         </tbody>
@@ -2251,7 +2736,7 @@ export default function PreApproval() {
                           <tr>
                             <td colspan="2" width="65%" valign="top">
                               <div class="tradding-title min_heightt marign_bt3">
-                                TRADING INFORMATION
+                                Supporting Documents
                               </div>
                             </td>
                             <td width="35%">
@@ -2271,21 +2756,10 @@ export default function PreApproval() {
                             </td>
                           </tr>
 
-                          <TR
-                            id={"check9"}
-                            id1={"check10"}
-                            id3={"check11"}
-                            name1={"Confirmation & Declaration Form (GGS Only)"}
-                          />
-                          <TR
-                            id={"check9"}
-                            id1={"check10"}
-                            id3={"check11"}
-                            name1={" Sales Handoff Sheet (CCBill Only)"}
-                          />
                           {/* {
-              Spare.map((res, id) => {
+                                  Spare.map((res, id) => {
                 return (
+                  
                   <SpareTR
                             name={"sparetext"}
                             status={"spare_status"}
@@ -2305,34 +2779,20 @@ export default function PreApproval() {
                              FileUpload={(e) => {
                                ImageHandlerSpare(e, id);
                              }}
-                             add={(e) => { handleAddClick(e); }}
-                             delete={(e) => { handleRemoveClick(e, id); }}
+                             resetHandler={(e) => {
+                        handleReset(
+                          "TIC2",
+                          "TIC21",
+                          "fcaf_fileName",
+                          "fcaf_status"
+                        );
+                      }}
+                      
+                             
+                              
                           />
-                  // <SpChecklistR
-                  //   placeholder={"spare"}
-                  //   name={"status"}
-                  //   nameT="text"
-                  //   fc="path"
-                  //   note="note"
-                  //   notesVal={res.note}
-                  //   value={res.status}
-                  //   valueT={res.text}
-                  //   path={res.path}
-                  //   onChangetext={(e) => {
-                  //     handletextSpare(e, id);
-                  //   }}
-                  //   Change={(e) => {
-                  //     handleChangeSpare(e, id);
-                  //   }}
-                  //   notesHandle={(e) => {
-                  //     handleNotesSpare(e, id);
-                  //   }}
-                  //   FileUpload={(e) => {
-                  //     ImageHandlerSpare(e, id);
-                  //   }}
-                  //   add={(e) => { handleAddClick(e); }}
-                  //   delete={(e) => { handleRemoveClick(e, id); }}
-                  // />
+                       
+                
                 )
               })
             } */}
@@ -2374,10 +2834,10 @@ export default function PreApproval() {
                                   <input
                                     type="checkbox"
                                     value="yes"
-                                    id="check59"
+                                    id="check9"
                                     name="merchant-checkbox"
                                   />
-                                  <label for="check59"></label>
+                                  <label for="check9"></label>
                                 </div>
                               </div>
                             </td>
@@ -2427,6 +2887,46 @@ export default function PreApproval() {
                             </td>
                             <td width="5%">&nbsp;</td>
                           </tr>
+                          {/* {
+                                  Spare.map((res, id) => {
+                return (
+                  
+                  <TR1
+                            name={"sparetext"}
+                            status={"spare_status"}
+
+
+                            name1={res.sparetext}
+                           value={res.spare_status}
+                           onChangetext={(e) => {
+                                handletextSpare(e, id);
+                              }}
+                             Change={(e) => {
+                               handleChangeSpare(e, id);
+                             }}
+                             notesHandle={(e) => {
+                               handleNotesSpare(e, id);
+                             }}
+                             FileUpload={(e) => {
+                               ImageHandlerSpare(e, id);
+                             }}
+                             resetHandler={(e) => {
+                        handleReset(
+                          "TIC2",
+                          "TIC21",
+                          "fcaf_fileName",
+                          "fcaf_status"
+                        );
+                      }}
+                      
+                             
+                              
+                          />
+                       
+                
+                )
+              })
+            } */}
                         </tbody>
                       </table>
                     </td>
@@ -2461,11 +2961,14 @@ export default function PreApproval() {
               </table>
             </div>
           </div>
+         
+
+
           <div class="card">
             <div class="card-header" id="headingThree">
               <h2 class="mb-0">
                 <button
-                  class="btn  btn-block text-left collapsed"
+                  class="btn  btn-block collapsed text-left collapsed"
                   type="button"
                   data-toggle="collapse"
                   data-target="#collapsefive"
@@ -2514,7 +3017,7 @@ export default function PreApproval() {
                           <tr>
                             <td colspan="2" width="65%" valign="top">
                               <div class="tradding-title min_heightt marign_bt3">
-                                TRADING INFORMATION
+                                SEND FULL PACKAGE TO THE SOLUTION
                               </div>
                             </td>
                             <td width="35%">
@@ -2586,8 +3089,11 @@ export default function PreApproval() {
                             <td>
                               <input
                                 type="text"
-                                value={""}
-                                name="ApprovalBuyRate2"
+                                value={CL.checkby}
+                                name="checkby"
+                                onChange={(e) => {
+                                  handleChange(e);
+                                }}
                                 class="acri-sec blueborder text-center"
                               />
                             </td>
@@ -2602,8 +3108,11 @@ export default function PreApproval() {
                             <td>
                               <input
                                 type="text"
-                                value={""}
-                                name="ApprovalBuyRate2"
+                                value={CL.senttosolby}
+                                name="senttosolby"
+                                onChange={(e) => {
+                                  handleChange(e);
+                                }}
                                 class="acri-sec blueborder text-center"
                               />
                             </td>
@@ -2617,8 +3126,11 @@ export default function PreApproval() {
                             <td>
                               <input
                                 type="text"
-                                value={""}
-                                name="ApprovalBuyRate2"
+                                value={CL.sentDate}
+                                name="sentDate"
+                                onChange={(e) => {
+                                  handleChange(e);
+                                }}
                                 class="acri-sec blueborder text-center"
                               />
                             </td>
@@ -2669,13 +3181,62 @@ export default function PreApproval() {
                             <td width="5%">&nbsp;</td>
                             <td width="5%">&nbsp;</td>
                           </tr>
-                          <TR2  />
-                          <TR2 />
-                          <TR2 />
-                          <TR2 />
-                          <TR2 />
-                          <TR2 />
-                          <TR2 />
+                          <TR2
+                            checkName={"ti"}
+                            checked={CL.ti}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                          />
+                          <TR2
+                            checkName={"kyc"}
+                            checked={CL.kyc}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                          />
+                          <TR2
+                            checkName={"kyb"}
+                            checked={CL.kyb}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                          />
+                          <TR2
+                            checkName={"sd"}
+                            checked={CL.sd}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                          />
+                          <TR2
+                            checkName={"md"}
+                            checked={CL.md}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                          />
+                          <TR2
+                            checkName={"cb"}
+                            checked={CL.cb}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                          />
+                          <TR2
+                            checkName={"sent"}
+                            checked={CL.sent}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                          />
+                          <TR2
+                            checkName={"sentdate"}
+                            checked={CL.sentdate}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                          />
                         </tbody>
                       </table>
                       <button

@@ -3,12 +3,12 @@ import { Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { GetOneCL } from "../actions/clAction";
-import SideNav from './Sidebar/Sidebar'
+import SideNav from "./Sidebar/Sidebar";
 
 import { CreateCTI, GetOneCTI } from "../actions/ctiAction";
 import { GetOneKYC, INITIATEKYC } from "../actions/kycAction";
 
-const CTI = () => {
+const CTI = ({ide}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { urlid } = useParams();
@@ -69,13 +69,14 @@ const CTI = () => {
   useEffect(() => {
     setCTI(data);
   }, [data]);
-  
+
   const handler = async (name) => {
     console.log(name);
-
-  }
+  };
   useEffect(() => {
+    if(urlid || ide){
     setCL(dataCL);
+    }
   }, [dataCL]);
 
   const onSubmit = async (e) => {
@@ -89,22 +90,34 @@ const CTI = () => {
     dispatch(CreateCTI(CTI, urlid));
     history.push("/KYC/" + urlid);
   };
+  console.log(CL);
 
   return (
     <div className={urlid ? "container-fluid" : "container"}>
       <div className="row">
-        {urlid ? (<div className="col-md-2"> <SideNav id={urlid}></SideNav> </div>) : (<div></div>)}
+        {urlid ? (
+          <div className="col-md-2">
+            {" "}
+            <SideNav id={urlid}></SideNav>{" "}
+          </div>
+        ) : (
+          <div></div>
+        )}
         <div className={urlid ? "col-md-8" : "col-md-12"}>
           <div>
             <h2>
-              <span class="badge badge-success colspan">COMPANY TRADING INFORMATION</span>
+              <span class="badge badge-success colspan">
+                COMPANY TRADING INFORMATION
+              </span>
             </h2>
           </div>
           <Form>
             <Row form>
               <Col md={6}>
                 <FormGroup>
-                  <Label for="certificate">Fully Completed Application Form:</Label>
+                  <Label for="certificate">
+                    Fully Completed Application Form:
+                  </Label>
                   <select
                     className={"custom-select"}
                     value={CL.fcaf_status ? CL.fcaf_status : CTI.cti_fcaForm}
@@ -158,7 +171,9 @@ const CTI = () => {
               </Col>
               <Col md={6}>
                 <FormGroup>
-                  <Label for="shareRegister">Headline Website URL Address:</Label>
+                  <Label for="shareRegister">
+                    Headline Website URL Address:
+                  </Label>
                   <select
                     className={"custom-select"}
                     value={CL.hwua_status ? CL.hwua_status : CTI.cti_hwUrl}
@@ -210,7 +225,12 @@ const CTI = () => {
               <Col md={6}>
                 <FormGroup>
                   <Label for="CCR">Ownership Structure Chart:</Label>
-                  <Input readOnly name="cti_osChart" className="NotR" value={"Not Required"}></Input>
+                  <Input
+                    readOnly
+                    name="cti_osChart"
+                    className="NotR"
+                    value={"Not Required"}
+                  ></Input>
                   {/* <select
                 className={"custom-select"}
                 // value={CTI.cti_osChart}
@@ -229,7 +249,12 @@ const CTI = () => {
               <Col md={6}>
                 <FormGroup>
                   <Label for="CCR">Business Plan:</Label>
-                  <Input readOnly name="cti_bPlan" className="NotR" value={"Not Required"}></Input>
+                  <Input
+                    readOnly
+                    name="cti_bPlan"
+                    className="NotR"
+                    value={"Not Required"}
+                  ></Input>
                   {/* <select
                 className={"custom-select"}
                 // value={CTI.cti_bPlan}

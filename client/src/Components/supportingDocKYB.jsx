@@ -7,7 +7,7 @@ import { GetOneCL } from "../actions/clAction";
 import { INITIATESpare } from '../actions/spareAction'
 import SideNav from './Sidebar/Sidebar'
 
-export default function CTI() {
+export default function CTI({ide}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const id = useSelector((state) => state.ciReducer.id);
@@ -64,8 +64,13 @@ export default function CTI() {
     history.push("/check-list");
   };
   const onUpdateSubmit = (e) => {
-    dispatch(CreateSD(KYB_SD, urlid));
-    history.push("/check-list/" + urlid);
+    e.preventDefault();
+    urlid && !ide
+      ? dispatch(CreateSD(KYB_SD, urlid))
+      : dispatch(CreateSD(KYB_SD, ide));
+    urlid && !ide
+      ? history.push("/check-list/" + urlid)
+      : history.push("/complianceworkbook/" + ide);
   };
   return (
     <div>
@@ -225,7 +230,7 @@ export default function CTI() {
                     <Label for="CCR">Copywrite or Re-seller Agreement:</Label>
                     <select
                       className={"custom-select"}
-                      value={CL.cora_status ? CL.cora_status : KYB_SD.lta_cra}
+                      value={KYB_SD.lta_cra}
                       id="1"
                       name="lta_cra"
                       onChange={handleInput}
@@ -240,7 +245,7 @@ export default function CTI() {
                     <Label for="CCR">Fulfilment or Drop Shipping Agreement:</Label>
                     <select
                       className={"custom-select"}
-                      value={CL.fodsa_status ? CL.fodsa_status : KYB_SD.lta_fdsa}
+                      value={KYB_SD.lta_fdsa}
                       id="1"
                       name="lta_fdsa"
                       onChange={handleInput}
@@ -282,11 +287,11 @@ export default function CTI() {
 
               {urlid ? (
                 <div>
-                  <Button tag={Link} to={link}>
+                  {/* <Button tag={Link} to={link}>
                     Previous
-                  </Button>
+                  </Button> */}
                   <Button style={{ marginLeft: "10%" }} onClick={onUpdateSubmit}>
-                    Update and Next
+                    Update 
                   </Button>
                 </div>
               ) : (
