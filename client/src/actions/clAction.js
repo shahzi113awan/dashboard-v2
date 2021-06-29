@@ -24,3 +24,11 @@ export const GetOneCL = (id) => async (dispatch) => {
     })
   })
 }
+export const Reset = () => async (dispatch) => {
+   
+    dispatch({
+      type: 'RESET_CL',
+      
+    })
+   
+}

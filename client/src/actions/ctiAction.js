@@ -30,3 +30,8 @@ export const INITIATECTI = (data) => async (dispatch) => {
     payload: data,
   });
 };
+export const ResetCTI = () => (dispatch) => {
+  dispatch({
+    type: "RESET_CTI",
+  });
+};

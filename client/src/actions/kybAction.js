@@ -31,3 +31,9 @@ export const INITIATEKYB = (data) => async (dispatch) => {
     payload: data,
   });
 };
+
+export const ResetKYB = () => (dispatch) => {
+  dispatch({
+    type: "RESET_KYB",
+  });
+};

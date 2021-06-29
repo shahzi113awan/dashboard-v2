@@ -25,12 +25,19 @@ export const kycReducer = (state = initialState, action) => {
       return { ...state, state: action.payload, isLoading: false};
     case "CREATE_KYC":
       return { ...state, state: action.payload };
+    case "RESET_KYC":
+      return { ...state ,  state: initialState.state };
     case "GET_KYC":
       return { ...state, state: action.payload, isLoading: false };
     case "LOADING":
       return {
         ...state,
         isLoading: true,
+      };
+    case "LOADINGEND":
+      return {
+        ...state,
+        isLoading:false,
       };
     default:
       return state;

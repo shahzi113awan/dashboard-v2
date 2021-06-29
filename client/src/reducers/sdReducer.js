@@ -25,6 +25,11 @@ export const sdReducer = (state = initialState, action) => {
         ...state,
         state: action.payload,
       };
+    case "RESET_SD":
+      return {
+        ...state,
+        state: initialState.state,
+      };
 
     default:
       return state;

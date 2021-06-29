@@ -172,3 +172,8 @@ export const setIBAN = () => (dispatch) => {
     isIBAN:false
   });
 };
+export const ResetCI = () => (dispatch) => {
+  dispatch({
+    type: "RESET_CI",
+  });
+};

@@ -17,11 +17,11 @@ const ComplianceR = (props) => {
 
 
     <tr>
-      <td width="58%"><input onChange={props.spareChange} name={props.name} onChange={props.onChangetext}  width="100%" type= "text" class="compliance-td-fonts min_heightt marign_bt3 padInput"/></td>
+      <td width="58%"><input onChange={props.spareChange} name={props.name1} onChange={props.change}  width="100%" type= "text" class="compliance-td-fonts min_heightt marign_bt3 padInput"/></td>
       <td width="35%">
         <select  value={props.status}
             // id="1"
-            name={props.status}
+            name={props.name}
             onChange={props.Change} class="compliance-td-fonts yellobg text-center min_heightt marign_bt3 width_100">
           <option>complete</option>
           <option>pending</option>

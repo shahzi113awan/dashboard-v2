@@ -562,6 +562,49 @@ let CLSchema = new Schema(
     SDC29: {
         type: Boolean,
       },
+      SDC1:  {
+        type: Boolean,
+      },
+      SDC2:  {
+        type: Boolean,
+      },
+      SDC3:  {
+        type: Boolean,
+      },
+      SDC4:  {
+        type: Boolean,
+      },
+      SDC5:  {
+        type: Boolean,
+      },
+      SDC6:  {
+        type: Boolean,
+      },
+      SDC7:  {
+        type: Boolean,
+      },
+       
+      SDC21:  {
+        type: Boolean,
+      },
+      SDC22:  {
+        type: Boolean,
+      },
+      SDC23:  {
+        type: Boolean,
+      },
+      SDC24:  {
+        type: Boolean,
+      },
+      SDC25:  {
+        type: Boolean,
+      },
+      SDC26:  {
+        type: Boolean,
+      },
+      SDC27:  {
+        type: Boolean,
+      },
       ti:{
          type:Boolean
        },
@@ -611,7 +654,61 @@ let CLSchema = new Schema(
        text:{
          type:String
        }
-     }]
+     }],
+     spare: {
+         type:String
+       },
+     spare1: {
+         type:String
+       },
+     spare2: {
+         type:String
+       },
+     spare3: {
+         type:String
+       },
+     spare4: {
+         type:String
+       },
+     spare5: {
+         type:String
+       },
+     spare_Text: {
+         type:String
+       },
+     spare1_Text: {
+         type:String
+       },
+     spare2_Text: {
+         type:String
+       },
+     spare3_Text: {
+         type:String
+       },
+     spare4_Text: {
+         type:String
+       },
+     spare5_Text: {
+         type:String
+       },
+     spare_fileName: {
+         type:String
+       },
+     spare1_fileName: {
+         type:String
+       },
+     spare2_fileName: {
+         type:String
+       },
+     spare3_fileName: {
+         type:String
+       },
+     spare4_fileName: {
+         type:String
+       },
+     spare5_fileName: {
+         type:String
+       },
     },
   },
   {

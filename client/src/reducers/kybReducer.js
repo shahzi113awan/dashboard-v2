@@ -19,6 +19,8 @@ export const kybReducer = (state = initialState, action) => {
       return { ...state, state: action.payload };
     case "INITIALIZE_KYB":
       return { ...state, state: action.payload,  };
+    case "RESET_KYB":
+      return { ...state, state: initialState.state,  };
     case "SET_pending":
       //   console.log("log from Reducer");
       console.log(action.payload);

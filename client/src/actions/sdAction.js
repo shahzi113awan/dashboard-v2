@@ -29,3 +29,8 @@ export const INITIATESD = (data) => async (dispatch) => {
     payload: data,
   });
 };
+export const ResetSD = () => (dispatch) => {
+  dispatch({
+    type: "RESET_SD",
+  });
+};

@@ -15,11 +15,17 @@ import Rdays from "./ReusableComp/RemainingDays";
 import countryList from "react-select-country-list";
 import Select from "react-select";
 import { useDispatch, useSelector, connect } from "react-redux";
-import { CreateKYC, GetOneKYC, INITIATEKYC } from "../actions/kycAction";
+import {
+  CreateKYC,
+  GetOneKYC,
+  INITIATEKYC,
+  ResetKYC,
+} from "../actions/kycAction";
 import { INITIATEKYB } from "../actions/kybAction";
 import SideNav from "./Sidebar/Sidebar";
 
 import Loader from "react-loader-spinner";
+import { Toast } from "bootstrap";
 
 const KYC = ({ ide }) => {
   //initializing functions
@@ -39,17 +45,17 @@ const KYC = ({ ide }) => {
   useEffect(async () => {
     urlid ? await dispatch(GetOneKYC(urlid)) : console.log("creating");
   }, [urlid]);
-  const [KYB, setKYB] = useState({
-    kyb_coi: "Pending",
-    kyb_moa: "Pending",
-    kyb_aoa: "Pending",
-    kyb_sRegister: "Pending",
-    kyb_scs: "Pending",
-    kyb_ccre: "Pending",
-  });
-  useEffect(() => {
-    dispatch(INITIATEKYB(KYB));
-  }, [dispatch]);
+  // const [KYB, setKYB] = useState({
+  //   kyb_coi: "Pending",
+  //   kyb_moa: "Pending",
+  //   kyb_aoa: "Pending",
+  //   kyb_sRegister: "Pending",
+  //   kyb_scs: "Pending",
+  //   kyb_ccre: "Pending",
+  // });
+  // useEffect(() => {
+  //   dispatch(INITIATEKYB(KYB));
+  // }, [dispatch]);
   const [KYC, setKYC] = useState([
     {
       Rdays: "",
@@ -107,9 +113,9 @@ const KYC = ({ ide }) => {
       },
     ]);
   };
-  // useEffect(() => {
-  //   ide ? dispatch(GetOneKYC(ide)) : console.log("creating");
-  // }, [ide]);
+  useEffect(() => {
+    ide ? dispatch(GetOneKYC(ide)) : console.log("creating");
+  }, [ide]);
   useEffect(() => {
     setKYC(data);
   }, [data]);
@@ -121,7 +127,7 @@ const KYC = ({ ide }) => {
 
     history.push("/KYB");
   };
-  const onUpdateSubmit = async(e) => {
+  const onUpdateSubmit = async (e) => {
     console.log("UPDATED");
     e.preventDefault();
     urlid && !ide
@@ -130,7 +136,8 @@ const KYC = ({ ide }) => {
     urlid && !ide
       ? history.push("/kyb/" + urlid)
       : history.push("/complianceworkbook/" + ide);
-    
+    alert("UPDATED!");
+    dispatch(ResetKYC());
   };
 
   const validator = (e, id) => {
@@ -139,7 +146,7 @@ const KYC = ({ ide }) => {
       e.target.value = 0;
     }
   };
-  console.log(moment(KYC[0].kyc_startDate));
+
   return urlid && isLoading ? (
     <div
       style={{
@@ -629,6 +636,7 @@ const KYC = ({ ide }) => {
                 </div>
               );
             })}
+
             {/* <Button tag={Link} to={link}>
           Previous
         </Button> */}

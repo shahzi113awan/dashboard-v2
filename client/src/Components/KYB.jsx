@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { CreateKYB, GetOneKYB, INITIATEKYB } from "../actions/kybAction";
+import { CreateKYB, GetOneKYB, INITIATEKYB, ResetKYB } from "../actions/kybAction";
 import { GetOneCL } from "../actions/clAction";
 import SideNav from './Sidebar/Sidebar'
 
@@ -27,19 +27,19 @@ export default function KYB({ide}) {
     kyb_scs: "Pending",
     kyb_ccre: "Pending",
   });
-  const [KYB_SD, setKYB_SD] = useState({
-    fsd_cbs: "Pending",
-    fsd_pbs: "Pending",
-    fsd_pow: "Pending",
-    fsd_cap: "Pending",
-    lta_gfl: "Pending",
-    lta_cra: "Pending",
-    lta_fdsa: "Pending",
-    lta_fbo_cr: "Pending",
-  });
-  useEffect(() => {
-    dispatch(INITIATESD(KYB_SD));
-  }, [dispatch]);
+  // const [KYB_SD, setKYB_SD] = useState({
+  //   fsd_cbs: "Pending",
+  //   fsd_pbs: "Pending",
+  //   fsd_pow: "Pending",
+  //   fsd_cap: "Pending",
+  //   lta_gfl: "Pending",
+  //   lta_cra: "Pending",
+  //   lta_fdsa: "Pending",
+  //   lta_fbo_cr: "Pending",
+  // });
+  // useEffect(() => {
+  //   dispatch(INITIATESD(KYB_SD));
+  // }, [dispatch]);
   useEffect(() => {
     urlid ? dispatch(GetOneKYB(urlid)) : console.log("creating");
     ide ? dispatch(GetOneKYB(ide)) : console.log("NO ID");
@@ -81,6 +81,8 @@ export default function KYB({ide}) {
   urlid && !ide
     ? history.push("/sdkyb/" + urlid)
     : history.push("/complianceworkbook/" + ide);
+    id?
+    dispatch(ResetKYB()):console.log("");
     
   };
 

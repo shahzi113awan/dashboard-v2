@@ -19,6 +19,7 @@ import {
   Get,
   GetOneCI,
   UpdateOne,
+  ResetCI,
 } from "../actions/ciAction";
 import { INITIATECTI } from "../actions/ctiAction";
 
@@ -86,19 +87,19 @@ export default function CI({ ide }) {
     setCI(data1);
   }, [data1]);
 
-  const [CTI, setCTI] = React.useState({
-    cti_fcaForm: "Pending",
-    cti_bInformation: "Pending",
-    cti_otAgreement: "",
-    cti_hwUrl: "Pending",
-    cti_wCompliance: "",
-    cti_wUrl_proofDomain: "Pending",
-    cti_osChart: "Pending",
-    cti_bPlan: "Pending",
-  });
-  useEffect(() => {
-    dispatch(INITIATECTI(CTI));
-  }, [dispatch]);
+  // const [CTI, setCTI] = React.useState({
+  //   cti_fcaForm: "Pending",
+  //   cti_bInformation: "Pending",
+  //   cti_otAgreement: "",
+  //   cti_hwUrl: "Pending",
+  //   cti_wCompliance: "",
+  //   cti_wUrl_proofDomain: "Pending",
+  //   cti_osChart: "Pending",
+  //   cti_bPlan: "Pending",
+  // });
+  // useEffect(() => {
+  //   dispatch(INITIATECTI(CTI));
+  // }, [dispatch]);
 
   function handleInput(evt) {
     if (copy === true) {
@@ -118,6 +119,7 @@ export default function CI({ ide }) {
     e.preventDefault();
     console.log(CI);
     dispatch(CreateCI(CI));
+    dispatch(ResetCI())
 
     history.push("/CTI");
   };

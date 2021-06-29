@@ -25,6 +25,8 @@ import { GetContacts } from '../../actions/contactAction'
 import { IBAN,CARD } from '../../actions/ibanAction'
 import './style.css'
 import { firebase } from "../../Config";
+import { Reset } from "../../actions/clAction";
+import { ResetKYC } from "../../actions/kycAction";
 
 export const Header = (props) => {
     const history = useHistory()
@@ -89,7 +91,7 @@ export const Header = (props) => {
                                                     <Link class="nav-link active text-center" id="pills-pre-aproval-tab" data-toggle="pill" to="/app" role="tab" aria-selected="true">PRE-APPOVAL APPLICATION</Link>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
-                                                    <Link class="nav-link" id="pills-card-processing-tab" data-toggle="pill" to="/ci" role="tab" aria-selected="false">CARD PROCESSING COMPLIANCE APPLICATION</Link>
+                                                    <Link onClick={e=>{dispatch(Reset()); dispatch(ResetKYC())}} class="nav-link" id="pills-card-processing-tab" data-toggle="pill" to="/ci" role="tab" aria-selected="false">CARD PROCESSING COMPLIANCE APPLICATION</Link>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
                                                     <Link  onClick={e=>{dispatch(IBAN())}} class="nav-link" id="pills-iban-bank-tab" data-toggle="pill" to="/ci" role="tab" aria-selected="false">IBAN BANK ACCOUNT COMPLIANCE APPLICATION</Link>

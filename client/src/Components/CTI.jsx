@@ -5,15 +5,15 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { GetOneCL } from "../actions/clAction";
 import SideNav from "./Sidebar/Sidebar";
 
-import { CreateCTI, GetOneCTI } from "../actions/ctiAction";
-import { GetOneKYC, INITIATEKYC } from "../actions/kycAction";
+import { CreateCTI, GetOneCTI, ResetCTI } from "../actions/ctiAction";
+import { GetOneKYC, INITIATEKYC, ResetKYC } from "../actions/kycAction";
 
 const CTI = ({ide}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { urlid } = useParams();
   const data = useSelector((state) => state.ctiReducer.state);
-  const dataCL = useSelector((state) => state.clReducer.state);
+  // const dataCL = useSelector((state) => state.clReducer.state);
   const dataKYc = useSelector((state) => state.kycReducer.state);
   console.log(dataKYc);
   const id = useSelector((state) => state.ciReducer.id);
@@ -24,28 +24,28 @@ const CTI = ({ide}) => {
     urlid ? dispatch(GetOneCTI(urlid)) : console.log("creating");
     urlid ? dispatch(GetOneCL(urlid)) : console.log("No Check List");
   }, [urlid]);
-  const [CL, setCL] = useState({});
-  const [KYC, setKYC] = useState([
-    {
-      Rdays: "",
-      kyc_name: "",
-      kyc_sHolds: "",
-      kyc_sholders: "",
-      kyc_pID: "",
-      kyc_startDate: "",
-      kyc_ExpiryDate: "",
-      kyc_nationality: "",
-      kyc_notarized: "",
-      kyc_Address: "",
-      kyc_adstartDate: "",
-      kyc_adExpiryDate: "",
-      kyc_toProof: "",
-      kyc_paDocument: "",
-    },
-  ]);
-  useEffect(() => {
-    dispatch(INITIATEKYC(KYC));
-  }, [dispatch]);
+  // const [CL, setCL] = useState({});
+  // const [KYC, setKYC] = useState([
+  //   {
+  //     Rdays: "",
+  //     kyc_name: "",
+  //     kyc_sHolds: "",
+  //     kyc_sholders: "",
+  //     kyc_pID: "",
+  //     kyc_startDate: "",
+  //     kyc_ExpiryDate: "",
+  //     kyc_nationality: "",
+  //     kyc_notarized: "",
+  //     kyc_Address: "",
+  //     kyc_adstartDate: "",
+  //     kyc_adExpiryDate: "",
+  //     kyc_toProof: "",
+  //     kyc_paDocument: "",
+  //   },
+  // ]);
+  // useEffect(() => {
+  //   dispatch(INITIATEKYC(KYC));
+  // }, [dispatch]);
   const [CTI, setCTI] = React.useState({
     cti_fcaForm: "Pending",
     cti_bInformation: "Pending",
@@ -73,11 +73,11 @@ const CTI = ({ide}) => {
   const handler = async (name) => {
     console.log(name);
   };
-  useEffect(() => {
-    if(urlid || ide){
-    setCL(dataCL);
-    }
-  }, [dataCL]);
+  // useEffect(() => {
+  //   if(urlid || ide){
+  //   setCL(dataCL);
+  //   }
+  // }, [dataCL]);
 
   const onSubmit = async (e) => {
     console.log("now it is called");
@@ -89,8 +89,9 @@ const CTI = ({ide}) => {
   const onUpdateSubmit = (e) => {
     dispatch(CreateCTI(CTI, urlid));
     history.push("/KYC/" + urlid);
+    id?
+    dispatch(ResetCTI()):console.log("");
   };
-  console.log(CL);
 
   return (
     <div className={urlid ? "container-fluid" : "container"}>
@@ -120,7 +121,7 @@ const CTI = ({ide}) => {
                   </Label>
                   <select
                     className={"custom-select"}
-                    value={CL.fcaf_status ? CL.fcaf_status : CTI.cti_fcaForm}
+                    value={ CTI.cti_fcaForm}
                     // value={'Not Required'}
                     id="1"
                     name="cti_fcaForm"
@@ -136,7 +137,7 @@ const CTI = ({ide}) => {
                   <Label for="memo">Bank Information (Welcome Letter):</Label>
                   <select
                     className={"custom-select"}
-                    value={CL.bi_status ? CL.bi_status : CTI.cti_bInformation}
+                    value={  CTI.cti_bInformation}
                     // value={"Not Required"}
                     id="1"
                     name="cti_bInformation"
@@ -176,7 +177,7 @@ const CTI = ({ide}) => {
                   </Label>
                   <select
                     className={"custom-select"}
-                    value={CL.hwua_status ? CL.hwua_status : CTI.cti_hwUrl}
+                    value={ CTI.cti_hwUrl}
                     id="1"
                     name="cti_hwUrl"
                     onChange={handleInput}
@@ -193,7 +194,7 @@ const CTI = ({ide}) => {
                   <Label for="shareCertificate">Website Compliance:</Label>
                   <Input
                     className={"custom-select"}
-                    value={CL.wc_status ? CL.wc_status : CTI.cti_wCompliance}
+                    value={  CTI.cti_wCompliance}
                     name="cti_wCompliance"
                     onChange={handleInput}
                     type="url"
@@ -208,7 +209,7 @@ const CTI = ({ide}) => {
                   <select
                     className={"custom-select"}
                     value={
-                      CL.wuod_status ? CL.wuod_status : CTI.cti_wUrl_proofDomain
+                        CTI.cti_wUrl_proofDomain
                     }
                     value={"Not Required"}
                     id="1"

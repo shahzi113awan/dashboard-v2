@@ -12,7 +12,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import ChecklistR from "./CheckList/checklistR";
 import SpChecklistR from "./CheckList/spchecklistR";
 import { useDispatch, useSelector } from "react-redux";
-import { CreateCL, GetOneCL } from "../actions/clAction";
+import { CreateCL, GetOneCL, Reset } from "../actions/clAction";
 import { Get, setLoading, GetOneCI } from "../actions/ciAction";
 import axios from "axios";
 import Loader from "react-loader-spinner";
@@ -68,14 +68,14 @@ export default function PreApproval() {
       ? dispatch(GetOneCI(urlid)) && dispatch(GetOneNotes(urlid))
       : console.log("creating");
   }, [urlid]);
-  const [Spare, setSpare] = useState([
-    {
-      text: "",
-      note: "",
-      status: "",
-      path: "",
-    },
-  ]);
+  // const [Spare, setSpare] = useState([
+  //   {
+  //     text: "",
+  //     note: "",
+  //     status: "",
+  //     path: "",
+  //   },
+  // ]);
   const [Notes, setNotes] = useState([
     {
       text: "",
@@ -271,6 +271,22 @@ export default function PreApproval() {
     SDC28: "",
     SDC29: "",
 
+    SDC1: "",
+    SDC2: "",
+    SDC3: "",
+    SDC4: "",
+    SDC5: "",
+    SDC6: "",
+    SDC7: "",
+
+    SDC21: "",
+    SDC22: "",
+    SDC23: "",
+    SDC24: "",
+    SDC25: "",
+    SDC26: "",
+    SDC27: "",
+
     ti: "",
     kyc: "",
     kyb: "",
@@ -286,117 +302,117 @@ export default function PreApproval() {
     checkby: "",
     senttosolby: "",
     sentDate: "",
-    spare: "",
-    spare1: "",
-    spare2: "",
-    spare3: "",
-    spare4: "",
-    spare5: "",
+    spare: "pending",
+    spare1: "pending",
+    spare2: "pending",
+    spare3: "pending",
+    spare4: "pending",
+    spare5: "pending",
     spare_Text: "",
     spare1_Text: "",
     spare2_Text: "",
     spare3_Text: "",
     spare4_Text: "",
     spare5_Text: "",
-    spare_fileName: "",
-    spare1_fileName: "",
-    spare2_fileName: "",
-    spare3_fileName: "",
-    spare4_fileName: "",
-    spare5_fileName: "",
+    spare_fileName: "fileName",
+    spare1_fileName: "fileName",
+    spare2_fileName: "fileName",
+    spare3_fileName: "fileName",
+    spare4_fileName: "fileName",
+    spare5_fileName: "fileName",
   });
   //Spare Section -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=--
-  useEffect(() => {
-    setSpare(SpareData);
-  }, [SpareData]);
-  useEffect(() => {
-    setNotes(NotesData);
-  }, [NotesData]);
-  const handletextSpare = async (e, index) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    const list = [...Spare];
-    list[index][name] = value;
-    setSpare(list);
-  };
+  // useEffect(() => {
+  //   setSpare(SpareData);
+  // }, [SpareData]);
+  // useEffect(() => {
+  //   setNotes(NotesData);
+  // }, [NotesData]);
+  // const handletextSpare = async (e, index) => {
+  //   e.preventDefault();
+  //   const { name, value } = e.target;
+  //   const list = [...Spare];
+  //   list[index][name] = value;
+  //   setSpare(list);
+  // };
 
-  const handleChangeSpare = async (e, index) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    const list = [...Spare];
-    list[index][name] = value;
-    setSpare(list);
-  };
-  const handleNotesSpare = async (e, index) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    const list = [...Spare];
-    list[index][name] = value;
-    setSpare(list);
-  };
-  // handle click event of the Add button
-  const handleAddClick = (e) => {
-    e.preventDefault();
-    setSpare([
-      ...Spare,
-      {
-        sparetext: "",
-        spare_status: "",
-        spare_fileName: "",
-      },
-    ]);
-  };
-  const toggler = () => {
-    setView(!view);
-  };
-  //handle add and remove
-  const handleRemoveClick = (e, index) => {
-    const list = [...Spare];
-    list.splice(index, 1);
-    setSpare(list);
-  };
-  const ImageHandlerSpare = async (e, index) => {
-    console.log(e.target.name);
-    const file = e.target.files[0];
-    const fileName = e.target.files[0].name;
-    // console.log(fileName);
-    // console.log(e.target.name);
-    const formData = new FormData();
-    formData.append("", file);
-    setIsLoading(true);
-    try {
-      let fName = new Date().getTime() + "_" + fileName;
-      const uploadTask = firebase.storage().ref(`/files/${fName}`).put(file);
-      uploadTask.on("state_changed", console.log, console.error, () => {
-        firebase
-          .storage()
-          .ref("files")
-          .child(fName)
-          .getDownloadURL()
-          .then((url) => {
-            // file = null
-            setURL(url);
-            console.log(url);
-            // const config = {
-            //   headers: {
-            //     "Content-Type": "multipart/form-data",
-            //   },
-            // };
-            // const { data } = axios.post("api/upload", formData, config);
-            setImage(url);
-            e.preventDefault();
-            const { name, value } = e.target;
-            const list = [...Spare];
-            list[index][name] = url;
-            setSpare(list);
-            setIsLoading(false);
-          });
-      });
-    } catch (error) {
-      console.log(error);
-    }
-    console.log(NotesData);
-  };
+  // const handleChangeSpare = async (e, index) => {
+  //   e.preventDefault();
+  //   const { name, value } = e.target;
+  //   const list = [...Spare];
+  //   list[index][name] = value;
+  //   setSpare(list);
+  // };
+  // const handleNotesSpare = async (e, index) => {
+  //   e.preventDefault();
+  //   const { name, value } = e.target;
+  //   const list = [...Spare];
+  //   list[index][name] = value;
+  //   setSpare(list);
+  // };
+  // // handle click event of the Add button
+  // const handleAddClick = (e) => {
+  //   e.preventDefault();
+  //   setSpare([
+  //     ...Spare,
+  //     {
+  //       sparetext: "",
+  //       spare_status: "",
+  //       spare_fileName: "",
+  //     },
+  //   ]);
+  // };
+  // const toggler = () => {
+  //   setView(!view);
+  // };
+  // //handle add and remove
+  // const handleRemoveClick = (e, index) => {
+  //   const list = [...Spare];
+  //   list.splice(index, 1);
+  //   setSpare(list);
+  // };
+  // const ImageHandlerSpare = async (e, index) => {
+  //   console.log(e.target.name);
+  //   const file = e.target.files[0];
+  //   const fileName = e.target.files[0].name;
+  //   // console.log(fileName);
+  //   // console.log(e.target.name);
+  //   const formData = new FormData();
+  //   formData.append("", file);
+  //   setIsLoading(true);
+  //   try {
+  //     let fName = new Date().getTime() + "_" + fileName;
+  //     const uploadTask = firebase.storage().ref(`/files/${fName}`).put(file);
+  //     uploadTask.on("state_changed", console.log, console.error, () => {
+  //       firebase
+  //         .storage()
+  //         .ref("files")
+  //         .child(fName)
+  //         .getDownloadURL()
+  //         .then((url) => {
+  //           // file = null
+  //           setURL(url);
+  //           console.log(url);
+  //           // const config = {
+  //           //   headers: {
+  //           //     "Content-Type": "multipart/form-data",
+  //           //   },
+  //           // };
+  //           // const { data } = axios.post("api/upload", formData, config);
+  //           setImage(url);
+  //           e.preventDefault();
+  //           const { name, value } = e.target;
+  //           const list = [...Spare];
+  //           list[index][name] = url;
+  //           setSpare(list);
+  //           setIsLoading(false);
+  //         });
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   console.log(NotesData);
+  // };
 
   //Spare section End-=-=-=-=====-=-=-=-==============-=---=-=-=-===============-
   //HAndlers..............................................................
@@ -426,6 +442,14 @@ export default function PreApproval() {
         date: "",
       },
     ]);
+  };
+
+  const handleRemoveNote = () => {
+    const len = Notes.length;
+    const list = [...Notes];
+    list.splice(len-1, 1);
+    console.log(len);
+    setNotes(list);
   };
   const handleCheck = (e) => {
     setCL({
@@ -472,8 +496,8 @@ export default function PreApproval() {
   const ImageHandler = async (e) => {
     console.log(e.target.name);
     const file = e.target.files[0];
-    const fileName = e.target.files[0].name;
-    // console.log(fileName);
+    const fileName = e.target.files[0].name 
+    console.log(fileName);
     // console.log(e.target.name);
     const formData = new FormData();
     formData.append("", file);
@@ -518,13 +542,14 @@ export default function PreApproval() {
     urlid
       ? (await dispatch(CreateCL(CL, urlid))) && dispatch(Get())
       : dispatch(CreateCL(CL, id)) && dispatch(Get());
-    urlid
-      ? await dispatch(CreateSpare(Spare, urlid))
-      : dispatch(CreateSpare(Spare, id));
+
+    // urlid
+    //   ? await dispatch(CreateSpare(Spare, urlid))
+    //   : dispatch(CreateSpare(Spare, id));
     urlid
       ? await dispatch(CreateNotes(Notes, urlid))
       : dispatch(CreateNotes(Notes, id));
-
+    dispatch(Reset());
     history.push("/");
   };
   const handleReset = (check1, check2, file, status) => {
@@ -1131,6 +1156,9 @@ export default function PreApproval() {
                 <button className="btn btn-primary" onClick={handleAddNotes}>
                   Add Note
                 </button>
+                <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
+                  Delete Note
+                </button>
               </td>
             </tr>
           </thead>
@@ -1245,7 +1273,7 @@ export default function PreApproval() {
                                         class="btn btn-secondary"
                                         data-dismiss="modal"
                                       >
-                                        Save and Close
+                                         Close
                                       </button>
                                       {/* <button type="button" class="btn btn-primary">Save changes</button> */}
                                     </div>
@@ -1693,6 +1721,9 @@ export default function PreApproval() {
                       >
                         Add Note
                       </button>
+                      <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
+                  Delete Note
+                </button>
                     </td>
                   </tr>
                 </thead>
@@ -2202,13 +2233,16 @@ export default function PreApproval() {
                       >
                         Add Note
                       </button>
+                      <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
+                  Delete Note
+                </button>
                     </td>
                   </tr>
                 </thead>
               </table>
             </div>
           </div>
-          
+
           <div class="card">
             <div class="card-header" id="headingThree">
               <h2 class="mb-0">
@@ -2643,33 +2677,35 @@ export default function PreApproval() {
                       >
                         Add Note
                       </button>
+                      <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
+                  Delete Note
+                </button>
                     </td>
                   </tr>
                 </thead>
               </table>
             </div>
           </div>
-         
 
           <div class="card">
-            <div class="card-header" id="headingThree">
+            <div class="card-header" id="headingFour">
               <h2 class="mb-0">
                 <button
-                  class="btn  btn-block collapsed text-left collapsed"
+                  class="btn  btn-block   text-left collapsed"
                   type="button"
                   data-toggle="collapse"
                   data-target="#collapseFour"
                   aria-expanded="false"
                   aria-controls="collapseThree"
                 >
-               MISCELLANEOUS DOCUMENTS
+                  MISCELLANEOUS DOCUMENTS
                 </button>
               </h2>
             </div>
             <div
-              id="collapseThree"
+              id="collapseFour"
               class="collapse"
-              aria-labelledby="headingThree"
+              aria-labelledby="headingFour"
               data-parent="#accordionExample"
             >
               <table>
@@ -2755,7 +2791,6 @@ export default function PreApproval() {
                               </div>
                             </td>
                           </tr>
-
                           {/* {
                                   Spare.map((res, id) => {
                 return (
@@ -2796,6 +2831,62 @@ export default function PreApproval() {
                 )
               })
             } */}
+                          <SpareTR
+                            name={"spare"}
+                            name1={"spare_Text"}
+                            status={CL.spare}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
+                          />
+                          <SpareTR
+                            name={"spare1"}
+                            name1={"Spare1_Text"}
+                            status={CL.spare1}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
+                          />
+                          <SpareTR
+                            name={"spare2"}
+                            name1={"spare2_Text"}
+                            status={CL.spare2}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
+                          />
+                          <SpareTR
+                            name={"spare3"}
+                            name1={"spare_Text"}
+                            status={CL.spare3}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
+                          />
+                          <SpareTR
+                            name={"spare4"}
+                            name1={"spare_Text4"}
+                            status={CL.spare4}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
+                          />
+                          <SpareTR
+                            name={"spare5"}
+                            name1={"spare5_Text"}
+                            status={CL.spare5}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
+                          />
+                          {/* <SpareTR
+                            name={"spare6"}
+                            name1={"spare6_Text"}
+                            status={CL.spare6}
+                            Change={(e) => {
+                              handleChange(e);
+                            }}
+                          /> */}
                         </tbody>
                       </table>
                     </td>
@@ -2898,9 +2989,7 @@ export default function PreApproval() {
 
                             name1={res.sparetext}
                            value={res.spare_status}
-                           onChangetext={(e) => {
-                                handletextSpare(e, id);
-                              }}
+                           
                              Change={(e) => {
                                handleChangeSpare(e, id);
                              }}
@@ -2927,6 +3016,160 @@ export default function PreApproval() {
                 )
               })
             } */}
+                          <TR1
+                            checkName={"Spare1"}
+                            checkName2={"Spare21"}
+                            fc="spare_fileName"
+                            checked={CL.Spare1}
+                            checked2={CL.Spare21}
+                            path={CL.spare_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "Spare1",
+                                "Spare21",
+                                "spare_fileName",
+                                "spare"
+                              );
+                            }}
+                          />
+                          <TR1
+                            checkName={"Spare2"}
+                            checkName2={"Spare22"}
+                            fc="spare1_fileName"
+                            checked={CL.Spare2}
+                            checked2={CL.Spare22}
+                            path={CL.spare1_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "Spare2",
+                                "Spare22",
+                                "spare1_fileName",
+                                "spare1"
+                              );
+                            }}
+                          />
+                          <TR1
+                            checkName={"Spare3"}
+                            checkName2={"Spare23"}
+                            fc="spare2_fileName"
+                            checked={CL.Spare3}
+                            checked2={CL.Spare23}
+                            path={CL.spare2_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "Spare3",
+                                "Spare23",
+                                "spare2_fileName",
+                                "spare2"
+                              );
+                            }}
+                          />
+                          <TR1
+                            checkName={"Spare4"}
+                            checkName2={"Spare24"}
+                            fc="spare3_fileName"
+                            checked={CL.Spare4}
+                            checked2={CL.Spare24}
+                            path={CL.spare3_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "Spare4",
+                                "Spare24",
+                                "spare3_fileName",
+                                "spare3"
+                              );
+                            }}
+                          />
+                          <TR1
+                            checkName={"Spare5"}
+                            checkName2={"Spare25"}
+                            fc="spare4_fileName"
+                            checked={CL.Spare5}
+                            checked2={CL.Spare25}
+                            path={CL.spare4_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "Spare5",
+                                "Spare25",
+                                "spare4_fileName",
+                                "spare4"
+                              );
+                            }}
+                          />
+                          <TR1
+                            checkName={"Spare6"}
+                            checkName2={"Spare26"}
+                            fc="spare5_fileName"
+                            checked={CL.Spare6}
+                            checked2={CL.Spare26}
+                            path={CL.spare5_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "Spare6",
+                                "Spare26",
+                                "spare5_fileName",
+                                "spare5"
+                              );
+                            }}
+                          />
+                          {/* <TR1
+                            checkName={"Spare7"}
+                            checkName2={"Spare27"}
+                            fc="fcR_fileName"
+                            checked={CL.Spare7}
+                            checked2={CL.Spare27}
+                            path={CL.fcr_fileName}
+                            check1={(e) => {
+                              handleCheck(e);
+                            }}
+                            FileUpload={(e) => {
+                              ImageHandler(e);
+                            }}
+                            resetHandler={(e) => {
+                              handleReset(
+                                "Spare7",
+                                "Spare27",
+                                "fcr_fileName",
+                                "fcR_status"
+                              );
+                            }}
+                          /> */}
                         </tbody>
                       </table>
                     </td>
@@ -2955,14 +3198,15 @@ export default function PreApproval() {
                       >
                         Add Note
                       </button>
+                      <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
+                  Delete Note
+                </button>
                     </td>
                   </tr>
                 </thead>
               </table>
             </div>
           </div>
-         
-
 
           <div class="card">
             <div class="card-header" id="headingThree">
@@ -3272,6 +3516,9 @@ export default function PreApproval() {
                       >
                         Add Note
                       </button>
+                      <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
+                  Delete Note
+                </button>
                     </td>
                   </tr>
                 </thead>

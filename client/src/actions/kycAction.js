@@ -8,6 +8,16 @@ export const CreateKYC = (obj, id) => async (dispatch) => {
         type: "CREATE_KYC",
         payload: res.data,
       });
+    dispatch(setLoading())
+
+      dispatch({
+        type: "RESET_KYC",
+         
+      });
+      dispatch({
+        type: "LOADINGEND",
+         
+      });
     });
   } catch (error) {
     dispatch({
@@ -24,6 +34,7 @@ export const GetOneKYC = (id) => async (dispatch) => {
       type: "GET_KYC",
       payload: res.data.kyc,
     });
+    
   });
 };
 export const INITIATEKYC = (data) => async (dispatch) => {
@@ -37,5 +48,10 @@ export const INITIATEKYC = (data) => async (dispatch) => {
 export const setLoading = () => (dispatch) => {
   dispatch({
     type: "LOADING",
+  });
+};
+export const ResetKYC = () => (dispatch) => {
+  dispatch({
+    type: "RESET_KYC",
   });
 };
