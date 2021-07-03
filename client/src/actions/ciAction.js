@@ -1,6 +1,6 @@
 import axios from "axios";
 export const CreateCI = (obj) => async (dipatch) => {
-  console.log("create action should");
+  console.log("create action should"); 
 
   await axios
     .post("/api/ci", {

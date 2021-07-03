@@ -496,8 +496,8 @@ export default function PreApproval() {
   const ImageHandler = async (e) => {
     console.log(e.target.name);
     const file = e.target.files[0];
-    const fileName = e.target.files[0].name 
-    console.log(fileName);
+    const fileName = e.target.files[0]
+ 
     // console.log(e.target.name);
     const formData = new FormData();
     formData.append("", file);
