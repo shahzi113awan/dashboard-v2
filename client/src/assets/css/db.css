@@ -1,0 +1,82 @@
+/*   */
+ 
+    /* table thead th:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+      }
+   */
+    /* table thead th:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 2;
+      }
+   */
+   @charset "UTF-8"; /**! 02. fonts **/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap'); /**! 02. Typography **/
+body{font-size:1em; line-height:1.85714286em; font-family:'Open Sans', sans-serif; color:#333333; font-weight:400; position:relative; overflow-x:hidden; }
+ 
+/*newappWrap*/
+.newappWrap{padding:15px 0px; position:relative; }
+.newappWrap h1{font-size:24px; font-weight:bold; text-align:center; border:1px solid #eee; padding:10px; }
+
+/*first Navbar start*/
+.mainTabWrap .nav-pills .nav-item{margin-right:2px; }
+.mainTabWrap .nav-pills .nav-item .nav-link{background:#fce4d6; width:180px; border:1px solid #808080; border-radius:0; font-size:14px; font-weight:600; color:#000; }
+.mainTabWrap .nav-pills .nav-item .nav-link:hover, .mainTabWrap .nav-pills .nav-item .nav-link.active{background:#c65911; color:#fff; }
+.mainTabWrap .tab-content{  padding:5px; }
+
+/*second Navbar start*/
+.inn-app-tabs .nav{padding-bottom:15px; margin-bottom:30px; border-bottom:10px solid #4472c4; }
+.inn-app-tabs .nav-pills .nav-item{margin-right:2px; }
+.inn-app-tabs .nav-pills .nav-item .nav-link{background:#f2f2f2; border:1px solid #000000; border-radius:0; font-size:14px; width:240px; font-weight:600; line-height:21px; min-height:60px; color:#000; }
+.inn-app-tabs .nav-pills .nav-item .nav-link:hover, .inn-app-tabs .nav-pills .nav-item .nav-link.active{background:#c65911; color:#fff; }
+.inn-app-tabs .tab-content{border:none; padding:5px; }
+
+.dash-navvbar .nav-pills .nav-item .nav-link{width:175px; }
+/*form start*/
+.pre-aproval-forms{position:relative; }
+.pre-aproval-forms h3{position:relative; display:inline-block; background:#28a745; color:#fff; font-size:20px; font-weight:600; padding:8px 15px; border-radius:15px; margin-bottom:20px; }
+.pre-aproval-forms .form-control{height:45px; }
+.pre-aproval-forms .form-control:focus{box-shadow:none; }
+
+/*aproval-boxx start*/
+.pre-aproval-boxx{background-color:#fff; box-shadow:0 20px 46px 0 rgb(0 18 88 / 5%); padding:20px 25px; margin-top:10px; border-top:3px solid #4472c4; }
+
+/*accordionWrap start*/
+.accordionWrap{margin-top:50px; }
+.accordionWrap .accordion .card{margin-bottom:10px; border-bottom:1px solid rgba(0, 0, 0, .125); }
+.accordionWrap .accordion .card-header{padding:0; margin-bottom:0; background-color:transparent; border:none; }
+.accordionWrap .accordion .card-header .btn{background:#fce4d6; color:#000; font-weight:600; padding:15px 40px; font-family:'Open Sans', sans-serif; font-size:15px; border-radius:0; }
+.accordionWrap .accordion .card-header .btn.active, .accordionWrap .accordion .card-header .btn:hover{background:#c65911; color:#fff; }
+.accordionWrap .accordion .card-header .btn:focus{box-shadow:none; }
+
+
+
+
+
+
+
+
+
+
+/*table*/
+.dash-navvbar table{border-collapse:inherit;}
+.td-fonts{margin-bottom:5px; transition:all 0.2s ease-in-out; overflow:hidden; text-overflow:ellipsis; background-color:#fff; border:2px solid #000; font-weight:600; padding:0.35625rem 0.4375rem; font-size:11px; line-height:15px; min-height:65px; display:flex; flex-wrap:nowrap; flex-direction:column; align-content:flex-start; justify-content:center; position:relative;}
+.td-font-icon{position:relative; padding-top:0; padding-right:0; padding-bottom:0; padding-left:4px;}
+.filter-icon{position:absolute; z-index:1; right:0px; background:#ffffcc; height:61px; color:#000; line-height:60px; width:20px; text-align:center; font-size:11px;}
+.filter-icon-2{position:absolute; z-index:1; top:0px; right:0px; background:#f2f2f2; height:28px; color:#000061; border-left:1px solid #000000; line-height:30px; width:25px; text-align:center; font-size:11px;}
+.filter-icon-2 a{color:#000061;}
+.filter-icon a{color:#000;}
+.redborder{border-color:#ff0000 !important; color:#ff0000 !important;}
+.greenborder{border-color:#0e9943 !important; color:#129423 !important;}
+.blueborder{border-color:#4472c4 !important;}
+.yellobg{background:#ffffcc !important; position:relative;}
+.small-fonts{margin-bottom:5px; line-height:15px; text-align:left; transition:all 0.2s ease-in-out; overflow:hidden; text-overflow:ellipsis; background-color:#f2f2f2; border:1px solid #d9d9d9; font-weight:400; padding:0.35625rem 0.4375rem; font-size:10px;}
+ 
+   .tdstyle{
+    font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#fff; text-transform:uppercase;
+   }
+   .tdstylec{
+    font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#4472c4; text-transform:uppercase;
+   }

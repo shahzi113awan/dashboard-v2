@@ -569,6 +569,7 @@ export default function PreApproval() {
   return (
     <div class="compliance-dashboard-card">
       <div class="container-fluid">
+        
         <table>
           <thead>
             <tr>

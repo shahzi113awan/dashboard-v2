@@ -1,0 +1,264 @@
+@charset "UTF-8"; /**! 02. fonts **/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"); /**! 02. Typography **/
+body {
+  font-size: 1em;
+  line-height: 1.85714286em;
+  font-family: "Open Sans", sans-serif;
+  color: #333333;
+  font-weight: 400;
+  position: relative;
+  overflow-x: hidden;
+}
+/*Trading Book*/
+.compliance-dashboard-card table {
+  border-collapse: inherit;
+  width: 100%;
+}
+.compliance-dashboard-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  background: #4472c4;
+  text-align: center;
+  height: 58px;
+  line-height: 50px;
+}
+.td-font-link {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #4472c4;
+  text-align: center;
+}
+.blueborder {
+  border-color: #4472c4 !important;
+}
+.yellobg {
+  background: #ffffcc !important;
+  position: relative;
+}
+.redcolor {
+  color: #ff0000 !important;
+}
+.redborder {
+  border-color: #ff0000 !important;
+  color: #ff0000 !important;
+}
+.td-font-icon {
+  position: relative;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+}
+.compliance-td-fonts {
+  margin-bottom: 3px;
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #fff;
+  border: 2px solid #000;
+  font-weight: 600;
+  padding: 0.35625rem 0.2275rem;
+  font-size: 10px;
+  line-height: 15px;
+  min-height: 65px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: space-around;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.compliance-td-fonts img {
+  width: 34px;
+  margin: 0 auto;
+}
+.compliance-small-fonts {
+  line-height: 18px;
+  height: 30px;
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+  text-overflow: ellipsis;
+  background-color: #f2f2f2;
+  border: 1px solid #d9d9d9;
+  font-weight: 400;
+  padding: 0.35625rem 0.4375rem;
+  font-size: 10px;
+  position: relative;
+}
+.filter-icon {
+  position: absolute;
+  z-index: 1;
+  right: 0px;
+  background: #ffffcc;
+  height: 61px;
+  color: #000;
+  line-height: 60px;
+  width: 20px;
+  text-align: center;
+  font-size: 11px;
+}
+.filter-icon a {
+  color: #000;
+}
+.checkbox-workbook {
+  line-height: 13px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 3px;
+  transition: all 0.2s ease-in-out;
+  text-overflow: ellipsis;
+  background-color: #ffffcc;
+  border: 2px solid #666666;
+  font-weight: 400;
+  min-height: 65px;
+  display: flex;
+  color: #000;
+  padding: 0px !important;
+  font-size: 11px;
+  position: relative;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  align-content: center;
+}
+.checkbox-workbook input[type="checkbox"] {
+  display: none;
+}
+.checkbox-workbook input[type="checkbox"] + label {
+  width: 48px;
+  height: 46px;
+  line-height: 47px;
+  border: none;
+  background: #ffffcc;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.checkbox-workbook input[type="checkbox"]:checked + label:before {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #000000;
+  font-size: 18px;
+  padding-left: 0;
+  position: relative;
+  top: 0;
+}
+.tradding-title {
+  font-size: 15px;
+  color: #fff;
+  text-transform: uppercase;
+  background: #4472c4;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+.min_heightt {
+  min-height: 55px !important;
+}
+.marign_bt {
+  margin-bottom: 0px !important;
+}
+.marign_bt3 {
+  margin-bottom: -1x !important;
+}
+.text-rotate-div {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  height: auto;
+  margin-bottom: 0px;
+  border: none !important;
+}
+.border_2 {
+  border: 2px solid #000;
+}
+.text-rotate {
+  writing-mode: vertical-lr;
+  -ms-writing-mode: tb-rl;
+  transform: rotate(180deg);
+}
+.bordercllr {
+  border-color: #666666 !important;
+}
+.td-preaproval {
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+  text-overflow: ellipsis;
+  background-color: #ffffcc;
+  border: 2px solid #808080;
+  font-weight: 600;
+  padding: 0.35625rem 0.4375rem;
+  font-size: 11px;
+  line-height: 15px;
+  min-height: 66px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+.acri-sec {
+  line-height: 13px;
+  width: 100%;
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+  text-overflow: ellipsis;
+  background-color: #ffffcc;
+  border: 2px solid #666666;
+  font-weight: 400;
+  min-height: 44px;
+  display: flex;
+  color: #000;
+  padding: 0.35625rem 0.4375rem;
+  font-size: 11px;
+  position: relative;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  align-content: center;
+}
+.no_bordr {
+  border: none !important;
+  margin-bottom: 0;
+  min-height: 33px;
+}
+.solu-notess {
+  margin-bottom: 0px;
+  border: none;
+  background: #fff;
+}
+.width_100 {
+  width: 100%;
+}
+.display_None {
+  display: none;
+}
+.btn-block {
+  background-color: #ffffcc !important;
+  border: solid 1px black !important;
+  width: 20% !important;
+  font-weight: bold !important;
+}
+.marign_bt4 {
+  margin-bottom: -4px !important;
+}
+.min_heightt58 {
+  min-height: 58px !important;
+}
+.padInput{
+    padding-right: 66% !important;
+}

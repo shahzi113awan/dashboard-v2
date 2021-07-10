@@ -1,0 +1,93 @@
+@charset "UTF-8"; /**! 02. fonts **/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap'); /**! 02. Typography **/
+body{font-size:1em; line-height:1.85714286em; font-family:'Open Sans', sans-serif; color:#333333; font-weight:400; position:relative; overflow-x:hidden;}
+
+
+
+/*newappWrap*/
+.compliance-dashboard-card table{border-collapse:inherit; width:100%;}
+.compliance-dashboard-title{font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#fff; text-transform:uppercase; background:#4472c4; text-align:center; height:58px; line-height:50px;}
+.td-font-link{font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#4472c4; text-align:center;}
+.blueborder{border-color:#4472c4 !important;}
+.yellobg {
+    background: #ffffcc !important;
+    position: relative;
+}
+.redcolor{color:#ff0000 !important;}
+.redborder{border-color:#ff0000 !important; color:#ff0000 !important;}
+.td-font-icon{position:relative; padding-top:0; padding-right:0; padding-bottom:0; padding-left:4px;}
+.compliance-td-fonts{margin-bottom:5px; transition:all 0.2s ease-in-out; overflow:hidden; text-overflow:ellipsis; background-color:#fff; border:2px solid #000; font-weight:600; padding:0.35625rem 0.2275rem; font-size:10px; line-height:15px; min-height:65px; display:flex; flex-wrap:nowrap; flex-direction:column; align-content:flex-start; justify-content:center; position:relative;}
+.compliance-td-fonts img{width:34px; margin:0 auto}
+.compliance-small-fonts{line-height:18px; height: 30px; text-align:left; transition:all 0.2s ease-in-out; text-overflow:ellipsis; background-color:#f2f2f2; border:1px solid #d9d9d9; font-weight:400; padding:0.35625rem 0.4375rem; font-size:10px; position:relative;}
+.compliance-select{
+    padding-left:0.4375rem !important;
+    width: 100%;
+    display: flex;
+    color: #000;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    align-content: center;
+    line-height: 15px;
+    text-align: left;
+    transition: all 0.2s ease-in-out;
+    text-overflow: ellipsis;
+    background-color: #ffffcc;
+    border: 1px solid #d9d9d9;
+    font-weight: 400;
+    padding:0   px;
+    font-size: 10px;
+    position: relative;
+}
+
+.compliance-select .select2-container--default .select2-selection--single {
+    background-color: transparent;
+    border:none;
+    border-radius: 0px;
+}
+.compliance-select .select2-dropdown{
+    left: -8px !important;
+    width: 101px !important;
+}
+.compliance-select .select2-container{width: 100% !important;}
+.compliance-select .select2-container .select2-selection--single .select2-selection__rendered{padding-left:0;}
+.select2-results__option--selectable{padding:2px ​5px !important; font-size:11px !important;}
+.compliance-select .select2-container--default .select2-selection--single .select2-selection__arrow:before {
+  height: 28px;
+    position: absolute;
+    top: -1px;
+    right: 0;
+    font-size: 12px;
+    line-height: 30px;
+    background: #eee;
+    text-align: center;
+    width: 20px;
+    content: "\f0b0";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+.compliance-select .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 23px;
+    position: absolute;
+    top: 1px;	
+    right:0px;
+    width: 20px;
+}
+.compliance-select .select2-container--default .select2-selection--single .select2-selection__arrow b{display:none;}
+.filter-icon{position:absolute;z-index:1;right:0px;background:#ffffcc;height:61px;color:#000;line-height:60px; width:20px; text-align:center; font-size:11px;}
+.filter-icon a{color:#000;}
+.colspan{
+    background-color: #c65911 !important;
+}
+.modal-dialog{max-width: 950px !important;}
+@media (max-width: 1199px){
+.modal-dialog{max-width:800px !important;}
+}
+
+@media (max-width: 990px){
+.modal-dialog{max-width:700px !important;}
+}
+@media (max-width: 767px){
+.modal-dialog{max-width:550px !important;}
+}
