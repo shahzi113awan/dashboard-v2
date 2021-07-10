@@ -13,8 +13,7 @@ import ChecklistR from "./CheckList/checklistR";
 import SpChecklistR from "./CheckList/spchecklistR";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateCL, GetOneCL, Reset } from "../actions/clAction";
-import { Get, setLoading, GetOneCI } from "../actions/ciAction";
-import axios from "axios";
+import { Get, setLoading, GetOneCI, UpdateStatus } from "../actions/ciAction";
 import Loader from "react-loader-spinner";
 import { firebase } from "../Config";
 import CI from "./CI";
@@ -447,7 +446,7 @@ export default function PreApproval() {
   const handleRemoveNote = () => {
     const len = Notes.length;
     const list = [...Notes];
-    list.splice(len-1, 1);
+    list.splice(len - 1, 1);
     console.log(len);
     setNotes(list);
   };
@@ -496,8 +495,8 @@ export default function PreApproval() {
   const ImageHandler = async (e) => {
     console.log(e.target.name);
     const file = e.target.files[0];
-    const fileName = e.target.files[0]
- 
+    const fileName = e.target.files[0];
+
     // console.log(e.target.name);
     const formData = new FormData();
     formData.append("", file);
@@ -537,11 +536,16 @@ export default function PreApproval() {
 
   console.log(Notes);
   const onSubmit = async (e) => {
+    const date = moment().format("DD/MM/YYYY")
     e.preventDefault();
 
     urlid
       ? (await dispatch(CreateCL(CL, urlid))) && dispatch(Get())
       : dispatch(CreateCL(CL, id)) && dispatch(Get());
+
+    urlid
+      ? dispatch(UpdateStatus("Boarding", date, urlid))
+      : dispatch(UpdateStatus("Boarding", date, id));
 
     // urlid
     //   ? await dispatch(CreateSpare(Spare, urlid))
@@ -1156,7 +1160,10 @@ export default function PreApproval() {
                 <button className="btn btn-primary" onClick={handleAddNotes}>
                   Add Note
                 </button>
-                <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
+                <button
+                  className="btn btn-primary ml-3"
+                  onClick={handleRemoveNote}
+                >
                   Delete Note
                 </button>
               </td>
@@ -1273,7 +1280,7 @@ export default function PreApproval() {
                                         class="btn btn-secondary"
                                         data-dismiss="modal"
                                       >
-                                         Close
+                                        Close
                                       </button>
                                       {/* <button type="button" class="btn btn-primary">Save changes</button> */}
                                     </div>
@@ -1721,9 +1728,12 @@ export default function PreApproval() {
                       >
                         Add Note
                       </button>
-                      <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
-                  Delete Note
-                </button>
+                      <button
+                        className="btn btn-primary ml-3"
+                        onClick={handleRemoveNote}
+                      >
+                        Delete Note
+                      </button>
                     </td>
                   </tr>
                 </thead>
@@ -2233,9 +2243,12 @@ export default function PreApproval() {
                       >
                         Add Note
                       </button>
-                      <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
-                  Delete Note
-                </button>
+                      <button
+                        className="btn btn-primary ml-3"
+                        onClick={handleRemoveNote}
+                      >
+                        Delete Note
+                      </button>
                     </td>
                   </tr>
                 </thead>
@@ -2677,9 +2690,12 @@ export default function PreApproval() {
                       >
                         Add Note
                       </button>
-                      <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
-                  Delete Note
-                </button>
+                      <button
+                        className="btn btn-primary ml-3"
+                        onClick={handleRemoveNote}
+                      >
+                        Delete Note
+                      </button>
                     </td>
                   </tr>
                 </thead>
@@ -3198,9 +3214,12 @@ export default function PreApproval() {
                       >
                         Add Note
                       </button>
-                      <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
-                  Delete Note
-                </button>
+                      <button
+                        className="btn btn-primary ml-3"
+                        onClick={handleRemoveNote}
+                      >
+                        Delete Note
+                      </button>
                     </td>
                   </tr>
                 </thead>
@@ -3516,9 +3535,12 @@ export default function PreApproval() {
                       >
                         Add Note
                       </button>
-                      <button className="btn btn-primary ml-3" onClick={handleRemoveNote}>
-                  Delete Note
-                </button>
+                      <button
+                        className="btn btn-primary ml-3"
+                        onClick={handleRemoveNote}
+                      >
+                        Delete Note
+                      </button>
                     </td>
                   </tr>
                 </thead>

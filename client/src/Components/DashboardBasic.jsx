@@ -17,7 +17,7 @@ import "../assets/css/style.css";
 import "../assets/css/all.css";
 import "../assets/css/select2.min.css";
 
-function Dashboard({ data, dashboard, status,dateType }) {
+function Dashboard({ data, dashboard, status }) {
   const dispatch = useDispatch();
   const [db, setDb] = useState([]);
   const [showSolutionFilter, setShowSolutionFilter] = useState(true);
@@ -709,7 +709,7 @@ function Dashboard({ data, dashboard, status,dateType }) {
                     </div>
                   </div>
                 </td>
-                <td width="8%">
+                <td width="10%">
                   <div class="compliance-td-fonts td-font-icon">
                     {showSolutionFilter ? (
                       <div>SOLUTION</div>
@@ -735,7 +735,7 @@ function Dashboard({ data, dashboard, status,dateType }) {
                     </div>
                   </div>
                 </td>
-                <td width="8%">
+                <td width="10%">
                   <div class="compliance-td-fonts blueborder compliance-td-fonts td-font-icon">
                     {showDateFilter ? (
                       <div>APPLICATION DATE</div>
@@ -758,11 +758,6 @@ function Dashboard({ data, dashboard, status,dateType }) {
                         <i class="fas fa-filter"></i>
                       </button>
                     </div>
-                  </div>
-                </td>
-                <td width="8%">
-                  <div class="compliance-td-fonts blueborder compliance-td-fonts td-font-icon">
-                    <div>{dateType}</div>
                   </div>
                 </td>
                 <td width="5%">
@@ -861,8 +856,7 @@ function Dashboard({ data, dashboard, status,dateType }) {
                     res.cti &&
                     res.kyc &&
                     res.kyb &&
-                    res.sd &&
-                    res.ci.cistatus === status
+                    res.sd
                   ) {
                     return (
                       <tr>
@@ -886,12 +880,6 @@ function Dashboard({ data, dashboard, status,dateType }) {
                         <td>
                           <div class="compliance-small-fonts text-center">
                             {res.ci.tpi_date}
-                            {/* 12 December 2020 */}
-                          </div>
-                        </td>
-                        <td>
-                          <div class="compliance-small-fonts text-center">
-                            {res.ci.api_date}
                             {/* 12 December 2020 */}
                           </div>
                         </td>

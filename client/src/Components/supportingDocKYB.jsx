@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { Link, useHistory, useParams } from "react-router-dom";
+import {  useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateSD, GetOneSD, INITIATESD } from "../actions/sdAction";
 import { GetOneCL } from "../actions/clAction";
@@ -26,7 +26,7 @@ export default function CTI({ide}) {
 
   console.log(data);
   const { urlid } = useParams();
-  const link = `/kyb/${urlid}`;
+  
 
   useEffect(() => {
     urlid ? dispatch(GetOneSD(urlid)) : console.log("creating");

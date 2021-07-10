@@ -1,0 +1,176 @@
+  .body {
+        background-color: gray;
+    }
+
+    #main_contact {
+        padding: 2px;
+        margin: 5px;
+        margin-top: 0px;
+        /* margin-bottom: -15%; */
+        font-size: small;
+        width: 15%;
+        background-color: rgb(231, 235, 235);
+    }
+
+    #name {
+        padding: 2px;
+        margin: 10px;
+        font-size: small;
+        background-color: rgb(231, 235, 235);
+        width: 28%;
+        border: none;
+    }
+
+    #telephone {
+        padding: 2px;
+        margin: 10px;
+        margin-left: 8px;
+        font-size: small;
+        width: 11%;
+        background-color: rgb(231, 235, 235);
+    }
+
+    #phone {
+        padding: 2px;
+        margin: 6px;
+        margin-left: -8px;
+        font-size: small;
+        background-color: rgb(231, 235, 235);
+        width: 14%;
+        border: none;
+    }
+
+    #skype_address {
+        padding: 2px;
+        margin: 6px;
+        margin-left: -4px;
+        font-size: small;
+        background-color: rgb(231, 235, 235);
+        width: 10%;
+        border: none;
+    }
+
+    #skype {
+        padding: 2px;
+        margin: 6px;
+        margin-left: -4px;
+        font-size: small;
+        background-color: rgb(231, 235, 235);
+        width: 14%;
+        border: none;
+    }
+
+    #other {
+        padding: 2px;
+        margin: 6px;
+        margin-left: 72.5%;
+        font-size: small;
+        background-color: rgb(231, 235, 235);
+        width: 10.08%;
+        border: none;
+    }
+
+    #otherinput {
+        padding: 2px;
+        margin: 6px;
+        margin-left: 60px;
+        font-size: small;
+        background-color: rgb(231, 235, 235);
+        width: 18%;
+        border: none;
+    }
+
+    #mainURL {
+        padding: 2px;
+        margin: 10px;
+        margin-left: 8px;
+        font-size: small;
+        width: 11%;
+        background-color: rgb(255, 251, 183);
+    }
+
+    #mainURLInput {
+        padding: 2px;
+        margin: 6px;
+        margin-left: -8px;
+        font-size: small;
+        background-color: rgb(255, 251, 183);
+        width: 14%;
+        border: none;
+    }
+
+    #tradingURL {
+        padding: 2px;
+        margin: 6px;
+        margin-left: -4px;
+        font-size: small;
+        background-color: rgb(255, 251, 183);
+        width: 10%;
+        border: none;
+    }
+
+    #tradingURLInput {
+        padding: 2px;
+        margin: 6px;
+        margin-left: -4px;
+        font-size: small;
+        background-color: rgb(255, 251, 183);
+        width: 14%;
+        border: none;
+    }
+
+    #tradingURL2 {
+        padding: 2px;
+        margin: 6px;
+        margin-left: 26.5%;
+        font-size: small;
+        background-color: rgb(255, 251, 183);
+        width: 10.2%;
+        border: none;
+    }
+
+    #tradingURLInput2 {
+        padding: 2px;
+        margin: 6px;
+        margin-left: -4px;
+        font-size: small;
+        background-color: rgb(255, 251, 183);
+        width: 14%;
+        border: none;
+    }
+
+    #address2 {
+        padding: 2px;
+        margin: 10px;
+        margin-left: 218px;
+        font-size: small;
+        background-color: rgb(231, 235, 235);
+        width: 27.9%;
+        border: none;
+    }
+
+    #transactionField {
+        padding: 2px;
+        margin: 6px;
+        margin-left: 0px;
+        font-size: small;
+        background-color: rgb(231, 235, 235);
+        width: 10%;
+        border: none;
+    }
+
+    #Chargeback {
+        padding: 2px;
+        margin: 10px;
+        margin-left: 600px;
+        font-size: small;
+        width: 11%;
+        background-color: rgb(231, 235, 235);
+    }
+
+    .panel {
+        /* padding: 8px; */
+        margin: -10px;
+        margin-top: 1px;
+        margin-left: 1px;
+    }

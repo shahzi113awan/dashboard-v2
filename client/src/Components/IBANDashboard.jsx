@@ -1,18 +1,14 @@
-import { Button } from "reactstrap";
-import '../assets/css/db.css'
+import "../assets/css/db.css";
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { GetIBAN,Delete } from "../actions/ciAction";
-import Loader from "react-loader-spinner";
-import Dashboard from './Dashboard'
-import { HiOutlineDocumentReport } from 'react-icons/hi'
+import { GetIBAN, Delete } from "../actions/ciAction";
+import Dashboard from "./DashboardBasic";
 
 import moment from "moment";
 
 export default function MainDashboard() {
-  const history = useHistory();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -47,8 +43,7 @@ export default function MainDashboard() {
   console.log(isLoading);
 
   console.log(db);
-  return ( <Dashboard dashboard={"IBAN Dashboard"} data={data} isLoading={isLoading}/>)
-
-
-  
+  return (
+    <Dashboard dashboard={"IBAN Dashboard"} data={data} isLoading={isLoading} />
+  );
 }

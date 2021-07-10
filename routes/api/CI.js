@@ -57,7 +57,7 @@ router.get("/ci/:id", (req, res) => {
 
 // READ CIs
 router.get("/ciLive", (req, res) => {
-  CISchema.find({ "ci.cistatus": "Live" }, (error, data) => {
+  CISchema.find({ "ci.cistatus": "Boarding" }, (error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -121,22 +121,27 @@ router.route("/ci/").put((req, res, next) => {
   );
 });
 router.route("/cistatus/:id").put((req, res, next) => {
-
   let obj1 = new CISchema(req.body);
 
   CISchema.findOneAndUpdate(
     { _id: req.params.id },
-    { $set: { 'ci.$.cistatus': req.body.cistatus } },
-    // {$set: req.body},
+    {
+      $set: {
+        "ci.cistatus": req.body.cistatus,
+        "ci.api_date": req.body.api_date,
+      },
+    },
+    { new: true },
 
-    (error, data) => {
-      if (error) {
-        return next(error);
-        console.log(error);
-      } else {
-        res.json(data);
-        console.log(data);
-        console.log("CI Status Changed successfully !");
+    (err, updatedUser) => {
+      if (err) {
+        return res.json({ error: "error while updating data" });
+      }
+      if (updatedUser) {
+        return res.json({
+          message: "updated successfully !",
+          updatedUser: updatedUser,
+        });
       }
     }
   );

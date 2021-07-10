@@ -47,5 +47,12 @@ export default function MainDashboard() {
   };
   console.log(isLoading);
   console.log(db);
-  return (<Dashboard data={data} isLoading={isLoading} />)
+  return (
+    <Dashboard
+      status="Boarding"
+      dateType={"Date of Integration"}
+      data={data}
+      isLoading={isLoading}
+    />
+  );
 }

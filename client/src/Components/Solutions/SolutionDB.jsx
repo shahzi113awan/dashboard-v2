@@ -1,16 +1,13 @@
-import { Button } from "reactstrap";
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { Get } from "../../actions/solutionNavAction";
 
 import Loader from "react-loader-spinner";
 
-import moment from "moment";
 
 export default function MainDashboard() {
-  const history = useHistory();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,12 +23,12 @@ export default function MainDashboard() {
   console.log(db);
   const isLoading = useSelector((state) => state.solReducer.isLoading);
 
-  //   console.log(isLoading);
-  //   const del = async (id) => {
-  //     await dispatch(Delete(id));
-  //     window.location.reload();
-  //     // dispatch(GetLive());
-  //   };
+    // console.log(isLoading);
+    // const del = async (id) => {
+    //   await dispatch(Delete(id));
+    //   window.location.reload();
+    //   // dispatch(GetLive());
+    // };
 
   return isLoading ? (
     <div

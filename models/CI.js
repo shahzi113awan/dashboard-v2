@@ -33,6 +33,9 @@ let CISchema = new Schema(
       tpi_date: {
         type: String,
       },
+      api_date: {
+        type: String,
+      },
       tpi_brPartner: {
         type: String,
       },

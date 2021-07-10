@@ -128,7 +128,7 @@ export const UpdateOne = (obj, urlid) => async (dispatch) => {
           type: "Update_CI",
           payload: res.data,
         }),
-      console.log(urlid)
+     
     );
   } catch {
     dispatch({
@@ -136,19 +136,19 @@ export const UpdateOne = (obj, urlid) => async (dispatch) => {
     });
   }
 };
-export const UpdateStatus = (status, urlid) => async (dispatch) => {
-  console.log("update one action should");
+export const UpdateStatus = (status,date, urlid) => async (dispatch) => {
+ 
 
   try {
     let url = "/api/cistatus/";
-    await axios.put(url + urlid, { id: urlid, cistatus: status }).then(
-      (res) =>
-        // dispatch({
-        //   type: "Update_Status",
-        //   payload: res.data,
-        console.log(res.data)
-        // }),
-    );
+    await axios
+      .put(url + urlid, { id: urlid, cistatus: status, api_date:date })
+      .then((res) =>
+        dispatch({
+          type: "Update_Status",
+          payload: res.data,
+        })
+      );
   } catch {
     dispatch({
       type: "Error",
