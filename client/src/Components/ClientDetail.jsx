@@ -716,7 +716,7 @@ export default function ClientDetail() {
         />
       </div>
       <div className="mt-4 mb-4 ml-4">
-        <button style={{ backgroundColor: "brown" }} className="btn text-white">
+        <button onClick={e=>{onSubmit(e)}} style={{ backgroundColor: "brown" }} className="btn text-white">
           SEND TO INTEGRATION
         </button>
       </div>

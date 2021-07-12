@@ -339,7 +339,66 @@ export const Header = (props) => {
                 role="tabpanel"
                 aria-labelledby="pills-solution-tab"
               >
-                SOLUTION PARTNERS
+                <div class="newappWrap">
+                  <div class="container-fluid">
+                    <div class="inn-app-tabs dash-navvbar">
+                      <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <Link
+                            class="nav-link"
+                            id="pills-pre-vet-tab"
+                            data-toggle="pill"
+                            to="/contact"
+                            aria-controls="pills-pre-vet"
+                            role="tab"
+                            aria-selected="true"
+                          >
+                            Add new Partner
+                          </Link>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <Link
+                            to="/solution-nav"
+                            class="nav-link"
+                            id="pills-complience-dash-tab"
+                            data-toggle="pill"
+                            role="tab"
+                            aria-controls="pills-ccomplience-dash"
+                            aria-selected="false"
+                          >
+                            Add new Solution
+                          </Link>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <Link
+                            to="/solution-DB"
+                            class="nav-link"
+                            id="pills-complience-dash-tab"
+                            data-toggle="pill"
+                            role="tab"
+                            aria-controls="pills-IBAN-dash"
+                            aria-selected="false"
+                          >
+                            Solution Dashboard
+                          </Link>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <Link
+                            to="/contact-list"
+                            class="nav-link"
+                            id="pills-bording-dash-tab"
+                            data-toggle="pill"
+                            role="tab"
+                            aria-controls="pills-bording-dash"
+                            aria-selected="false"
+                          >
+                            Partners Dashboard
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div

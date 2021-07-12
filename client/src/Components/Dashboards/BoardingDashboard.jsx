@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { GetLive, Delete } from "../../actions/ciAction";
+import { GetLive, Delete ,Get} from "../../actions/ciAction";
 import '../../assets/css/db.css'
 import Dashboard from '../Dashboard'
 
@@ -16,7 +16,7 @@ export default function MainDashboard() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(GetLive());
+    dispatch(Get());
   }, [dispatch]);
   const [db, setDb] = useState([]);
   const data = useSelector((state) => state.ciReducer.state);
