@@ -1,6 +1,6 @@
 import axios from "axios";
 export const CreateCI = (obj) => async (dipatch) => {
-  console.log("create action should"); 
+  console.log("create action should");
 
   await axios
     .post("/api/ci", {
@@ -122,13 +122,11 @@ export const UpdateOne = (obj, urlid) => async (dispatch) => {
 
   try {
     let url = "/api/ci";
-    await axios.put(url, { ci: obj, id: urlid }).then(
-      (res) =>
-        dispatch({
-          type: "Update_CI",
-          payload: res.data,
-        }),
-     
+    await axios.put(url, { ci: obj, id: urlid }).then((res) =>
+      dispatch({
+        type: "Update_CI",
+        payload: res.data,
+      })
     );
   } catch {
     dispatch({
@@ -136,13 +134,11 @@ export const UpdateOne = (obj, urlid) => async (dispatch) => {
     });
   }
 };
-export const UpdateStatus = (status,date, urlid) => async (dispatch) => {
- 
-
+export const UpdateStatus = (status, date, urlid) => async (dispatch) => {
   try {
     let url = "/api/cistatus/";
     await axios
-      .put(url + urlid, { id: urlid, cistatus: status, api_date:date })
+      .put(url + urlid, { id: urlid, cistatus: status, api_date: date })
       .then((res) =>
         dispatch({
           type: "Update_Status",
@@ -157,10 +153,10 @@ export const UpdateStatus = (status,date, urlid) => async (dispatch) => {
 };
 export const GetId = (id) => (dispatch) => {
   dispatch({
-    type: 'UPDATE_ID',
-    id: id
-  })
-}
+    type: "UPDATE_ID",
+    id: id,
+  });
+};
 export const setLoading = () => (dispatch) => {
   dispatch({
     type: "LOADING",
@@ -169,7 +165,7 @@ export const setLoading = () => (dispatch) => {
 export const setIBAN = () => (dispatch) => {
   dispatch({
     type: "IBAN",
-    isIBAN:false
+    isIBAN: false,
   });
 };
 export const ResetCI = () => (dispatch) => {

@@ -65,11 +65,12 @@ function App() {
             ) : (
               <div>
                 <Header />
-                <Route exact path='/' component={ClientDetail} />
+                <Route exact path='/client' component={ClientDetail} />
+                <Route exact path='/client/:urlid' component={ClientDetail} />
                 <Route exact path="/preappw" component={PreApproval} />
                 <Route exact path="/preappw/:urlid" component={PreApproval} />
 
-                {/* <Route exact path="/" component={MainDashboard} /> */}
+                <Route exact path="/" component={MainDashboard} />
                 <Route exact path="/ibandb" component={IBANDashboard} />
                 <Route exact path="/BoardingDb" component={BoardingDashboard} />
                 <Route exact path="/TradingDb" component={TradingDashboard} />

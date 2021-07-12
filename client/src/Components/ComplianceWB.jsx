@@ -8,10 +8,10 @@ import TRN from "./WBReusable/ComplianceRNotes";
 import TRNR from "./WBReusable/ComplianceRNotesR";
 import TR2 from "./WBReusable/ComplianceR2";
 import moment from "moment";
-import { Link, useHistory, useParams } from "react-router-dom";
-import ChecklistR from "./CheckList/checklistR";
-import SpChecklistR from "./CheckList/spchecklistR";
+import {   useHistory, useParams } from "react-router-dom";
+ 
 import { useDispatch, useSelector } from "react-redux";
+
 import { CreateCL, GetOneCL, Reset } from "../actions/clAction";
 import { Get, setLoading, GetOneCI, UpdateStatus } from "../actions/ciAction";
 import Loader from "react-loader-spinner";
@@ -27,7 +27,6 @@ import {
   INITIATENotes,
 } from "../actions/notesActions";
 
-import { FaDraft2Digital } from "react-icons/fa";
 import { GetOneKYB } from "../actions/kybAction";
 import { GetOneKYC } from "../actions/kycAction";
 

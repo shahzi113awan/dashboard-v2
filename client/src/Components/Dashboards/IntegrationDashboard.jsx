@@ -1,20 +1,17 @@
- 
 import "../../assets/css/db.css";
 
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import {useSelector,useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import { Delete, Get } from "../../actions/ciAction";
 import Loader from "react-loader-spinner";
 import Dashboard1 from "../Dashboard";
- 
 
 import moment from "moment";
 
 export default function Dashboard() {
   // const history = useHistory();
   const ref = useRef(null);
-
 
   const dispatch = useDispatch();
 
@@ -28,12 +25,8 @@ export default function Dashboard() {
     // console.log(e.target, 'window')
   };
   useEffect(() => {
-    dispatch(Get())
-     
-   
+    dispatch(Get());
   }, []);
-
-   
 
   // console.log(isLoading);
   const del = async (id) => {
@@ -64,6 +57,11 @@ export default function Dashboard() {
   };
   console.log(Index);
   return (
-    <Dashboard1 status="Integration" dateType={"Date of Integration"} data={data} isLoading={isLoading} />
+    <Dashboard1
+      status="Integration"
+      dateType={"Date of Integration"}
+      data={data}
+      isLoading={isLoading}
+    />
   );
 }

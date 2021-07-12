@@ -872,7 +872,7 @@ function Dashboard({ data, dashboard, status,dateType }) {
                         <td>
                           <div class="compliance-small-fonts">
                             {
-                              <Link to={"/complianceworkbook/" + res._id}>
+                              <Link to={"/client/" + res._id}>
                                 {res.name ? res.name : "Default Name"}
                               </Link>
                             }

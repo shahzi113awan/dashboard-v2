@@ -49,8 +49,8 @@ export default function MainDashboard() {
   };
 
   useEffect(() => {
-    console.log(db);
-  if (db.length > 0 ){
+    // console.log(db);
+  if (db && db.length > 0 ){
     db.map((el, Index) => {
       console.log(Index);
       const Start = moment(new Date());
@@ -164,7 +164,7 @@ console.log(db);
   //   console.log(data[0].App.af_rcn);
   console.log(isLoading);
   //   console.log(db);
-  return isLoading ? (
+  return isLoading || !db ? (
     <div
     style={{
       position: "absolute",

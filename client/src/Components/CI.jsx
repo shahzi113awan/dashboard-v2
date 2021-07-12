@@ -40,11 +40,7 @@ export default function CI({ ide }) {
   const isLoading = useSelector((state) => state.ciReducer.isLoading);
   const id = useSelector((state) => state.ciReducer._id);
   const IBAN = useSelector((state) => state.IbanReducer.iban);
-  console.log(IBAN);
-  console.log(id);
-  console.log(data1.ci);
-  console.log(urlid);
-  console.log(isLoading);
+  
   const history = useHistory();
 
   // console.log('**********')
@@ -154,7 +150,7 @@ export default function CI({ ide }) {
             <div></div>
           )}
           <div className={urlid ? "col-md-8" : "col-md-12"}>
-            <Label>MOVE TO</Label>
+            {/* <Label>MOVE TO</Label>
             <select
               className={"custom-select"}
               value={CI.cistatus}
@@ -167,7 +163,7 @@ export default function CI({ ide }) {
               <option> Live </option>
               <option>Trading</option>
               <option>Archive</option>
-            </select>
+            </select> */}
 
             <div>
               <h2>

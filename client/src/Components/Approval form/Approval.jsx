@@ -359,7 +359,7 @@ export default function ApprovalForm() {
               </select>
             </FormGroup>
           </Col>{" "}
-          <Col md={12}>
+          {/* <Col md={12}>
             <FormGroup>
               <Label for="memo">Status</Label>
               <select
@@ -374,7 +374,7 @@ export default function ApprovalForm() {
                 <option>Lost</option>
               </select>
             </FormGroup>
-          </Col>
+          </Col> */}
         </Row>
         {/* <Button tag={Link} to={"/appdb"} type="submit" onClick={onSubmit}>
           Submit

@@ -12,9 +12,10 @@ import { appReducer } from "./appReducer";
 import { contactReducer } from "./contactReducer";
 import { solReducer } from "./solutionNavReducer";
 import { solParamsReducer } from "./solutionNavparamsReducer";
-import { APPWReducer} from "./PreAppWork";
+import { APPWReducer } from "./PreAppWork";
+import { clientReducer } from "./clientReducer";
 export default combineReducers({
- IbanReducer,
+  IbanReducer,
   kybReducer,
   ciReducer,
   ctiReducer,
@@ -27,5 +28,6 @@ export default combineReducers({
   solParamsReducer,
   SpareReducer,
   NotesReducer,
-  APPWReducer
+  APPWReducer,
+  clientReducer,
 });

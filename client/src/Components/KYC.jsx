@@ -78,9 +78,9 @@ const KYC = ({ ide }) => {
   const handleInput = async (e, index) => {
     e.preventDefault();
     const { name, value } = e.target;
-    const list = [...KYC];
-    list[index][name] = value;
-    console.log(KYC);
+      const list = [...KYC];
+      list[index][name] = value;
+      console.log(KYC);
     setKYC(list);
   };
   //handle add and remove

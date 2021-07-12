@@ -48,6 +48,7 @@ router.route('/cl/').put((req, res, next) => {
   CLSchema.updateOne(
     { _id:req.body.id},
     { $set: {cl:req.body.cl} },
+    {new:true},
     // {$set: req.body},
     
     (error, data) => {
